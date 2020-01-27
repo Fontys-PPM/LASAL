@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Project
+	Version            = "12"
+	Name               = "LASAL"
+	SolutionType       = "Large"
+	WriteSrvListOnSave = "true"
+	CLASSType          = "true">
+	<HeaderFiles>
+		<File Path=".\Include\unit.h"/>
+		<File Path=".\Include\global.h"/>
+		<File Path=".\Include\UserDef.h"/>
+		<File Path=".\Include\types.h"/>
+		<File Path=".\Include\channels.h"/>
+		<File Path=".\Include\C_global.h"/>
+		<File Path=".\Include\C_types.h"/>
+		<File Path=".\Include\C_channels.h"/>
+		<File Path=".\Include\lslpublictypes.h"/>
+	</HeaderFiles>
+	<ObjectFiles>
+		<File Path=".\Loader\Source\Loader.lob" Downloadable="false"/>
+	</ObjectFiles>
+	<Options>
+		<Target UseFPU="true">
+		</Target>
+		<Compiler
+			CompilerVersion         = "46"
+			VariableNeverUsed       = "true"
+			ValueNeverUsed          = "true"
+			LabelNeverUsed          = "true"
+			ParameterNeverUsed      = "true"
+			VariableUnitialized     = "true"
+			RetValueUnitialized     = "true"
+			PrivateDataAccess       = "true"
+			SemicolonMissing        = "true"
+			ConditionConstant       = "true"
+			ExactTypeChecking       = "true"
+			CheckConnectionTypes    = "true"
+			CompileCFiles           = "false"
+			Alignment               = "4 Byte"
+			ReducedClientDependency = "true"
+			MaxModuleErrorCount     = "100"
+			MathLibrary             = "BSD Library">
+		</Compiler>
+		<Directories
+			Class       = ".\Class\"
+			Network     = ".\Network\"
+			Source      = ".\Source\"
+			Include     = ".\Include\"
+			Loader      = ".\Loader\"
+			PrjInternal = ".\ProjectInternal\">
+		</Directories>
+	</Options>
+	<Units>
+		<UnitGrp Name="Acceleration">
+			<Unit Name="mmPsec2" Factor="1" Ref="S"/>
+		</UnitGrp>
+		<UnitGrp Name="Angle">
+			<Unit Name="deg" Factor="10000" Ref="S"/>
+		</UnitGrp>
+		<UnitGrp Name="Area">
+			<Unit Name="mm2" Factor="10" Ref="S" Comment="x.x sqare millimeter"/>
+		</UnitGrp>
+		<UnitGrp Name="Force">
+			<Unit Name="kN" Factor="1000 N" Ref="S"/>
+			<Unit Name="N" Factor="1" Ref="S"/>
+		</UnitGrp>
+		<UnitGrp Name="Length">
+			<Unit Name="m" Factor="1000 mm" Ref="S"/>
+			<Unit Name="mm" Factor="10000" Ref="S"/>
+		</UnitGrp>
+		<UnitGrp Name="Memory">
+			<Unit Name="GB" Factor="1024 MB" Ref="S"/>
+			<Unit Name="kB" Factor="1024" Ref="S"/>
+			<Unit Name="MB" Factor="1024 kB" Ref="S"/>
+		</UnitGrp>
+		<UnitGrp Name="Pressure">
+			<Unit Name="bar" Factor="1000" Ref="S" Comment="x.xxx Bar ( MilliBar)"/>
+		</UnitGrp>
+		<UnitGrp Name="Revolution">
+			<Unit Name="RPM" Factor="1000" Ref="S"/>
+		</UnitGrp>
+		<UnitGrp Name="Speed">
+			<Unit Name="mlpmin" Factor="1" Ref="S"/>
+			<Unit Name="mmpsec" Factor="10000" Ref="S"/>
+		</UnitGrp>
+		<UnitGrp Name="Time">
+			<Unit Name="hours" Factor="60 min" Ref="S"/>
+			<Unit Name="min" Factor="60 secs" Ref="S"/>
+			<Unit Name="ms" Factor="1" Ref="S"/>
+			<Unit Name="sec" Factor="1000" Ref="S"/>
+			<Unit Name="secs" Factor="1000 ms" Ref="S"/>
+		</UnitGrp>
+		<UnitGrp Name="Volume">
+			<Unit Name="ccm" Factor="1" Ref="S" Comment="cubic centimeter"/>
+		</UnitGrp>
+	</Units>
+</Project>
