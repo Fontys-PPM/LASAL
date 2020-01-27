@@ -1,0 +1,382 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HWClassInfo>
+  <HWDevice ModuleID="1086" SubModuleID="0x0" ModType="M_SDIAS" Desc="SDIAS Stepper Module (1x Motor Out, 2x Enable In STO 24V, 2x Digital In 24V, 1x Incremental Encoder Input, 1x Brake Chopper)" OrderNr="20-014-151">
+    <Types>
+      <Device Name="ST151" ClassName="ST151" DisplayGroup="Axis" Default="true" PowerLoss="2500">
+        <Power Voltage="5000" Supply="0" Drain="0" />
+        <Power Voltage="24000" Supply="0" Drain="150" />
+      </Device>
+    </Types>
+    <VisualData>
+      <VisualView TypeId="0" Size="10,120">
+        <VisualModule ImgPath=".\S-Dias\S-DIAS Grundmodul TwoSlot_2.xaml" Position="0,0" Width="25" Height="101.8">
+          <!-- Texte -->
+          <VisualTexts>
+            <VisualText Text="ST 151" FontFamily="ARIAL" Italic="true" FontSize="12" ClrForeground="4294967295" FontWeight="700" LineHeight="10" Width="7.94" Height="5.82" Left="17.46" Top="10.05" ClrBackground="16777215" />
+            <VisualText Text="S" FontFamily="ARIAL" ClrForeground="4294967295" Width="1.59" Height="2.65" Left="12.96" Top="9" ClrBackground="16777215" FontWeight="400" />
+            <VisualText Text="U" FontFamily="ARIAL" ClrForeground="4294967295" Width="1.59" Height="2.65" Left="12.96" Top="11.64" ClrBackground="16777215" FontWeight="400" />
+            <VisualText Text="X1" FontFamily="ARIAL" ClrForeground="4291330563" ClrBackground="4294967295" Width="3.17" Height="2.38" Left="12.96" Top="15.61" FontWeight="400" />
+            <VisualText Text="A" FontFamily="ARIAL" ClrForeground="4294967295" Width="3" Height="2.65" Left="12.96" Top="17.99" ClrBackground="16777215" FontWeight="400" AlignH="0" AlignV="1" />
+            <VisualText Text="A\" FontFamily="ARIAL" ClrForeground="4294967295" Width="3" Height="2.65" Left="12.96" Top="21.17" ClrBackground="16777215" FontWeight="400" AlignH="0" AlignV="1" />
+            <VisualText Text="B" FontFamily="ARIAL" ClrForeground="4294967295" Width="3" Height="2.65" Left="12.96" Top="24.34" ClrBackground="16777215" FontWeight="400" AlignH="0" AlignV="1" />
+            <VisualText Text="B\" FontFamily="ARIAL" ClrForeground="4294967295" Width="3" Height="2.65" Left="12.96" Top="27.52" ClrBackground="16777215" FontWeight="400" AlignH="0" AlignV="1" />
+            <VisualText Text="X2" FontFamily="ARIAL" ClrForeground="4291330563" ClrBackground="4294967295" FontWeight="400" Width="3.17" Height="2.38" Left="12.99" Top="31.15" />
+            <VisualText Text="RC" FontFamily="ARIAL" ClrForeground="4294967295" ClrBackground="16777215" FontWeight="400" Width="3.65" Height="2.65" Left="12.96" Top="33.88" AlignH="0" AlignV="1" />
+            <VisualText Text="RC" FontFamily="ARIAL" ClrForeground="4294967295" ClrBackground="16777215" FontWeight="400" Width="3.65" Height="2.65" Left="12.96" Top="37.11" AlignH="0" AlignV="1" />
+            <VisualText Text="U+" FontFamily="ARIAL" ClrForeground="4294967295" ClrBackground="16777215" FontWeight="400" Width="3.65" Height="2.65" Left="12.96" Top="40.34" AlignH="0" AlignV="1" />
+            <VisualText Text="U-" FontFamily="ARIAL" ClrForeground="4294967295" ClrBackground="16777215" FontWeight="400" Width="3.65" Height="2.65" Left="12.96" Top="43.57" AlignH="0" AlignV="1" />
+            <VisualText Text="X3" FontFamily="ARIAL" ClrForeground="4291330563" ClrBackground="4294967295" Width="3.17" Height="2.38" Left="12.99" Top="46.3" FontWeight="400" />
+            <VisualText Text="A+" FontFamily="ARIAL" ClrForeground="4294967295" Width="3" Height="2.65" Left="12.96" Top="49.18" ClrBackground="16777215" FontWeight="400" AlignH="0" AlignV="1" />
+            <VisualText Text="A-" FontFamily="ARIAL" ClrForeground="4294967295" Width="3" Height="2.65" Left="12.96" Top="52.7" ClrBackground="16777215" FontWeight="400" AlignH="0" AlignV="1" />
+            <VisualText Text="B+" FontFamily="ARIAL" ClrForeground="4294967295" Width="3" Height="2.65" Left="12.96" Top="56.22" ClrBackground="16777215" FontWeight="400" AlignH="0" AlignV="1" />
+            <VisualText Text="B-" FontFamily="ARIAL" ClrForeground="4294967295" Width="3" Height="2.65" Left="12.96" Top="59.74" ClrBackground="16777215" FontWeight="400" AlignH="0" AlignV="1" />
+            <VisualText Text="R+" FontFamily="ARIAL" ClrForeground="4294967295" ClrBackground="16777215" FontWeight="400" Width="3" Height="2.65" Left="12.96" Top="63.26" AlignH="0" AlignV="1" />
+            <VisualText Text="R-" FontFamily="ARIAL" ClrForeground="4294967295" ClrBackground="16777215" FontWeight="400" Width="3" Height="2.65" Left="12.96" Top="66.78" AlignH="0" AlignV="1" />
+            <VisualText Text="5V" FontFamily="ARIAL" ClrForeground="4294967295" ClrBackground="16777215" FontWeight="400" Width="3" Height="2.65" Left="12.96" Top="70.3" AlignH="0" AlignV="1" />
+            <VisualText Text="0V" FontFamily="ARIAL" ClrForeground="4294967295" ClrBackground="16777215" FontWeight="400" Width="3" Height="2.65" Left="12.96" Top="73.82" AlignH="0" AlignV="1" />
+            <VisualText Text="X4" FontFamily="ARIAL" ClrForeground="4291330563" ClrBackground="4294967295" Width="3.17" Height="2.38" Left="12.96" Top="76.99" FontWeight="400" />
+            <VisualText Text="E1" FontFamily="ARIAL" ClrForeground="4294967295" Width="3.65" Height="2.65" Left="12.96" Top="79.38" ClrBackground="16777215" FontWeight="400" AlignH="0" AlignV="1" />
+            <VisualText Text="E2" FontFamily="ARIAL" ClrForeground="4294967295" Width="3.65" Height="2.65" Left="12.96" Top="82.55" ClrBackground="16777215" FontWeight="400" AlignH="0" AlignV="1" />
+            <VisualText Text="I1" FontFamily="ARIAL" ClrForeground="4294967295" Width="3" Height="2.65" Left="12.96" Top="85.72" Angle="3" ClrBackground="16777215" FontWeight="400" AlignH="0" AlignV="1" />
+            <VisualText Text="I2" FontFamily="ARIAL" ClrForeground="4294967295" Width="3" Height="2.65" Left="12.96" Top="88.9" ClrBackground="16777215" FontWeight="400" AlignH="0" AlignV="1" />
+            <VisualText FontFamily="ARIAL" ClrForeground="4278190080" ClrBackground="4294967295" FontWeight="400" Width="9.7" Height="4.88" Left="14" Top="3.66" />
+          </VisualTexts>
+          <!-- Leds -->
+          <VisualLeds>
+            <VisualLed Description="Module state" ImgPath=".\S-Dias\S-DIAS Led.xaml" ClrForeground="1342242560" Width="1.32" Height="1.32" Left="14.82" Top="10.32">
+              <Behaviour ClrForeground="4278255360">
+                <Activator TypeId="4">
+                  <Activator TypeId="1" Value="1" />
+                  <Activator TypeId="3" DataString="ST151.ClassState" Value="0" />
+                </Activator>
+              </Behaviour>
+              <Behaviour ClrForeground="4278255360" Interval="200">
+                <Activator TypeId="4">
+                  <Activator TypeId="1" Value="1" />
+                  <Activator TypeId="3" DataString="ST151.ClassState" Value="0" Negate="true" />
+                </Activator>
+              </Behaviour>
+            </VisualLed>
+            <VisualLed DataString="ST151.LedControl" Description="User" ImgPath=".\S-Dias\S-DIAS Led.xaml" ClrForeground="1342216703" Width="1.32" Height="1.32" Left="14.82" Top="12.96">
+              <Behaviour ClrForeground="4278229503">
+                <Activator TypeId="3" DataString="ST151.LedControl" Value="1" />
+              </Behaviour>
+              <Behaviour ClrForeground="4278229503" Interval="500">
+                <Activator TypeId="3" DataString="ST151.LedControl" Value="2" />
+              </Behaviour>
+              <Behaviour ClrForeground="4278229503" Interval="250">
+                <Activator TypeId="3" DataString="ST151.LedControl" Value="3" />
+              </Behaviour>
+            </VisualLed>
+            <!-- X1-->
+            <VisualLed Description="motor phase A" ImgPath=".\S-Dias\S-DIAS Led.xaml" ClrForeground="1342216703" Width="1.32" Height="1.32" Left="14.61" Top="18.51">
+              <Behaviour ClrForeground="4278229503" Interval="50">
+                <Activator TypeId="4">
+                  <Activator TypeId="3" DataString="ST151.SetFreqOut" Value="0" Negate="true" />
+                  <Activator TypeId="3" DataString="ST151.Enable" Value="1" />
+                </Activator>
+              </Behaviour>
+              <Behaviour ClrForeground="4278229503">
+                <Activator TypeId="4">
+                  <Activator TypeId="3" DataString="ST151.SetFreqOut" Value="0" />
+                  <Activator TypeId="3" DataString="ST151.Enable" Value="1" />
+                </Activator>
+              </Behaviour>
+            </VisualLed>
+            <VisualLed Description="motor phase A\" ImgPath=".\S-Dias\S-DIAS Led.xaml" ClrForeground="1342216703" Width="1.32" Height="1.32" Left="14.61" Top="21.87">
+              <Behaviour ClrForeground="4278229503" Interval="50">
+                <Activator TypeId="4">
+                  <Activator TypeId="3" DataString="ST151.SetFreqOut" Value="0" Negate="true" />
+                  <Activator TypeId="3" DataString="ST151.Enable" Value="1" />
+                </Activator>
+              </Behaviour>
+              <Behaviour ClrForeground="4278229503">
+                <Activator TypeId="4">
+                  <Activator TypeId="3" DataString="ST151.SetFreqOut" Value="0" />
+                  <Activator TypeId="3" DataString="ST151.Enable" Value="1" />
+                </Activator>
+              </Behaviour>
+            </VisualLed>
+            <VisualLed Description="motor phase B" ImgPath=".\S-Dias\S-DIAS Led.xaml" ClrForeground="1342216703" Width="1.32" Height="1.32" Left="14.61" Top="25.23">
+              <Behaviour ClrForeground="4278229503" Interval="25">
+                <Activator TypeId="4">
+                  <Activator TypeId="3" DataString="ST151.SetFreqOut" Value="0" Negate="true" />
+                  <Activator TypeId="3" DataString="ST151.Enable" Value="1" />
+                </Activator>
+              </Behaviour>
+              <Behaviour ClrForeground="4278229503">
+                <Activator TypeId="4">
+                  <Activator TypeId="3" DataString="ST151.SetFreqOut" Value="0" />
+                  <Activator TypeId="3" DataString="ST151.Enable" Value="1" />
+                </Activator>
+              </Behaviour>
+            </VisualLed>
+            <VisualLed Description="motor phase B\" ImgPath=".\S-Dias\S-DIAS Led.xaml" ClrForeground="1342216703" Width="1.32" Height="1.32" Left="14.61" Top="28.59">
+              <Behaviour ClrForeground="4278229503" Interval="25">
+                <Activator TypeId="4">
+                  <Activator TypeId="3" DataString="ST151.SetFreqOut" Value="0" Negate="true" />
+                  <Activator TypeId="3" DataString="ST151.Enable" Value="1" />
+                </Activator>
+              </Behaviour>
+              <Behaviour ClrForeground="4278229503">
+                <Activator TypeId="4">
+                  <Activator TypeId="3" DataString="ST151.SetFreqOut" Value="0" />
+                  <Activator TypeId="3" DataString="ST151.Enable" Value="1" />
+                </Activator>
+              </Behaviour>
+            </VisualLed>
+            <!-- X2-->
+            <VisualLed Description="motor power supply" ImgPath=".\S-Dias\S-DIAS Led.xaml" ClrForeground="1342242560" Width="1.32" Height="1.32" Left="14.61" Top="41">
+              <Behaviour ClrForeground="4278255360">
+                <Activator TypeId="5">
+                  <Activator TypeId="4">
+                    <Activator TypeId="3" DataString="ST151.RefreshValues" Value="1" />
+                    <Activator TypeId="3" DataString="ST151.ExtendedStateWord.9" Value="0" />
+                    <Activator TypeId="3" DataString="ST151.ExtendedStateWord.10" Value="0" />
+                  </Activator>
+                  <Activator TypeId="3" DataString="ST151.StateWord.1" Value="1" />
+                </Activator>
+              </Behaviour>
+            </VisualLed>
+            <VisualLed Description="motor error" ImgPath=".\S-Dias\S-DIAS Led.xaml" ClrForeground="1342177535" Width="1.32" Height="1.32" Left="14.61" Top="44.36">
+              <Behaviour ClrForeground="4026532095">
+                <Activator TypeId="3" DataString="ST151.AxError" Value="1" />
+              </Behaviour>
+            </VisualLed>
+            <!-- X3-->
+            <VisualLed Description="encoder A" ImgPath=".\S-Dias\S-DIAS Led.xaml" ClrForeground="1342242560" Width="1.32" Height="1.32" Left="14.61" Top="49.33">
+              <Behaviour ClrForeground="4278255360">
+                <Activator TypeId="3" DataString="ST151.EncoderSampling" Value="0" Negate="true" />
+              </Behaviour>
+            </VisualLed>
+            <VisualLed Description="encoder B" ImgPath=".\S-Dias\S-DIAS Led.xaml" ClrForeground="1342242560" Width="1.32" Height="1.32" Left="14.61" Top="56.63">
+              <Behaviour ClrForeground="4278255360">
+                <Activator TypeId="3" DataString="ST151.EncoderSampling" Value="0" Negate="true" />
+              </Behaviour>
+            </VisualLed>
+            <VisualLed Description="encoder R" ImgPath=".\S-Dias\S-DIAS Led.xaml" ClrForeground="1342242560" Width="1.32" Height="1.32" Left="14.61" Top="63.93">
+              <Behaviour ClrForeground="4278255360">
+                <Activator TypeId="3" DataString="ST151.ZPuls" Value="1" />
+              </Behaviour>
+            </VisualLed>
+            <VisualLed ImgPath=".\S-Dias\S-DIAS Led.xaml" Description="encoder power supply" ClrForeground="1342242560" Width="1.32" Height="1.32" Left="14.61" Top="71.23">
+              <Behaviour ClrForeground="4278255360">
+                <Activator TypeId="4">
+                  <Activator TypeId="3" DataString="ST151.RefreshValues" Value="1" />
+                  <Activator TypeId="3" DataString="ST151.VoltageOKEncoder" Value="1" />
+                </Activator>
+              </Behaviour>
+            </VisualLed>
+            <!-- X4-->
+            <VisualLed ImgPath=".\S-Dias\S-DIAS Led.xaml" Description="enable 1" ClrForeground="1342242560" Width="1.32" Height="1.32" Left="14.61" Top="79.78">
+              <Behaviour ClrForeground="4278255360">
+                <Activator TypeId="5">
+                  <Activator TypeId="4">
+                    <Activator TypeId="3" DataString="ST151.RefreshValues" Value="1" />
+                    <Activator TypeId="3" DataString="ST151.ExternalEnable1" Value="1" />
+                  </Activator>
+                  <Activator TypeId="3" DataString="ST151.StateWord.1" Value="1" />
+                </Activator>
+              </Behaviour>
+            </VisualLed>
+            <VisualLed ImgPath=".\S-Dias\S-DIAS Led.xaml" Description="enable 2" ClrForeground="1342242560" Width="1.32" Height="1.32" Left="14.61" Top="83.14">
+              <Behaviour ClrForeground="4278255360">
+                <Activator TypeId="5">
+                  <Activator TypeId="4">
+                    <Activator TypeId="3" DataString="ST151.RefreshValues" Value="1" />
+                    <Activator TypeId="3" DataString="ST151.ExternalEnable2" Value="1" />
+                  </Activator>
+                  <Activator TypeId="3" DataString="ST151.StateWord.1" Value="1" />
+                </Activator>
+              </Behaviour>
+            </VisualLed>
+            <VisualLed ImgPath=".\S-Dias\S-DIAS Led.xaml" Description="digital input 1" ClrForeground="1342242560" Width="1.32" Height="1.32" Left="14.61" Top="86.5">
+              <Behaviour ClrForeground="4278255360">
+                <Activator TypeId="3" DataString="ST151.Input1" Value="1" />
+              </Behaviour>
+            </VisualLed>
+            <VisualLed ImgPath=".\S-Dias\S-DIAS Led.xaml" Description="digital input 2" ClrForeground="1342242560" Width="1.32" Height="1.32" Left="14.61" Top="89.86">
+              <Behaviour ClrForeground="4278255360">
+                <Activator TypeId="3" DataString="ST151.Input2" Value="1" />
+              </Behaviour>
+            </VisualLed>
+          </VisualLeds>
+          <!-- Stecker -->
+          <VisualConnectors>
+            <VisualConnector Description="X1" ImgPath=".\S-Dias\S-DIAS Phoenix 4-polig.xaml" Width="7.86" Height="15" Left="16.4" Top="16.93">
+              <ConnectorPin Description="Stepper motor A" TypeId="0" />
+              <ConnectorPin Description="Stepper motor A\" TypeId="0" />
+              <ConnectorPin Description="Stepper motor B" TypeId="0" />
+              <ConnectorPin Description="Stepper motor B\" TypeId="0" />
+            </VisualConnector>
+            <VisualConnector Description="X2" ImgPath=".\S-Dias\S-DIAS Phoenix 4-polig.xaml" Width="7.86" Height="15" Left="16.4" Top="32.31">
+              <ConnectorPin Description="Brake Chopper +" TypeId="0" />
+              <ConnectorPin Description="Brake Chopper -" TypeId="0" />
+              <ConnectorPin Description="Motor supply +" TypeId="0" />
+              <ConnectorPin Description="Motor supply -" TypeId="0" />
+            </VisualConnector>
+            <VisualConnector Description="X3" ImgPath=".\S-Dias\S-DIAS Phoenix 8-polig.xaml" Width="7.86" Height="30.37" Left="16.4" Top="47.62">
+              <ConnectorPin DataString="ST151.EncoderPosition" Description="A+ Encoder" TypeId="1" />
+              <ConnectorPin DataString="ST151.EncoderPosition" Description="A- Encoder" TypeId="1" />
+              <ConnectorPin DataString="ST151.EncoderPosition" Description="B+ Encoder" TypeId="1" />
+              <ConnectorPin DataString="ST151.EncoderPosition" Description="B- Encoder" TypeId="1" />
+              <ConnectorPin DataString="ST151.EncoderPosition" Description="R+ Encoder" TypeId="1" />
+              <ConnectorPin DataString="ST151.EncoderPosition" Description="R- Encoder" TypeId="1" />
+              <ConnectorPin DataString="ST151.EncoderPosition" Description="5V Encoder" TypeId="1" />
+              <ConnectorPin DataString="ST151.EncoderPosition" Description="GND" TypeId="1" />
+            </VisualConnector>
+            <VisualConnector Description="X4" ImgPath=".\S-Dias\S-DIAS Phoenix 4-polig.xaml" Width="7.86" Height="15" Left="16.4" Top="78.32">
+              <ConnectorPin DataString="ST151.ExternalEnable1" Description="Enable input 1" TypeId="1" />
+              <ConnectorPin DataString="ST151.ExternalEnable2" Description="Enable input 2" TypeId="1" />
+              <ConnectorPin DataString="ST151.Input1" Description="Latch- Digital In 1" TypeId="1" />
+              <ConnectorPin DataString="ST151.Input2" Description="Latch- Digital In 2" TypeId="1" />
+            </VisualConnector>
+            <VisualConnector ImgPath=".\S-DIAS\S-DIAS Abdeckung.xaml" Width="8.18" Height="15.31" Left="3.76" Top="15.82" />
+            <VisualConnector ImgPath=".\S-DIAS\S-DIAS Abdeckung.xaml" Width="8.18" Height="15.31" Left="3.76" Top="31.47" />
+            <VisualConnector ImgPath=".\S-DIAS\S-DIAS Abdeckung.xaml" Width="8.18" Height="15.31" Left="3.76" Top="47.12" />
+            <VisualConnector ImgPath=".\S-DIAS\S-DIAS Abdeckung.xaml" Width="8.18" Height="15.31" Left="3.76" Top="62.77" />
+            <VisualConnector ImgPath=".\S-DIAS\S-DIAS Abdeckung.xaml" Width="8.18" Height="15.31" Left="3.76" Top="78.42" />
+          </VisualConnectors>
+        </VisualModule>
+      </VisualView>
+    </VisualData>
+  </HWDevice>
+  <Class Name="ST151">
+    <Uplink Name="SdiasIn" BusType="SDIAS" PlaceName="Place" />
+    <Property Name="Required" Channel="Required" Editor="Combo:1=Module is required;0=Module is not required" Desc="0=module is not required 1=module is required (CPU will crash if module is missing)" />
+    <IOState Name="Class State" Channel="ClassState" Desc="This server shows the status of the hardware class. If the state is not equal than _ClassOK, an error has occurred " Type="" />
+    <IOState Name="Device ID" Channel="DeviceID" IsInfo="true" Type="" Desc="This server shows the device ID  of the hardware module" />
+    <IOState Name="FPGA Version" Channel="FPGAVersion" Format="V{5-8}.{1-4}" IsInfo="true" Desc="Shows the actual FPGA version of the module in the format x.y (e.g. 16#10 means v1.0)" />
+    <IOState Name="Hardware Version" Channel="HwVersion" IsInfo="true" Format="V{9-16}.{5-8}{1-4}" Type="" Desc="Shows the hardware version of the module" />
+    <IOState Name="Serial Number" Channel="SerialNo" IsInfo="true" Type="" Desc="This server shows the Serial Number of the hardware module" />
+    <IOState Name="Retry Counter" Channel="RetryCounter" Desc="Is incremented in case of incorrect data transfer." />
+    <Output Name="LED Control" Channel="LEDControl" Type="Digital" Desc="Sets a LED on hardware, to detect module. (0=LED off; 1=LED on; 2=blinking slowly; 3=blinking fast)" />
+    <IOState Name="Online" Channel="Online" Desc="Shows the online state of the class.&#xD;&#xA;0..Not Online.&#xD;&#xA;1..Online" EditorColor="0=B(255,0,0);0=T(255,255,255)" />
+    <!-- Encoder -->
+    <IOComment Name="------------------------- Encoder --------------------------" IsInfo="true" Desc=""/>
+    <Input Name="Encoder position" Channel="EncoderPosition" IsConfig="true" Desc="Actual input position" Type="Analog" >
+    <!-- Encoder properties -->
+      <Property Name="Invert Encoder" Channel="InvertEncoder" Desc="0=Phase B non-inverted | 1=Phase B inverted" Editor="Combo:0=Normal;1=Invert" />
+      <Property Name="Encoder Sampling" Channel="EncoderSampling" Desc="0=Encoder off | 1=1-edge(rising edge) | 2=2-edge | 3=4-edge | 4=1-edge(falling edge)" Editor="Combo:0=Off;1=1 Edge(rising);2=2 Edges;3=4 Edges;4=1 Edge(falling)" />
+      <Property Name="Invert zero position" Channel="InvertZeroPosition" Desc="inverts server ZeroPosition (0..normal, 1..inverted)" Editor="Combo:0=normal;1=inverted" />
+      <Property Name="Encoder Mode" Channel="EncMode" Desc="0=TTL | 1=RS422" Editor="Combo:0=TTL;1=RS422" />
+      <Property Name="Latch type" Channel="LatchType" Desc="0 .. latch virtual counter&#xD;&#xA;1 .. latch incremental encoder" Editor="Combo:0=latch virtual counter;1=latch incremental encoder" />
+      <Property Name="A/B Count Mode" Channel="ABCountMode" Desc="0=A puls, B direction | 1=true A/B" Editor="Combo:0=A puls, B direction;1=true A/B" />
+    </Input>
+    <Input Name="Zero Position" Channel="ZPuls" Desc="Zero position is 1 if incremental zero position is passed" Type="Digital" />
+    <Input Name="Zero Position Latched" Channel="ZPulsLatched" Desc="Zero position latched is 1 if incremental zero position is passed, a read resets the server" Type="Digital" />
+    <Input Name="Latched encoder position zero pulse" Channel="LatchPositionEncoderZeroPulse" Desc="Latched position of zero pulse" Type="Analog" />
+    <Input Name="Latched position rising edge input1" Channel="LatchPositionInput1Rising" Desc="Latched position of rising edge of input1" Type="Analog" />
+    <Input Name="Latched position falling edge input1" Channel="LatchPositionInput1Falling" Desc="Latched position of falling edge of input1" Type="Analog" />
+    <Input Name="Latched position rising edge input2" Channel="LatchPositionInput2Rising" Desc="Latched position of rising of edge input2" Type="Analog" />
+    <Input Name="Latched position falling edge input2" Channel="LatchPositionInput2Falling" Desc="Latched position of falling of edge input2" Type="Analog" />
+    <!-- Digital Inputs -->
+    <IOComment Name="--------------------- Digital Input 1 ----------------------" IsInfo="true" Desc=""/>
+    <Input Name="Input 1" Channel="Input1" Type="Digital" Desc="First digital input" />
+    <Input Name="Input 1 Latched Rising" Channel="Input1LatchedRising" Type="Digital" Desc="Latched rising edge of first digital input&#xD;&#xA;signal will stay until read-method is called" />
+    <Input Name="Input 1 Latched Falling" Channel="Input1LatchedFalling" Type="Digital" Desc="Latched falling edge of first digital input&#xD;&#xA;signal will stay until read-method is called" />
+    <IOComment Name="--------------------- Digital Input 2 ----------------------" IsInfo="true" Desc=""/>
+    <Input Name="Input 2" Channel="Input2" Type="Digital" Desc="Second digital input" />
+    <Input Name="Input 2 Latched Rising" Channel="Input2LatchedRising" Type="Digital" Desc="Latched rising edge of second digital input&#xD;&#xA;signal will stay until read-method is called" />
+    <Input Name="Input 2 Latched Falling" Channel="Input2LatchedFalling" Type="Digital" Desc="Latched falling edge of second digital input&#xD;&#xA;signal will stay until read-method is called" />
+    <!-- Stepper -->
+    <IOComment Name="------------------------- Stepper --------------------------" IsInfo="true" Desc=""/>
+    <Output Name="Enable" Channel="Enable" Desc="Turn on the output stage of the ST151 module" Type="Digital" />
+    <Input Name="Actual position" Channel="ActPosition" Desc="Actual virtual position of stepper" Type="Analog" />
+    <Output Name="Frequency output" Channel="SetFreqOut" Desc="Set motor frequency in Hz * 64 microsteps" Type="Analog" />
+    <Output Name="Target Frequency output" Channel="TargetFreqOut" Desc="Set target motor frequency in Hz * 64 microsteps. This value is needed for adaptive Microstepping calculation.&#xD;&#xA;-1 .. feature is deactivated." Type="Analog" />
+    <Output Name="Current Increase" Channel="CurrentIncrease" Type="Digital" Desc="Allow current increase by sqrt(2) in halfstep mode" />
+    <Output Name="Control word" Channel="ControlWord" Desc="DS402 Controlword of the steppermodule.&#xD;&#xA;ResetFault: Quit Error&#xD;&#xA;Bit12 ManufactureSpec1: current increase allowed" Type="Analog" />
+    <Input Name="State word" Channel="StateWord" Desc="DS402 Statusword of the steppermodule" Type="Analog" />
+    <IOState Name="Error Info" Channel="ErrorInfo" Type="Analog" Desc="Shows errors from hardware. Errors above Bit 16 are refreshed at cyclic task over RefreshValues server.&#xD;&#xA;Bit 1: reserved&#xD;&#xA;Bit 2: Fault (Bridge not ok)&#xD;&#xA;Bit 3: Temperature  not ok&#xD;&#xA;Bit 4: Over current&#xD;&#xA;Bit 5: STO switch off (en1/en2)&#xD;&#xA;Bit 6: STO test switch off (negative test during operation)&#xD;&#xA;Bit 7: reserved&#xD;&#xA;Bit 8: reserved&#xD;&#xA;Bit 9: Brake chopper over current (disable brake chopper) &#xD;&#xA;Bit 10: reserved&#xD;&#xA;Bit 11: reserved&#xD;&#xA;Bit 12: reserved&#xD;&#xA;Bit 13: reserved&#xD;&#xA;Bit 14: reserved&#xD;&#xA;Bit 15: reserved&#xD;&#xA;Bit 16: Regen resistor load warning&#xD;&#xA;&#xD;&#xA;refreshed asynchrone:&#xD;&#xA;Bit 17: reserved&#xD;&#xA;Bit 18: Over temperature warning&#xD;&#xA;Bit 19: Over temperature failure (disable drive)&#xD;&#xA;Bit 20: Over current failure GND (disable drive)&#xD;&#xA;Bit 21: Over current failure Bridge 1 (disable drive)&#xD;&#xA;Bit 22: Over current failure Bridge 2 (disable drive)&#xD;&#xA;Bit 23: Regen resistor load disable bridge&#xD;&#xA;Bit 24: Regen resistor load disable resistor&#xD;&#xA;Bit 25: Bridge voltage too low&#xD;&#xA;Bit 26: Bridge voltage too high&#xD;&#xA;Bit 27: External Enable 1 (STO) not ok&#xD;&#xA;Bit 28: External Enable 2 (STO) not ok&#xD;&#xA;Bit 29: Safety start up status test not ok&#xD;&#xA;Bit 30: Motor enable error&#xD;&#xA;Bit 31: Three time sync in lost&#xD;&#xA;Bit 32: Safe Ramp down pending" />
+    <IOState Name="Axis Error" Channel="AxError" Type="Digital" Desc="Shows a fault of power stage. (eg. over temperature, over current, power not connected).&#xD;&#xA; 0 .. ok, 1 .. error" />
+    <Output Name="Error Quit" Channel="ErrorQuit" Type="Digital" Desc="Quits error if server AxError is set." />
+    <Output Name="HW Enable Software Rampdown" Channel="HWEnableSoftwareRampdown" Type="Digital" Desc="0..HardwareRampdown&#xD;&#xD;1..SoftwareRampdown" />
+    <Property Name="HW Enable Software Rampdown" Channel="HWEnableSoftwareRampdown" Type="Digital" Editor="Combo:0=Hardware Rampdown;1=Software Rampdown" Desc="0..HardwareRampdown&#xD;&#xD;1..SoftwareRampdown" />
+    <Output Name="HW Rampdown Delta Frequency" Channel="HWRampdownDeltaFrequency" Desc="If the enable-signal is lost the output frequency is decreased by HWRampdownDeltaFrequency every HWRampdownDeltaTime" Type="Analog" />
+    <Property Name="HW Rampdown Delta Frequency" Channel="HWRampdownDeltaFrequency" Desc="If the enable-signal is lost the output frequency is decreased by HWRampdownDeltaFrequency every HWRampdownDeltaTime" Editor="EditNumber:Unsigned;Dec" Type="Analog" />
+    <Output Name="HW Rampdown Delta Time" Channel="HWRampdownDeltaTime" Desc="[20ns steps], If the enable-signal is lost the output frequency is decreased by HWRampdownDeltaFrequency every HWRampdownDeltaTime" Type="Analog" />
+    <Property Name="HW Rampdown Delta Time" Channel="HWRampdownDeltaTime" Desc="[20ns steps], If the enable-signal is lost the output frequency is decreased by HWRampdownDeltaFrequency every HWRampdownDeltaTime" Editor="EditNumber:Unsigned;Dec" Type="Analog" />
+    <Output Name="Maximum Current" Channel="MaxCurrent" Desc="Set Maximum output current [mA] as init value." Editor="EditNumber:Unsigned;Dec" Type="Analog" />
+    <Property Name="Maximum Current" Channel="MaxCurrent" Desc="Set Maximum output current [mA] as init value." Editor="EditNumber:Unsigned;Dec" Type="Analog" />
+    <Output Name="Enable Steps" Channel="EnableSteps" Desc="Enable or disable stepping modes. The full step mode cannot be deactivated.&#xD;&#xA;Bit1 .. Fullstep mode&#xD;&#xA;Bit2 .. Halfstep mode&#xD;&#xA;Bit3 .. Microstepping mode 4&#xD;&#xA;Bit4 .. Microstepping mode 8&#xD;&#xA;Bit5 .. Microstepping mode 16&#xD;&#xA;Bit6 .. Microstepping mode 32&#xD;&#xA;Bit7 .. Microstepping mode 64" Type="Analog" />
+    <Property Name="Enable Steps" Channel="EnableSteps" Desc="Enable or disable stepping modes. The full step mode cannot be deactivated.&#xD;&#xA;Bit1 .. Fullstep mode&#xD;&#xA;Bit2 .. Halfstep mode&#xD;&#xA;Bit3 .. Microstepping mode 4&#xD;&#xA;Bit4 .. Microstepping mode 8&#xD;&#xA;Bit5 .. Microstepping mode 16&#xD;&#xA;Bit6 .. Microstepping mode 32&#xD;&#xA;Bit7 .. Microstepping mode 64" Editor="Bitfield:0=inactive|active||Fullstep mode;1=inactive|active||Halfstep mode;2=inactive|active||Microstepping mode 4;3=inactive|active||Microstepping mode 8;4=inactive|active||Microstepping mode 16;5=inactive|active||Microstepping mode 32;6=inactive|active||Microstepping mode 64;" Type="Analog" />
+    <!-- this current controller settings are only avaliable at the internal class
+    <Output Name="Current Offset Adjustment Bridge 1" Channel="CurrentOffsetAdjBridge1" Desc="Set current offset adjustment for bridge in [mA]. Valid range is from -250 to 250 and default value is 100." Editor="EditNumber:Unsigned;Dec" />
+    <Output Name="Current Offset Adjustment Bridge 2" Channel="CurrentOffsetAdjBridge2" Desc="Set current offset adjustment for bridge in [mA]. Valid range is from -250 to 250 and default value is 100." Editor="EditNumber:Unsigned;Dec" />
+    <Output Name="Chopper off time" Channel="ChopperOffTime" Editor="EditNumber:Unsigned;Dec" Desc="Set fixed off time of PWM as [20ns steps]. Allowed values are 1500 ... 2500" />
+    <Output Name="Chopper on time minimum" Channel="ChopperOnTimeMin" Editor="EditNumber:Unsigned;Dec" Desc="Set minimum on time of PWM as [20ns steps]. Allowed values are 1500 ... 2500" />
+    <Output Name="Fast decay time" Channel="FastDecayTime" Editor="EditNumber:Unsigned;Dec" Desc="Set time of fast decay mode as [20ns steps]. The value must be smaller than the chopper off time!" />
+    <Output Name="Fast decay time falling step" Channel="FastDecayTimeFallingStep" Editor="EditNumber:Unsigned;Dec" Desc="Set time of fast decay mode for falling step as [20ns steps]. The value must be smaller than the chopper off time!" />
+    -->
+    <!-- this limits are only at internal class available
+    <Output Name="Frequency limit increase 2 to 1"   Channel="FrequLimitIncrease2to1"   Editor="EditNumber:Unsigned;Dec" Desc="Set frequency limit for stepping mode if frequency is increasing." Type="Analog" />
+    <Output Name="Frequency limit increase 4 to 2"   Channel="FrequLimitIncrease4to2"   Editor="EditNumber:Unsigned;Dec" Desc="Set frequency limit for stepping mode if frequency is increasing." Type="Analog" />
+    <Output Name="Frequency limit increase 8 to 4"   Channel="FrequLimitIncrease8to4"   Editor="EditNumber:Unsigned;Dec" Desc="Set frequency limit for stepping mode if frequency is increasing." Type="Analog" />
+    <Output Name="Frequency limit increase 16 to 8"  Channel="FrequLimitIncrease16to8"  Editor="EditNumber:Unsigned;Dec" Desc="Set frequency limit for stepping mode if frequency is increasing." Type="Analog" />
+    <Output Name="Frequency limit increase 32 to 16" Channel="FrequLimitIncrease32to16" Editor="EditNumber:Unsigned;Dec" Desc="Set frequency limit for stepping mode if frequency is increasing." Type="Analog" />
+    <Output Name="Frequency limit increase 64 to 32" Channel="FrequLimitIncrease64to32" Editor="EditNumber:Unsigned;Dec" Desc="Set frequency limit for stepping mode if frequency is increasing." Type="Analog" />
+    
+    <Output Name="Frequency limit decrease 1 to 2"   Channel="FrequLimitDecrease1to2"   Editor="EditNumber:Unsigned;Dec" Desc="Set frequency limit for stepping mode if frequency is increasing." Type="Analog" />
+    <Output Name="Frequency limit decrease 2 to 4"   Channel="FrequLimitDecrease2to4"   Editor="EditNumber:Unsigned;Dec" Desc="Set frequency limit for stepping mode if frequency is increasing." Type="Analog" />
+    <Output Name="Frequency limit decrease 4 to 8"   Channel="FrequLimitDecrease4to8"   Editor="EditNumber:Unsigned;Dec" Desc="Set frequency limit for stepping mode if frequency is increasing." Type="Analog" />
+    <Output Name="Frequency limit decrease 8 to 16"  Channel="FrequLimitDecrease8to16"  Editor="EditNumber:Unsigned;Dec" Desc="Set frequency limit for stepping mode if frequency is increasing." Type="Analog" />
+    <Output Name="Frequency limit decrease 16 to 32" Channel="FrequLimitDecrease16to32" Editor="EditNumber:Unsigned;Dec" Desc="Set frequency limit for stepping mode if frequency is increasing." Type="Analog" />
+    <Output Name="Frequency limit decrease 32 to 64" Channel="FrequLimitDecrease32to64" Editor="EditNumber:Unsigned;Dec" Desc="Set frequency limit for stepping mode if frequency is increasing." Type="Analog" />
+    -->
+    <!-- Stepper property -->
+    <Property Name="Stall Current Reduction" Channel="StallCurrentReduction" Editor="EditNumber:Unsigned;Dec" Desc="Defaultvalue: 0 (no reduction in the stop position) Range: 0 - 1000 (0-100%). Value to reduce MaxCurrent for the Stop Position [0,1%]. Stop Position means, the value of the server SetFreqOut is lower than the StallCurrentWindow, which is 0 by default. It is used as init value." />
+    <Property Name="Stall Current Window" Channel="StallCurrentWindow" Editor="EditNumber:Unsigned;Dec" Desc="Set a window in which the StallCurrentReduction setting is active as init value." />
+    <Property Name="Enable Regen Resistor" Channel="EnableRegenResistor" Desc="Enable external regen resistor.&#xD;&#xA;0=deactivated | 1=activated" Editor="Combo:0=deactivated;1=activated" />
+    <Property Name="Regen Resistance" Channel="RegenResistance" Desc="Set resistance of regen resistor in [Ohm/10] as init value. Valid range is from 1 up to 65535." Editor="EditNumber:Unsigned;Dec" />
+    <Property Name="Rated Maximum Power" Channel="RatedMaxPower" Desc="Set value for rated maximum Power of regen resistor in [W/10] as init value. Valid range is from 1 up to 65535." Editor="EditNumber:Unsigned;Dec" />
+    <Property Name="Load Threshold Warning" Channel="LoadThresholdWarning" Desc="Set threshold value for regen resistor load warning [%] as init value. Valid Range is 0 up to 100%." Editor="EditNumber:Unsigned;Dec" />
+    <Property Name="Load Threshold Bridge" Channel="LoadThresholdBridge" Desc="Set threshold value for regen resistor load [%] to switch off bridge, as init value. Valid Range is 0 up to 100%.&#xD;&#xA;If this limit is reached, the bridge is switched off." Editor="EditNumber:Unsigned;Dec" />
+    <Property Name="Load Threshold Resistor" Channel="LoadThresholdResistor" Desc="Set threshold value for regen resistor load [%] to switch external resistor off, as init value. Valid Range is 0 up to 100%.&#xD;&#xA;If this limit is reached, the bridge and the regen resistor is switched off." Editor="EditNumber:Unsigned;Dec" />
+    <Property Name="Stepping Hysteresis" Channel="SteppingHysteresis" Desc="Set automatically stepping hysteresis if the value for decrease limit is zero. This value is substracted from the corresponding increase limit value and set for the decrease limit." Editor="EditNumber:Unsigned;Dec" />
+    <Property Name="Compatibility Mode VST" Channel="CompModeVST" Desc="Set Compatibility mode to VST01x as init value.&#xD;0 .. Frequency as 64 microsteps - default&#xD;1 .. Frequency as 32 microsteps&#xD;This setting affects all FrequencyLimitsIncrease, FrequencyLimitsDecrease, SetFreqOut, ActPosition, TargetFreqOut server and the Latched Position server if LatchType is latch virtual counter." Editor="Combo:0=64 microsteps ;1=32 microsteps (VST) " />
+    <Property Name="Use Oszilloskop" Channel="UseOszi" Desc="Set oszilloscope function as init value.&#xD;&#xA;0=deactivated | 1=activated" Editor="Combo:0=deactivated;1=activated" />
+    <!-- Cyclic Values -->
+    <Output Name="Refresh Values" Channel="RefreshValues" Type="Digital" Desc=" 0 .. do not refresh values &#xD;1 .. do cyclic refresh of values (every 200ms)&#xD;2 .. refresh values once" />
+    <Property Name="Refresh Values" Channel="RefreshValues" Type="Digital" Editor="Combo:0=Do not refresh values;1=Cyclic refresh of values;2=Refresh values once" Desc=" 0 .. do not refresh values &#xD;1 .. do cyclic refresh of values (every 200ms)&#xD;2 .. refresh values once" />
+    <IOState Name="Extended State Word" Channel="ExtendedStateWord" Desc="Shows the extended motor state word. Value is read asynchronous.&#xD;&#xA;- Value is read asynchronous&#xD;&#xA;Bit 1 : Zero Position (Input)&#xD;&#xA;Bit 2 : Over temperature warning&#xD;&#xA;Bit 3 : Over temperature failure (disable drive)&#xD;&#xA;Bit 4 : Over current failure GND (disable drive)&#xD;&#xA;Bit 5 : Over current failure Bridge 1 (disable drive)&#xD;&#xA;Bit 6 : Over current failure Bridge 2 (disable drive)&#xD;&#xA;Bit 7 : 5V Incremental encoder ok&#xD;&#xA;Bit 8 : reserved&#xD;&#xA;Bit 9 : Bridge voltage too low&#xD;&#xA;Bit 10: Bridge voltage too high&#xD;&#xA;Bit 11: External Enable 1 (STO)&#xD;&#xA;Bit 12: External Enable 2 (STO)&#xD;&#xA;Bit 13: Safety start up status test ok&#xD;&#xA;Bit 14: Motor enable error&#xD;&#xA;Bit 15: Three time sync in lost&#xD;&#xA;Bit 16: Safe Ramp down pending&#xD;&#xA;Bit 17: Regen resistor load warning&#xD;&#xA;Bit 18: Regen resistor load disable bridge&#xD;&#xA;Bit 19: Regen resistor load disable resistor" />
+    <IOState Name="H-Bridge Voltage" Channel="HBridgeVoltage" Desc="Shows the H-Bridge Voltage in xx.xx [V]. Value is read asynchronous." />
+    <IOState Name="H-Bridge Temperature" Channel="HBridgeTemperature" Desc="Shows the H-Bridge temperaturein xx.x [°C]. Value is read asynchronous." />
+    <IOState Name="External Enable 1" Channel="ExternalEnable1" Desc="Shows the state of external enable 1 (STO). Value is read asynchronous." />
+    <IOState Name="External Enable 2" Channel="ExternalEnable2" Desc="Shows the state of external enable 2 (STO). Value is read asynchronous." />
+    <IOState Name="Actual Regen Resistor Load" Channel="ActRegenResistorLoad" Desc="Shows the actual load of regen resistor in [%]. Value is read asynchronous." />
+    <IOState Name="Voltage OK Incremental Encoder" Channel="VoltageOKEncoder" Desc="Voltage supply for Incremental Encoder ok. Value is read asynchronous." />
+    <Script Name="ST151">
+      <Parameter DisplayName="Use Oscilloscope" Name="UseOszi" Type="Client" Channel="UseOszi" Desc="" />
+      <Code>
+def compPost_ST151(element, parameters):
+  
+  if parameters['varanBridge']:
+    parameters['AddToSDiasTime'] = True
+    element['result']['optional'] =  {'PDO': {'Wr':[], 'Rd':[], 'WrDyn':[], 'RdDyn':[]}}
+    SDIASPDORdAdd(0x6,element)
+    SDIASPDOWrAdd(0x6,element)
+
+    if element['options']['UseOszi'] == 1:
+      SDIASPDORdAdd(0xA,element)
+      SDIASPDOWrAdd(0x8,element)
+    
+      TotalOsziBufferSize = 1024
+      MaxDataSizePerDO = 126
+      
+      RestSize = TotalOsziBufferSize
+      while RestSize > 0:
+        if RestSize > MaxDataSizePerDO:
+          ActSize = MaxDataSizePerDO
+          RestSize -= MaxDataSizePerDO
+        else:
+          ActSize = RestSize
+          RestSize = 0
+        
+        SDIASPDORdAdd(ActSize,element)
+
+    
+</Code>
+    </Script>
+  </Class>
+</HWClassInfo>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HWClassInfo>
+  <HWDevice ModuleID="1227" SubModuleID="0" ModType="OnboardIO">
+    <Types>
+      <Device Name="CP112 IOs" ClassName="CP112_IOs" DisplayGroup="Control Systems;CPU Modules" Desc="CP112 IOs">      
+      </Device>
+    </Types>
+  </HWDevice>
+  <Class Name="CP112_IOs" >
+    <!-- Uplinks and Downlinks -->
+    <Uplink   Name="HwControl"  Channel="To_HwControl" BusType="OnBoardIO"/>    
+    <!-- Interfaces for CPU_IOs Classes -->
+    <Downlink Name="USB_1_Connect"    BusType="USB-INTERFACE"            Port="0" Sort="1"  Desc="Connects a USB communication class" />
+    <Downlink Name="CAN_1_Connect"    BusType="CAN-INTERFACE"            Port="0" Sort="2"  Desc="Connects a CAN communication class" />
+  </Class>
+</HWClassInfo>

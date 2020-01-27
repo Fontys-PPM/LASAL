@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <OpenViews>
+	<View Key="TcpServer" Type="0"/>
+	<View Key="CommandServer" Type="2" LineNr="18"/>
+	<View Key="CommandRouter" Type="2" LineNr="24"/>
+	<View Key="CommandDecoder" Type="2" LineNr="19"/>
+	<View Key="Graphical Hardware Editor" Type="17"/>
+	<View Key="commandServer" Type="1"/>
+	<View Key="CommandDecoder" Type="2" LineNr="19"/>
 	<Setting Variable="OutputDebugger" Value=""/>
 </OpenViews>

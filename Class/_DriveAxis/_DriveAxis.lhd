@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HWClassInfo>
+  <HWDevice ModuleID="1" SubModuleID="0" ModType="DIASDRIVE" Desc="DIAS-Drive Axis">	
+    <Types>
+      <Device Name="Axis" ClassName="_DriveAxis" DisplayGroup="Axis" Compare="true" PlaceOffset="1"/>	
+    </Types>
+  </HWDevice>
+  <Class Name="_DriveAxis" Path="Drives;DiasDrive" DriveType="Axis">
+    <Uplink Name="DriveMng" BusType="DIASDRIVE" PlaceName="Place" />
+    <!--  -->
+    <IOState Name="Online" Channel="Online" Type="Digital" Desc="Displays if the class is ready to work with the application"/>
+    <IOState Name="Command State" Channel="CmdState" Desc="Displays the actual state of the class (QUIT=disabled by client AxisNo)"/>
+    <IOState Name="Axis State" Channel="AxisState" Desc="Displays the status-bit from the axle&#13;&#10;&#13;&#10;Bit00..NoHW => There is no hardware connected on this place or AxNo&#13;&#10;Bit01..NoParameter => There are no parameters&#13;&#10;Bit02..NotOnline => the DriveMng is not online&#13;&#10;Bit03..NotInitialized => the axle has not initialized yet."/>
+    <Input Name="Act Position" Channel="ActPos" Type="Analog" Desc="Actual position"/>
+    <Output Name="Set Position" Channel="SetPos" Type="Analog" Desc="Position setpoint"/>
+    <Input Name="Act Speed" Channel="ActSpeed" Type="Analog" Desc="Actual Speed"/>
+    <Output Name="Set Speed" Channel="SetSpeed" Type="Analog" Desc="Speed setpoint or Speed Feed Forward (depending on A-VALRT 1/2)"/>
+    <Input Name="Act Current" Channel="ActCurrent" Type="Analog" Desc="Actual Current [mA]"/>
+    <Output Name="Set Current" Channel="SetCurrent" Type="Analog" Desc="Current setpoint [mA] or Torque Feed Forward [mA] in G-MODE 3 (depending on A-VALR 1/2)"/>
+    <Input Name="Act Xw" Channel="ActXw" Type="Analog" Desc="Position error"/>
+    <Input Name="State Word" Channel="StateWord" Type="Analog" Desc="Statusword with DS402 Standard:&#13;&#10;&#13;&#10;Bit00..ReadytoSwitchOn&#13;&#10;Bit01..SwitchedOn&#13;&#10;Bit02..OperationalEnabled&#13;&#10;Bit03..Fault&#13;&#10;Bit04..VoltageDisabled&#13;&#10;Bit05..QuickStop&#13;&#10;Bit06..SwitchOnDisabled&#13;&#10;Bit07..Warning&#13;&#10;Bit08..ManufactureSpecific1&#13;&#10;Bit09..Remote&#13;&#10;Bit10..TargetReached&#13;&#10;Bit11..InternalLimitActive&#13;&#10;Bit12..OperationalModeSpecific1&#13;&#10;Bit13..OperationalModespecific2&#13;&#10;Bit14..Manufacture Specific2&#13;&#10;Bit15..Manufacture Specific3"/>
+    <Output Name="Control Word" Channel="ControlWord" Type="Analog" Desc="Controlword with DS402 Standard:&#13;&#10;Bit00..SwitchOn&#13;&#10;Bit01..DisableVoltage&#13;&#10;Bit02..QuickStop&#13;&#10;Bit03..EnableOperation&#13;&#10;Bit04..OperationModeSpecific1&#13;&#10;Bit05..OperationModeSpecific2&#13;&#10;Bit06..OperationModeSpecific3&#13;&#10;Bit07..ResetFault&#13;&#10;Bit08..Halt&#13;&#10;Bit09Reserved1&#13;&#10;Bit10..Reserved2&#13;&#10;Bit11..Manufacture Specific1&#13;&#10;Bit12..Manufacture Specific2&#13;&#10;Bit13..Manufacture Specific3&#13;&#10;Bit14..Manufacture Specific4&#13;&#10;Bit15..Manufacture Specific5"/>
+    <Output Name="Axis Enable" Channel="AxEnable" Type="Digital" Desc="Server to enable the axle"/>
+    <Input Name="Axis Error" Channel="AxError" Type="Digital" Desc="0..No error&#13;6#10;1..Axis has an error"/>
+    <Output Name="Axis Error Quit" Channel="AxErrorQuit" Type="Digital" Desc="A write command quits the actual error state of the axle."/>
+    <Input Name="ZPuls Latch" Channel="ZPulsLatch" Type="Digital" Desc="Latched Zero-Impulse of the axle (reset on read-out) depends on P-PSCALE"/>
+    <Output Name="Axis Torque Control" Channel="AxTorqueControl" Type="Analog" Desc="The torque limit is set here, the actual limit depends on the controlword.&#13;&#10;16bit Controlword- 0 until 1000 from Peak Current&#13;&#10;32bit Controlword- 0 until 4500 from Stall Current."/>
+    <IOState Name="Hardware Code" Channel="I_HC" IsInfo="true" Type="Analog" Desc="Shows Hardware Code of this axis&#13;&#10;Bit 31..16 Hardware Code of the Control Board&#13;&#10;Bit 15..8 Software version of the feedback CPLD&#13;&#10;Bit 7..0 Hardware code of the Power Stage."/>
+    <IOState Name="SDD Cmd Intfc" Channel="SDDCmdIntfc" Type="Analog" Desc="Server for user commands to the drive:&#13;&#10;_SDDIDLE .. default command&#13;&#10;_SDDREADALL ..read all parameters of the drive and save the parameters in the SRAM or in the file&#13;&#10;Are any parameter classes connected to the class SDDMngBase, the server of the parameter classes are refreshed&#13;&#10;_SDDINIT.. Initialize the drive with the saved parameters&#13;&#10;_SDDURINIT.. Initialize the drive with the parameters of the table (Lasal2table, User Table or default table)&#13;&#10;_SDDEXDATA ..export the actual drive parameter into an excel formated file."/>
+    <DriveParam Name="A-CTIME" Id="95" ValType="0" Channel1="VaranTimeMultiplier" Channel2="VaranManagerTime|0.001" />
+    <!-- Settings -->
+    <Property Name="Axis Extend" Channel="AxisExtend" Editor="Combo:0=2 synchron parameters per telegram;1=5 synchron parameters per telegram" Desc="Use the extend telegram type&#13;&#10;0...2 Synchron parameter for one axle&#13;&#10;1..5 Synchron parameter for one axle"/>
+    <Property Name="Parameter Save Type" Channel="ParaSaveType" Editor="Combo:0=User table;1=Lasal2 table;2=SRAM;3=RAMFILE" Desc="With this client, the load/save mechanism for the parameter values is defined.&#13;&#10;&#13;&#10;0.. Use of user-defined tables.&#13;&#10;The ParaTab client must be connected to an object of the _DriveParaTab class (see _DriveParaTab class description).&#13;&#10;If no connection is available for the respective axis, the default parameter values are sent to the drive.&#13;&#10;&#13;&#10;1.. Use of drive parameter files that were added to the Lasal 2 project.&#13;&#10;How to add a parameter file to the Lasal 2 project is described later in this document.&#13;&#10;If no Lasal 2 parameter file is available for the respective drive, a check for a user-defined table is performed and if available, it is used. If neither a parameter file nor a user defined table exists, the default parameters are sent to the drive.&#13;&#10;&#13;&#10;2..Storing the parameter data in the SRAM.&#13;&#10;During the first startup, the drive is initialized through the drive parameter files (see procedure for ParaSaveType = 1). After the drive has been successfully initialized, the parameter values are stored in the SRAM. If a parameter value is changed during operation, it is also stored in the SRAM.After the data has been stored in the SRAM, the drive is initialized with the parameter values the SRAM within.&#13;&#10;&#13;&#10;3...Store the parameter values in a file.&#13;&#10;This variant functions only if the FileHandle client is connected to an object of the _DriveFileHandling class.&#13;&#10;During the first startup, the drive is initialized through the drive parameter files (see procedure for ParaSaveType = 1). After the drive has been successfully initialized, the parameter values are stored in a RAMFILE. If a parameter value is changed during operation, it is also stored in a RAMFILE . After the data has been stored in a RAMFILE, the drive is initialized with the parameter values the RAMFILE within."/>
+    <Property Name="Overwrite Motor Para" Channel="OverwriteMotorPara" Editor="Combo:0=No M-Parameter will be overwritte;1=all M-Parameters except M-ROFF will be overwritte;2=all M-Parameters will be overwritten" Desc="This client is just important for EnDat or Hiperface:&#13;&#10;&#13;&#10;0..No M-Parameter will be overwritten&#13;&#10;1..All M-Parameter except M-ROFF will be overwritten&#13;&#10;99..All M-Parameter will be overwritten."/>
+    <Property Name="Parameter Table" Channel="ParaTab" Editor="EditNumber:Signed;Dec" Desc="Client for connecting a _DriveParaTab"/>
+    <Property Name="File Handle" Channel="FileHandle" Editor="EditNumber:Signed;Dec" Desc="Command client to the class_DriveFileHandling. The client has to be connected to use the RAMFILE for the drive parameters or to export the drive parameter into an excel formated file. "/>
+    <Property Name="Table Index" Channel="TableIndex" Editor="EditNumber:Unsigned;Dec" Desc="With the value from this client, the specific Lasal2 Table is used for parameterizing the axis.&#13;&#10;(Only available for ParaSaveType = 1)" />
+      
+    <Script Name="_DriveAxis">
+      <Parameter Name="AxisExtend" Type="Client" Channel="AxisExtend" Desc="" />  
+<Code>
+def compPost__DriveAxis(element, parameters):  
+  
+  parameters['AddToAxisTime'] = True  
+  element['result']['optional'] =  {'Axis': {'AxisExtend':[]}}
+  
+  AxisSetExtended(element['options']['AxisExtend'],element)  
+</Code>
+    </Script>      
+  </Class>
+</HWClassInfo>

@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HWClassInfo>
+  <HWDevice ModuleID="1801" SubModuleID="0" ModType="M_SDIAS" Desc="SDIAS module with 1 axis interface" OrderNr="20-014-062">
+    <Types>
+      <Device Name="DC062" ClassName="_DriveMng_DC062" DisplayGroup="Axis" Default="true" PowerLoss="2500">
+        <Power Voltage="5000" Supply="0" Drain="0"/>
+        <Power Voltage="24000" Supply="0" Drain="80"/>
+      </Device>
+    </Types>
+    <VisualData>
+      <VisualView TypeId="0" Size="10,120">
+        <VisualModule ImgPath=".\S-Dias\S-DIAS Grundmodul.xaml" Position="0,0" Width="12.5" Height="101.8">
+          <!-- Texte -->
+          <VisualTexts>
+            <VisualText Text="DC 062" FontFamily="ARIAL" Italic="true" FontSize="12" ClrForeground="4294967295" FontWeight="1" LineHeight="10" Width="7.94" Height="5.82" Left="4.76" Top="10.05" />
+            <VisualText Text="S" FontFamily="ARIAL" ClrForeground="4294967295" Width="1.59" Height="2.65" Left="0.26" Top="9" />
+            <VisualText Text="U" FontFamily="ARIAL" ClrForeground="4294967295" Width="1.59" Height="2.65" Left="0.26" Top="11.64" />
+            <VisualText Text="X1" FontFamily="ARIAL" ClrForeground="4291330563" ClrBackground="4294967295" Width="3.17" Height="2.38" Left="0.26" Top="15.61" />
+            <VisualText Text="U" FontFamily="ARIAL" ClrForeground="4294967295" Width="3.17" Height="2.65" Left="0.26" Top="17.99" />
+            <VisualText Text="V" FontFamily="ARIAL" ClrForeground="4294967295" Width="3.17" Height="2.65" Left="0.26" Top="21.7" />
+            <VisualText Text="W" FontFamily="ARIAL" ClrForeground="4294967295" Width="3.17" Height="2.65" Left="0.26" Top="25.41" />
+            <VisualText Text="X2" FontFamily="ARIAL" ClrForeground="4291330563" ClrBackground="4294967295" Width="3.17" Height="2.38" Left="0.22" Top="28.71" />
+            <VisualText Text="RC" FontFamily="ARIAL" ClrForeground="4294967295" Width="3.17" Height="2.65" Left="0.26" Top="31.53" />
+            <VisualText Text="U+" FontFamily="ARIAL" ClrForeground="4294967295" Width="3.17" Height="2.65" Left="0.26" Top="35.24" />
+            <VisualText Text="U-" FontFamily="ARIAL" ClrForeground="4294967295" Width="3.17" Height="2.65" Left="0.26" Top="38.95" />
+            <VisualText Text="X3" FontFamily="ARIAL" ClrForeground="4291330563" ClrBackground="4294967295" Width="3.17" Height="2.38" Left="0.26" Top="42.56" />
+            <VisualText Text="S+" FontFamily="ARIAL" ClrForeground="4294967295" Width="3.17" Height="2.65" Left="0.26" Top="45.94" />
+            <VisualText Text="S-" FontFamily="ARIAL" ClrForeground="4294967295" Width="3.17" Height="2.65" Left="0.26" Top="49.33" />
+            <VisualText Text="C+" FontFamily="ARIAL" ClrForeground="4294967295" Width="3.17" Height="2.65" Left="0.26" Top="52.72" />
+            <VisualText Text="C-" FontFamily="ARIAL" ClrForeground="4294967295" Width="3.17" Height="2.65" Left="0.26" Top="56.11" />
+            <VisualText Text="E+" FontFamily="ARIAL" ClrForeground="4294967295" Width="3.17" Height="2.65" Left="0.26" Top="59.5" />
+            <VisualText Text="E-" FontFamily="ARIAL" ClrForeground="4294967295" Width="3.17" Height="2.65" Left="0.26" Top="62.89" />
+            <VisualText Text="BR" FontFamily="ARIAL" ClrForeground="4294967295" Width="3.17" Height="2.65" Left="0.26" Top="66.28" />
+            <VisualText Text="0V" FontFamily="ARIAL" ClrForeground="4294967295" Width="3.17" Height="2.65" Left="0.26" Top="69.67" />
+            <VisualText Text="X4" FontFamily="ARIAL" ClrForeground="4291330563" ClrBackground="4294967295" Width="3.17" Height="2.38" Left="0.26" Top="73.49" />
+            <VisualText Text="E1" FontFamily="ARIAL" ClrForeground="4294967295" Width="3.17" Height="2.65" Left="0.26" Top="76.25" />
+            <VisualText Text="E2" FontFamily="ARIAL" ClrForeground="4294967295" Width="3.17" Height="2.65" Left="0.26" Top="79.64" />
+            <VisualText Text="BR" FontFamily="ARIAL" ClrForeground="4294967295" Width="3.17" Height="2.65" Left="0.26" Top="83.03" />
+            <VisualText Text="24" FontFamily="ARIAL" ClrForeground="4294967295" Width="3.17" Height="2.65" Left="0.26" Top="86.42" />
+            <VisualText Text="0V" FontFamily="ARIAL" ClrForeground="4294967295" Width="3.17" Height="2.65" Left="0.26" Top="89.81" />
+          </VisualTexts>
+          <!-- Leds -->
+          <VisualLeds>
+            <VisualLed Description="Module state" ImgPath=".\S-Dias\S-DIAS Led.xaml" ClrForeground="1342242560" Width="1.32" Height="1.32" Left="2.12" Top="10.32">
+              <Behaviour ClrForeground="4278255360">
+                <Activator TypeId="4">
+                  <Activator TypeId="1" Value="1" />
+                  <Activator TypeId="3" DataString="_DriveMng_DC062.CmdState" Value="0" />
+                </Activator>
+              </Behaviour>
+              <Behaviour ClrForeground="4278255360" Interval="200">
+                <Activator TypeId="4">
+                  <Activator TypeId="1" Value="1" />
+                  <Activator TypeId="3" Negate="true" DataString="_DriveMng_DC062.CmdState" Value="0" />
+                </Activator>
+              </Behaviour>
+            </VisualLed>
+            <VisualLed DataString="_DriveMng_DC062.LedControl" Description="User" ImgPath=".\S-Dias\S-DIAS Led.xaml" ClrForeground="1342216703" Width="1.32" Height="1.32" Left="2.12" Top="12.96">
+              <Behaviour ClrForeground="4278229503">
+                <Activator TypeId="3" DataString="_DriveMng_DC062.LedControl" Value="1" />
+              </Behaviour>
+              <Behaviour ClrForeground="4278229503" Interval="500">
+                <Activator TypeId="3" DataString="_DriveMng_DC062.LedControl" Value="2" />
+              </Behaviour>
+              <Behaviour ClrForeground="4278229503" Interval="250">
+                <Activator TypeId="3" DataString="_DriveMng_DC062.LedControl" Value="3" />
+              </Behaviour>
+            </VisualLed>
+            <!-- X1-->
+            <VisualLed Description="Motor Error" ImgPath=".\S-Dias\S-DIAS Led.xaml" ClrForeground="1342177535" Width="1.32" Height="1.32" Left="2.12" Top="20.26">
+            </VisualLed>
+            <!-- X2-->
+            <VisualLed Description="Motor DC OK" ImgPath=".\S-Dias\S-DIAS Led.xaml" ClrForeground="1342242560" Width="1.32" Height="1.32" Left="2.12" Top="37.39" >
+            </VisualLed>
+            <!-- X3-->
+            <!-- X4-->
+            <VisualLed Description="Enable 1" ImgPath=".\S-Dias\S-DIAS Led.xaml" ClrForeground="1342242560" Width="1.32" Height="1.32" Left="2.12" Top="76.98"> 
+            </VisualLed>
+            <VisualLed Description="Enable 2" ImgPath=".\S-Dias\S-DIAS Led.xaml" ClrForeground="1342242560" Width="1.32" Height="1.32" Left="2.12" Top="80.36">
+            </VisualLed>
+            <VisualLed Description="Holding Brake" ImgPath=".\S-Dias\S-DIAS Led.xaml" ClrForeground="1342216703" Width="1.32" Height="1.32" Left="2.12" Top="83.74">
+            </VisualLed>
+            <VisualLed Description="Voltage Ok" ImgPath=".\S-Dias\S-DIAS Led.xaml" ClrForeground="1342242560" Width="1.32" Height="1.32" Left="2.12" Top="87.12">
+            </VisualLed>
+          </VisualLeds>
+          <!-- X5-->
+          <!-- Stecker -->
+          <VisualConnectors>
+            <VisualConnector ImgPath=".\S-DIAS\S-DIAS Weidmueller BCF3.xaml" Description="X1" Width="8.07" Height="11.17" Left="3.67" Top="17.7" >
+              <ConnectorPin DataString="0:1" Description="Motor U" TypeId="4" />
+              <ConnectorPin DataString="0:1" Description="Motor V" TypeId="4" />
+              <ConnectorPin DataString="0:1" Description="Motor W" TypeId="4" />
+            </VisualConnector>
+            <VisualConnector ImgPath=".\S-DIAS\S-DIAS Weidmueller BCF3.xaml" Description="X2" Width="8.07" Height="11.17" Left="3.73" Top="31.47" >
+              <ConnectorPin DataString="0:1" Description="Brake Chopper"  TypeId="4" />
+              <ConnectorPin DataString="0:1" Description="Motor Supply +" TypeId="4" />
+              <ConnectorPin DataString="0:1" Description="Motor Supply -" TypeId="4" />
+            </VisualConnector>
+            <VisualConnector ImgPath=".\S-DIAS\S-DIAS Phoenix 8-polig.xaml" Description="X3" Width="7.86" Height="29.01" Left="3.7" Top="44.83" >
+              <ConnectorPin DataString="" Description="SIN+" TypeId="0" />
+              <ConnectorPin DataString="" Description="SIN-" TypeId="0" />
+              <ConnectorPin DataString="" Description="COS+" TypeId="0" />
+              <ConnectorPin DataString="" Description="COS-" TypeId="0" />
+              <ConnectorPin DataString="" Description="Resolver Exciter +" TypeId="0" />
+              <ConnectorPin DataString="" Description="Resolver Exciter -" TypeId="0" />
+              <ConnectorPin DataString="" Description="Holding Brake" TypeId="0" />
+              <ConnectorPin DataString="" Description="GND" TypeId="0" />
+            </VisualConnector>
+            <VisualConnector ImgPath=".\S-DIAS\S-DIAS Phoenix 5-polig.xaml" Description="X4" Width="7.86" Height="18.54" Left="3.7" Top="74.76" >
+            <ConnectorPin DataString="" Description="Enable 1" TypeId="0" />
+            <ConnectorPin DataString="" Description="Enable 2" TypeId="0" />
+            <ConnectorPin DataString="" Description="Holding Brake" TypeId="0" />
+            <ConnectorPin DataString="" Description="Voltage 24 Volt" TypeId="0" />
+            <ConnectorPin DataString="" Description="Ground 0 Volt" TypeId="0" />
+            </VisualConnector>
+          </VisualConnectors>
+        </VisualModule>
+      </VisualView>
+    </VisualData>
+  </HWDevice>
+  <Class Name="_DriveMng_DC062" Path="Drives;DiasDrive" DriveType="DC062" MultiPlaceRange="1">
+    <Uplink Name="SdiasIn" BusType="SDIAS" PlaceName="Place" />
+    <Downlink Name="CmdState" Channel="CmdState" BusType="DIASDRIVE" Desc="Shows the actual status of the class." PlaceDefault="1" />
+    <!-- General -->
+    <Property Name="Required" Channel="Required" Editor="Combo:1=Module is required;0=Module is not required" Desc="0=module is not required 1=module is required (CPU will crash if module is missing)" />
+    <Property Name="Time Multiplier" Channel="TimeMultiplier" Desc="multiplier of cycle time" Editor="EditNumber:Unsigned;Dec" />
+    <IOState Name="Command State" Channel="CmdState" Desc=" Shows the actual status of the class." Type="" />
+    <IOState Name="Online" Channel="Online" Desc="This server is set as soon as the hardware class is processed properly (when the data are valid, drives synchronized,..) The server is reset when an error occurs or when disconnected." Type="Digital" />
+    <IOState Name="Release" Channel="Release" Format="V{5-12}.{1-4}" IsInfo="true" Desc="FPGA-Version" Type="" />
+    <IOState Name="Device ID" Channel="DeviceID" IsInfo="true" Desc="The device ID of the hardware module is shown in this server." Type="Analog" />
+    <IOState Name="Retry Counter" Channel="RetryCounter" Type="" Desc="Retry counter of SDIAS module" />
+    <IOState Name="Drive Type" Channel="DriveType" IsInfo="true" Desc="Displays which hardware we have connected" Type="Analog" Editor="Combo:0=Not found;1=SDD310;2=SDD315;3=SDD105;4=SDD120;5=SDD305;6=SDD335;7=SDD215;8=SDD205;9=DC061;10=S340" />
+    <IOState Name="Serial Number" Channel="SerialNo" IsInfo="true" Desc="Displays drive serial number" Type="" />
+    <IOState Name="Hardware Version Drive" Channel="HWVersion" IsInfo="true" Desc="Displays Hardware Version (Parameter I-HC from Drive)." Type="" />
+    <IOState Name="Hardware Version SDIAS" Channel="HwVersionSdias" IsInfo="true" Format="V{9-16}.{5-8}{1-4}" Type="" Desc="Shows the hardware version of the module" /> 
+    <IOState Name="Firmware Version Drive" Channel="FWVersion" IsInfo="true" Desc="Shows the firmware version of the drive." Type="" />
+    <IOState Name="Firmware Date" Channel="FwDate" IsInfo="true" Desc="Shows the firmware date of the drive." Type="" />
+    <Output Name="LED Control" Channel="LEDControl" Type="Digital" Desc="Sets a LED on hardware, to detect module. (0=LED off; 1=LED on; 2=blinking slowly; 3=blinking fast)" />
+    
+    <!-- Axis -->      
+    <Axis Name="_DriveAxis" Place="0" AxisNo="1" Device="Axis" PlaceOnUpload="true" />
+    
+<Script Name="_DriveMng_DC062">    
+<Code>
+def compPost__DriveMng_DC062(element, parameters):  
+  def computeSimpleObjects(input):
+    output = {'AxisExtend':[]}
+    for dataobjects in input:
+      if operator.gt(len(dataobjects), 0):
+        if dataobjects.has_key('AxisExtend'):
+          output['AxisExtend'] += dataobjects['AxisExtend'] 
+    return output 
+    
+  if parameters['varanBridge']:     
+    parameters['AddToSDiasTime'] = True    
+    
+    subelements = {'Axis':[],}    
+    for object in element['result']['optional']:    
+      for key in subelements.keys():
+        if object.has_key(key):
+          subelements[key].append(object[key])  
+    
+    AxisList = computeSimpleObjects(subelements['Axis'])    
+    
+    if operator.gt(len(AxisList['AxisExtend']),0):
+      # Only use Info from 1. Axis as only 1 is allowed
+      Extended = AxisList['AxisExtend'][0]
+      
+      # Must be done after useing the optional elements from drive
+      element['result']['optional'] = {'PDO': {'Wr':[], 'Rd':[], 'WrDyn':[], 'RdDyn':[]}}            
+      
+      SDIASPDORdAdd( (2*4) + (4*3*Extended),element)   #(BUSIF_SDIASDRIVEMNG_LASAL_PARADATA_SIZE * 2) + (BUSIF_SDIASDRIVEMNG_LASAL_PARADATA_SIZE*3*ExtendedAxisSettings.1) 
+      SDIASPDOWrAdd( (2*4) + (4*3*Extended),element)   #(BUSIF_SDIASDRIVEMNG_LASAL_PARADATA_SIZE * 2) + (BUSIF_SDIASDRIVEMNG_LASAL_PARADATA_SIZE*3*ExtendedAxisSettings.1)  
+      
+      SDIASPDORdDynAdd(16,element)  # sizeof(t_SDOResponse)
+      SDIASPDOWrDynAdd(16,element)  # sizeof(t_SDORequest)
+</Code>
+    </Script>         
+  </Class>
+</HWClassInfo>

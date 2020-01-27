@@ -15,12 +15,174 @@
 		<File Path=".\Include\C_types.h"/>
 		<File Path=".\Include\C_channels.h"/>
 		<File Path=".\Include\lslpublictypes.h"/>
+		<File Path=".\SystemTypes.h" Global="true"/>
+		<File Path=".\Source\code\OsiBaseNew.h"/>
+		<File Path=".\MultiTaskTypes.h" Global="true"/>
+		<File Path=".\Class\SigCLib\SigCLib.h"/>
+		<File Path=".\Class\SigCLib\SigCLibNew.h"/>
+		<File Path=".\Class\SigCLib\CStrLib.h"/>
+		<File Path=".\Class\SigCLib\CTimeLib.h"/>
+		<File Path=".\Class\SigCLib\CSortLib.h"/>
+		<File Path=".\Class\SigCLib\CFileLib.h"/>
+		<File Path=".\Class\SigCLib\CMemLib.h"/>
+		<File Path=".\Class\SigCLib\CNetworkLib.h"/>
+		<File Path=".\Class\SigCLib\DefineCompiler.h"/>
+		<File Path=".\Class\SigCLib\CMathLib.h"/>
+		<File Path=".\Class\SigCLib\CCrcLib.h"/>
+		<File Path=".\Class\SigCLib\CStrLib16.h"/>
+		<File Path=".\Class\SigCLib\CStrLibIntern.h"/>
+		<File Path=".\Class\SigCLib\CStdLib.h"/>
+		<File Path=".\Class\SigCLib\CPlcOnline.h"/>
+		<File Path=".\Class\SigCLib\CSysLib.h"/>
+		<File Path=".\Class\SigCLib\CAtomic.h"/>
+		<File Path=".\Class\SigCLib\CFiFo.h"/>
+		<File Path=".\Class\SigCLib\CRingBuffer.h"/>
+		<File Path=".\Class\SigCLib\CPipe.h"/>
+		<File Path=".\Class\SigCLib\CHeap.h"/>
+		<File Path=".\Class\StringInternal\StringDefs.h" Global="true"/>
+		<File Path=".\lsl_st_mt.h"/>
+		<File Path=".\lsl_st_tcp_user.h" Global="true"/>
+		<File Path=".\Class\_TCPIP_SERVER\_TCPIP_SERVER.h" Global="true"/>
+		<File Path=".\Class\_TCPIP_SERVER\SalamanderDelay.h"/>
+		<File Path=".\Class\DiasMasterC\MasterSettings.h" Global="true"/>
+		<File Path=".\Class\DiasMaster\DIASMaster.h" Global="true"/>
+		<File Path=".\LSL_STITask.h" Global="true"/>
+		<File Path=".\Class\DiasMasterMain\DiasMasterMain.h"/>
+		<File Path=".\Class\I2CCDIAS\EEFuncDef.h" Global="true"/>
+		<File Path=".\Class\VaranManager\VaranManager.h"/>
+		<File Path=".\Class\VaranManager_Base\VaranManager_Base.h" Global="true"/>
+		<File Path=".\Class\_DriveMngBase\SDDDefinitions.h"/>
+		<File Path=".\Class\_DriveMngBase\DriveComL2.h" Global="true"/>
+		<File Path=".\Class\SafetyCDIAS_Base\SafetyCDIAS_Base.h"/>
+		<File Path=".\Class\SafetyManager\SafetyManager.h"/>
+		<File Path=".\Source\BusInterface.h"/>
+		<File Path=".\Class\SdiasManager\SdiasManager.h"/>
+		<File Path=".\Class\HwControl\HwControl.h"/>
+		<File Path=".\Class\SdiasBase\SdiasBase.h"/>
+		<File Path=".\Class\HwControl\watchdog.h"/>
+		<File Path=".\class\_drivemngbase\drivemngbase.h"/>
+		<File Path=".\Source\interfaces\lsl_st_sysinfo.h"/>
+		<File Path=".\Source\interfaces\lsl_st_hardwaretree.h"/>
+		<File Path=".\Source\interfaces\lsl_st_mt.h"/>
+		<File Path=".\Source\interfaces\lsl_st_sdias.h" Global="true"/>
+		<File Path=".\Source\interfaces\lsl_st_pll.h"/>
+		<File Path=".\Class\HwControl\HwControlLogging.h" Global="true"/>
+		<File Path=".\Source\interfaces\lsl_st_kernel.h"/>
+		<File Path=".\Source\interfaces\lsl_st_pci.h"/>
+		<File Path=".\Source\interfaces\lsl_st_safety.h"/>
+		<File Path=".\Source\interfaces\lsl_st_tcp_user.h" Global="true"/>
+		<File Path=".\Source\interfaces\lsl_st_varan.h" Global="true"/>
+		<File Path=".\Source\interfaces\lsl_st_cdias.h" Global="true"/>
+		<File Path=".\Source\interfaces\lsl_st_safetydll.h"/>
+		<File Path=".\Source\interfaces\lsl_st_systrace.h"/>
+		<File Path=".\File_IOTypes.h" Global="true"/>
+		<File Path=".\CanTypes.h" Global="true"/>
+		<File Path=".\lsl_st_serial.h" Global="true"/>
+		<File Path=".\LinkerTypes.h" Global="true"/>
 	</HeaderFiles>
+	<ClassFiles>
+		<File Path=".\Source\code\OsiBaseNew.st"/>
+		<File Path=".\Class\SigCLib\CStrLib.cpp"/>
+		<File Path=".\Class\SigCLib\CTimeLib.cpp"/>
+		<File Path=".\Class\SigCLib\CSortLib.cpp"/>
+		<File Path=".\Class\SigCLib\CFileLib.cpp"/>
+		<File Path=".\Class\SigCLib\CMemLib.cpp"/>
+		<File Path=".\Class\SigCLib\CNetworkLib.cpp"/>
+		<File Path=".\Class\SigCLib\CMathLib.cpp"/>
+		<File Path=".\Class\SigCLib\CCrcLib.cpp"/>
+		<File Path=".\Class\SigCLib\CStrLib16.cpp"/>
+		<File Path=".\Class\SigCLib\CStdLib.cpp"/>
+		<File Path=".\Class\SigCLib\CPlcOnline.cpp"/>
+		<File Path=".\Class\SigCLib\CSysLib.cpp"/>
+		<File Path=".\Class\SigCLib\CFiFo.cpp"/>
+		<File Path=".\Class\SigCLib\CRingBuffer.cpp"/>
+		<File Path=".\Class\SigCLib\CAtomic.cpp"/>
+		<File Path=".\Class\SigCLib\CPipe.cpp"/>
+		<File Path=".\Class\SigCLib\CHeap.cpp"/>
+		<File Path=".\Class\_MultiTask\_MultiTask.st"/>
+		<File Path=".\Class\_StdLib\_StdLib.st"/>
+		<File Path=".\Class\_TaskObjectControl\_TaskObjectControl.st"/>
+		<File Path=".\Class\SigCLib\SigCLib.st"/>
+		<File Path=".\Class\MerkerEx\MerkerEx.st"/>
+		<File Path=".\Class\String\String.st"/>
+		<File Path=".\Class\StringInternal\StringInternal.st"/>
+		<File Path=".\Class\VirtualBaseInit\VirtualBaseInit.st"/>
+		<File Path=".\Class\_CheckSum\_CheckSum.st"/>
+		<File Path=".\Class\_TCPIP_SERVER\_TCPIP_SERVER.st"/>
+		<File Path=".\Class\CommandServer\CommandServer.st"/>
+		<File Path=".\Class\CommandRouter\CommandRouter.st"/>
+		<File Path=".\Class\CommandDecoder\CommandDecoder.st"/>
+		<File Path=".\Class\_BusInterfaceSdiasDriveMng\_BusInterfaceSdiasDriveMng.st"/>
+		<File Path=".\Class\_DriveMng_DC062\_DriveMng_DC062.st"/>
+		<File Path=".\Class\_DriveMngBase\_DriveMngBase.st"/>
+		<File Path=".\Class\_VaranDriveBase\_VaranDriveBase.st"/>
+		<File Path=".\Class\BusInterfaceSDIASInternal\BusInterfaceSDIASInternal.st"/>
+		<File Path=".\Class\CP112_IOs\CP112_IOs.st"/>
+		<File Path=".\Class\DiasMaster\DiasMaster.st"/>
+		<File Path=".\Class\DiasMasterC\DiasMasterC.st"/>
+		<File Path=".\Class\DiasMasterMain\DiasMasterMain.st"/>
+		<File Path=".\Class\DiasMasterPostScan\DiasMasterPostScan.st"/>
+		<File Path=".\Class\DM161\DM161.st"/>
+		<File Path=".\Class\EEPROM\EEPROM.st"/>
+		<File Path=".\Class\Hub_Base\Hub_Base.st"/>
+		<File Path=".\Class\Hub_Base_Root\Hub_Base_Root.st"/>
+		<File Path=".\Class\HwBase\HwBase.st"/>
+		<File Path=".\Class\HwBaseCDIAS\HwBaseCDIAS.st"/>
+		<File Path=".\Class\HwControl\HwControl.st"/>
+		<File Path=".\Class\HwControlBase\HwControlBase.st"/>
+		<File Path=".\Class\HWRtPostScan\HWRtPostScan.st"/>
+		<File Path=".\Class\I2CCDIAS\I2CCDIAS.st"/>
+		<File Path=".\Class\SafetyCDIAS_Base\SafetyCDIAS_Base.st"/>
+		<File Path=".\Class\SafetyManager\SafetyManager.st"/>
+		<File Path=".\Class\SafetyUDP\SafetyUDP.st"/>
+		<File Path=".\Class\SdiasBase\SdiasBase.st"/>
+		<File Path=".\Class\SdiasHubBase\SdiasHubBase.st"/>
+		<File Path=".\Class\SdiasManager\SdiasManager.st"/>
+		<File Path=".\Class\SdiasPLC\SdiasPLC.st"/>
+		<File Path=".\Class\SR022\SR022.st"/>
+		<File Path=".\Class\ST011\ST011.st"/>
+		<File Path=".\Class\ST151\ST151.st"/>
+		<File Path=".\Class\ST151_IntVisu\ST151_IntVisu.st"/>
+		<File Path=".\Class\ST151Base\ST151Base.st"/>
+		<File Path=".\Class\SyncCall\SyncCall.st"/>
+		<File Path=".\Class\Varan_Base\Varan_Base.st"/>
+		<File Path=".\Class\VaranManager\VaranManager.st"/>
+		<File Path=".\Class\VaranManager_1\VaranManager_1.st"/>
+		<File Path=".\Class\VaranManager_Base\VaranManager_Base.st"/>
+		<File Path=".\Class\WatchdogDias\WatchdogDias.st"/>
+		<File Path=".\Class\XXXBase_IOs\XXXBase_IOs.st"/>
+		<File Path=".\Class\_Can\_Can.st"/>
+		<File Path=".\Class\_FileSys\_FileSys.st"/>
+		<File Path=".\Class\_OSKernel\_OSKernel.st"/>
+		<File Path=".\Class\_CanLib\_CanLib.st"/>
+		<File Path=".\Class\_SerLib\_SerLib.st"/>
+		<File Path=".\Class\ASCII_BIN\ASCII_BIN.st"/>
+		<File Path=".\Class\CriticalSection\CriticalSection.st"/>
+		<File Path=".\Class\RamFile\RamFile.st"/>
+		<File Path=".\Class\_DriveAxis\_DriveAxis.st"/>
+		<File Path=".\Class\_DriveAxisBase\_DriveAxisBase.st"/>
+		<File Path=".\Class\_DriveAxisSet\_DriveAxisSet.st"/>
+		<File Path=".\Class\_Linker\_Linker.st"/>
+		<File Path=".\Class\RAMex\RAMex.st"/>
+	</ClassFiles>
+	<NetworkFiles>
+		<File Path=".\Network\TcpServer\TcpServer.lcn"/>
+		<File Path=".\Network\HW_Network\HW_Network.lcn"/>
+	</NetworkFiles>
 	<ObjectFiles>
 		<File Path=".\Loader\Source\Loader.lob" Downloadable="false"/>
 	</ObjectFiles>
+	<DriveFiles>
+		<File Path=".\Drive\_DriveAxis1.lda" ObjectName="_DriveAxis1" Idx="0"/>
+		<File Path=".\Drive\_DriveAxis2.lda" ObjectName="_DriveAxis2" Idx="0"/>
+		<File Path=".\Drive\_DriveAxis3.lda" ObjectName="_DriveAxis3" Idx="0"/>
+		<File Path=".\Drive\_DriveAxis4.lda" ObjectName="_DriveAxis4" Idx="0"/>
+	</DriveFiles>
+	<DocuFiles>
+		<File Path=".\Class\ST151\ST151_VOV.vov"/>
+	</DocuFiles>
 	<Options>
-		<Target UseFPU="true">
+		<Target UseFPU="true" Processor="ARM">
 		</Target>
 		<Compiler
 			CompilerVersion         = "46"
@@ -50,6 +212,100 @@
 			PrjInternal = ".\ProjectInternal\">
 		</Directories>
 	</Options>
+	<SigmatekFolders>
+		<Folder Name="Hardware">
+			<Folder Name="Axis">
+				<Class Name="SR022"/>
+				<Class Name="ST011"/>
+				<Class Name="ST151"/>
+			</Folder>
+			<Folder Name="ControlSystems">
+				<Folder Name="CPUModules">
+					<Class Name="CP112_IOs"/>
+				</Folder>
+			</Folder>
+			<Folder Name="Digital">
+				<Class Name="DM161"/>
+			</Folder>
+			<Folder Name="Drives">
+				<Folder Name="DiasDrive">
+					<Class Name="_DriveAxis"/>
+					<Class Name="_DriveMng_DC062"/>
+					<Folder Name="Internal">
+						<Class Name="_BusInterfaceSdiasDriveMng"/>
+						<Class Name="_DriveAxisBase"/>
+						<Class Name="_DriveAxisSet"/>
+						<Class Name="_DriveMngBase"/>
+						<Class Name="_VaranDriveBase"/>
+					</Folder>
+				</Folder>
+			</Folder>
+			<Folder Name="Internal">
+				<Class Name="BusInterfaceSDIASInternal"/>
+				<Class Name="DiasMaster"/>
+				<Class Name="DiasMasterMain"/>
+				<Class Name="DiasMasterPostScan"/>
+				<Class Name="EEPROM"/>
+				<Class Name="Hub_Base"/>
+				<Class Name="Hub_Base_Root"/>
+				<Class Name="HwBase"/>
+				<Class Name="HwBaseCDIAS"/>
+				<Class Name="HwControlBase"/>
+				<Class Name="HWRtPostScan"/>
+				<Class Name="I2CCDIAS"/>
+				<Class Name="SafetyCDIAS_Base"/>
+				<Class Name="SafetyManager"/>
+				<Class Name="SafetyUDP"/>
+				<Class Name="SdiasBase"/>
+				<Class Name="SdiasHubBase"/>
+				<Class Name="SdiasManager"/>
+				<Class Name="ST151_IntVisu"/>
+				<Class Name="ST151Base"/>
+				<Class Name="SyncCall"/>
+				<Class Name="Varan_Base"/>
+				<Class Name="VaranManager"/>
+				<Class Name="VaranManager_Base"/>
+				<Class Name="WatchdogDias"/>
+				<Class Name="XXXBase_IOs"/>
+			</Folder>
+			<Folder Name="Manager">
+				<Class Name="DiasMasterC"/>
+				<Class Name="HwControl"/>
+				<Class Name="SdiasPLC"/>
+				<Class Name="VaranManager_1"/>
+			</Folder>
+		</Folder>
+		<Folder Name="System">
+			<Folder Name="Memory">
+				<Class Name="MerkerEx"/>
+				<Class Name="RAMex"/>
+				<Class Name="String"/>
+				<Class Name="StringInternal"/>
+				<Class Name="VirtualBaseInit"/>
+			</Folder>
+		</Folder>
+		<Folder Name="Tools">
+			<Folder Name="_old">
+				<Folder Name="Memory">
+					<Class Name="RamFile"/>
+				</Folder>
+			</Folder>
+			<Folder Name="Communication">
+				<Class Name="_CanLib"/>
+				<Class Name="_SerLib"/>
+				<Folder Name="TCPIP">
+					<Class Name="_TCPIP_SERVER"/>
+				</Folder>
+			</Folder>
+			<Folder Name="Conversion">
+				<Class Name="ASCII_BIN"/>
+			</Folder>
+			<Folder Name="Divers">
+				<Class Name="_CheckSum"/>
+				<Class Name="CriticalSection"/>
+			</Folder>
+		</Folder>
+	</SigmatekFolders>
 	<Units>
 		<UnitGrp Name="Acceleration">
 			<Unit Name="mmPsec2" Factor="1" Ref="S"/>

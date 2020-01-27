@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Network Name="TcpServer" Revision="0.0">
+	<!-- List of Components in this network -->
+	<Components>
+		<Object
+			Name       = "commandDecoder"
+			GUID       = "{8E312B55-D6DD-44E3-A4E7-4BA58E8BB8E8}"
+			Class      = "CommandDecoder"
+			Position   = "(720,780)"
+			Visualized = "false">
+			<Channels>
+				<Server Name="ClassSvr"/>
+			</Channels>
+		</Object>
+		<Object
+			Name       = "commandRouter"
+			GUID       = "{3EB05382-9F1E-4B4B-B6F5-4F9BE3C5AAAB}"
+			Class      = "CommandRouter"
+			Position   = "(1350,780)"
+			Visualized = "false">
+			<Channels>
+				<Server Name="CmdRouter"/>
+				<Server Name="Debug"/>
+				<Client Name="Decoder"/>
+			</Channels>
+		</Object>
+		<Object
+			Name       = "commandServer"
+			GUID       = "{8D8FA0AD-93AE-4ECE-A8E7-EDB2725D2D00}"
+			Class      = "CommandServer"
+			Position   = "(1980,780)"
+			Visualized = "true"
+			Remotely   = "true"
+			CyclicTime = "10 ms">
+			<Channels>
+				<Server Name="sControl"/>
+				<Server Name="SemaName01"/>
+				<Server Name="SemaName02"/>
+				<Server Name="sError"/>
+				<Server Name="TaskName"/>
+				<Client Name="CmdRouter"/>
+			</Channels>
+			<!-- List of Networks in this component -->
+			<Networks>
+				<Network>
+					<!-- List of Components in this network -->
+					<Components>
+						<Object Name="_base" GUID="{140D7FA3-B89E-412B-B7F1-7A96545A4461}" Class="_TCPIP_SERVER">
+							<Channels>
+								<Server Name="sControl"/>
+								<Server Name="SemaName01"/>
+								<Server Name="SemaName02"/>
+								<Server Name="sError"/>
+								<Server Name="TaskName"/>
+								<Client Name="cConfig"/>
+								<Client Name="cMaxConnections" Value="0"/>
+								<Client Name="co_MultiTask"/>
+								<Client Name="co_SigCLib"/>
+								<Client Name="co_StdLib"/>
+								<Client Name="co_Task"/>
+								<Client Name="cPort" Value="1985"/>
+								<Client Name="cSizeOfTXBuffer"/>
+								<Client Name="cTimeout"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="CheckSum" GUID="{924983ED-FE4B-4B5A-BC71-6E6963A07A78}" Class="_CheckSum">
+											<Channels>
+												<Server Name="ClassSvr"/>
+											</Channels>
+										</Object>
+										<Object Name="StrSemaName01" GUID="{299AFE23-53C0-4268-B520-661EA498CF23}" Class="String">
+											<Channels>
+												<Server Name="Data"/>
+												<Client Name="SingleRealloc" Value="1"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{B9D2D328-1416-469A-BE13-9F6CBBB1958D}" Class="StringInternal">
+															<Channels>
+																<Server Name="Data"/>
+																<Client Name="DataBuffer"/>
+																<Client Name="SingleRealloc" Value="1"/>
+															</Channels>
+															<!-- List of Networks in this component -->
+															<Networks>
+																<Network>
+																	<!-- List of Components in this network -->
+																	<Components>
+																		<Object Name="_base" GUID="{6CBDDE57-D222-420A-BC45-D2266096244E}" Class="VirtualBaseInit">
+																			<Channels>
+																				<Server Name="Data"/>
+																			</Channels>
+																		</Object>
+																	</Components>
+																	<Connections>
+																	</Connections>
+																</Network>
+															</Networks>
+														</Object>
+														<Object Name="MerkerEx0" GUID="{53955FF7-8ABE-4B49-B914-227100C3FDEF}" Class="MerkerEx">
+															<Channels>
+																<Server Name="m_udLength"/>
+																<Client Name="ThreadSafe" Value="0"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+										<Object Name="StrSemaName02" GUID="{75EFD2B9-8A72-4ADD-B553-20298AB8A232}" Class="String">
+											<Channels>
+												<Server Name="Data"/>
+												<Client Name="SingleRealloc" Value="1"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{B9D2D328-1416-469A-BE13-9F6CBBB1958D}" Class="StringInternal">
+															<Channels>
+																<Server Name="Data"/>
+																<Client Name="DataBuffer"/>
+																<Client Name="SingleRealloc" Value="1"/>
+															</Channels>
+															<!-- List of Networks in this component -->
+															<Networks>
+																<Network>
+																	<!-- List of Components in this network -->
+																	<Components>
+																		<Object Name="_base" GUID="{6CBDDE57-D222-420A-BC45-D2266096244E}" Class="VirtualBaseInit">
+																			<Channels>
+																				<Server Name="Data"/>
+																			</Channels>
+																		</Object>
+																	</Components>
+																	<Connections>
+																	</Connections>
+																</Network>
+															</Networks>
+														</Object>
+														<Object Name="MerkerEx0" GUID="{53955FF7-8ABE-4B49-B914-227100C3FDEF}" Class="MerkerEx">
+															<Channels>
+																<Server Name="m_udLength"/>
+																<Client Name="ThreadSafe" Value="0"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+										<Object Name="StrTaskName" GUID="{510AA27F-2062-4B46-A6C5-CE04D658B1CE}" Class="String">
+											<Channels>
+												<Server Name="Data"/>
+												<Client Name="SingleRealloc" Value="1"/>
+											</Channels>
+											<!-- List of Networks in this component -->
+											<Networks>
+												<Network>
+													<!-- List of Components in this network -->
+													<Components>
+														<Object Name="_base" GUID="{B9D2D328-1416-469A-BE13-9F6CBBB1958D}" Class="StringInternal">
+															<Channels>
+																<Server Name="Data"/>
+																<Client Name="DataBuffer"/>
+																<Client Name="SingleRealloc" Value="1"/>
+															</Channels>
+															<!-- List of Networks in this component -->
+															<Networks>
+																<Network>
+																	<!-- List of Components in this network -->
+																	<Components>
+																		<Object Name="_base" GUID="{6CBDDE57-D222-420A-BC45-D2266096244E}" Class="VirtualBaseInit">
+																			<Channels>
+																				<Server Name="Data"/>
+																			</Channels>
+																		</Object>
+																	</Components>
+																	<Connections>
+																	</Connections>
+																</Network>
+															</Networks>
+														</Object>
+														<Object Name="MerkerEx0" GUID="{53955FF7-8ABE-4B49-B914-227100C3FDEF}" Class="MerkerEx">
+															<Channels>
+																<Server Name="m_udLength"/>
+																<Client Name="ThreadSafe" Value="0"/>
+															</Channels>
+														</Object>
+													</Components>
+													<Connections>
+													</Connections>
+												</Network>
+											</Networks>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+					</Components>
+					<Connections>
+					</Connections>
+				</Network>
+			</Networks>
+		</Object>
+	</Components>
+	<Comments>
+	</Comments>
+	<!-- List of Connections in this network -->
+	<Connections>
+		<Connection Source="commandServer.CmdRouter" Destination="commandRouter.CmdRouter" Vertices="(1980,870),(1846,870),"/>
+		<Connection Source="commandRouter.Decoder" Destination="commandDecoder.ClassSvr" Vertices="(1350,870),(1186,870),"/>
+	</Connections>
+	<!-- Headerfiles -->
+	<Options>
+	</Options>
+</Network>

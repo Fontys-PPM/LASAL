@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<HWClassInfo>
+  <Class Name="SdiasPLC" SingleObject="SdiasPLC" NeedClasses="HwControl" BusTypePLC="SDIAS" >
+    <Uplink Name="SDias" Channel="ToHwControl" BusType="HWCONTROL_SDM" />
+      <Downlink Name="SdiasOut_1" BusType="SDIAS"/>
+    <IOState Name="Sdias Class State" Channel="ClassState" Desc="This server shows the status of the hardware class. If the state is not equal than _ClassOK, an error has occurred "/>  
+    <IOState Name="Sdias Firmware Version" Channel="FirmwareVersion" Format="V{13-16}{9-12}.{5-8}{1-4}" IsInfo="true" Desc="Shows the version of the SDIAS Manager firmware" />   
+    <IOState Name="Sdias Manager Protocol Version" Channel="ManagerProtocolVersion" Format="V{13-16}{9-12}.{5-8}.{1-4}" IsInfo="true" Desc="Shows the SDIAS Manager Protocol version" /> />  
+    
+    <!-- Module State -->
+    <IOState Name="Sdias Retry Counter" Channel="RetryCounter" Type="Analog" Desc="Retry counter of Sdias bus" />    
+    <IOState Name="Sdias Iso Wr Task Duration" Channel="IsoWrTaskDuration" Desc="Shows the time measurement of last iso write task at SDIAS in [µs]" />
+    <IOState Name="Sdias Iso Wr Task Duration Max" Channel="IsoWrTaskMaxDuration" Desc="Shows the maximal time measurement of iso write task at SDIAS in [µs]" />
+    <IOState Name="Sdias Iso Rd Task Duration" Channel="IsoRdTaskDuration" Desc="Shows the time measurement of last iso read task at SDIAS in [µs]&#13;&#10;The measured time could be higher then the calculated time according to bit 4 of the manager option bits (0 .. with preprocessor time, 1 .. only execution time)." />
+    <IOState Name="Sdias Iso Rd Task Duration Max" Channel="IsoRdTaskMaxDuration" Desc="Shows the maximal time measurement of iso read task at SDIAS in [µs]&#13;&#10;The measured time could be higher then the calculated time according to bit 4 of the manager option bits (0 .. with preprocessor time, 1 .. only execution time)." />
+    <IOState Name="Sdias Manager Option Bits" Channel="ManagerOptionBits" Type="Analog" Desc="Shows the option bits of SDIAS Manager&#13;&#10;Bit 0: Interrupts supported&#13;&#10;Bit 1: Half duplex (SDIAS S2), bus scan required&#13;&#10;Bit 2: Far Memory access supported&#13;&#10;Bit 3: Status wait supported (to differ TimeSliceError and TimeSliceErrorIRQ)&#13;&#10;Bit 4: Execution time selection supported&#13;&#10;Bit 5: Task interruption detection supported" />  
+    <Property Name="Sdias Manager Time in µs" Channel="CycleTime" Desc="Bus cycle time in µs (max. 32000), as Initvalue" Editor="EditNumber:Signed;Dec" />
+    <Property Name="Sdias Iso Start Point" Channel="IsoStartPoint" Desc="% of SDIAS Manager Time [10..90], where the SDIAS starts to work the Read Accesses (Write accesses are started immediately after the HW-Classes have finished their work" Editor="Range:10..90;Empty" />
+    <Property Name="Sdias Core Select" Channel="CoreSelect" Desc="Set the CPU-core on which the Realtime and the Cylic Task of the SDIAS Manager should be executed. Only supported on CPUs with more than one core. " Editor="EditNumber:Signed;Dec" />
+
+    <Script Name="SdiasPLC">
+      <Parameter Name="CableLength" Type="Variable" Channel="CableLength" Desc="Length of cable connected to &quot;VARAN In&quot; [m]&#xD;&#xA;Default length 1m" Editor="Range:0..100" DefValue="1" />
+      <Parameter Name="BusCycleTime" Type="Client" Channel="CycleTime" Desc="" />
+<Code>
+def compPre_SdiasPLC(element, parameters):
+  parameters['BusCycleTime'] = ((element['options']['BusCycleTime']) * 1000) 
+
+def compPost_SdiasPLC(element, parameters):
+  def computeSimpleObjects(input):
+    output = {'Rd':[],'Wr':[],'WrDyn':[],'RdDyn':[],'RdSDIASBurst':[],'WrSDIASBurst':[]}
+    AddEntry=[0]
+    tmpLength = 0
+    for dataobjects in input: 
+      #for read dataobjects sdias
+      if dataobjects.has_key('Rd'):
+        dataobjects['Rd'] = map(int, dataobjects['Rd'])
+        output['Rd'] += dataobjects['Rd']
+        #add datalength for calculating burst length (burst1, burst2, burst3, burst4 ....)
+        for i in xrange(len(dataobjects['Rd'])):
+          if i >= (len(output['RdSDIASBurst'])):
+            output['RdSDIASBurst'] += AddEntry 
+          output['RdSDIASBurst'][i] += int(dataobjects['Rd'][i])
+      #for write dataobjects sdias
+      if dataobjects.has_key('Wr'):
+        dataobjects['Wr'] = map(int, dataobjects['Wr'])
+        output['Wr'] += dataobjects['Wr']
+        #add datalength for calculating burst length (burst1, burst2, burst3, burst4 ....)
+        for i in xrange(len(dataobjects['Wr'])):
+          if i >= (len(output['WrSDIASBurst'])):
+            output['WrSDIASBurst'] += AddEntry 
+          output['WrSDIASBurst'][i] += int(dataobjects['Wr'][i])
+      #for read dynamic dataobjects sdias
+      if dataobjects.has_key('RdDyn'):
+        dataobjects['RdDyn'] = map(int, dataobjects['RdDyn'])
+        output['RdDyn'] += dataobjects['RdDyn']
+        #add datalength for calculating burst length (burst1, burst2, burst3, burst4 ....)
+        for i in xrange(len(dataobjects['RdDyn'])):
+          tmpLength = i #+len(dataobjects['Rd'])
+          if tmpLength >= (len(output['RdSDIASBurst'])):
+            output['RdSDIASBurst'] += AddEntry 
+          output['RdSDIASBurst'][tmpLength] += int(dataobjects['RdDyn'][i])
+      #for write dynamic dataobjects sdias
+      if dataobjects.has_key('WrDyn'):
+        dataobjects['WrDyn'] = map(int, dataobjects['WrDyn'])
+        output['WrDyn'] += dataobjects['WrDyn']
+        #add datalength for calculating burst length (burst1, burst2, burst3, burst4 ....)
+        for i in xrange(len(dataobjects['WrDyn'])):
+          tmpLength = i #+len(dataobjects['Wr'])
+          if tmpLength >= (len(output['WrSDIASBurst'])):
+            output['WrSDIASBurst'] += AddEntry 
+          output['WrSDIASBurst'][tmpLength] += int(dataobjects['WrDyn'][i])
+    return output
+  
+# calculating sdias memory ---------------------------------------------------------------------------------------------------- 
+  def computeSDIASMem(input):
+    output = {'IsoRdBytes':0, 'IsoWrBytes':0}    
+    
+    output['IsoRdBytes'] = 0
+    output['IsoRdBytes'] += sum(input['Rd'])    + (len(input['Rd'])    - input['Rd'].count(0))     # Add Rd PDO    + State Bytes
+    output['IsoRdBytes'] += sum(input['RdDyn']) + (len(input['RdDyn']) - input['RdDyn'].count(0))  # Add RdDyn PDO + State Bytes
+    output['IsoRdBytes'] += len(input['Wr'])                           # Add Wr PDO State Bytes
+    output['IsoRdBytes'] += len(input['WrDyn'])                        # Add WrDyn PDO State Bytes
+    
+    output['IsoWrBytes'] = 0
+    output['IsoWrBytes'] += sum(input['Wr'])    + (len(input['Wr'])    - input['Wr'].count(0))         # Add Wr PDO    + Control Bytes
+    output['IsoWrBytes'] += sum(input['WrDyn']) + ((len(input['WrDyn']) - input['WrDyn'].count(0))*4)  # Add WrDyn PDO + Control Bytes + 3 Additional Bytes
+    output['IsoWrBytes'] += (len(input['RdDyn']) - input['RdDyn'].count(0))                            # Add Rd PDO Control Bytes
+    output['IsoWrBytes'] += ((len(input['RdDyn']) - input['RdDyn'].count(0))*4)                        # Add RdDyn PDO Control Bytes + 3 Additional Bytes
+    return output 
+    
+# calculating sdias time ----------------------------------------------------------------------------------------------------    
+  def computeSDIASTime(input, RdSDIASBurst, WrSDIASBurst):
+    output = {'IsoTimeRd':0, 'IsoTimeWr':0}    
+    AddEntry=[0]
+    tmpLength = 0
+    #variable to calculate time from SDIAS design spec 8.11.2
+    ArrayPreprocessing = 400  #ns
+    DataObjectFetching = 400  #ns
+    GeneralBurstTime = ArrayPreprocessing+DataObjectFetching
+    
+    # calculate read time ----------------------------------------------------------------------------------------------------
+    output['IsoTimeRd'] = 0
+    #calculate read bursts (burst1, burst2, burst3, burst4 ....)
+    for BurstCounter in xrange(len(RdSDIASBurst)):
+      BurstRdByte = []
+      NodeCnt = 0
+      for dataobjects in input:
+        #for read dataobjects sdias
+        if dataobjects.has_key('Rd'):
+          dataobjects['Rd'] = map(int, dataobjects['Rd'])
+          #add datalength for calculating burst length 
+          if len(dataobjects['Rd']) > BurstCounter:
+            if NodeCnt >= len(BurstRdByte)-1:
+              BurstRdByte += AddEntry
+            BurstRdByte[NodeCnt] = dataobjects['Rd'][BurstCounter]
+          else:
+            #add empty entry because node has no data to transmit
+            BurstRdByte += AddEntry
+        #for read dynamic dataobjects sdias
+        if dataobjects.has_key('RdDyn'):
+          dataobjects['RdDyn'] = map(int, dataobjects['RdDyn'])
+          if len(dataobjects['RdDyn']) > BurstCounter:
+            dataobjects['RdDyn'] = map(int, dataobjects['RdDyn'])
+            BurstRdByte[NodeCnt] += dataobjects['RdDyn'][BurstCounter]
+        NodeCnt += 1  
+        
+      SearchLastNode  = len(BurstRdByte)-1 
+      LastNode  = 0
+      while SearchLastNode > 1:
+        if 0 != BurstRdByte[SearchLastNode]:
+          LastNode = SearchLastNode+1
+          break
+        SearchLastNode -= 1
+        
+      FirstNode = 1
+      #add time for every burst
+      SumActiveNodes       = len(BurstRdByte) - BurstRdByte.count(0) 
+      TxPathDelay          = 100 * (LastNode)  #ns
+      TransmitFirstRequest = (FirstNode*8)*80
+      ReceiveData          = (SumActiveNodes*7+sum(BurstRdByte))*80
+      RxPathDelay          = TxPathDelay
+      StoreLastRecData     = BurstRdByte[LastNode-1] * 40
+      ListPostProcessing   = SumActiveNodes * 400
+      ActTimeAdd           = int((GeneralBurstTime + TxPathDelay + TransmitFirstRequest + ReceiveData + RxPathDelay + StoreLastRecData + ListPostProcessing))
+      output['IsoTimeRd'] += ActTimeAdd
+      
+    # calculate write time ----------------------------------------------------------------------------------------------------
+    output['IsoTimeWr'] = 0
+    #calculate read bursts (burst1, burst2, burst3, burst4 ....)
+    for BurstCounter in xrange(len(WrSDIASBurst)):
+      BurstWrByte = []
+      NodeCnt = 0
+      for dataobjects in input:
+        #for read dataobjects sdias
+        if dataobjects.has_key('Wr'):
+          dataobjects['Wr'] = map(int, dataobjects['Wr'])
+          #add datalength for calculating burst length 
+          if len(dataobjects['Wr']) > BurstCounter:
+            if NodeCnt >= len(BurstWrByte)-1:
+              BurstWrByte += AddEntry
+            BurstWrByte[NodeCnt] = dataobjects['Wr'][BurstCounter]
+          else:
+            #add empty entry because node has no data to transmit
+            BurstWrByte += AddEntry
+        #for read dynamic dataobjects sdias
+        if dataobjects.has_key('WrDyn'):
+          dataobjects['WrDyn'] = map(int, dataobjects['WrDyn'])
+          if len(dataobjects['WrDyn']) > BurstCounter:
+            dataobjects['WrDyn'] = map(int, dataobjects['WrDyn'])
+            BurstWrByte[NodeCnt] += dataobjects['WrDyn'][BurstCounter]
+        NodeCnt += 1
+        
+      SearchLastNode  = len(BurstRdByte)-1 
+      LastNode  = 0
+      while SearchLastNode > 1:
+        if 0 != BurstWrByte[SearchLastNode]:
+          LastNode = SearchLastNode+1
+          break
+        SearchLastNode -= 1
+          
+      FirstNode = 1    
+      #add time for every burst
+      SumActiveNodes       = len(BurstWrByte) - BurstWrByte.count(0) 
+      TxPathDelay          = 100 * (LastNode)  #ns
+      TransmitData         = (SumActiveNodes*8+sum(BurstWrByte))*80
+      StoreDataInLastNode  = sum(BurstWrByte) * 40
+      RxPathDelay          = TxPathDelay
+      ReceiveLastAck       = (FirstNode*6)*80
+      ListPostProcessing   = SumActiveNodes * 400
+      ActTimeAdd           = int((GeneralBurstTime + TxPathDelay + TransmitData + StoreDataInLastNode + RxPathDelay + ReceiveLastAck + ListPostProcessing))
+      output['IsoTimeWr'] += ActTimeAdd
+    
+    # round up + 1 extra µs and divide ns to get µs
+    output['IsoTimeRd'] = (output['IsoTimeRd'] +2000)/1000
+    output['IsoTimeWr'] = (output['IsoTimeWr'] +2000)/1000  #divide with 1200 to get same values how on real hardware (Sdias Dauertest)
+    return output 
+
+# calculate simple master transmit time
+  def computeSimpleMasterTime(DataLen, nNumberofNodes, AddSdiasSimpleMasterTime, AddTimeLastAccess):
+    tConnection	= 0 #ns/m	            	... signal propagation delay via PCB trace and  Connector
+    tPass   = 100 #100 #ns/client  		... Passthrough time of one client in one direction
+    tEncode = 290
+    tDecode = 260
+    tP = 80 #ns/byte
+    tWb = 40  #ns/byte
+    cmdTx = 9 #byte 720ns
+    cmdRx = 8 #byte 640ns
+    AccessCnt = 1
+    ActAccessLen = DataLen
+    # last access takes longer then the others -> add extra time 
+    tAccess = AddTimeLastAccess
+    tActAccess = 0
+    LastAccess = DataLen/4
+    ForeLastAccess = LastAccess
+     
+    if DataLen > 4:
+      if (DataLen%4) > 0:
+        LastAccess += 1
+    
+    while ActAccessLen > 0:
+      if ActAccessLen > 4:
+        ActDataLen = 4
+      else:
+        ActDataLen = ActAccessLen
+        
+  #   tClient = twb*wrlen + twb*rdlen ... Processing time wb access of  SDIAS Client
+      tClient = (tWb * ActDataLen)
+  #   tClient_access 	= tEncode + tP*cmdTx + tP*WrLen + tdecode + tp*RdLen + tP*cmdRx
+      tClient_access 	= tEncode + (tP*cmdTx) + (tP*ActDataLen) + tDecode + (tP*cmdRx)
+      
+  #   tAccess = (2 * (tConnection * (n+1) + tPass * n)) + tClient + tClient_access
+      tActAccess = (2 * (tConnection * (nNumberofNodes+1) + (tPass * nNumberofNodes))) + tClient + tClient_access
+      tActAccess += AddSdiasSimpleMasterTime
+        
+      #("(tActAccessTime, ActDataLen, nNumberofNodes, AccessCnt)", tActAccess, ActDataLen, nNumberofNodes, AccessCnt)
+      AccessCnt    += 1
+      ActAccessLen -= ActDataLen
+      tAccess      += tActAccess
+      
+    #print("tAccess",tAccess)
+    #print("---------------------------------------------")
+    return tAccess
+    
+# calculating sdias time if simple master is used --------------------------------------------------------------------------------------    
+  def computeSDIASTimeSimpleMaster(input, RdSDIASBurst, WrSDIASBurst):
+    output = {'IsoTimeRd':0, 'IsoTimeWr':0}    
+    AddEntry=[0]
+    
+    # calculate read time ----------------------------------------------------------------------------------------------------
+    # first access 3760ns
+    AddSdiasSimpleMasterTime  = 1370 #1370
+    AddTimeLastAccess         = 2000
+    #print("-----------------READ----------------------------")
+    output['IsoTimeRd'] = 0
+    #calculate read bursts (burst1, burst2, burst3, burst4 ....)
+    for BurstCounter in xrange(len(RdSDIASBurst)):
+      BurstRdByte = []
+      NodeCnt = 0
+      SimpleMasterSplitting = 0
+      for dataobjects in input:
+        #for read dataobjects sdias
+        if dataobjects.has_key('Rd'):
+          dataobjects['Rd'] = map(int, dataobjects['Rd'])
+          #add datalength for calculating burst length 
+          if len(dataobjects['Rd']) > BurstCounter:
+            if NodeCnt >= len(BurstRdByte)-1:
+              BurstRdByte += AddEntry
+            BurstRdByte[NodeCnt] = dataobjects['Rd'][BurstCounter]
+            ActAccessLength = dataobjects['Rd'][BurstCounter]
+            if ActAccessLength > 0:
+              SimpleMasterSplitting += computeSimpleMasterTime(ActAccessLength, NodeCnt, AddSdiasSimpleMasterTime, AddTimeLastAccess)
+          else:
+            #add empty entry because node has no data to transmit
+            BurstRdByte += AddEntry
+        #for read dynamic dataobjects sdias
+        if dataobjects.has_key('RdDyn'):
+          dataobjects['RdDyn'] = map(int, dataobjects['RdDyn'])
+          if len(dataobjects['RdDyn']) > BurstCounter:
+            dataobjects['RdDyn'] = map(int, dataobjects['RdDyn'])
+            BurstRdByte[NodeCnt] += dataobjects['RdDyn'][BurstCounter]
+            ActAccessLength = dataobjects['RdDyn'][BurstCounter]
+            if ActAccessLength > 0:
+              SimpleMasterSplitting += computeSimpleMasterTime(ActAccessLength, NodeCnt, AddSdiasSimpleMasterTime, AddTimeLastAccess)
+        NodeCnt += 1
+        
+      #add time for for simple master splitting
+      output['IsoTimeRd'] += int(SimpleMasterSplitting)
+      
+    # calculate write time ----------------------------------------------------------------------------------------------------
+    # first access 4240 ns
+    AddSdiasSimpleMasterTime  = 1850
+    #AddTimeLastAccess         = 0
+    #print("-----------------WRITE----------------------------")
+    output['IsoTimeWr'] = 0
+    #calculate read bursts (burst1, burst2, burst3, burst4 ....)
+    for BurstCounter in xrange(len(WrSDIASBurst)):
+      BurstWrByte = []
+      NodeCnt = 0
+      SimpleMasterSplitting = 0
+      for dataobjects in input:
+        #for read dataobjects sdias
+        if dataobjects.has_key('Wr'):
+          dataobjects['Wr'] = map(int, dataobjects['Wr'])
+          #add datalength for calculating burst length 
+          if len(dataobjects['Wr']) > BurstCounter:
+            if NodeCnt >= len(BurstWrByte)-1:
+              BurstWrByte += AddEntry
+            BurstWrByte[NodeCnt] = dataobjects['Wr'][BurstCounter]
+            ActAccessLength = dataobjects['Wr'][BurstCounter]
+            if ActAccessLength > 0:
+              SimpleMasterSplitting += computeSimpleMasterTime(ActAccessLength, NodeCnt, AddSdiasSimpleMasterTime, AddTimeLastAccess)
+          else:
+            #add empty entry because node has no data to transmit
+            BurstWrByte += AddEntry
+        #for read dynamic dataobjects sdias
+        if dataobjects.has_key('WrDyn'):
+          dataobjects['WrDyn'] = map(int, dataobjects['WrDyn'])
+          if len(dataobjects['WrDyn']) > BurstCounter:
+            dataobjects['WrDyn'] = map(int, dataobjects['WrDyn'])
+            BurstWrByte[NodeCnt] += dataobjects['WrDyn'][BurstCounter]
+            ActAccessLength = dataobjects['WrDyn'][BurstCounter]
+            if ActAccessLength > 0:
+              SimpleMasterSplitting += computeSimpleMasterTime(ActAccessLength, NodeCnt, AddSdiasSimpleMasterTime, AddTimeLastAccess)
+        NodeCnt += 1
+      output['IsoTimeWr'] += int(SimpleMasterSplitting)   
+    
+    # round up + 1 extra µs and divide ns to get µs
+    if output['IsoTimeRd'] > 0:
+      output['IsoTimeRd'] += 6000
+    output['IsoTimeRd'] = (((output['IsoTimeRd'] +12000)/1000)*105)/100  #add 5% reserve
+    if output['IsoTimeWr'] > 0:
+      output['IsoTimeWr'] += 6000
+    output['IsoTimeWr'] = (output['IsoTimeWr'] +12000)/1000  #divide with 1200 to get same values how on real hardware (Sdias Dauertest)
+    return output 
+    
+# ---------------------------------------------------------------------------------------------------- 
+  element['result']['optional'].append({'depth': parameters['depth']})    
+  subelements = {'PDO':[],}    
+
+  for object in element['result']['optional']: 
+    for key in subelements.keys():
+      if object.has_key(key):
+        subelements[key].append(object[key])    
+  
+  PDOList = computeSimpleObjects(subelements['PDO'])
+  
+  #-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+  
+  #remove added zeros which where before added to calculate sdias time
+  #for read dataobjects sdias
+  if PDOList['RdSDIASBurst'].count(0) > 0:
+    PDOList['RdSDIASBurst'].remove(0)
+  #for write dataobjects sdias
+  if PDOList['WrSDIASBurst'].count(0) > 0:
+    PDOList['WrSDIASBurst'].remove(0)
+  #SDIAS time and mem calculation
+  SDIASMem = computeSDIASMem(PDOList)
+  element['result']['SDIASMem'] = SDIASMem['IsoRdBytes']
+  element['result']['SDIASMem'] += SDIASMem['IsoWrBytes']
+  BurstRdByteLen = len(PDOList['RdSDIASBurst'])
+  BurstWrLen = len(PDOList['WrSDIASBurst'])
+  if parameters['SimpleMaster'] == False:
+    SDIASTime = computeSDIASTime(subelements['PDO'], PDOList['RdSDIASBurst'], PDOList['WrSDIASBurst'])
+  else:   
+    SDIASTime = computeSDIASTimeSimpleMaster(subelements['PDO'], PDOList['RdSDIASBurst'], PDOList['WrSDIASBurst'])
+  element['result']['SDIASIsoTimeRd'] = SDIASTime['IsoTimeRd']
+  element['result']['SDIASIsoTimeWr'] = SDIASTime['IsoTimeWr']
+  
+  #remove added zeros which where before added to calculate sdias time
+  for dataobjects in subelements['PDO']:
+    #for read dataobjects sdias
+    while dataobjects['Rd'].count(0) > 0:
+      dataobjects['Rd'].remove(0)
+    #for read dataobjects sdias
+    while dataobjects['RdDyn'].count(0) > 0:
+      dataobjects['RdDyn'].remove(0)
+    #for write dataobjects sdias
+    while dataobjects['Wr'].count(0) > 0:
+      dataobjects['Wr'].remove(0)
+    #for write dataobjects sdias
+    while dataobjects['WrDyn'].count(0) > 0:
+      dataobjects['WrDyn'].remove(0)
+</Code>
+</Script>
+  </Class>
+</HWClassInfo>

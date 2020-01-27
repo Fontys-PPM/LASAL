@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<HWClassInfo>
+	<Class Name="DiasMasterC" SingleObject="DiasMasterC" NeedClasses="HwControl" >
+		<Uplink Name="DiasMaster" Channel="To_HwControl" BusType="HWCONTROL_DMC" OptionalClass="HwControl" />
+		<Downlink Name="CDias" Channel="Control" BusType="CDIAS" />
+		<Downlink Name="Dias"  Channel="Control" BusType="DIAS" />
+	</Class>
+</HWClassInfo>

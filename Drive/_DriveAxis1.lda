@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Drive DriveType="DC062">
+	<Params>
+		<Param Id="1" Va="    " VT="1"/>
+		<Param Id="10" Va="1000" VT="0"/>
+		<Param Id="103" Va="1" VT="0"/>
+		<Param Id="105" Va="0" VT="0"/>
+		<Param Id="108" Va="    " VT="1"/>
+		<Param Id="109" Va="    " VT="1"/>
+		<Param Id="11" Va="10" VT="0"/>
+		<Param Id="110" Va="    " VT="1"/>
+		<Param Id="114" Va="0" VT="0"/>
+		<Param Id="115" Va="0" VT="0"/>
+		<Param Id="116" Va="0" VT="0"/>
+		<Param Id="117" Va="100" VT="0"/>
+		<Param Id="118" Va="0" VT="0"/>
+		<Param Id="119" Va="2500" VT="0"/>
+		<Param Id="120" Va="300" VT="0"/>
+		<Param Id="121" Va="2000" VT="0"/>
+		<Param Id="124" Va="0" VT="0"/>
+		<Param Id="127" Va="0" VT="0"/>
+		<Param Id="128" Va="100" VT="0"/>
+		<Param Id="129" Va="100" VT="0"/>
+		<Param Id="13" Va="2" VT="0"/>
+		<Param Id="130" Va="100" VT="0"/>
+		<Param Id="131" Va="100" VT="0"/>
+		<Param Id="132" Va="100" VT="0"/>
+		<Param Id="133" Va="100" VT="0"/>
+		<Param Id="134" Va="100" VT="0"/>
+		<Param Id="135" Va="100" VT="0"/>
+		<Param Id="136" Va="100" VT="0"/>
+		<Param Id="137" Va="100" VT="0"/>
+		<Param Id="138" Va="100" VT="0"/>
+		<Param Id="139" Va="100" VT="0"/>
+		<Param Id="14" Va="0" VT="0"/>
+		<Param Id="140" Va="100" VT="0"/>
+		<Param Id="141" Va="100" VT="0"/>
+		<Param Id="142" Va="100" VT="0"/>
+		<Param Id="143" Va="100" VT="0"/>
+		<Param Id="144" Va="100" VT="0"/>
+		<Param Id="145" Va="100" VT="0"/>
+		<Param Id="146" Va="100" VT="0"/>
+		<Param Id="147" Va="100" VT="0"/>
+		<Param Id="148" Va="100" VT="0"/>
+		<Param Id="149" Va="100" VT="0"/>
+		<Param Id="15" Va="1024" VT="0"/>
+		<Param Id="150" Va="100" VT="0"/>
+		<Param Id="151" Va="100" VT="0"/>
+		<Param Id="152" Va="100" VT="0"/>
+		<Param Id="153" Va="100" VT="0"/>
+		<Param Id="154" Va="100" VT="0"/>
+		<Param Id="155" Va="100" VT="0"/>
+		<Param Id="156" Va="100" VT="0"/>
+		<Param Id="157" Va="100" VT="0"/>
+		<Param Id="158" Va="100" VT="0"/>
+		<Param Id="159" Va="100" VT="0"/>
+		<Param Id="164" Va="0" VT="0"/>
+		<Param Id="165" Va="0" VT="0"/>
+		<Param Id="167" Va="100" VT="0"/>
+		<Param Id="168" Va="60" VT="0"/>
+		<Param Id="169" Va="55" VT="0"/>
+		<Param Id="17" Va="0" VT="0"/>
+		<Param Id="170" Va="55" VT="0"/>
+		<Param Id="173" Va="0" VT="0"/>
+		<Param Id="18" Va="0" VT="0"/>
+		<Param Id="2" Va="    " VT="1"/>
+		<Param Id="21" Va="0" VT="0"/>
+		<Param Id="22" Va="10" VT="0"/>
+		<Param Id="23" Va="100" VT="0"/>
+		<Param Id="3" Va="    " VT="1"/>
+		<Param Id="32" Va="3" VT="0"/>
+		<Param Id="33" Va="50" VT="0"/>
+		<Param Id="35" Va="20" VT="0"/>
+		<Param Id="36" Va="0" VT="0"/>
+		<Param Id="38" Va="85" VT="0"/>
+		<Param Id="4" Va="5000" VT="0"/>
+		<Param Id="41" Va="65" VT="0"/>
+		<Param Id="42" Va="10000" VT="0"/>
+		<Param Id="43" Va="2621740" VT="0"/>
+		<Param Id="44" Va="999808723" VT="0"/>
+		<Param Id="45" Va="1077936128" VT="0"/>
+		<Param Id="46" Va="67117056" VT="0"/>
+		<Param Id="47" Va="300000" VT="0"/>
+		<Param Id="48" Va="1" VT="0"/>
+		<Param Id="49" Va="0" VT="0"/>
+		<Param Id="5" Va="10000" VT="0"/>
+		<Param Id="50" Va="25000" VT="0"/>
+		<Param Id="51" Va="1000" VT="0"/>
+		<Param Id="53" Va="70" VT="0"/>
+		<Param Id="56" Va="0" VT="0"/>
+		<Param Id="57" Va="0" VT="0"/>
+		<Param Id="59" Va="85" VT="0"/>
+		<Param Id="6" Va="3000" VT="0"/>
+		<Param Id="60" Va="5000" VT="0"/>
+		<Param Id="61" Va="10000" VT="0"/>
+		<Param Id="62" Va="400" VT="0"/>
+		<Param Id="63" Va="1000" VT="0"/>
+		<Param Id="64" Va="80" VT="0"/>
+		<Param Id="65" Va="3000" VT="0"/>
+		<Param Id="66" Va="0" VT="0"/>
+		<Param Id="67" Va="0" VT="0"/>
+		<Param Id="68" Va="0" VT="0"/>
+		<Param Id="7" Va="6" VT="0"/>
+		<Param Id="70" Va="20000" VT="0"/>
+		<Param Id="71" Va="1000" VT="0"/>
+		<Param Id="72" Va="16" VT="0"/>
+		<Param Id="73" Va="1000" VT="0"/>
+		<Param Id="74" Va="0" VT="0"/>
+		<Param Id="75" Va="327680" VT="0"/>
+		<Param Id="76" Va="0" VT="0"/>
+		<Param Id="8" Va="1700" VT="0"/>
+		<Param Id="9" Va="1000" VT="0"/>
+		<Param Id="90" Va="5000" VT="0"/>
+		<Param Id="91" Va="775" VT="0"/>
+		<Param Id="92" Va="0" VT="0"/>
+		<Param Id="93" Va="3591" VT="0"/>
+		<Param Id="94" Va="0" VT="0"/>
+		<Param Id="95" Va="1" VT="0"/>
+		<Param Id="99" Va="100" VT="0"/>
+	</Params>
+</Drive>

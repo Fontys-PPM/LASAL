@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<HWClassInfo>
+	<HWDevice ModuleID="1" SubModuleID="0" ModType="MULTIVARAN">
+		<Types>
+		<Device Name="VaranManager_1" ClassName="VaranManager_1" Compare="false">
+		</Device>
+		</Types>
+	</HWDevice>
+  	<Class Name="VaranManager_1" MultiVaranAllowed="true">
+    <Uplink Name="MultiVaran" Channel="To_HwControl" BusType="MULTIVARAN" PlaceName="VaranManagerNr"/>
+    
+    <Property Name="Varan Manager Time"           Channel="VaranManagerTime"    Editor="EditNumber:Signed;Dec"                                    Type ="Analog"  DefaultValue="1000000"
+              Desc="The real-time of the VaranManager hardware classes and the VARAN Isochronous DataObjectList is set here.
+                    &#13;&#10;Unit: ns
+                    &#13;&#10;Default value: 1000000 (=1ms)        
+                    &#13;&#10;As an initialization value" />
+     
+    <Property Name="Varan ManagerNumber"          Channel="VaranManagerNr"      Editor="EditNumber:Signed;Dec"                                    Type ="Analog"  
+              Desc="The VaranManager number is set here (if there are several VaranManagers in the system).
+                    &#13;&#10;Default value: 0        
+                    &#13;&#10;As an initialization value
+                    &#13;&#10;e.g. 
+                    &#13;&#10;0 .. First VaranManager
+                    &#13;&#10;1 .. Second VaranManager" />
+                    
+    <Property Name="Varan Prevent Manager Error"  Channel="PreventManagerError" Editor="Combo:0=Activate ManagerError;1=Deactivate ManagerError"  Type ="Digital" Desc="0 = normal triggering of a manager error, 1 = prevents a manager error "  />
+    <Property Name="Varan Iso Start Point"        Channel="IsoStartPoint"       Editor="Range:1..99;Empty"                                        Type ="Analog"  DefaultValue="50"
+              Desc="Time of the isochronous VARAN task as a percentage of the VaranManager time. 
+                    &#13;&#10;defines the offset between start of realtime-task and start of isochronous VARAN data transfer
+                    &#13;&#10;&#13;&#10;1Value range between 1 and 99 % (default: 50)
+                    &#13;&#10;e.g.: IsoStartPoint = 70 and VaranManagerTime = 1000000 -> Isochronous VARAN task gets 300 µs, the hardware classes (real time of the controller) get 700 µs. 
+                    &#13;&#10;As an initialization value"  />
+                    
+    <Property Name="Varan Is Also Client"         Channel="IsAlsoClient"        Editor="Combo:0=Is no Client;1=Is also Client"                    Type ="Digital" Desc="set if manager is also a client (VMC)"  />
+    <Property Name="Varan Superior System Time"   Channel="SuperiorSystemTime"  Editor="EditNumber:Signed;Dec"                                    Type ="Analog"  Desc="varan time of superior system in ns, has to be a multiple of VaranManagerTime"  />
+
+    <Property Name="Varan Payload Frame"          Channel="PayloadFrame"        Editor="Combo:0=No Payload Frames unless full support from OS; 1=Use Payload Frames;2=Never use Payload Frames"           Type ="Analog"  
+              Desc="Specifies whether the Varanmanager uses payload frames or not.
+                    &#13;&#10;Important! The client value must be set as the initialization value. It must not be connected to a server.
+                    &#13;&#10;0... Payload frames are not used unless the multiple VaranManager support for payload is already implemented in the operating system. If this is the case, despite payload frames are used.
+                    &#13;&#10;1... Payload frames are used (if supported by the OS)
+                    &#13;&#10;2... Payload frames are not used, even if the multiple VaranManager support for payload is already implemented in the operating system.
+                    &#13;&#10;Payload frames can only be used if they are supported by the OS Version.
+                    &#13;&#10;A warning will be shown in debugger trace if the OS Version doesn't support it."  
+    />
+                    
+    <Property Name="Varan Core Select"            Channel="CoreSelect"          Editor="EditNumber:Signed;Dec"                                    Type ="Analog"  
+              Desc="The desired CPU core on which the realtime/cyclic task of the manager runs can be selected here.
+                    &#13;&#10;0 ... VaranManager Realtime/Cyclic runs on CPU core 0.
+                    &#13;&#10;1 ... VaranManager Realtime/Cyclic runs on CPU core 1. (Only if supported by CPU)" 
+    />
+    <!--<Property Name="Split R/W Accesses" Channel="SplitRdWrAccesses" Desc="Set if read and write operations should be done separate" Editor="Combo:0=Mixed R/W;1=Split R/W" /> -->
+
+<!--	
+		<IOState Name = "State" Channel = "State"  Type = "Analog" Desc = "This Serve shows the state of varan manager class"/>
+		<IOState Name = "ManagerOn" Channel = "ManagerOn"  Type = "Analog" Desc = "This server signals whether the hardware is On or Off &#13;&#10; 0 = Hardware not running &#13;&#10; 1 = Hardware running &#13;&#10; -1 = VARAN not available / operating system does not support VARAN (too old)"/>
+		<Input Name = "Release" Channel = "Release" Type = "Analog" Desc = "FPGA - Version"/>
+		<Input Name="RetryCounter" Channel="RetryCounter" Desc="Retry counter of varan module" Type="Analog" />
+		<IOState Name = "IsoVaranTime" Channel = "IsoVaranTime"  Type = "Analog" Desc = "In this server, the required time for the isochronous DataObjectList of the VARAN bus is shown in ns."/>
+		<IOState Name = "AsyVaranTime" Channel = "AsyVaranTime"  Type = "Analog" Desc = "In this server, the required time for the asynchronous DataObjectList of the VARAN bus is shown in ns."/>
+		<IOState Name = "Act_RtTime" Channel = "Act_RtTime"  Type = "Analog" Desc = "The actual Rt runtime for the VARAN hardware classes in µs. &#13;&#10; Measurement starts with call of first realtime-object and stops with last call of RtPostScan-Object"/>
+		<IOState Name = "Min_RtTime" Channel = "Min_RtTime"  Type = "Analog" Desc = "The minimum Rt runtime for the VARAN hardware classes in µs. &#13;&#10; Measurement starts with call of first realtime-object and stops with last call of RtPostScan-Object"/>
+		<IOState Name = "Max_RtTime" Channel = "Max_RtTime"  Type = "Analog" Desc = "The maximum Rt runtime for the VARAN hardware classes (including the time the Rt task is interrupted, e.g. interrupts or higher priority tasks) in µs."/>
+		<IOState Name = "Act_RtCallTime" Channel = "Act_RtCallTime"  Type = "Analog" Desc = "The actual time of the real-time task (time between the last and actual call) in µs."/>
+		<IOState Name = "Min_RtCallTime" Channel = "Min_RtCallTime"  Type = "Analog" Desc = "The minimum call time between two Rt calls in µs."/>
+		<IOState Name = "Max_RtCallTime" Channel = "Max_RtCallTime"  Type = "Analog" Desc = "The maximum call time between two Rt calls in µs."/>
+		<IOState Name = "SuperiorSystemOK" Channel = "SuperiorSystemOK"  Type = "Analog" 
+		Desc = "0 = AliveCounter of the primary system not OK &#13;&#10; 1 = Primary system running &#13;&#10; 1 = VARAN Manager client is not active" />
+-->
+		<Downlink Name="VaranOut_1" BusType="VARAN" Port="0" />
+    
+<Script Name="VaranManager_1">
+  <Parameter Name="PayloadFrame" Type="Client" Channel="PayloadFrame" Desc="" />
+  <Parameter Name="SplitRdWr" Type="Client" Channel="SplitRdWrAccesses" Desc="" />
+  <Parameter Name="ReadWriteDoSeperate2" Type="Client" Channel="ReadWriteDoSeperate2" Desc="" />
+  <Parameter Name="BusCycleTime" Type="Client" Channel="VaranManagerTime" Desc="" />
+  
+<Code>
+def compPre_VaranManager_1(element, parameters):
+  parameters['PayloadFrame'] = element['options']['PayloadFrame']
+  parameters['SplitRdWr'] = element['options']['SplitRdWr']
+  parameters['BusCycleTime'] = element['options']['BusCycleTime']    
+
+</Code>
+</Script>
+
+</Class>
+</HWClassInfo>

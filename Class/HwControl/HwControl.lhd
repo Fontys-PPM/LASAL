@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<HWClassInfo>
+	<Class Name="HwControl" MultiVaranAllowed="true">
+		<!--<Downlink Name="VaranManager" Channel="Control" BusType="HWCONTROL_VM" Port="0" />-->
+		<Downlink Name="DiasMaster" BusType="HWCONTROL_DMC" Port="0" />
+		<Downlink Name="SDias" Channel="Control" BusType="HWCONTROL_SDM" Port="0" />
+		<Downlink Name="OnBoardIO" Channel="Control" BusType="OnBoardIO" Port="0" />
+		<Downlink Name="MULTIVARAN" Channel="Control" BusType="MULTIVARAN" Port="0"/>
+		<Property Name="Port number for safety via IP" Channel="UdpSafetyPort" Desc="Only change this if you would otherwise have a conflict in your system (Default: 10823)" Editor="EditNumber:Unsigned;Dec" />
+		<Property Name="Interface number for safety via IP" Channel="InterfaceNo" Desc="Choose the IP interface you want to use for safety via IP (Default: 1)" Editor="EditNumber:Unsigned;Dec" />
+	</Class>
+</HWClassInfo>
