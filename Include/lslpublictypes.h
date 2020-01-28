@@ -5,6 +5,63 @@
 #if _LSL_COMPILERVERSION >= 42
 HwControl : CLASS;
 #endif
+_AxisBase : CLASS_PUBLIC
+	TYPE
+	  _LMCAXIS_POSINFOMODE :
+	  (
+	    POSINFO_TIME,
+	    POSINFO_DISTANCE
+	  )$UDINT;
+	  _LMCAXIS_READPARAMETER_LREAL :
+	  (
+	    LMCAXIS_PAR_RD2_JMAX
+	  )$UDINT;
+	  CmdControl :
+	  (
+	    IPRPowerOn,
+	    IPRPowerOff,
+	    IPRMoveRelative,
+	    IPRMoveAbsolute,
+	    IPRMoveReference,
+	    IPRMoveEndless,
+	    IPRMoveHand,
+	    IPRStopMove,
+	    IPRCoupleGearVelocity,
+	    IPRCoupleDeltaPos,
+	    IPRCoupleUserPos,
+	    IPRCoupleProfilePos,
+	    IPRCoupleGearRelative,
+	    IPRCoupleGearAbsolute,
+	    IPRCoupleCurveTab,
+	    IPRSetSWEndPos,
+	    IPRSetPosition,
+	    IPRChangeCoupleSettings,
+	    IPRTuneAxis,
+	    IPRReadPosition,
+	    IPRReadVelocity,
+	    IPRInPosition,
+	    IPRReadAxisStatus,
+	    IPRReadAxisError,
+	    IPRReadMasterInfo,
+	    IPRSetFollowMode,
+	    IPRReferenceReady,
+	    IPRInpositionOk,
+	    IPRCoupleGearPolynom,
+	    IPRSetParameter,
+	    IPRSetAdjustment,
+	    IPRReadParameter,
+	    IPRReadSWEndPos,
+	    IPRCalcMovingTime,
+	    IPRQuitError,
+	    IPRCalcMaxSlavePath,
+	    IPRCalcExtToAppliPos,
+	    IPRReadUserData,
+	    IPRGetMasterInformation,
+	    IPR_SetErrorToMasterCoupleMonitoring
+	  )$UINT;
+	END_TYPE
+END_CLASS;
+#pragma define (restore)
 #pragma InclDefBlk _BusInterfaceSdiasDriveMng
 _BusInterfaceSdiasDriveMng : CLASS_PUBLIC
 #include "..\class\_drivemngbase\drivemngbase.h"
@@ -82,6 +139,140 @@ _DriveMngBase : CLASS_PUBLIC
 	    ActEntries : DINT;
 	  END_STRUCT;
 #pragma pack(pop)
+	END_TYPE
+END_CLASS;
+#pragma define (restore)
+_LMCRefBase : CLASS_PUBLIC
+	TYPE
+#pragma pack(push, 1)
+	  _LMCAXIS_REFDATA : STRUCT
+	    Status : iprStates;
+	    Velocity : DINT;
+	    Acc : DINT;
+	    vSetRef1 : DINT;
+	    vSetRef2 : DINT;
+	    PosWindow : DINT;
+	    LatchPosRef : DINT;
+	    Speed : DINT;
+	  END_STRUCT;
+#pragma pack(pop)
+	  _LMCREF_READPARAMETER :
+	  (
+	    ZPULSE_DIST
+	  )$UDINT;
+	END_TYPE
+END_CLASS;
+#pragma define (restore)
+#pragma InclDefBlk _LMCAxisBase
+_LMCAxisBase : CLASS_PUBLIC
+#include <.\lsl_st_systrace.h>
+#include "..\Class\_LMCAxisBase\C_MathAxis.h"
+#include "..\Class\_LMCAxisBase\_LMCTraceView.h"
+	TYPE
+	  _CommandList :
+	  (
+	    CPowerOn,
+	    CPowerOff,
+	    CInposition,
+	    CMoveHand,
+	    CMoveEndless,
+	    CMoveAbsolut,
+	    CMoveReference,
+	    CMoveRelative,
+	    CStopMove,
+	    CCoupleGearAbsolute,
+	    CCoupleGearRelative,
+	    CCoupleGearVelocity,
+	    CCoupleCurveTab,
+	    CCoupleUserPos,
+	    CCoupleDeltaPos,
+	    CCoupleProfilePos,
+	    CSetPosition,
+	    CSetAutoOffset,
+	    CSetCoupleParameter,
+	    CSetParameter,
+	    CReadPosition,
+	    CSetSWEndPos,
+	    CReadSWEndPos,
+	    CReadAxisError,
+	    CReadAxisStatus,
+	    CReadMasterInfo,
+	    CReadVelocity,
+	    CReadParameter,
+	    CTuneAxis:=28,
+	    CInternModuloOverFlow:=29,
+	    CFollowMode:=30,
+	    CCoupleGearPolynom:=31,
+	    CCoupleAdditivePosDiff:=32,
+	    CCoupleCAM,
+	    CMoveShortestWay,
+	    CCalcMovingTime,
+	    CQuitError,
+	    CCalcMaxSlavePath,
+	    CCalcExtToAppliPos,
+	    CChangeMoveSettings,
+	    CGetPosInfoBeforeRampDown,
+	    CSetDynSWEndPos,
+	    CQuickStop
+	  )$UDINT;
+	  _CoupleMonitorExtendedConfig : BDINT
+	  [
+	    1 ReportErrorToMaster,
+	    2 ReportSlaveErrorToMaster,
+	    3 ReportMasterErrorToSlave,
+	    4 ReportSlaveErrorToSlave,
+	    5 SwLimitMonitoring,
+	    6 PowerOffMonitoring,
+	  ];
+	  _LogStruct : STRUCT
+	    Command : _CommandList;
+	    CommandoResult : _LMCAXIS_CMDERROR;
+	    TimeStamp : UDINT;
+	    RTStamp : UDINT;
+	  END_STRUCT;
+	  _LogFile : STRUCT
+	    Logmode : DINT;
+	    AccesNr : DINT;
+	    LogData : ARRAY [0..101] OF _LogStruct;
+	  END_STRUCT;
+	END_TYPE
+END_CLASS;
+#pragma define (restore)
+#pragma InclDefBlk _LMCMathFunctions
+_LMCMathFunctions : CLASS_PUBLIC
+#include "..\Class\_LMCMathFunctions\C_MathFunct.h"
+	TYPE
+#pragma pack(push, 4)
+	  _coeff_ : STRUCT
+	    coA : LREAL;
+	    coB : LREAL;
+	    coC : LREAL;
+	    coD : LREAL;
+	    coE : LREAL;
+	  END_STRUCT;
+#pragma pack(pop)
+	  _COORD_2D : ARRAY [0..1] OF DINT;
+#pragma pack(push, 4)
+	  _LMC_VECTOR3 : STRUCT
+	    coord_x1 : LREAL;
+	    coord_x2 : LREAL;
+	    coord_x3 : LREAL;
+	  END_STRUCT;
+#pragma pack(pop)
+	END_TYPE
+END_CLASS;
+#pragma define (restore)
+_LMCPublisher : CLASS_PUBLIC
+	TYPE
+	  _Config_ : BDINT
+	  [
+	    1 VirtualAxis,
+	    2 RealAxis,
+	  ];
+	  _LMCPublisher_Cmd :
+	  (
+	    _LOGINCMD:=123
+	  )$UDINT;
 	END_TYPE
 END_CLASS;
 #pragma define (restore)

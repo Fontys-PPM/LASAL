@@ -19,13 +19,17 @@
 	Objectsize         = "(450,120)">
 	<Channels>
 		<Server Name="ClassSvr" GUID="{37AE3DE5-D610-41B1-89BA-5BB80B9E9EB8}" Visualized="false" Initialize="false" WriteProtected="true" Retentive="false"/>
+		<Server Name="XVal" GUID="{661862AB-C0E7-4D73-822B-031490DD87C9}" Visualized="false" Initialize="false" WriteProtected="true" Retentive="false"/>
+		<Client Name="cLib" Required="false" Internal="false"/>
 	</Channels>
 </Class>
 *)
 CommandDecoder : CLASS
   //Servers:
 	ClassSvr 	: SvrChCmd_DINT;
+	XVal 	: SvrCh_DINT;
   //Clients:
+	cLib 	: CltChCmd_SigCLib;
   //Variables:
 		Command : ARRAY [0..4] OF CHAR;
 
@@ -51,6 +55,9 @@ CommandDecoder : CLASS
 	FUNCTION GLOBAL TAB @CT_;
 END_CLASS;
 
+#pragma usingLtd SigCLib
+
+
 //}}LSL_DECLARATION
 
 
@@ -58,12 +65,14 @@ FUNCTION GLOBAL TAB CommandDecoder::@CT_
 0$UINT,
 2#0100000000000010$UINT, //TY_COMMANDDECODER
 0$UINT, 0$UINT, (SIZEOF(::CommandDecoder))$UINT, 
-1$UINT, 0$UINT, 0$UINT, 
+2$UINT, 1$UINT, 0$UINT, 
 TO_UDINT(1132231514), "CommandDecoder", //Class
 TO_UDINT(0), 0, 0$UINT, 0$UINT, //Baseclass
 //Servers:
 (::CommandDecoder.ClassSvr.pMeth)$UINT, _CH_CMD$UINT, 2#0000000000000000$UINT, TO_UDINT(619352855), "ClassSvr", 
+(::CommandDecoder.XVal.pMeth)$UINT, _CH_SVR$UINT, 2#0000000000000000$UINT, TO_UDINT(3519338924), "XVal", 
 //Clients:
+(::CommandDecoder.cLib.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000000$UINT, TO_UDINT(1745651867), "cLib", TO_UDINT(77440046), "SigCLib", 0$UINT, 24$UINT, 
 END_FUNCTION
 
 
@@ -122,5 +131,7 @@ FUNCTION GLOBAL CommandDecoder::DecodeCommand
   FOR counter := 0 TO 5 BY 1 DO
     Phi[counter] := (pString+counter+parameterSize*4-1)^; //27
   END_FOR;
+  
+  XVal:=cLib.AToI(ps1:=#X[0]);
 
 END_FUNCTION

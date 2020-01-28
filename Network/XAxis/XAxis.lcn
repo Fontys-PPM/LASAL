@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Network Name="XAxis" Revision="0.0">
+	<!-- List of Components in this network -->
+	<Components>
+		<Object
+			Name           = "_LMCAxis1"
+			GUID           = "{8F8631E1-5181-49CA-879A-751FE2620598}"
+			Class          = "_LMCAxis"
+			Position       = "(2040,750)"
+			Visualized     = "true"
+			Remotely       = "true"
+			RealTime       = "1 ms"
+			CyclicTime     = "10 ms"
+			BackgroundTime = "100 ms">
+			<Channels>
+				<Server Name="AbsEncoder"/>
+				<Server Name="ActPos"/>
+				<Server Name="ActVelocity"/>
+				<Server Name="AEmergency" Value="0"/>
+				<Server Name="AMax" Value="50m"/>
+				<Server Name="AxisError"/>
+				<Server Name="AxisStatus"/>
+				<Server Name="Control"/>
+				<Server Name="Destination"/>
+				<Server Name="ErrorConfig" Value="2#0000000001000000"/>
+				<Server Name="ExUnits" Value="80000"/>
+				<Server Name="IntUnits" Value="100"/>
+				<Server Name="JMax" Value="0"/>
+				<Server Name="Modulo" Value="0"/>
+				<Server Name="MoveType" Value="_RAMP_Profile"/>
+				<Server Name="Override"/>
+				<Server Name="PosMode"/>
+				<Server Name="Resolution" Value="1"/>
+				<Server Name="SetPos"/>
+				<Server Name="SetVelocity"/>
+				<Server Name="SimulateMode" Value="0"/>
+				<Server Name="SWMaxPos" Value="0"/>
+				<Server Name="SWMinPos" Value="0"/>
+				<Server Name="Tjerk" Value="0"/>
+				<Server Name="VMax" Value="5m"/>
+				<Client Name="ActPosition"/>
+				<Client Name="Config" Value="0"/>
+				<Client Name="Emergency"/>
+				<Client Name="HWError"/>
+				<Client Name="HWMax"/>
+				<Client Name="HWMin"/>
+				<Client Name="HWReady"/>
+				<Client Name="ID" Value="0"/>
+				<Client Name="LatchPos"/>
+				<Client Name="LMCController"/>
+				<Client Name="LMCPostRtWorkTrigger"/>
+				<Client Name="LMCPreRtWorkTrigger"/>
+				<Client Name="Provider"/>
+				<Client Name="RefSwitch"/>
+				<Client Name="ZImpulse"/>
+			</Channels>
+			<!-- List of Networks in this component -->
+			<Networks>
+				<Network>
+					<!-- List of Components in this network -->
+					<Components>
+						<Object Name="_base" GUID="{C43A02B1-A319-4132-B2FA-36A920C832E8}" Class="_LMCAxisBase">
+							<Channels>
+								<Server Name="ActPos"/>
+								<Server Name="ActVelocity"/>
+								<Server Name="AEmergency" Value="0"/>
+								<Server Name="AMax" Value="50m"/>
+								<Server Name="AxisError"/>
+								<Server Name="AxisStatus"/>
+								<Server Name="Control"/>
+								<Server Name="Destination"/>
+								<Server Name="ErrorConfig" Value="2#0000000001000000"/>
+								<Server Name="ExUnits" Value="80000"/>
+								<Server Name="IntUnits" Value="100"/>
+								<Server Name="JMax" Value="0"/>
+								<Server Name="Modulo" Value="0"/>
+								<Server Name="MoveType" Value="_RAMP_Profile"/>
+								<Server Name="Override"/>
+								<Server Name="PosMode"/>
+								<Server Name="Resolution" Value="1"/>
+								<Server Name="SetPos"/>
+								<Server Name="SetVelocity"/>
+								<Server Name="SimulateMode" Value="0"/>
+								<Server Name="SWMaxPos" Value="0"/>
+								<Server Name="SWMinPos" Value="0"/>
+								<Server Name="Tjerk" Value="0"/>
+								<Server Name="VMax" Value="5m"/>
+								<Client Name="ActPosition"/>
+								<Client Name="LMCAbsEncoder"/>
+								<Client Name="LMCController"/>
+								<Client Name="LMCMath"/>
+								<Client Name="LMCPostRtWorkTrigger"/>
+								<Client Name="LMCPreRtWorkTrigger"/>
+								<Client Name="LMCPublisher"/>
+								<Client Name="LMCReference"/>
+								<Client Name="LMCSafety"/>
+								<Client Name="TaskObjectControl"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{E661412E-354E-4C9A-A848-2B297415C10D}" Class="_AxisBase">
+											<Channels>
+												<Server Name="AxisStatus"/>
+												<Server Name="Control"/>
+											</Channels>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="_LMCABSEncoder1" GUID="{4997BF67-81DA-49B7-8B08-D58CDF069D7E}" Class="_LMCABSEncoder">
+							<Channels>
+								<Server Name="AbsEncoder"/>
+								<Server Name="ClassSvr"/>
+								<Server Name="PosCRC32"/>
+								<Server Name="PosOffset"/>
+								<Server Name="PosOffsetOk"/>
+								<Client Name="_Linker"/>
+							</Channels>
+						</Object>
+						<Object Name="_LMCAxisRef1" GUID="{8527575C-8C8D-4427-B640-713377E99444}" Class="_LMCAxisRef">
+							<Channels>
+								<Server Name="RefInput"/>
+								<Server Name="ZPulseDist"/>
+								<Client Name="HWMax"/>
+								<Client Name="HWMin"/>
+								<Client Name="LatchPos"/>
+								<Client Name="RefSwitch"/>
+								<Client Name="ZImpulse"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object Name="_base" GUID="{6D72E8D7-A2D8-441A-BA21-1670B6A2A5BC}" Class="_LMCRefBase">
+											<Channels>
+												<Server Name="RefInput"/>
+											</Channels>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="_LMCAxisVis1" GUID="{3701FC36-2E16-4B1A-8232-F571CF23D782}" Class="_LMCAxisVis">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="LMCAxisBase"/>
+							</Channels>
+							<!-- List of Networks in this component -->
+							<Networks>
+								<Network>
+									<!-- List of Components in this network -->
+									<Components>
+										<Object
+											Name           = "_LMCAxisVisInt1"
+											GUID           = "{751FDDCB-9406-4719-9201-8CD0B1F5487A}"
+											Class          = "_LMCAxisVisInt"
+											BackgroundTime = "500 ms">
+											<Channels>
+												<Server Name="AccHand"/>
+												<Server Name="ClassSvr"/>
+												<Server Name="Command"/>
+												<Server Name="CommandState"/>
+												<Server Name="ControllerType"/>
+												<Server Name="CtrcEmerStop"/>
+												<Server Name="CtrcImode"/>
+												<Server Name="CtrcMaxSignal"/>
+												<Server Name="CtrcMaxSpeed"/>
+												<Server Name="CtrcOffSignal"/>
+												<Server Name="CtrcXWOffset"/>
+												<Server Name="CtrDragCalcDelay"/>
+												<Server Name="CtrDraglimit"/>
+												<Server Name="CtrPosOffset"/>
+												<Server Name="CtrSetConf"/>
+												<Server Name="CtrvKD"/>
+												<Server Name="CtrvKI"/>
+												<Server Name="CtrvKV"/>
+												<Server Name="CtrvVu"/>
+												<Server Name="DecHand"/>
+												<Server Name="ErrorConfig"/>
+												<Server Name="GlobalTab"/>
+												<Server Name="InitDone"/>
+												<Server Name="InversControllerDiasDrive"/>
+												<Server Name="LogInfoMerker"/>
+												<Server Name="MaxOverridePercent"/>
+												<Server Name="MovNegFast"/>
+												<Server Name="MovnegFastEndless"/>
+												<Server Name="MovNegSlow"/>
+												<Server Name="MovPosFast"/>
+												<Server Name="MovPosFastEndless"/>
+												<Server Name="MovPosSlow"/>
+												<Server Name="OverridePercent"/>
+												<Server Name="PowerOnMode"/>
+												<Server Name="PowerOnOff"/>
+												<Server Name="QuitAllError"/>
+												<Server Name="SettingsTab"/>
+												<Server Name="StateMerker"/>
+												<Server Name="TabState"/>
+												<Server Name="TriangleMode" Value="1"/>
+												<Server Name="UnitDecPoint"/>
+												<Server Name="UnitFactor"/>
+												<Server Name="UnitFactorSel"/>
+												<Server Name="UnitSel"/>
+												<Server Name="VelHand"/>
+												<Server Name="Xw"/>
+												<Server Name="XwMax"/>
+												<Client Name="LMCAxisBase"/>
+												<Client Name="LMCAxisVisPara"/>
+											</Channels>
+										</Object>
+										<Object Name="_LMCAxisVisLogHandle1" GUID="{579CAA11-CCAF-46C4-9B4C-1691B5014CEB}" Class="_LMCAxisVisLogHandle">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Server Name="LogIndex"/>
+												<Server Name="LogMode"/>
+												<Server Name="LogOffset"/>
+												<Server Name="LogOffsetMax"/>
+												<Client Name="LMCAxisBase"/>
+											</Channels>
+										</Object>
+										<Object Name="_LMCAxisVisLogViewer1" GUID="{B293064B-AAFC-4E37-9DA9-594CE2821ABD}" Class="_LMCAxisVisLogViewer">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Server Name="LogCmd"/>
+												<Server Name="LogIndexVisu"/>
+												<Server Name="LogRTStamp"/>
+												<Server Name="LogState"/>
+												<Server Name="LogTimeH"/>
+												<Server Name="LogTimeM"/>
+												<Server Name="LogTimeMS"/>
+												<Server Name="LogTimeS"/>
+												<Server Name="LogTimeStamp"/>
+												<Server Name="LogValid"/>
+												<Client Name="LMCAxisBase"/>
+												<Client Name="LogIndex"/>
+												<Client Name="LogOffset" Value="0"/>
+											</Channels>
+										</Object>
+										<Object Name="_LMCAxisVisLogViewer2" GUID="{E9ED5DC9-6217-4942-91BC-B6B48325142A}" Class="_LMCAxisVisLogViewer">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Server Name="LogCmd"/>
+												<Server Name="LogIndexVisu"/>
+												<Server Name="LogRTStamp"/>
+												<Server Name="LogState"/>
+												<Server Name="LogTimeH"/>
+												<Server Name="LogTimeM"/>
+												<Server Name="LogTimeMS"/>
+												<Server Name="LogTimeS"/>
+												<Server Name="LogTimeStamp"/>
+												<Server Name="LogValid"/>
+												<Client Name="LMCAxisBase"/>
+												<Client Name="LogIndex"/>
+												<Client Name="LogOffset" Value="1"/>
+											</Channels>
+										</Object>
+										<Object Name="_LMCAxisVisLogViewer3" GUID="{D6B21B59-2B16-429B-9FF4-0F38C1D09724}" Class="_LMCAxisVisLogViewer">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Server Name="LogCmd"/>
+												<Server Name="LogIndexVisu"/>
+												<Server Name="LogRTStamp"/>
+												<Server Name="LogState"/>
+												<Server Name="LogTimeH"/>
+												<Server Name="LogTimeM"/>
+												<Server Name="LogTimeMS"/>
+												<Server Name="LogTimeS"/>
+												<Server Name="LogTimeStamp"/>
+												<Server Name="LogValid"/>
+												<Client Name="LMCAxisBase"/>
+												<Client Name="LogIndex"/>
+												<Client Name="LogOffset" Value="2"/>
+											</Channels>
+										</Object>
+										<Object Name="_LMCAxisVisLogViewer4" GUID="{AD6791E0-AEDC-45CE-8D22-5E43317EBA0E}" Class="_LMCAxisVisLogViewer">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Server Name="LogCmd"/>
+												<Server Name="LogIndexVisu"/>
+												<Server Name="LogRTStamp"/>
+												<Server Name="LogState"/>
+												<Server Name="LogTimeH"/>
+												<Server Name="LogTimeM"/>
+												<Server Name="LogTimeMS"/>
+												<Server Name="LogTimeS"/>
+												<Server Name="LogTimeStamp"/>
+												<Server Name="LogValid"/>
+												<Client Name="LMCAxisBase"/>
+												<Client Name="LogIndex"/>
+												<Client Name="LogOffset" Value="3"/>
+											</Channels>
+										</Object>
+										<Object Name="_LMCAxisVisLogViewer5" GUID="{455FAA6C-A801-4F92-9131-D41FDF56CED1}" Class="_LMCAxisVisLogViewer">
+											<Channels>
+												<Server Name="ClassSvr"/>
+												<Server Name="LogCmd"/>
+												<Server Name="LogIndexVisu"/>
+												<Server Name="LogRTStamp"/>
+												<Server Name="LogState"/>
+												<Server Name="LogTimeH"/>
+												<Server Name="LogTimeM"/>
+												<Server Name="LogTimeMS"/>
+												<Server Name="LogTimeS"/>
+												<Server Name="LogTimeStamp"/>
+												<Server Name="LogValid"/>
+												<Client Name="LMCAxisBase"/>
+												<Client Name="LogIndex"/>
+												<Client Name="LogOffset" Value="4"/>
+											</Channels>
+										</Object>
+										<Object Name="_LMCAxisVisPara1" GUID="{0E6F8B42-A0D3-4291-A11B-F82C004100A2}" Class="_LMCAxisVisPara">
+											<Channels>
+												<Server Name="Accel"/>
+												<Server Name="ClassSvr"/>
+												<Server Name="Decel"/>
+												<Server Name="Jerk"/>
+												<Server Name="MovAbsPos"/>
+												<Server Name="MovDirection"/>
+												<Server Name="MovRefAcc"/>
+												<Server Name="MovRefMode"/>
+												<Server Name="MovRefPos"/>
+												<Server Name="MovRefPosWindow" Value="0"/>
+												<Server Name="MovRefVel1"/>
+												<Server Name="MovRefVel2"/>
+												<Server Name="MovRelMode"/>
+												<Server Name="MovRelPos"/>
+												<Server Name="Position"/>
+												<Server Name="PowOffMode"/>
+												<Server Name="SetParMode"/>
+												<Server Name="SetParNo"/>
+												<Server Name="SetParVal"/>
+												<Server Name="SetPosMode"/>
+												<Server Name="SetPosVal"/>
+												<Server Name="SetSWPosMode"/>
+												<Server Name="SetSWPosVal"/>
+												<Server Name="TuneMode"/>
+												<Server Name="TunePos"/>
+												<Server Name="Velocity"/>
+												<Server Name="WaitTime"/>
+												<Client Name="ocLMCAxisVisInt"/>
+											</Channels>
+										</Object>
+									</Components>
+									<Connections>
+									</Connections>
+								</Network>
+							</Networks>
+						</Object>
+						<Object Name="_LMCMathFunctions1" GUID="{0B90E254-A9E3-4704-B5A1-614F7986265F}" Class="_LMCMathFunctions">
+							<Channels>
+								<Server Name="ClassSvr"/>
+							</Channels>
+						</Object>
+						<Object Name="_LMCPublisher1" GUID="{B0919C80-CE58-4E90-990E-AB221AFF5CEA}" Class="_LMCPublisher">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Config" Value="0"/>
+								<Client Name="ID" Value="0"/>
+								<Client Name="Provider"/>
+							</Channels>
+						</Object>
+						<Object Name="_LMCSafety1" GUID="{7AEC0395-7659-45AE-A8A2-B6A282D5095D}" Class="_LMCSafety">
+							<Channels>
+								<Server Name="ClassSvr"/>
+								<Client Name="Emergency"/>
+								<Client Name="HWError"/>
+								<Client Name="HWMax"/>
+								<Client Name="HWMin"/>
+								<Client Name="HWReady"/>
+								<Client Name="LMCController"/>
+							</Channels>
+						</Object>
+					</Components>
+					<Connections>
+					</Connections>
+				</Network>
+			</Networks>
+		</Object>
+		<Object
+			Name       = "DrivePosControl1"
+			GUID       = "{C2C3A512-516F-41DE-8AC7-5D90CC762E02}"
+			Class      = "DrivePosControl"
+			Position   = "(1080,810)"
+			Visualized = "true"
+			Remotely   = "true">
+			<Channels>
+				<Server Name="SetPosOut"/>
+				<Server Name="SetVelOut"/>
+				<Server Name="Signal_Input"/>
+				<Server Name="XW"/>
+				<Server Name="XWMax"/>
+				<Client Name="cDraglimit"/>
+				<Client Name="cDriveAxis"/>
+				<Client Name="PosOffset"/>
+				<Client Name="SetConf" Value="2#101"/>
+			</Channels>
+			<!-- List of Networks in this component -->
+			<Networks>
+				<Network>
+					<!-- List of Components in this network -->
+					<Components>
+						<Object Name="_base" GUID="{B691716C-8462-4CBF-B00E-25D77FA0C2C0}" Class="Controller">
+							<Channels>
+								<Server Name="Signal_Input"/>
+							</Channels>
+						</Object>
+					</Components>
+					<Connections>
+					</Connections>
+				</Network>
+			</Networks>
+		</Object>
+		<Object
+			Name       = "XController1"
+			GUID       = "{9F7A84C7-AA7E-412D-B322-4F016996E74F}"
+			Class      = "XController"
+			Position   = "(3060,750)"
+			Visualized = "false">
+			<Channels>
+				<Server Name="ClassSvr"/>
+				<Client Name="lmcX"/>
+			</Channels>
+		</Object>
+	</Components>
+	<Comments>
+	</Comments>
+	<!-- List of Connections in this network -->
+	<Connections>
+		<Connection Source="DrivePosControl1.cDriveAxis" Destination="_DriveAxis2.CmdState"/>
+		<Connection Source="_LMCAxis1.LMCController" Destination="DrivePosControl1.Signal_Input" Vertices="(2040,900),(1594,900),"/>
+		<Connection Source="XController1.lmcX" Destination="_LMCAxis1.Control" Vertices="(3060,840),(2706,840),"/>
+		<Connection Source="_LMCAxis1.ActPosition" Destination="_DriveAxis2.ActPos"/>
+	</Connections>
+	<!-- Headerfiles -->
+	<Options>
+	</Options>
+</Network>

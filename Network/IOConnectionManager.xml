@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<IOConnectionManager Version="0" Detail="0" PLC="">
+	<!-- List of Entries -->
+	<Entry Name="**IOCONN_EMPTY**" Objectsize="284">
+		<!-- List of Connections -->
+		<IOConnections>
+			<IOConnection ObjSrv="_DriveAxis2" Server="CmdState" ObjClt="DrivePosControl1" Client="cDriveAxis" IOI="IOState" SortIndex="0" KeyName="000000"/>
+			<IOConnection ObjSrv="_DriveAxis2" Server="ActPos" ObjClt="_LMCAxis1" Client="ActPosition" IOI="Input" Type="Analog" SortIndex="1" KeyName="000001"/>
+		</IOConnections>
+	</Entry>
+	<!-- List of Folders -->
+</IOConnectionManager>

@@ -21,6 +21,7 @@
 		<Server Name="CmdRouter" GUID="{CF3EF3C9-C556-423D-B567-DE197EC8F4DD}" Visualized="false" Initialize="false" WriteProtected="true" Retentive="false"/>
 		<Server Name="Debug" GUID="{01CF4B89-FFCD-415C-A4E0-06F6413C5D6E}" Visualized="false" Initialize="false" WriteProtected="true" Retentive="false"/>
 		<Client Name="Decoder" Required="true" Internal="false"/>
+		<Client Name="XController" Required="true" Internal="false"/>
 	</Channels>
 </Class>
 *)
@@ -30,6 +31,7 @@ CommandRouter : CLASS
 	Debug 	: SvrCh_DINT;
   //Clients:
 	Decoder 	: CltChCmd_CommandDecoder;
+	XController 	: CltChCmd_XController;
   //Variables:
 		DataBuffer : ARRAY [0..1024] OF CHAR;
 
@@ -49,6 +51,7 @@ CommandRouter : CLASS
 END_CLASS;
 
 #pragma usingLtd CommandDecoder
+#pragma usingLtd XController
 
 
 //}}LSL_DECLARATION
@@ -58,7 +61,7 @@ FUNCTION GLOBAL TAB CommandRouter::@CT_
 0$UINT,
 2#0100000000000010$UINT, //TY_COMMANDROUTER
 0$UINT, 0$UINT, (SIZEOF(::CommandRouter))$UINT, 
-2$UINT, 1$UINT, 0$UINT, 
+2$UINT, 2$UINT, 0$UINT, 
 TO_UDINT(2047756655), "CommandRouter", //Class
 TO_UDINT(0), 0, 0$UINT, 0$UINT, //Baseclass
 //Servers:
@@ -66,6 +69,7 @@ TO_UDINT(0), 0, 0$UINT, 0$UINT, //Baseclass
 (::CommandRouter.Debug.pMeth)$UINT, _CH_SVR$UINT, 2#0000000000000000$UINT, TO_UDINT(2616296727), "Debug", 
 //Clients:
 (::CommandRouter.Decoder.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(3512848829), "Decoder", TO_UDINT(1132231514), "CommandDecoder", 0$UINT, 0$UINT, 
+(::CommandRouter.XController.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(220044894), "XController", TO_UDINT(220044894), "XController", 0$UINT, 0$UINT, 
 END_FUNCTION
 
 
@@ -102,12 +106,21 @@ FUNCTION GLOBAL CommandRouter::SetData
 		size 	: UDINT;
 	END_VAR
   
+  VAR
+  	X : DINT;
+  END_VAR
+
+  
   Debug += 1;
   
   _memcpy(ptr1:=#DataBuffer[0], ptr2:=pData, cntr:=size);
   DataBuffer[size] := 0;
   
   Decoder.DecodeCommand(pString:=#DataBuffer[0]);
+  
+  X := Decoder.XVal.Read();
+  
+  XController.MoveAxis(XPos:=X, Speed:=200000, Accel:=2000000);
   
   
 END_FUNCTION

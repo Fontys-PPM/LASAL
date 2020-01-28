@@ -10,6 +10,8 @@
 			Visualized = "false">
 			<Channels>
 				<Server Name="ClassSvr"/>
+				<Server Name="XVal"/>
+				<Client Name="cLib"/>
 			</Channels>
 		</Object>
 		<Object
@@ -22,6 +24,7 @@
 				<Server Name="CmdRouter"/>
 				<Server Name="Debug"/>
 				<Client Name="Decoder"/>
+				<Client Name="XController"/>
 			</Channels>
 		</Object>
 		<Object
@@ -223,6 +226,7 @@
 	<Connections>
 		<Connection Source="commandServer.CmdRouter" Destination="commandRouter.CmdRouter" Vertices="(1980,870),(1846,870),"/>
 		<Connection Source="commandRouter.Decoder" Destination="commandDecoder.ClassSvr" Vertices="(1350,870),(1186,870),"/>
+		<Connection Source="commandRouter.XController" Destination="XController1.ClassSvr"/>
 	</Connections>
 	<!-- Headerfiles -->
 	<Options>

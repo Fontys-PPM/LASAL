@@ -79,6 +79,10 @@
 		<File Path=".\CanTypes.h" Global="true"/>
 		<File Path=".\lsl_st_serial.h" Global="true"/>
 		<File Path=".\LinkerTypes.h" Global="true"/>
+		<File Path=".\lsl_st_systrace.h"/>
+		<File Path=".\Class\_LMCAxisBase\C_MathAxis.h"/>
+		<File Path=".\Class\_LMCAxisBase\_LMCTraceView.h"/>
+		<File Path=".\Class\_LMCMathFunctions\C_MathFunct.h"/>
 	</HeaderFiles>
 	<ClassFiles>
 		<File Path=".\Source\code\OsiBaseNew.st"/>
@@ -164,22 +168,40 @@
 		<File Path=".\Class\_DriveAxisSet\_DriveAxisSet.st"/>
 		<File Path=".\Class\_Linker\_Linker.st"/>
 		<File Path=".\Class\RAMex\RAMex.st"/>
+		<File Path=".\Class\_LMCAxisBase\C_MathAxis.cpp"/>
+		<File Path=".\Class\_LMCMathFunctions\C_MathFunct.cpp"/>
+		<File Path=".\Class\_AxisBase\_AxisBase.st"/>
+		<File Path=".\Class\_LMCABSEncoder\_LMCABSEncoder.st"/>
+		<File Path=".\Class\_LMCAxis\_LMCAxis.st"/>
+		<File Path=".\Class\_LMCAxisBase\_LMCAxisBase.st"/>
+		<File Path=".\Class\_LMCAxisRef\_LMCAxisRef.st"/>
+		<File Path=".\Class\_LMCAxisVis\_LMCAxisVis.st"/>
+		<File Path=".\Class\_LMCAxisVisInt\_LMCAxisVisInt.st"/>
+		<File Path=".\Class\_LMCAxisVisLogHandle\_LMCAxisVisLogHandle.st"/>
+		<File Path=".\Class\_LMCAxisVisLogViewer\_LMCAxisVisLogViewer.st"/>
+		<File Path=".\Class\_LMCAxisVisPara\_LMCAxisVisPara.st"/>
+		<File Path=".\Class\_LMCMathFunctions\_LMCMathFunctions.st"/>
+		<File Path=".\Class\_LMCPublisher\_LMCPublisher.st"/>
+		<File Path=".\Class\_LMCRefBase\_LMCRefBase.st"/>
+		<File Path=".\Class\_LMCSafety\_LMCSafety.st"/>
+		<File Path=".\Class\Controller\Controller.st"/>
+		<File Path=".\Class\DrivePosControl\DrivePosControl.st"/>
+		<File Path=".\Class\XController\XController.st"/>
 	</ClassFiles>
 	<NetworkFiles>
 		<File Path=".\Network\TcpServer\TcpServer.lcn"/>
 		<File Path=".\Network\HW_Network\HW_Network.lcn"/>
+		<File Path=".\Network\XAxis\XAxis.lcn"/>
 	</NetworkFiles>
 	<ObjectFiles>
 		<File Path=".\Loader\Source\Loader.lob" Downloadable="false"/>
 	</ObjectFiles>
 	<DriveFiles>
-		<File Path=".\Drive\_DriveAxis1.lda" ObjectName="_DriveAxis1" Idx="0"/>
-		<File Path=".\Drive\_DriveAxis2.lda" ObjectName="_DriveAxis2" Idx="0"/>
-		<File Path=".\Drive\_DriveAxis3.lda" ObjectName="_DriveAxis3" Idx="0"/>
-		<File Path=".\Drive\_DriveAxis4.lda" ObjectName="_DriveAxis4" Idx="0"/>
+		<File Path=".\Drive\uf6_dc062_48Vdc.lda" ObjectName="_DriveAxis2" Idx="0"/>
 	</DriveFiles>
 	<DocuFiles>
 		<File Path=".\Class\ST151\ST151_VOV.vov"/>
+		<File Path=".\Class\_LMCAxis\_LMCAxis.vov"/>
 	</DocuFiles>
 	<Options>
 		<Target UseFPU="true" Processor="ARM">
@@ -304,8 +326,79 @@
 				<Class Name="_CheckSum"/>
 				<Class Name="CriticalSection"/>
 			</Folder>
+			<Folder Name="Motion">
+				<Class Name="_LMCAxis"/>
+				<Folder Name="_Internal">
+					<Class Name="_LMCMathFunctions"/>
+					<Class Name="_LMCPublisher"/>
+					<Class Name="Controller"/>
+					<Folder Name="_LMCAxisInternal">
+						<Class Name="_AxisBase"/>
+						<Class Name="_LMCABSEncoder"/>
+						<Class Name="_LMCAxisBase"/>
+						<Class Name="_LMCAxisRef"/>
+						<Class Name="_LMCAxisVis"/>
+						<Class Name="_LMCAxisVisInt"/>
+						<Class Name="_LMCAxisVisLogHandle"/>
+						<Class Name="_LMCAxisVisLogViewer"/>
+						<Class Name="_LMCAxisVisPara"/>
+						<Class Name="_LMCRefBase"/>
+						<Class Name="_LMCSafety"/>
+					</Folder>
+				</Folder>
+				<Folder Name="Controller">
+					<Class Name="DrivePosControl"/>
+				</Folder>
+			</Folder>
 		</Folder>
 	</SigmatekFolders>
+	<TypeFolders>
+		<Folder Name="_LMC">
+			<Type Name="_LMC_DYN_SWLIMITS"/>
+			<Type Name="_LMCCONTROLLERTYPE"/>
+			<Type Name="_POSFLAGS"/>
+			<Type Name="CNCInternalStruct"/>
+			<Type Name="CurveTable"/>
+			<Type Name="MasterStruct"/>
+			<Folder Name="_LMCAxis">
+				<Type Name="_LMCAXIS_CMDERROR"/>
+				<Type Name="_LMCAXIS_CONTROLBITS"/>
+				<Type Name="_LMCAXIS_COUPLE_GEAR_MODE"/>
+				<Type Name="_LMCAXIS_COUPLEERROR"/>
+				<Type Name="_LMCAXIS_CURVE"/>
+				<Type Name="_LMCAXIS_CURVETABMODE"/>
+				<Type Name="_LMCAXIS_ERROR"/>
+				<Type Name="_LMCAXIS_ERROR_CONFIG"/>
+				<Type Name="_LMCAXIS_FOLLOW_MODE"/>
+				<Type Name="_LMCAXIS_MOVE_RELATIVE_MODE"/>
+				<Type Name="_LMCAXIS_MOVEDIRECTION"/>
+				<Type Name="_LMCAXIS_MOVEPROFILE"/>
+				<Type Name="_LMCAXIS_MOVINGTIMEERROR"/>
+				<Type Name="_LMCAXIS_OPMODE"/>
+				<Type Name="_LMCAXIS_POSMODE"/>
+				<Type Name="_LMCAXIS_POWER_OFF_MODE"/>
+				<Type Name="_LMCAXIS_QUERY_POSITION_MODE"/>
+				<Type Name="_LMCAXIS_READPARAMETER"/>
+				<Type Name="_LMCAXIS_READPOS"/>
+				<Type Name="_LMCAXIS_READSWENDPOS"/>
+				<Type Name="_LMCAXIS_READVELOCITY"/>
+				<Type Name="_LMCAXIS_REFMODE"/>
+				<Type Name="_LMCAXIS_SETPARAMETER"/>
+				<Type Name="_LMCAXIS_SETPOSITION"/>
+				<Type Name="_LMCAXIS_SETSERVER"/>
+				<Type Name="_LMCAXIS_SETSWENDPOS"/>
+				<Type Name="_LMCAXIS_STATUS"/>
+				<Type Name="_LMCAXIS_TUNE_MODE"/>
+			</Folder>
+			<Folder Name="_LMCProfile">
+				<Type Name="ProfileCommandStatus"/>
+			</Folder>
+			<Folder Name="old">
+				<Type Name="CncFlags"/>
+				<Type Name="CntrFlgs"/>
+			</Folder>
+		</Folder>
+	</TypeFolders>
 	<Units>
 		<UnitGrp Name="Acceleration">
 			<Unit Name="mmPsec2" Factor="1" Ref="S"/>

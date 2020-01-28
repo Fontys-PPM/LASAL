@@ -54,6 +54,472 @@ TYPE
     HardwareCodeControlBoard : HINT;  //! <Type Comment="Hardware Code of the Control Board (Default: 16#0000)" Name="_I_HC_Type.HardwareCodeControlBoard"/>
   END_STRUCT;
 #pragma pack(pop)
+  _LMC_DYN_SWLIMITS :  //! <Type Comment="Dynamic software end positions" Name="_LMC_DYN_SWLIMITS"/>
+  (
+    _LMC_DynSWLimitMin,  //! <Type Comment="Choose minimum dynamic SW end position" Name="_LMC_DYN_SWLIMITS._LMC_DynSWLimitMin"/>
+    _LMC_DynSWLimitMax  //! <Type Comment="Choose maximum dynamic SW end position" Name="_LMC_DYN_SWLIMITS._LMC_DynSWLimitMax"/>
+  )$UDINT;
+  _LMCAXIS_CMDERROR : BDINT  //! <Type Comment="Status flags" Name="_LMCAXIS_CMDERROR"/>
+  [
+    1 PowerOff,  //! <Type Comment="1 --&gt; Position controller is off" Name="_LMCAXIS_CMDERROR.PowerOff"/>
+    2 NoReference,  //! <Type Comment="1 --&gt; The axis is not referenced" Name="_LMCAXIS_CMDERROR.NoReference"/>
+    3 HWError,  //! <Type Comment="1 --&gt; Servo hardware error" Name="_LMCAXIS_CMDERROR.HWError"/>
+    4 ActPosError,  //! <Type Comment="1 --&gt; Invalid position of the hardware" Name="_LMCAXIS_CMDERROR.ActPosError"/>
+    5 ContouringError,  //! <Type Comment="1 --&gt; Tracking limit exceeded" Name="_LMCAXIS_CMDERROR.ContouringError"/>
+    6 CommandError,  //! <Type Comment="1 --&gt; Command not allowed or &#13;&#10;within the CNC RTWork cycle more than one command has been set&#13;&#10;" Name="_LMCAXIS_CMDERROR.CommandError"/>
+    7 SWMinError,  //! <Type Comment="1 --&gt; Software endswitch minimum active" Name="_LMCAXIS_CMDERROR.SWMinError"/>
+    8 SWMaxError,  //! <Type Comment="1 --&gt; Software endswitch maximum active" Name="_LMCAXIS_CMDERROR.SWMaxError"/>
+    9 vError,  //! <Type Comment="1 --&gt; Selected speed too high" Name="_LMCAXIS_CMDERROR.vError"/>
+    10 aError,  //! <Type Comment="1 --&gt; Selected acceleration / deceleration too high" Name="_LMCAXIS_CMDERROR.aError"/>
+    11 HWMinError,  //! <Type Comment="1 --&gt; Hardware endswitch minimum active" Name="_LMCAXIS_CMDERROR.HWMinError"/>
+    12 HWMaxError,  //! <Type Comment="1 --&gt; Hardware endswitch maximum active" Name="_LMCAXIS_CMDERROR.HWMaxError"/>
+    13 DirError,  //! <Type Comment="1 --&gt; The direction of motion is not allowed" Name="_LMCAXIS_CMDERROR.DirError"/>
+    14 EmergencyError,  //! <Type Comment="when Client _LMCSafety.Emergency goes to 1&#13;&#10; 0 -&gt; StopMove&#13;&#10; 1 -&gt; PowerOff" Name="_LMCAXIS_CMDERROR.EmergencyError"/>
+    15 ResolutionError,  //! <Type Comment="1 -&gt; An overflow by multiplication with the value of the server: Resolution occurred&#13;&#10;" Name="_LMCAXIS_CMDERROR.ResolutionError"/>
+    16 GlobalError,  //! <Type Comment="1 --&gt; Global error" Name="_LMCAXIS_CMDERROR.GlobalError"/>
+    17 JError,  //! <Type Comment="1--&gt; Selected jerk is too high or low." Name="_LMCAXIS_CMDERROR.JError"/>
+  ];
+  _LMCAXIS_CONTROLBITS : BDINT  //! <Type Comment="Control-Bits" Name="_LMCAXIS_CONTROLBITS"/>
+  [
+    1 SetPowerOn,  //! <Type Comment="Set if the clients &quot;LMCController&quot; and &quot;ActPosition&quot; are not connected or &#13;&#10;the axis is active" Name="_LMCAXIS_CONTROLBITS.SetPowerOn"/>
+    2 SetFollowMode,  //! <Type Comment="Set if the axis is in operationmode: &quot;FOLLOW_LMCAXIS&quot;" Name="_LMCAXIS_CONTROLBITS.SetFollowMode"/>
+    3 ReadActPosFromController,
+    4 CallReadPDO,
+  ];
+  _LMCAXIS_COUPLE_GEAR_MODE :  //! <Type Comment="Parameter of the methods &quot;CoupleUserPos&quot; and &quot;CoupleProfilePos&quot;" Name="_LMCAXIS_COUPLE_GEAR_MODE"/>
+  (
+    LMCAXIS_COUPLE_PROFILE_GEAR,  //! <Type Comment="Couple to master with user supplied gearfactor" Name="_LMCAXIS_COUPLE_GEAR_MODE.LMCAXIS_COUPLE_PROFILE_GEAR"/>
+    LMCAXIS_COUPLE_PROFILE_NO_GEAR  //! <Type Comment="Couple to master with gearfactor := 1" Name="_LMCAXIS_COUPLE_GEAR_MODE.LMCAXIS_COUPLE_PROFILE_NO_GEAR"/>
+  )$UDINT;
+  _LMCAXIS_COUPLEERROR :  //! <Type Comment="Errorlist returned by the function: &quot;CoupleGearPolynom&quot;" Name="_LMCAXIS_COUPLEERROR"/>
+  (
+    LMCAXIS_NO_ERROR_OCCURED,  //! <Type Comment="No Error Occured" Name="_LMCAXIS_COUPLEERROR.LMCAXIS_NO_ERROR_OCCURED"/>
+    LMCAXIS_MASTERPOINTER_INVALID,  //! <Type Comment="Pointer to Master-Axis is invalid" Name="_LMCAXIS_COUPLEERROR.LMCAXIS_MASTERPOINTER_INVALID"/>
+    LMCAXIS_SELFCOUPLING,  //! <Type Comment="Master-Axis and Slave-Axis are identically - Selfcoupling is not allowed" Name="_LMCAXIS_COUPLEERROR.LMCAXIS_SELFCOUPLING"/>
+    LMCAXIS_SOFTWARE_ERROR,  //! <Type Comment="Pointer to Velocity in Data of Master-Axis is invalid" Name="_LMCAXIS_COUPLEERROR.LMCAXIS_SOFTWARE_ERROR"/>
+    LMCAXIS_VEL_MASTER_NOT_POSITIVE,  //! <Type Comment="Velocity of Master-Axis is zero or negative" Name="_LMCAXIS_COUPLEERROR.LMCAXIS_VEL_MASTER_NOT_POSITIVE"/>
+    LMCAXIS_PATH_MASTER_NOT_POSITIVE,  //! <Type Comment="Path of Master is zero or negative" Name="_LMCAXIS_COUPLEERROR.LMCAXIS_PATH_MASTER_NOT_POSITIVE"/>
+    LMCAXIS_PATH_SLAVE_NOT_POSITIVE,  //! <Type Comment="Path of Slave is zero or negative" Name="_LMCAXIS_COUPLEERROR.LMCAXIS_PATH_SLAVE_NOT_POSITIVE"/>
+    LMCAXIS_VEL_MASTER_DEFINITION_ERROR,  //! <Type Comment="Master overrides his maximal allowed velocity (Input-Error)" Name="_LMCAXIS_COUPLEERROR.LMCAXIS_VEL_MASTER_DEFINITION_ERROR"/>
+    LMCAXIS_JERK_MAX_DEFINITION_ERROR,  //! <Type Comment="Maximal allowed Jerk of Slave is negative or zero" Name="_LMCAXIS_COUPLEERROR.LMCAXIS_JERK_MAX_DEFINITION_ERROR"/>
+    LMCAXIS_ACC_ANNIHILATION_FAILED_3_5,  //! <Type Comment="In Couplemode Spline 3rd order with Spline 5th order: The initial-acceleration / initial-deceleration can not be recuced &#13;&#10;to zero without the fact, that the maximal allowed velocity of the slave is exceeded or the velocitiy of the slave &#13;&#10;becomes negative (backdriving is not allowed)" Name="_LMCAXIS_COUPLEERROR.LMCAXIS_ACC_ANNIHILATION_FAILED_3_5"/>
+    LMCAXIS_PATH_SX_NEGATIVE_3_5,  //! <Type Comment="In Couplemode Spline 3rd order with Spline 5th order: the path of the Spline of 3rd order becomes negative (backdriving is not allowed)" Name="_LMCAXIS_COUPLEERROR.LMCAXIS_PATH_SX_NEGATIVE_3_5"/>
+    LMCAXIS_VEL_COUPLE_NEGATIVE_3_5,  //! <Type Comment="In Couplemode Spline 3rd order with Spline 5th order: the coupling-velocity becomes negative (backdriving is not allowed)" Name="_LMCAXIS_COUPLEERROR.LMCAXIS_VEL_COUPLE_NEGATIVE_3_5"/>
+    LMCAXIS_VEL_COUPLE_EXCEED_3_5,  //! <Type Comment="In Couplemode Spline 3rd order with Spline 5th order: the couple-velocity exceeds its maximal allowed value" Name="_LMCAXIS_COUPLEERROR.LMCAXIS_VEL_COUPLE_EXCEED_3_5"/>
+    LMCAXIS_PATH_SZ_NEGATIVE_3_5,  //! <Type Comment="In Couplemode Spline 3rd order with Spline 5th order: the path of the spline of 5th order becomes negative (backdriving is not allowed)" Name="_LMCAXIS_COUPLEERROR.LMCAXIS_PATH_SZ_NEGATIVE_3_5"/>
+    LMCAXIS_TIME_SZ_NEGATIVE_3_5,  //! <Type Comment="In Couplemode Spline 3rd order with Spline 5th order: the duration of the spline of 5th order becomes negative (mathematical inconsistent - no solution exists)" Name="_LMCAXIS_COUPLEERROR.LMCAXIS_TIME_SZ_NEGATIVE_3_5"/>
+    LMCAXIS_VEL_MIN_NEGATIVE_3_5,  //! <Type Comment="In Couplemode Spline 3rd order with Spline 5th order: the minimal velocitiy of the spline of 5th order becomes negative (backdriving is not allowed)" Name="_LMCAXIS_COUPLEERROR.LMCAXIS_VEL_MIN_NEGATIVE_3_5"/>
+    LMCAXIS_VEL_MAX_EXCEED_3_5,  //! <Type Comment="In Couplemode Spline 3rd order with Spline 5th order: the velocitiy of the spline of 5th order exceeds its maximal allowed value" Name="_LMCAXIS_COUPLEERROR.LMCAXIS_VEL_MAX_EXCEED_3_5"/>
+    LMCAXIS_ACC_MAX_EXCEED_3_5,  //! <Type Comment="In Couplemode Spline 3rd order with Spline 5th order: the acceleration of the spline of 5th order exceeds its maximal allowed value" Name="_LMCAXIS_COUPLEERROR.LMCAXIS_ACC_MAX_EXCEED_3_5"/>
+    LMCAXIS_JERK_MAX_SLAVE_EXCEED_3_5,  //! <Type Comment="In Couplemode Spline 3rd order with Spline 5th order: the jerk of the spline of 5th order exceeds its maximal allowed value" Name="_LMCAXIS_COUPLEERROR.LMCAXIS_JERK_MAX_SLAVE_EXCEED_3_5"/>
+    LMCAXIS_ACC_ANNIHILATION_FAILED_4_1_4,  //! <Type Comment="In Couplemode Spline 3rd order with Spline 4th order with lineare Spline with Spline 4th order: The initial-acceleration / initial-deceleration can not &#13;&#10;be recuced to zero without the fact, that the maximal allowed velocity of the slave is exceeded or the velocitiy of the slave &#13;&#10;becomes negative (backdriving is not allowed)" Name="_LMCAXIS_COUPLEERROR.LMCAXIS_ACC_ANNIHILATION_FAILED_4_1_4"/>
+    LMCAXIS_VEL_ACCNIHIL_NEGATIVE,  //! <Type Comment="In Couplemode Spline 3rd order with Spline 4th order with lineare Spline with Spline 4th order: the coupling-velocity of the&#13;&#10;spline of 3rd order with the spline of 4th order becomes negative (backdriving is not allowed)" Name="_LMCAXIS_COUPLEERROR.LMCAXIS_VEL_ACCNIHIL_NEGATIVE"/>
+    LMCAXIS_VEL_ACCNIHIL_EXCEED,  //! <Type Comment="In Couplemode Spline 3rd order with Spline 4th order with lineare Spline with Spline 4th order: the coupling-velocity of the&#13;&#10;spline of 3rd order with the spline of 4th order exceeds its maximal allowed value" Name="_LMCAXIS_COUPLEERROR.LMCAXIS_VEL_ACCNIHIL_EXCEED"/>
+    LMCAXIS_ACC_MAX_DEFINITION_ERROR,  //! <Type Comment="Maximal allowed acceleration is negative (input-error)" Name="_LMCAXIS_COUPLEERROR.LMCAXIS_ACC_MAX_DEFINITION_ERROR"/>
+    LMCAXIS_VEL_COUPLE_NEGATIVE_4_1_4,  //! <Type Comment="In Couplemode Spline 3rd order with Spline 4th order with lineare Spline with Spline 4th order: the velocity of the linear spline&#13;&#10;becomes negative (backdriving is not allowed)" Name="_LMCAXIS_COUPLEERROR.LMCAXIS_VEL_COUPLE_NEGATIVE_4_1_4"/>
+    LMCAXIS_VEL_COUPLE_EXCEED_4_1_4,  //! <Type Comment="In Couplemode Spline 3rd order with Spline 4th order with lineare Spline with Spline 4th order: the velocity of the linear spline&#13;&#10;exceeds its maximal allowed value" Name="_LMCAXIS_COUPLEERROR.LMCAXIS_VEL_COUPLE_EXCEED_4_1_4"/>
+    LMCAXIS_PATH_SX_NEGATIVE_4_1_4,  //! <Type Comment="In Couplemode Spline 3rd order with Spline 4th order with lineare Spline with Spline 4th order: the path of the first spline of 4t order&#13;&#10;becomes negative (backdriving is not allowed)" Name="_LMCAXIS_COUPLEERROR.LMCAXIS_PATH_SX_NEGATIVE_4_1_4"/>
+    LMCAXIS_PATH_SY_NEGATIVE_4_1_4,  //! <Type Comment="In Couplemode Spline 3rd order with Spline 4th order with lineare Spline with Spline 4th order: the path of the linear spline&#13;&#10;becomes negative (backdriving is not allowed)" Name="_LMCAXIS_COUPLEERROR.LMCAXIS_PATH_SY_NEGATIVE_4_1_4"/>
+    LMCAXIS_PATH_SZ_NEGATIVE_4_1_4,  //! <Type Comment="In Couplemode Spline 3rd order with Spline 4th order with lineare Spline with Spline 4th order: the path of the second spline of 4th order&#13;&#10;becomes negative (backdriving is not allowed)" Name="_LMCAXIS_COUPLEERROR.LMCAXIS_PATH_SZ_NEGATIVE_4_1_4"/>
+    LMCAXIS_VEL_MIN_NEGATIVE_4_1_4,  //! <Type Comment="In Couplemode Spline 3rd order with Spline 4th order with lineare Spline with Spline 4th order: the velocity of the first spline of 4th order&#13;&#10;becomes negative (has a negative extremum - backdriving is not allowed)" Name="_LMCAXIS_COUPLEERROR.LMCAXIS_VEL_MIN_NEGATIVE_4_1_4"/>
+    LMCAXIS_VEL_MAX_EXCEED_4_1_4,  //! <Type Comment="In Couplemode Spline 3rd order with Spline 4th order with lineare Spline with Spline 4th order: the velocity of the first spline of 4th order&#13;&#10;overrides its masimal allowed value" Name="_LMCAXIS_COUPLEERROR.LMCAXIS_VEL_MAX_EXCEED_4_1_4"/>
+    LMCAXIS_ACC_MAX_1_EXCEED_4_1_4,  //! <Type Comment="In Couplemode Spline 3rd order with Spline 4th order with lineare Spline with Spline 4th order: the acceleration of the first spline of 4th order&#13;&#10;overrides its masimal allowed value" Name="_LMCAXIS_COUPLEERROR.LMCAXIS_ACC_MAX_1_EXCEED_4_1_4"/>
+    LMCAXIS_ACC_MAX_2_EXCEED_4_1_4,  //! <Type Comment="In Couplemode Spline 3rd order with Spline 4th order with lineare Spline with Spline 4th order: the acceleration of the second &#13;&#10;spline of 4th order overrides its masimal allowed value" Name="_LMCAXIS_COUPLEERROR.LMCAXIS_ACC_MAX_2_EXCEED_4_1_4"/>
+    LMCAXIS_JERK_MAX_1_EXCEED_4_1_4,  //! <Type Comment="In Couplemode Spline 3rd order with Spline 4th order with lineare Spline with Spline 4th order: the jerk of the first&#13;&#10;spline of 4th order overrides its masimal allowed value" Name="_LMCAXIS_COUPLEERROR.LMCAXIS_JERK_MAX_1_EXCEED_4_1_4"/>
+    LMCAXIS_JERK_MAX_2_EXCEED_4_1_4,  //! <Type Comment="In Couplemode Spline 3rd order with Spline 4th order with lineare Spline with Spline 4th order: the jerk of the second &#13;&#10;spline of 4th order overrides its masimal allowed value" Name="_LMCAXIS_COUPLEERROR.LMCAXIS_JERK_MAX_2_EXCEED_4_1_4"/>
+    LMCAXIS_TRAPEZOIDSPLINE_DISABLED,  //! <Type Comment="Trapezoid-Spline is disabled (by user of by default-value)" Name="_LMCAXIS_COUPLEERROR.LMCAXIS_TRAPEZOIDSPLINE_DISABLED"/>
+    LMCAXIS_VEL_COUPLE_NO_SOLUTION,  //! <Type Comment="No real solution for the coupling-velocity exist (math.: is a complex number)" Name="_LMCAXIS_COUPLEERROR.LMCAXIS_VEL_COUPLE_NO_SOLUTION"/>
+    LMCAXIS_VEL_COUPLE_NEGATIVE_2_1_2,  //! <Type Comment="In Couplemode Spline 2nd order with linear Spline and Spline 2nd order: the coupling-velocity becomes negative (backdriving is not allowed)" Name="_LMCAXIS_COUPLEERROR.LMCAXIS_VEL_COUPLE_NEGATIVE_2_1_2"/>
+    LMCAXIS_VEL_COUPLE_EXCEED_2_1_2,  //! <Type Comment="In Couplemode Spline 2nd order with linear Spline and Spline 2nd order: the velocity of the linear spline&#13;&#10;exceeds its maximal allowed value" Name="_LMCAXIS_COUPLEERROR.LMCAXIS_VEL_COUPLE_EXCEED_2_1_2"/>
+    LMCAXIS_TIME_SX_NEGATIVE_2_1_2,  //! <Type Comment="In Couplemode Spline 2nd order with linear Spline and Spline 2nd order: the duration of the first spline of 2nd order becomes negative&#13;&#10;(mathematical inconsistent - no solution exists)" Name="_LMCAXIS_COUPLEERROR.LMCAXIS_TIME_SX_NEGATIVE_2_1_2"/>
+    LMCAXIS_TIME_SY_NEGATIVE_2_1_2,  //! <Type Comment="In Couplemode Spline 2nd order with linear Spline and Spline 2nd order: the duration of the lineare spline becomes negative&#13;&#10;(mathematical inconsistent - no solution exists)" Name="_LMCAXIS_COUPLEERROR.LMCAXIS_TIME_SY_NEGATIVE_2_1_2"/>
+    LMCAXIS_TIME_SZ_NEGATIVE_2_1_2,  //! <Type Comment="In Couplemode Spline 2nd order with linear Spline and Spline 2nd order: the duration of the 3rd spline of 2nd order becomes negative&#13;&#10;(mathematical inconsistent - no solution exists)" Name="_LMCAXIS_COUPLEERROR.LMCAXIS_TIME_SZ_NEGATIVE_2_1_2"/>
+    LMCAXIS_PATH_SX_NEGATIVE_2_1_2,  //! <Type Comment="In Couplemode Spline 2nd order with linear Spline and Spline 2nd order: the path of the first spline of 2nd order becomes negative&#13;&#10;(mathematical inconsistent - no solution exists)" Name="_LMCAXIS_COUPLEERROR.LMCAXIS_PATH_SX_NEGATIVE_2_1_2"/>
+    LMCAXIS_PATH_SY_NEGATIVE_2_1_2,  //! <Type Comment="In Couplemode Spline 2nd order with linear Spline and Spline 2nd order: the path of the lineare spline becomes negative&#13;&#10;(mathematical inconsistent - no solution exists)" Name="_LMCAXIS_COUPLEERROR.LMCAXIS_PATH_SY_NEGATIVE_2_1_2"/>
+    LMCAXIS_PATH_SZ_NEGATIVE_2_1_2,  //! <Type Comment="In Couplemode Spline 2nd order with linear Spline and Spline 2nd order: the path of the 3rd spline of 2nd order becomes negative&#13;&#10;(mathematical inconsistent - no solution exists)" Name="_LMCAXIS_COUPLEERROR.LMCAXIS_PATH_SZ_NEGATIVE_2_1_2"/>
+    LMCAXIS_DURATION_ERROR  //! <Type Comment="In Couplemode Spline 2nd order with linear Spline and Spline 2nd order: the duration of spline is zero&#13;&#10;(mathematical inconsistent - no solution exists)" Name="_LMCAXIS_COUPLEERROR.LMCAXIS_DURATION_ERROR"/>
+  )$UDINT;
+#pragma pack(push, 1)
+  CurveTable : STRUCT  //! <Type Comment="Table curve points (Masterpos, Slavepos)" Name="CurveTable"/>
+    MasterPos : DINT;  //! <Type Comment="Master axis position [Application units]" Name="CurveTable.MasterPos"/>
+    SlavePos : DINT;  //! <Type Comment="Slave axis position [Application units]" Name="CurveTable.SlavePos"/>
+  END_STRUCT;
+#pragma pack(pop)
+#pragma pack(push, 1)
+  _LMCAXIS_CURVE : STRUCT  //! <Type Comment="Motion type curve data" Name="_LMCAXIS_CURVE"/>
+    modulo : DINT;  //! <Type Comment="Lead axis modulo value" Name="_LMCAXIS_CURVE.modulo"/>
+    points : DINT;  //! <Type Comment="number of curve points" Name="_LMCAXIS_CURVE.points"/>
+    mul : DINT;  //! <Type Comment="Numerator of the slave axis scale factor.&#13;&#10;The scale factor is used on the slave value of the cam table." Name="_LMCAXIS_CURVE.mul"/>
+    div : DINT;  //! <Type Comment="Denominator of the slave axis scale factor.&#13;&#10;The scale factor is used on the slave value of the cam table." Name="_LMCAXIS_CURVE.div"/>
+    offset : DINT;  //! <Type Comment="Position offset in the slave axis of the cam definition [Internal units].&#13;&#10;Added to the slave value of the cam table." Name="_LMCAXIS_CURVE.offset"/>
+    table : ARRAY [0..1023] OF CurveTable;  //! <Type Comment="Table curve points (Masterpos, Slavepos)" Name="_LMCAXIS_CURVE.table"/>
+  END_STRUCT;
+#pragma pack(pop)
+  _LMCAXIS_CURVETABMODE : BDINT  //! <Type Comment="Slave axis operating mode" Name="_LMCAXIS_CURVETABMODE"/>
+  [
+    1 bStopAxisNoMod,  //! <Type Comment="Parameter of the function &quot;CoupleCurveTab&quot;&#13;&#10;0 --&gt; Normal operation. Slave follows the master over the curve definition, including a master axis position overflow.&#13;&#10;1 --&gt; Stop slave axis immediately when master axis position overflows." Name="_LMCAXIS_CURVETABMODE.bStopAxisNoMod"/>
+  ];
+  _LMCAXIS_ERROR : BDINT  //! <Type Comment="Error-Bits" Name="_LMCAXIS_ERROR"/>
+  [
+    1 HwError,  //! <Type Comment="Set if a general Hardware-Error occured" Name="_LMCAXIS_ERROR.HwError"/>
+    2 SwMinError,  //! <Type Comment="Set if the Software-Endswitch Minimum is active" Name="_LMCAXIS_ERROR.SwMinError"/>
+    3 SwMaxError,  //! <Type Comment="Set if the Software-Endswitch Maximum is active" Name="_LMCAXIS_ERROR.SwMaxError"/>
+    4 HwMinError,  //! <Type Comment="Set if the Hardware-Endswitch Minimum is active" Name="_LMCAXIS_ERROR.HwMinError"/>
+    5 HwMaxError,  //! <Type Comment="Set if the Hardware-Endswitch Maximum is active" Name="_LMCAXIS_ERROR.HwMaxError"/>
+    6 ReferenceError,  //! <Type Comment="Set if an error occured during the reference-run" Name="_LMCAXIS_ERROR.ReferenceError"/>
+    7 ContouringError,  //! <Type Comment="Set if a tracking-error occured" Name="_LMCAXIS_ERROR.ContouringError"/>
+    8 ActPosError,  //! <Type Comment="Set if the Hardware-Position is invalid" Name="_LMCAXIS_ERROR.ActPosError"/>
+    9 AbsOffsetError,  //! <Type Comment="Set if an Offset-Error occured" Name="_LMCAXIS_ERROR.AbsOffsetError"/>
+    10 OverFlowError,  //! <Type Comment="Set if a Position-Overflow occured" Name="_LMCAXIS_ERROR.OverFlowError"/>
+    11 EmergencyError,  //! <Type Comment="Set if the _LMCSafety.Emergency is active" Name="_LMCAXIS_ERROR.EmergencyError"/>
+    12 ResolutionError,  //! <Type Comment="Set if the Resolution causes an overflow error&#13;&#10;" Name="_LMCAXIS_ERROR.ResolutionError"/>
+    13 PowerOnError,  //! <Type Comment="Set, if the enable signal of the hardware was cleared during operation, or if after calling PowerOn() the axis has not been enabled before a timeout of 30 seconds occured." Name="_LMCAXIS_ERROR.PowerOnError"/>
+    14 PowerOffError,  //! <Type Comment="Set, if after calling PowerOff() the axis has not been disabled before a timeout occured." Name="_LMCAXIS_ERROR.PowerOffError"/>
+    16 GlobErr,  //! <Type Comment="Set if a global error is active" Name="_LMCAXIS_ERROR.GlobErr"/>
+  ];
+  _LMCAXIS_ERROR_CONFIG : BDINT  //! <Type Comment="Error-Config Bits" Name="_LMCAXIS_ERROR_CONFIG"/>
+  [
+    1 vError,  //! <Type Comment="when programmed speed is too high:&#13;&#10; 0 ... the speed will be limited (default)&#13;&#10; 1 ... set the vError flag in the result" Name="_LMCAXIS_ERROR_CONFIG.vError"/>
+    2 aError,  //! <Type Comment="when programmed acceleration is too high:&#13;&#10; 0 ... the acceleration will be limited (default)&#13;&#10; 1 ... set the aError flag in the result" Name="_LMCAXIS_ERROR_CONFIG.aError"/>
+    3 SWMinError,  //! <Type Comment="when position would be smaller than SWMinPos:&#13;&#10; 0 ... position will be limited (default)&#13;&#10; 1 ... set the SWMinError flag in the result" Name="_LMCAXIS_ERROR_CONFIG.SWMinError"/>
+    4 SWMaxError,  //! <Type Comment="when position would be bigger than SWMaxPos:&#13;&#10; 0 ... position will be limited (default)&#13;&#10; 1 ... set the SWMaxError flag in the result" Name="_LMCAXIS_ERROR_CONFIG.SWMaxError"/>
+    5 CommandError,  //! <Type Comment="when the deltaposition is bigger than the&#13;&#10;MaxModulo during coupling:&#13;&#10; 0 ... no check (default)&#13;&#10; 1 ... set the CommandError flag in the command result" Name="_LMCAXIS_ERROR_CONFIG.CommandError"/>
+    6 EmergencyError,  //! <Type Comment="when Emergency goes to 1:&#13;&#10; 0 ... StopMove() (default)&#13;&#10; 1 ... PowerOff()&#13;&#10;" Name="_LMCAXIS_ERROR_CONFIG.EmergencyError"/>
+    7 CoupleMonitoring,  //! <Type Comment="0: Monitoring the coupled axes is disabled. This axis does not recognise an error of its master axis and also does not report its own errors to the master. Furthermore, there is no reaction on errors of its slaves.&#13;&#10;1: Monitoring of all coupled master and slave axes for errors is enabled. The error handling can be configured with SetParameter with modes LMCAXIS_PAR_SET_COUPLE_MASTER_ERROR, LMCAXIS_PAR_SET_COUPLE_SLAVE_ERROR, and LMCAXIS_PAR_SET_COUPLE_MONITOR_CONFIG." Name="_LMCAXIS_ERROR_CONFIG.CoupleMonitoring"/>
+    8 JError,  //! <Type Comment="when programmed jerk is too high or low:&#13;&#10; 0 ... the acceleration will be limited (default)&#13;&#10; 1 ... set the JError flag in the result" Name="_LMCAXIS_ERROR_CONFIG.JError"/>
+  ];
+  _LMCAXIS_FOLLOW_MODE :  //! <Type Comment="Parameter of the function &quot;SetFollowMode&quot;" Name="_LMCAXIS_FOLLOW_MODE"/>
+  (
+    LMCAXIS_DEACTIVATE_FOLLOW_MODE,  //! <Type Comment="Parameter of the function &quot;SetFollowMode&quot;:&#13;&#10;Deactivate the operationmode &quot;FOLLOW_LMCAXIS&quot;" Name="_LMCAXIS_FOLLOW_MODE.LMCAXIS_DEACTIVATE_FOLLOW_MODE"/>
+    LMCAXIS_ACTIVATE_FOLLOW_MODE  //! <Type Comment="Parameter of the function &quot;SetFollowMode&quot;:&#13;&#10;Activate the operationmode &quot;FOLLOW_LMCAXIS&quot;" Name="_LMCAXIS_FOLLOW_MODE.LMCAXIS_ACTIVATE_FOLLOW_MODE"/>
+  )$UDINT;
+  _LMCAXIS_MOVE_RELATIVE_MODE :  //! <Type Comment="Parameter of the function &quot;MoveRelative&quot;" Name="_LMCAXIS_MOVE_RELATIVE_MODE"/>
+  (
+    LMCAXIS_MOVE_RELATIVE_TO_DESTINATION,  //! <Type Comment="Parameter of the function &quot;MoveRelative&quot;:&#13;&#10;Move relative to destination" Name="_LMCAXIS_MOVE_RELATIVE_MODE.LMCAXIS_MOVE_RELATIVE_TO_DESTINATION"/>
+    LMCAXIS_MOVE_RELATIVE_TO_POSITION  //! <Type Comment="Parameter of the function &quot;MoveRelative&quot;:&#13;&#10;Move relative to position" Name="_LMCAXIS_MOVE_RELATIVE_MODE.LMCAXIS_MOVE_RELATIVE_TO_POSITION"/>
+  )$UDINT;
+  _LMCAXIS_MOVEDIRECTION :  //! <Type Comment="Set direction of movement for the axis&#13;&#10;" Name="_LMCAXIS_MOVEDIRECTION"/>
+  (
+    LMCAXIS_MOVE_ANY_WAY,  //! <Type Comment="The axis can move in any direction." Name="_LMCAXIS_MOVEDIRECTION.LMCAXIS_MOVE_ANY_WAY"/>
+    LMCAXIS_MOVE_NEG_DIR,  //! <Type Comment="The axis can move in the negative direction only." Name="_LMCAXIS_MOVEDIRECTION.LMCAXIS_MOVE_NEG_DIR"/>
+    LMCAXIS_MOVE_SHORTEST_WAY,  //! <Type Comment="The axis moves over the shortest distance (both directions)" Name="_LMCAXIS_MOVEDIRECTION.LMCAXIS_MOVE_SHORTEST_WAY"/>
+    LMCAXIS_MOVE_POS_DIR  //! <Type Comment="The axis can move in the positive direction only." Name="_LMCAXIS_MOVEDIRECTION.LMCAXIS_MOVE_POS_DIR"/>
+  )$UDINT;
+  _LMCAXIS_MOVEPROFILE :  //! <Type Comment="Velocity-profile" Name="_LMCAXIS_MOVEPROFILE"/>
+  (
+    _RAMP_PROFILE,  //! <Type Comment="Velocity-profile resembles a linear ramp" Name="_LMCAXIS_MOVEPROFILE._RAMP_PROFILE"/>
+    _SCURVE_PROFILE,  //! <Type Comment="Velocity-profile resembles a sigmoide (S-Curve)&#13;&#10;using a position filtering." Name="_LMCAXIS_MOVEPROFILE._SCURVE_PROFILE"/>
+    _JERK_PROFILE:=10  //! <Type Comment="Velocity-profile resembles a sigmoide (S-Curve)&#13;&#10;using exact calculation of a trapezoide acceleration/deceleration" Name="_LMCAXIS_MOVEPROFILE._JERK_PROFILE"/>
+  )$UDINT;
+  _LMCAXIS_MOVINGTIMEERROR :  //! <Type Comment="Errorlist returned by the function: &quot;CalcMovingTime&quot;" Name="_LMCAXIS_MOVINGTIMEERROR"/>
+  (
+    LMCAXIS_NO_ERROR_,  //! <Type Comment="No Error occured - a solution is found" Name="_LMCAXIS_MOVINGTIMEERROR.LMCAXIS_NO_ERROR_"/>
+    LMCAXIS_MAXVEL_NOT_POSITIV,  //! <Type Comment="Input-Error: Maximal allowed velocity &lt;= 0" Name="_LMCAXIS_MOVINGTIMEERROR.LMCAXIS_MAXVEL_NOT_POSITIV"/>
+    LMCAXIS_STARTVEL_TO_BIG,  //! <Type Comment="Input-Error: Velocitiy at Startposition &gt; Maximal allowed velocity" Name="_LMCAXIS_MOVINGTIMEERROR.LMCAXIS_STARTVEL_TO_BIG"/>
+    LMCAXIS_ENDVEL_TO_BIG,  //! <Type Comment="Input-Error: Velocitiy at Endposition &gt; Maximal allowed velocity" Name="_LMCAXIS_MOVINGTIMEERROR.LMCAXIS_ENDVEL_TO_BIG"/>
+    LMCAXIS_PATH_IS_ZERO,  //! <Type Comment="Input-Error: Startposition is identically equal to Endposition but one velocity &lt;&gt; 0" Name="_LMCAXIS_MOVINGTIMEERROR.LMCAXIS_PATH_IS_ZERO"/>
+    LMCAXIS_STARTVEL_NEGATIVE,  //! <Type Comment="Start-Velocity is negative" Name="_LMCAXIS_MOVINGTIMEERROR.LMCAXIS_STARTVEL_NEGATIVE"/>
+    LMCAXIS_OVERFLOW_ERROR,  //! <Type Comment="Overflow-Error during calculation occured" Name="_LMCAXIS_MOVINGTIMEERROR.LMCAXIS_OVERFLOW_ERROR"/>
+    LMCAXIS_TIME_ERROR_1,  //! <Type Comment="Time of first part of triangel/trapez is negative " Name="_LMCAXIS_MOVINGTIMEERROR.LMCAXIS_TIME_ERROR_1"/>
+    LMCAXIS_TIME_ERROR_2,  //! <Type Comment="Time of second part of trapez is negative" Name="_LMCAXIS_MOVINGTIMEERROR.LMCAXIS_TIME_ERROR_2"/>
+    LMCAXIS_TIME_ERROR_3,  //! <Type Comment="Time of third part of triangel/trapez is negative" Name="_LMCAXIS_MOVINGTIMEERROR.LMCAXIS_TIME_ERROR_3"/>
+    LMCAXIS_POINTER_ERROR,  //! <Type Comment="Pointer to Parameter is NIL " Name="_LMCAXIS_MOVINGTIMEERROR.LMCAXIS_POINTER_ERROR"/>
+    LMCAXIS_ENDVEL_NEGATIVE,  //! <Type Comment="End-Velocity is negative" Name="_LMCAXIS_MOVINGTIMEERROR.LMCAXIS_ENDVEL_NEGATIVE"/>
+    LMCAXIS_ACCEL_NOT_POSITIV,  //! <Type Comment="Start-Acceleration is not positive" Name="_LMCAXIS_MOVINGTIMEERROR.LMCAXIS_ACCEL_NOT_POSITIV"/>
+    LMCAXIS_DECEL_NOT_POSITIV,  //! <Type Comment="End-Deceleration is not positive" Name="_LMCAXIS_MOVINGTIMEERROR.LMCAXIS_DECEL_NOT_POSITIV"/>
+    LMCAXIS_PATH_ERROR,  //! <Type Comment="Endposition cannot be reached - Parameter inconsitent" Name="_LMCAXIS_MOVINGTIMEERROR.LMCAXIS_PATH_ERROR"/>
+    LMCAXIS_GLOBAL_ERROR,  //! <Type Comment="The resulting time is negative - Parameter inconsitent" Name="_LMCAXIS_MOVINGTIMEERROR.LMCAXIS_GLOBAL_ERROR"/>
+    LMCAXIS_NUMERIC_ERROR,  //! <Type Comment="A numerical error has appeared" Name="_LMCAXIS_MOVINGTIMEERROR.LMCAXIS_NUMERIC_ERROR"/>
+    LMCAXIS_MATH_ERROR,  //! <Type Comment="A mathematical error has appeared" Name="_LMCAXIS_MOVINGTIMEERROR.LMCAXIS_MATH_ERROR"/>
+    LMCAXIS_NO_SOLUTION  //! <Type Comment="No solution found or does not exist" Name="_LMCAXIS_MOVINGTIMEERROR.LMCAXIS_NO_SOLUTION"/>
+  )$UDINT;
+  _LMCAXIS_OPMODE :  //! <Type Comment="Current state of the axis" Name="_LMCAXIS_OPMODE"/>
+  (
+    PASSIVE_LMCAXIS,  //! <Type Comment="The axis is in passive hibernation" Name="_LMCAXIS_OPMODE.PASSIVE_LMCAXIS"/>
+    WAITIDLE_LMCAXIS,  //! <Type Comment="The axis is in passive waiting state until the hardware reports" Name="_LMCAXIS_OPMODE.WAITIDLE_LMCAXIS"/>
+    IDLE_LMCAXIS,  //! <Type Comment="The axis is in active waiting state" Name="_LMCAXIS_OPMODE.IDLE_LMCAXIS"/>
+    MOVE_LMCAXIS,  //! <Type Comment="The axis is in movement state" Name="_LMCAXIS_OPMODE.MOVE_LMCAXIS"/>
+    FOLLOW_LMCAXIS,  //! <Type Comment="The axis is in state &quot;FOLLOW_LMCAXIS&quot;:&#13;&#10;Axis follows the actual position (defaulted by a controller) passively&#13;&#10;" Name="_LMCAXIS_OPMODE.FOLLOW_LMCAXIS"/>
+    STOPED_LMCAXIS,  //! <Type Comment="The axis is stopping the movement (braking)" Name="_LMCAXIS_OPMODE.STOPED_LMCAXIS"/>
+    LOCKED_LMCAXIS,  //! <Type Comment="The axis is coupled to a master-axis" Name="_LMCAXIS_OPMODE.LOCKED_LMCAXIS"/>
+    REFRUN_LMCAXIS,  //! <Type Comment="The axis is performing a reference run" Name="_LMCAXIS_OPMODE.REFRUN_LMCAXIS"/>
+    TUNEPOS_LMCAXIS,  //! <Type Comment="Movement for the purpose of optimization of the control parameters in positive direction" Name="_LMCAXIS_OPMODE.TUNEPOS_LMCAXIS"/>
+    TUNENEG_LMCAXIS,  //! <Type Comment="Movement for the purpose of optimization of the control parameters in negative direction" Name="_LMCAXIS_OPMODE.TUNENEG_LMCAXIS"/>
+    ERROR_LMCAXIS,  //! <Type Comment="An error occurred" Name="_LMCAXIS_OPMODE.ERROR_LMCAXIS"/>
+    WAITPASSIVE_LMCAXIS  //! <Type Comment="The axis is in idle waiting state until the hardware reports" Name="_LMCAXIS_OPMODE.WAITPASSIVE_LMCAXIS"/>
+  )$UDINT;
+  _LMCAXIS_POSMODE :  //! <Type Comment="Positionmode" Name="_LMCAXIS_POSMODE"/>
+  (
+    _Positioning,  //! <Type Comment="The axis is not coupled" Name="_LMCAXIS_POSMODE._Positioning"/>
+    _NCPositioning,  //! <Type Comment="The axis is controlled by a NCController" Name="_LMCAXIS_POSMODE._NCPositioning"/>
+    _StdSyncPositioning,  //! <Type Comment="The axis is coupled by calling one of this functions:&#13;&#10;CoupleDeltaPos, CoupleGearAbsolute or CoupleGearRelative" Name="_LMCAXIS_POSMODE._StdSyncPositioning"/>
+    _UserSyncPositioning,  //! <Type Comment="The axis is coupled by calling the function: &#13;&#10;CoupleUserPos" Name="_LMCAXIS_POSMODE._UserSyncPositioning"/>
+    _CAMSyncPositioning,  //! <Type Comment="The axis is coupled by calling the function: &#13;&#10;CoupleCurveTab" Name="_LMCAXIS_POSMODE._CAMSyncPositioning"/>
+    _ProfileSyncPositioning,  //! <Type Comment="The axis is coupled by calling the function: &#13;&#10;CoupleProfilePos" Name="_LMCAXIS_POSMODE._ProfileSyncPositioning"/>
+    _SyncVelocity,  //! <Type Comment="The axis is coupled by calling the function: &#13;&#10;CoupleGearVelocity" Name="_LMCAXIS_POSMODE._SyncVelocity"/>
+    _StartPolynomPositioning,  //! <Type Comment="The axis is coupling by calling the function: &#13;&#10;CoupleGearPolynom" Name="_LMCAXIS_POSMODE._StartPolynomPositioning"/>
+    _SyncPolynomPositioning  //! <Type Comment="The axis is coupled by calling the function: &#13;&#10;CoupleGearPolynom" Name="_LMCAXIS_POSMODE._SyncPolynomPositioning"/>
+  )$UDINT;
+  _LMCAXIS_POWER_OFF_MODE :  //! <Type Comment="Parameter of the function: &quot;PowerOff&quot;" Name="_LMCAXIS_POWER_OFF_MODE"/>
+  (
+    LMCAXIS_IMMEDIATE_STOPP,  //! <Type Comment="&quot;PowerOff(IMMEDIATE_STOPP)&quot; stopps the controller by the moment&#13;&#10;" Name="_LMCAXIS_POWER_OFF_MODE.LMCAXIS_IMMEDIATE_STOPP"/>
+    LMCAXIS_SMOOTH_STOPP  //! <Type Comment="&quot;PowerOff(SMOOTH_STOPP)&quot;    stopps the controller smoothly by a ramp" Name="_LMCAXIS_POWER_OFF_MODE.LMCAXIS_SMOOTH_STOPP"/>
+  )$UDINT;
+  _LMCAXIS_QUERY_POSITION_MODE :  //! <Type Comment="Parameter of the function &quot;InPosition&quot;" Name="_LMCAXIS_QUERY_POSITION_MODE"/>
+  (
+    LMCAXIS_NO_JERK_FILTER:=4294967294,  //! <Type Comment="Parameter of the function &quot;InPosition&quot;&#13;&#10;Jerkfilter remains unconsidered" Name="_LMCAXIS_QUERY_POSITION_MODE.LMCAXIS_NO_JERK_FILTER"/>
+    LMCAXIS_NO_POSITIONWINDOW:=4294967295,  //! <Type Comment="Parameter of the function &quot;InPosition&quot;:&#13;&#10;Positionwindow remains unconsidered&#13;&#10;" Name="_LMCAXIS_QUERY_POSITION_MODE.LMCAXIS_NO_POSITIONWINDOW"/>
+    LMCAXIS_POSITIONWINDOW_APP_UNITS,  //! <Type Comment="Parameter of the function &quot;InPosition&quot;:&#13;&#10;Positionwindow in application units" Name="_LMCAXIS_QUERY_POSITION_MODE.LMCAXIS_POSITIONWINDOW_APP_UNITS"/>
+    LMCAXIS_POSITIONWINDOW_INT_UNITS,  //! <Type Comment="Parameter of the function &quot;InPosition&quot;:&#13;&#10;Positionwindow in intern units" Name="_LMCAXIS_QUERY_POSITION_MODE.LMCAXIS_POSITIONWINDOW_INT_UNITS"/>
+    LMCAXIS_SETPOS_IN_WINDOW_APP_UNITS:=2,  //! <Type Comment="Checks if the distance between the set position and the target position is within the position window.&#13;&#10;The position window is given in application units." Name="_LMCAXIS_QUERY_POSITION_MODE.LMCAXIS_SETPOS_IN_WINDOW_APP_UNITS"/>
+    LMCAXIS_SETPOS_IN_WINDOW_INT_UNITS:=3,  //! <Type Comment="Checks if the distance between the set position and the target position is within the position window.&#13;&#10;The position window is given in internal units." Name="_LMCAXIS_QUERY_POSITION_MODE.LMCAXIS_SETPOS_IN_WINDOW_INT_UNITS"/>
+    LMCAXIS_ACTPOS_IN_WINDOW_APP_UNITS:=4,  //! <Type Comment="Checks if the distance between the actual position and the target position is within the position window.&#13;&#10;The position window is given in application units." Name="_LMCAXIS_QUERY_POSITION_MODE.LMCAXIS_ACTPOS_IN_WINDOW_APP_UNITS"/>
+    LMCAXIS_ACTPOS_IN_WINDOW_INT_UNITS:=5  //! <Type Comment="Checks if the distance between the actual position and the target position is within the position window.&#13;&#10;The position window is given in internal units." Name="_LMCAXIS_QUERY_POSITION_MODE.LMCAXIS_ACTPOS_IN_WINDOW_INT_UNITS"/>
+  )$DINT;
+  _LMCAXIS_READPARAMETER :  //! <Type Comment="Parameter-ID" Name="_LMCAXIS_READPARAMETER"/>
+  (
+    LMCAXIS_PAR_RD_V_MAX,  //! <Type Comment="Read maximum axis velocity [Application units/s] or [Internal units/s] depending on mode" Name="_LMCAXIS_READPARAMETER.LMCAXIS_PAR_RD_V_MAX"/>
+    LMCAXIS_PAR_RD_A_MAX,  //! <Type Comment="Read maximum axis acceleration / deceleration [Application units/s²] or [Internal units/s²] depending on mode" Name="_LMCAXIS_READPARAMETER.LMCAXIS_PAR_RD_A_MAX"/>
+    LMCAXIS_PAR_RD_EXTUNITS,  //! <Type Comment="Read value of server ExUnit [Increments]" Name="_LMCAXIS_READPARAMETER.LMCAXIS_PAR_RD_EXTUNITS"/>
+    LMCAXIS_PAR_RD_INTUNITS,  //! <Type Comment="Read value of server IntUnit" Name="_LMCAXIS_READPARAMETER.LMCAXIS_PAR_RD_INTUNITS"/>
+    LMCAXIS_PAR_RD_RESFACT,  //! <Type Comment="Read the value of server Resolution" Name="_LMCAXIS_READPARAMETER.LMCAXIS_PAR_RD_RESFACT"/>
+    LMCAXIS_PAR_RD_SEMAPHOR,  //! <Type Comment="Read the value of the command semaphore" Name="_LMCAXIS_READPARAMETER.LMCAXIS_PAR_RD_SEMAPHOR"/>
+    LMCAXIS_PAR_RD_REFPOS,  //! <Type Comment="Read the reference position [Application units] or [Internal units] depending on mode" Name="_LMCAXIS_READPARAMETER.LMCAXIS_PAR_RD_REFPOS"/>
+    LMCAXIS_PAR_RD_MODULO,  //! <Type Comment="Read the value of the server Modulo [Application units]" Name="_LMCAXIS_READPARAMETER.LMCAXIS_PAR_RD_MODULO"/>
+    LMCAXIS_PAR_RD_MASTERLOCK_11,  //! <Type Comment="Read MasterLock, 0 = not locked to master, 1 = synchronized with master" Name="_LMCAXIS_READPARAMETER.LMCAXIS_PAR_RD_MASTERLOCK_11"/>
+    LMCAXIS_PAR_RD_MASTERLOCK_12,  //! <Type Comment="If the axis is not coupled, 0 is returned. Otherwise the value of MasterLock is returned (see parameter LMCAXIS_PAR_RD_MASTERLOCK_11)" Name="_LMCAXIS_READPARAMETER.LMCAXIS_PAR_RD_MASTERLOCK_12"/>
+    LMCAXIS_PAR_RD_MAX_MODULO,  //! <Type Comment="Read the internal overflow position [internal units]" Name="_LMCAXIS_READPARAMETER.LMCAXIS_PAR_RD_MAX_MODULO"/>
+    LMCAXIS_PAR_RD_BINOFFSET,  //! <Type Comment="Read the binary position offset [external units] ([encoder increments])" Name="_LMCAXIS_READPARAMETER.LMCAXIS_PAR_RD_BINOFFSET"/>
+    LMCAXIS_PAR_RD_POSMODE,  //! <Type Comment="Read the type of the currently active positioning (see server PosMode)" Name="_LMCAXIS_READPARAMETER.LMCAXIS_PAR_RD_POSMODE"/>
+    LMCAXIS_PAR_RD_CONTROLLERTYPE,  //! <Type Comment="Read which type of controller is connected to client LMCController" Name="_LMCAXIS_READPARAMETER.LMCAXIS_PAR_RD_CONTROLLERTYPE"/>
+    LMCAXIS_PAR_RD_TIMEBASE,  //! <Type Comment="Read the RtWork() cycle time&#13;&#10;in [microseconds] if the most significant bit is set&#13;&#10;or in [milliseconds] otherwise" Name="_LMCAXIS_READPARAMETER.LMCAXIS_PAR_RD_TIMEBASE"/>
+    LMCAXIS_PAR_RD_CONTROLLERPAR,  //! <Type Comment="Read a parameter value from the controller connected to client LMCController.&#13;&#10;If no controller is connected, then -1 is returned.&#13;&#10;Mode contains the number of the controller parameter that should be read." Name="_LMCAXIS_READPARAMETER.LMCAXIS_PAR_RD_CONTROLLERPAR"/>
+    LMCAXIS_PAR_RD_J_MAX,  //! <Type Comment="Read the maximum jerk [Application units / s² / ms] = [Application units / s^3 * 1000]" Name="_LMCAXIS_READPARAMETER.LMCAXIS_PAR_RD_J_MAX"/>
+    LMCAXIS_PAR_RD_MOVETYPE,  //! <Type Comment="Read moving profile of the axis&#13;&#10;====================&#13;&#10; 0 = _RAMP_PROFILE - axis moves without jerk limitation&#13;&#10; 1 = _SCURVE_PROFILE - axis moves with jerk filter (jerk limitation through position filter)&#13;&#10;10 = _JERK_PROFILE - axis moves with jerk limitation (calculated limitation)" Name="_LMCAXIS_READPARAMETER.LMCAXIS_PAR_RD_MOVETYPE"/>
+    LMCAXIS_PAR_RD_T_JERK,  //! <Type Comment="Read the jerk time (server Tjerk) [ms].&#13;&#10;This is the time for the acceleration to attain its maximum value." Name="_LMCAXIS_READPARAMETER.LMCAXIS_PAR_RD_T_JERK"/>
+    LMCAXIS_PAR_RD_HARDLOCK,  //! <Type Comment="Read the HardLock flag.&#13;&#10;0: the slave always adheres to its speed, acceleration and deceleration limits&#13;&#10;1: when the slave is synchronized with the master, it may exceed its acceleration and deceleration limits but not the speed limit" Name="_LMCAXIS_READPARAMETER.LMCAXIS_PAR_RD_HARDLOCK"/>
+    LMCAXIS_PAR_RD_SHAPE_SPLINE,  //! <Type Comment="Parameter of the function &quot;ReadParameter&quot;:&#13;&#10;Read spline-configuration (See function &quot;ReadParameter&quot;)" Name="_LMCAXIS_READPARAMETER.LMCAXIS_PAR_RD_SHAPE_SPLINE"/>
+    LMCAXIS_PAR_RD_COUPLE_ERROR,  //! <Type Comment="Parameter of the function &quot;ReadParameter&quot;:&#13;&#10;Read the last Couping-Error that occured by calling &quot;CoupleGearPolynom&quot;&#13;&#10;" Name="_LMCAXIS_READPARAMETER.LMCAXIS_PAR_RD_COUPLE_ERROR"/>
+    LMCAXIS_PAR_RD_MOVEDIRECTION,  //! <Type Comment="Read direction of movement for the axis&#13;&#10;0 = AXIS_MOVE_ANY_WAY axis may move in any direction&#13;&#10;1 = AXIS_MOVE_NEG_DIR axis may only move in the negative direction&#13;&#10;3 = AXIS_MOVE_POS_DIR axis may only move in the positive direction&#13;&#10;2 = AXIS_MOVE_SHORTEST_WAY axis takes the shortest way to the destination" Name="_LMCAXIS_READPARAMETER.LMCAXIS_PAR_RD_MOVEDIRECTION"/>
+    LMCAXIS_PAR_RD_SWLIMWINDOW,  //! <Type Comment="Read Endpostion-Tolerance-Window [application units]" Name="_LMCAXIS_READPARAMETER.LMCAXIS_PAR_RD_SWLIMWINDOW"/>
+    LMCAXIS_PAR_RD_MASTER_DELAY,  //! <Type Comment="Read the max Delay of the MasterPointer [ticks]" Name="_LMCAXIS_READPARAMETER.LMCAXIS_PAR_RD_MASTER_DELAY"/>
+    LMCAXIS_PAR_RD_DEC,  //! <Type Comment="Read deceleration [Application units/s²] or [Internal units/tick²] depending on mode" Name="_LMCAXIS_READPARAMETER.LMCAXIS_PAR_RD_DEC"/>
+    LMCAXIS_PAR_RD_DYN_SW_LIMIT,  //! <Type Comment="Is a min/max dynamic software limit monitored?" Name="_LMCAXIS_READPARAMETER.LMCAXIS_PAR_RD_DYN_SW_LIMIT"/>
+    LMCAXIS_PAR_RD_MAX_OVERRIDE,  //! <Type Comment="Reads the maximal allowed value for the override&#13;&#10;&#13;&#10;Mode=0: absolute max override value&#13;&#10;Mode=1: max override value in a tenth of percent" Name="_LMCAXIS_READPARAMETER.LMCAXIS_PAR_RD_MAX_OVERRIDE"/>
+    LMCAXIS_PAR_RD_NORM_OVERRIDE,  //! <Type Comment="Reads the override value, which represents 100%." Name="_LMCAXIS_READPARAMETER.LMCAXIS_PAR_RD_NORM_OVERRIDE"/>
+    LMCAXIS_PAR_RD_OVERRIDE,  //! <Type Comment="Reads the actual override value.&#13;&#10;&#13;&#10;Mode=0: absolute override value&#13;&#10;Mode=1: override value in a tenth of percent" Name="_LMCAXIS_READPARAMETER.LMCAXIS_PAR_RD_OVERRIDE"/>
+    LMCAXIS_PAR_RD_DELAYEDMASTERLOCK,  //! <Type Comment="Read DelayedMasterLock, 0 = not locked to master, 1 = synchronized with master" Name="_LMCAXIS_READPARAMETER.LMCAXIS_PAR_RD_DELAYEDMASTERLOCK"/>
+    LMCAXIS_PAR_RD_OVERFLOW_POS,  //! <Type Comment="read the internal position overflow limit [Internal units]" Name="_LMCAXIS_READPARAMETER.LMCAXIS_PAR_RD_OVERFLOW_POS"/>
+    LMCAXIS_PAR_RD_MIN_POSITION,  //! <Type Comment="read the minimum internal end position  [Internal units]" Name="_LMCAXIS_READPARAMETER.LMCAXIS_PAR_RD_MIN_POSITION"/>
+    LMCAXIS_PAR_RD_MAX_POSITION,  //! <Type Comment="read the maximum internal end position [Internal units]" Name="_LMCAXIS_READPARAMETER.LMCAXIS_PAR_RD_MAX_POSITION"/>
+    LMCAXIS_PAR_RD_ZPULSE_DIST,  //! <Type Comment="read the distance from refswitch to zpulse [application units]" Name="_LMCAXIS_READPARAMETER.LMCAXIS_PAR_RD_ZPULSE_DIST"/>
+    LMCAXIS_PAR_RD_ALLOWED_ACC_JUMP,  //! <Type Comment="Read the maximal allowed accel jump for the slave. [application units / sec^2 / tick]" Name="_LMCAXIS_READPARAMETER.LMCAXIS_PAR_RD_ALLOWED_ACC_JUMP"/>
+    LMCAXIS_PAR_RD_SIMULATE_MODE,
+    LMCAXIS_PAR_RD_ERROR_CONFIG,  //! <Type Comment="Set user defined error configuration&#13;&#10;" Name="_LMCAXIS_READPARAMETER.LMCAXIS_PAR_RD_ERROR_CONFIG"/>
+    LMCAXIS_PAR_RD_AEMERGENCY,  //! <Type Comment="Read emergency deccelarition. If Emergency &lt;&gt; 0 [Application units / s²]&#13;&#10;if AEmergency is smaller AMax, the deceleration is AMax" Name="_LMCAXIS_READPARAMETER.LMCAXIS_PAR_RD_AEMERGENCY"/>
+    LMCAXIS_PAR_RD_ABS_ENCODER,  //! <Type Comment="This parameter is used for the activation (AbsEncoder = 1) / deactivation (AbsEncoder = 0) of reading encoder-values from a motor" Name="_LMCAXIS_READPARAMETER.LMCAXIS_PAR_RD_ABS_ENCODER"/>
+    LMCAXIS_PAR_RD_AXISERROR  //! <Type Comment="Read error flags of the Axis&#13;&#10;" Name="_LMCAXIS_READPARAMETER.LMCAXIS_PAR_RD_AXISERROR"/>
+  )$UDINT;
+  _LMCAXIS_READPOS :  //! <Type Comment="Type of the position that should be read" Name="_LMCAXIS_READPOS"/>
+  (
+    LMCAXIS_SETPOS_APPUNIT,  //! <Type Comment="Set position with or without jerk limitation (depending on coupler mode), bounded by Modulo [Application units]" Name="_LMCAXIS_READPOS.LMCAXIS_SETPOS_APPUNIT"/>
+    LMCAXIS_SETPOS_INTUNIT,  //! <Type Comment="Set position with or without jerk limitation (depending on coupler mode), bounded by Modulo [Internal units]" Name="_LMCAXIS_READPOS.LMCAXIS_SETPOS_INTUNIT"/>
+    LMCAXIS_SETPOS_INTUNIT_WO_MOD,  //! <Type Comment="Set position without jerk limitation, NOT bounded by Modulo [Internal units]" Name="_LMCAXIS_READPOS.LMCAXIS_SETPOS_INTUNIT_WO_MOD"/>
+    LMCAXIS_DESTPOS_INTUNIT,  //! <Type Comment="Actual target position [Internal units]" Name="_LMCAXIS_READPOS.LMCAXIS_DESTPOS_INTUNIT"/>
+    LMCAXIS_SETPOS_INTUNIT_JERK_WO_MOD,  //! <Type Comment="Set position with or without jerk limitation (depending on coupler mode), NOT bounded by Modulo [Internal units]" Name="_LMCAXIS_READPOS.LMCAXIS_SETPOS_INTUNIT_JERK_WO_MOD"/>
+    LMCAXIS_SETPOS_INTUNIT_JERK,  //! <Type Comment="Set position with jerk limitation, bounded by Modulo [Internal units]" Name="_LMCAXIS_READPOS.LMCAXIS_SETPOS_INTUNIT_JERK"/>
+    LMCAXIS_SETPOS_APPUNIT_JERK,  //! <Type Comment="Set position with jerk limitation, bounded by Modulo [Application units]" Name="_LMCAXIS_READPOS.LMCAXIS_SETPOS_APPUNIT_JERK"/>
+    LMCAXIS_SETPOS_APPUNIT_SPEC1,  //! <Type Comment="Set position with or without jerk limitation (see parameter LMCAXIS_PAR_SET_JERK_LIMITATION), bounded by Modulo [Application units]" Name="_LMCAXIS_READPOS.LMCAXIS_SETPOS_APPUNIT_SPEC1"/>
+    LMCAXIS_ACTPOS_APPUNIT,  //! <Type Comment="Actual position, bounded by Modulo [Application units]" Name="_LMCAXIS_READPOS.LMCAXIS_ACTPOS_APPUNIT"/>
+    LMCAXIS_ACTPOS_INTUNIT,  //! <Type Comment="Actual position, bounded by Modulo [Internal units]" Name="_LMCAXIS_READPOS.LMCAXIS_ACTPOS_INTUNIT"/>
+    LMCAXIS_ACTPOS_INTUNIT_WO_MOD,  //! <Type Comment="Actual position, NOT bounded by Modulo [Internal units]" Name="_LMCAXIS_READPOS.LMCAXIS_ACTPOS_INTUNIT_WO_MOD"/>
+    LMCAXIS_BRAKEPOS_APPUNIT,  //! <Type Comment="the position, where the axis can stop, if it starts braking immediately.[application units]" Name="_LMCAXIS_READPOS.LMCAXIS_BRAKEPOS_APPUNIT"/>
+    LMCAXIS_MASTERPOS_INTUNIT,  //! <Type Comment="current position of the master axis [internal units]" Name="_LMCAXIS_READPOS.LMCAXIS_MASTERPOS_INTUNIT"/>
+    LMCAXIS_XW_TO_DESTPOS_INTUNIT  //! <Type Comment="internal mode for _LMCProfile." Name="_LMCAXIS_READPOS.LMCAXIS_XW_TO_DESTPOS_INTUNIT"/>
+  )$UDINT;
+  _LMCAXIS_READSWENDPOS :  //! <Type Comment="Parameter of the function &quot;ReadSWEndPos&quot;" Name="_LMCAXIS_READSWENDPOS"/>
+  (
+    LMCAXIS_RD_SWMAX_APPUNIT,  //! <Type Comment="Parameter of the function &quot;ReadSWEndPos&quot;:&#13;&#10;Read the maximal software-endposition in application units" Name="_LMCAXIS_READSWENDPOS.LMCAXIS_RD_SWMAX_APPUNIT"/>
+    LMCAXIS_RD_SWMIN_APPUNIT,  //! <Type Comment="Parameter of the function &quot;ReadSWEndPos&quot;:&#13;&#10;Read the minimal software-endposition in application units" Name="_LMCAXIS_READSWENDPOS.LMCAXIS_RD_SWMIN_APPUNIT"/>
+    LMCAXIS_RD_SWMAX_INTUNIT,  //! <Type Comment="Parameter of the function &quot;ReadSWEndPos&quot;:&#13;&#10;Read the maximal software-endposition in intern units" Name="_LMCAXIS_READSWENDPOS.LMCAXIS_RD_SWMAX_INTUNIT"/>
+    LMCAXIS_RD_SWMIN_INTUNIT  //! <Type Comment="Parameter of the function &quot;ReadSWEndPos&quot;:&#13;&#10;Read the minimal software-endposition in intern units" Name="_LMCAXIS_READSWENDPOS.LMCAXIS_RD_SWMIN_INTUNIT"/>
+  )$UDINT;
+  _LMCAXIS_READVELOCITY :  //! <Type Comment="Type of the axis velocity that should be read" Name="_LMCAXIS_READVELOCITY"/>
+  (
+    LMCAXIS_SETVEL_APPUNIT_SEC,  //! <Type Comment="Set velocity without jerk limitation [Application units/s]&#13;&#10;" Name="_LMCAXIS_READVELOCITY.LMCAXIS_SETVEL_APPUNIT_SEC"/>
+    LMCAXIS_SETVEL_INTUNIT_SEC,  //! <Type Comment="Set velocity without jerk limitation [Internal units/s]" Name="_LMCAXIS_READVELOCITY.LMCAXIS_SETVEL_INTUNIT_SEC"/>
+    LMCAXIS_SETVEL_APPUNIT_NCMODE,  //! <Type Comment="Set velocity + start velocity in NC mode [Application units/tick]" Name="_LMCAXIS_READVELOCITY.LMCAXIS_SETVEL_APPUNIT_NCMODE"/>
+    LMCAXIS_SETVEL_INTUNIT_NCMODE,  //! <Type Comment="Set velocity + start velocity in NC mode [Internal units/tick]" Name="_LMCAXIS_READVELOCITY.LMCAXIS_SETVEL_INTUNIT_NCMODE"/>
+    LMCAXIS_ACTVEL_APPUNIT_MS,  //! <Type Comment="Unfiltered actual velocity [Application units/ms]" Name="_LMCAXIS_READVELOCITY.LMCAXIS_ACTVEL_APPUNIT_MS"/>
+    LMCAXIS_ACTVEL_INTUNIT_MS,  //! <Type Comment="Unfiltered actual velocity [Internal units/ms]" Name="_LMCAXIS_READVELOCITY.LMCAXIS_ACTVEL_INTUNIT_MS"/>
+    LMCAXIS_SETVEL_INTUNIT_TICK_JERK,  //! <Type Comment="Set velocity with jerk limitation [Internal units/tick]" Name="_LMCAXIS_READVELOCITY.LMCAXIS_SETVEL_INTUNIT_TICK_JERK"/>
+    LMCAXIS_SETVEL_APPUNIT_SEC_JERK,  //! <Type Comment="Set velocity with jerk limitation [Application units/s]" Name="_LMCAXIS_READVELOCITY.LMCAXIS_SETVEL_APPUNIT_SEC_JERK"/>
+    LMCAXIS_SETVEL_INTUNIT_TICK,  //! <Type Comment="Set velocity without jerk limitation [Internal units/tick]" Name="_LMCAXIS_READVELOCITY.LMCAXIS_SETVEL_INTUNIT_TICK"/>
+    LMCAXIS_ACTVEL_APPUNIT_SEC,  //! <Type Comment="Unfiltered actual velocity [Application units/s]" Name="_LMCAXIS_READVELOCITY.LMCAXIS_ACTVEL_APPUNIT_SEC"/>
+    LMCAXIS_ACTVEL_INTUNIT_SEC,  //! <Type Comment="Unfiltered actual velocity [Internal units/s]" Name="_LMCAXIS_READVELOCITY.LMCAXIS_ACTVEL_INTUNIT_SEC"/>
+    LMCAXIS_ACTVEL_APPUNIT_SEC_FILT,  //! <Type Comment="Filtered actual velocity [Application units/s]" Name="_LMCAXIS_READVELOCITY.LMCAXIS_ACTVEL_APPUNIT_SEC_FILT"/>
+    LMCAXIS_ACTVEL_INTUNIT_SEC_FILT,  //! <Type Comment="Filtered actual velocity [Internal units/s]" Name="_LMCAXIS_READVELOCITY.LMCAXIS_ACTVEL_INTUNIT_SEC_FILT"/>
+    LMCAXIS_CMDVEL_APPUNIT  //! <Type Comment="Maximal " Name="_LMCAXIS_READVELOCITY.LMCAXIS_CMDVEL_APPUNIT"/>
+  )$UDINT;
+  _LMCAXIS_REFMODE : BDINT  //! <Type Comment="Reference mode" Name="_LMCAXIS_REFMODE"/>
+  [
+    1 NoZImpulse,  //! <Type Comment="0 --&gt; Referencing with referencing impulse&#13;&#10;1 --&gt; Referencing without referencing impulse" Name="_LMCAXIS_REFMODE.NoZImpulse"/>
+    2 NoEndSwitch,  //! <Type Comment="0 --&gt; Referencing with endswitches&#13;&#10;1 --&gt; Referencing without endswitches" Name="_LMCAXIS_REFMODE.NoEndSwitch"/>
+    3 RefDirection,  //! <Type Comment="1 --&gt; Referencing on positive direction&#13;&#10;0 --&gt; Referencing on negative direction" Name="_LMCAXIS_REFMODE.RefDirection"/>
+    4 NoTurnOnSwitch,  //! <Type Comment="0 --&gt; Reverse direction at the reference switch&#13;&#10;1 --&gt; Do not reverse direction at the reference switch" Name="_LMCAXIS_REFMODE.NoTurnOnSwitch"/>
+    5 ESEqualRef,  //! <Type Comment="1 --&gt; Hardware end switch is used as reference switch" Name="_LMCAXIS_REFMODE.ESEqualRef"/>
+    6 NoSet,  //! <Type Comment="0 --&gt; The transmitted position is the reference position&#13;&#10;1 --&gt; The actual position is the reference position" Name="_LMCAXIS_REFMODE.NoSet"/>
+    7 RefLatchPos,  //! <Type Comment="1 --&gt; Read reference position from client cLatchPos. If value changes, do a MoveAbsolute(cLatchPos) and set cLatchPos as current position." Name="_LMCAXIS_REFMODE.RefLatchPos"/>
+    8 RefFirstEdge,  //! <Type Comment="1 --&gt; Go back to first edge of ref.switch or end switch" Name="_LMCAXIS_REFMODE.RefFirstEdge"/>
+  ];
+  _LMCAXIS_SETPARAMETER :  //! <Type Comment="Parameter-ID" Name="_LMCAXIS_SETPARAMETER"/>
+  (
+    LMCAXIS_PAR_SET_COUPLING_MODE,  //! <Type Comment="Changes the coupling mode" Name="_LMCAXIS_SETPARAMETER.LMCAXIS_PAR_SET_COUPLING_MODE"/>
+    LMCAXIS_PAR_SET_DESTINATION,  //! <Type Comment="Sets new target position&#13;&#10;mode  = 0: [Application units]&#13;&#10;mode &lt;&gt; 0: [Internal units]" Name="_LMCAXIS_SETPARAMETER.LMCAXIS_PAR_SET_DESTINATION"/>
+    LMCAXIS_PAR_SET_OVERRIDE,  //! <Type Comment="Set new override value [0.1%]" Name="_LMCAXIS_SETPARAMETER.LMCAXIS_PAR_SET_OVERRIDE"/>
+    LMCAXIS_PAR_SET_LOGMODE,  //! <Type Comment="Changes data logger settings" Name="_LMCAXIS_SETPARAMETER.LMCAXIS_PAR_SET_LOGMODE"/>
+    LMCAXIS_PAR_RESET_REF_STATE,  //! <Type Comment="The reference status is reset" Name="_LMCAXIS_SETPARAMETER.LMCAXIS_PAR_RESET_REF_STATE"/>
+    LMCAXIS_PAR_SET_CHANGE_SW_LIMITS,  //! <Type Comment="Change how the software limits check works" Name="_LMCAXIS_SETPARAMETER.LMCAXIS_PAR_SET_CHANGE_SW_LIMITS"/>
+    LMCAXIS_PAR_SET_JERK_LIMITATION,  //! <Type Comment="Activates / deactivates jerk filter" Name="_LMCAXIS_SETPARAMETER.LMCAXIS_PAR_SET_JERK_LIMITATION"/>
+    LMCAXIS_PAR_SET_SHIFT_BREAKPOS,  //! <Type Comment="Brake point shift for NC mode" Name="_LMCAXIS_SETPARAMETER.LMCAXIS_PAR_SET_SHIFT_BREAKPOS"/>
+    LMCAXIS_PAR_SET_OVERFLOW_POS,  //! <Type Comment="Sets a new internal position overflow limit [Internal units]" Name="_LMCAXIS_SETPARAMETER.LMCAXIS_PAR_SET_OVERFLOW_POS"/>
+    LMCAXIS_PAR_SET_MIN_POSITION,  //! <Type Comment="Sets a new minimum internal end position  [Internal units]" Name="_LMCAXIS_SETPARAMETER.LMCAXIS_PAR_SET_MIN_POSITION"/>
+    LMCAXIS_PAR_SET_MAX_POSITION,  //! <Type Comment="Sets a new maximum internal end position [Internal units]" Name="_LMCAXIS_SETPARAMETER.LMCAXIS_PAR_SET_MAX_POSITION"/>
+    LMCAXIS_PAR_SET_HARDLOCK,  //! <Type Comment="Change monitoring slave acceleration, deceleration, and jerk." Name="_LMCAXIS_SETPARAMETER.LMCAXIS_PAR_SET_HARDLOCK"/>
+    LMCAXIS_PAR_SET_SWLIM_STANDSTILL,  //! <Type Comment="Activate/deactivate the SW end position monitor during standstill" Name="_LMCAXIS_SETPARAMETER.LMCAXIS_PAR_SET_SWLIM_STANDSTILL"/>
+    LMCAXIS_PAR_SET_SWLIM_DIR_CHANGE,  //! <Type Comment="Enable/disable SW end position monitor with direction reversal" Name="_LMCAXIS_SETPARAMETER.LMCAXIS_PAR_SET_SWLIM_DIR_CHANGE"/>
+    LMCAXIS_PAR_SET_SWLIM_MOVING,  //! <Type Comment="Enable/disable the set position monitor during movement toward the SW end positions" Name="_LMCAXIS_SETPARAMETER.LMCAXIS_PAR_SET_SWLIM_MOVING"/>
+    LMCAXIS_PAR_SET_INIT_JERK_FILTER,  //! <Type Comment="Initialize the jerk filter with ControllerOn" Name="_LMCAXIS_SETPARAMETER.LMCAXIS_PAR_SET_INIT_JERK_FILTER"/>
+    LMCAXIS_PAR_SET_BINOFFSET,  //! <Type Comment="Set BinOffset [Increments] to a new value and update the position" Name="_LMCAXIS_SETPARAMETER.LMCAXIS_PAR_SET_BINOFFSET"/>
+    LMCAXIS_PAR_SET_VJUMP,  //! <Type Comment="Enable/disable a jump in speed" Name="_LMCAXIS_SETPARAMETER.LMCAXIS_PAR_SET_VJUMP"/>
+    LMCAXIS_PAR_SET_SW_LIMIT_FLAGS,  //! <Type Comment="Defines when AxisError.SwMinError and SwMaxError is set" Name="_LMCAXIS_SETPARAMETER.LMCAXIS_PAR_SET_SW_LIMIT_FLAGS"/>
+    LMCAXIS_PAR_SET_SW_LIM_WINDOW,  //! <Type Comment="Set tolerance window to set the SW end position monitor to idle mode" Name="_LMCAXIS_SETPARAMETER.LMCAXIS_PAR_SET_SW_LIM_WINDOW"/>
+    LMCAXIS_PAR_SET_MOVE_DIR,  //! <Type Comment="Set direction of movement for the axis" Name="_LMCAXIS_SETPARAMETER.LMCAXIS_PAR_SET_MOVE_DIR"/>
+    LMCAXIS_PAR_SET_TIMEBASE,  //! <Type Comment="Set RtWork cycle time of the axis and make it callable from outside the class" Name="_LMCAXIS_SETPARAMETER.LMCAXIS_PAR_SET_TIMEBASE"/>
+    LMCAXIS_PAR_SET_CONTROLLERPAR,  //! <Type Comment="Set the parameters of the connected controller" Name="_LMCAXIS_SETPARAMETER.LMCAXIS_PAR_SET_CONTROLLERPAR"/>
+    LMCAXIS_PAR_SET_ACTVELFILTER,  //! <Type Comment="Set whether the server ActVelocity displays the filtered or unfiltered actual velocity" Name="_LMCAXIS_SETPARAMETER.LMCAXIS_PAR_SET_ACTVELFILTER"/>
+    LMCAXIS_PAR_SET_SHAPE_SPLINE,  //! <Type Comment="Modify the shapes of the splines used in CoupleGearPolynom" Name="_LMCAXIS_SETPARAMETER.LMCAXIS_PAR_SET_SHAPE_SPLINE"/>
+    LMCAXIS_PAR_SET_NO_OVERFLOWERROR,  //! <Type Comment="Suppress OverflowError when a slave axis cannot follow its master axis" Name="_LMCAXIS_SETPARAMETER.LMCAXIS_PAR_SET_NO_OVERFLOWERROR"/>
+    LMCAXIS_PAR_SET_MASTERPOS_OLD,  //! <Type Comment="For internal use only." Name="_LMCAXIS_SETPARAMETER.LMCAXIS_PAR_SET_MASTERPOS_OLD"/>
+    LMCAXIS_PAR_SET_MASTER_DELAY,  //! <Type Comment="Set the max Delay of the MasterPointer &#13;&#10;default = 0&#13;&#10;max = 6" Name="_LMCAXIS_SETPARAMETER.LMCAXIS_PAR_SET_MASTER_DELAY"/>
+    LMCAXIS_PAR_SET_MAXMODULO,  //! <Type Comment="Set the MaxModule value&#13;&#10;default = 16#06000000" Name="_LMCAXIS_SETPARAMETER.LMCAXIS_PAR_SET_MAXMODULO"/>
+    LMCAXIS_PAR_SET_MAX_OVERRIDE:=29,  //! <Type Comment="Set the maximal allowed Override value." Name="_LMCAXIS_SETPARAMETER.LMCAXIS_PAR_SET_MAX_OVERRIDE"/>
+    LMCAXIS_PAR_SET_NORM_OVERRIDE,  //! <Type Comment="Norm. override value. Default value = 1000" Name="_LMCAXIS_SETPARAMETER.LMCAXIS_PAR_SET_NORM_OVERRIDE"/>
+    LMCAXIS_PAR_SET_MASTERLOCK_DELAYCYCLES,  //! <Type Comment="set the amount of cycles for the delayed MasterLock&#13;&#10;default = 0" Name="_LMCAXIS_SETPARAMETER.LMCAXIS_PAR_SET_MASTERLOCK_DELAYCYCLES"/>
+    LMCAXIS_PAR_SET_ALLOWED_ACC_JUMP,  //! <Type Comment="Set the maximal allowed accel jump for the slave. [application units / sec^2 / tick]" Name="_LMCAXIS_SETPARAMETER.LMCAXIS_PAR_SET_ALLOWED_ACC_JUMP"/>
+    LMCAXIS_PAR_SET_SIMULATE_MODE,  //! <Type Comment="Value=1: Set the simulation mode&#13;&#10;Value=0: Disable the simulation mode" Name="_LMCAXIS_SETPARAMETER.LMCAXIS_PAR_SET_SIMULATE_MODE"/>
+    LMCAXIS_PAR_SET_DEACTIVATE_CALC_BRAKEPOS,  //! <Type Comment="1: Deactivates the computation of the master brake position. Software limit violations of the coupled axis may not be averted.&#13;&#10;0: Enables computation of the master brake position. Upcoming software limit violations may be detected and averted." Name="_LMCAXIS_SETPARAMETER.LMCAXIS_PAR_SET_DEACTIVATE_CALC_BRAKEPOS"/>
+    LMCAXIS_PAR_SET_COUPLE_SLAVE_ERROR,  //! <Type Comment="Defines the reaction of this axis in case of an error of a coupled slave axis&#13;&#10;0: ignores the error. &#13;&#10;1: stops the axis with maximal deceleration, but does not disable it (like StopMove())&#13;&#10;2: (DEFAULT) stops with maximal deceleration and disables the axis (like PowerOff(LMCAXIS_SMOOTH_STOP))&#13;&#10;3: disables the axis immediately (like PowerOff(LMCAXIS_IMMEDIATE_STOP))&#13;&#10;&#13;&#10;" Name="_LMCAXIS_SETPARAMETER.LMCAXIS_PAR_SET_COUPLE_SLAVE_ERROR"/>
+    LMCAXIS_PAR_SET_COUPLE_MASTER_ERROR,  //! <Type Comment="Defines the reaction of this axis in case of an error of its MASTER axis or some axis coupled with the master.&#13;&#10;0: ignores the error. &#13;&#10;1: stops the axis with maximal deceleration, but does not disable it (like StopMove())&#13;&#10;2: (DEFAULT) stops with maximal deceleration and disables the axis (like PowerOff(LMCAXIS_SMOOTH_STOP))&#13;&#10;3: disables the axis immediately (like PowerOff(LMCAXIS_IMMEDIATE_STOP))&#13;&#10;&#13;&#10;" Name="_LMCAXIS_SETPARAMETER.LMCAXIS_PAR_SET_COUPLE_MASTER_ERROR"/>
+    LMCAXIS_PAR_SET_COUPLE_MONITOR_CONFIG,  //! <Type Comment="Extended configuration for couple monitoring&#13;&#10;Bit 1: ReportErrorToMaster&#13;&#10;Bit 2: ReportSlaveErrorToMaster&#13;&#10;Bit 3: ReportMasterErrorToSlave&#13;&#10;Bit 4: ReportSlaveErrorToSlave&#13;&#10;Bit 5: SwLimitMonitoringForMyMaster&#13;&#10;Bit 6: PowerOffMonitoringForMySlave" Name="_LMCAXIS_SETPARAMETER.LMCAXIS_PAR_SET_COUPLE_MONITOR_CONFIG"/>
+    LMCAXIS_PAR_SET_DELAYEDMASTERLOCK_WINDOW,  //! <Type Comment="alternative mode for AxisStatus.DelayedMasterLock for coupled axes:&#13;&#10;If the master axis is within a position and velocity window, the DelayedMasterLock bit will be set.&#13;&#10;&#13;&#10;input parameter &quot;value&quot; defines a position window [application units]&#13;&#10;input parameter &quot;mode&quot; defines a velocity window [application units / sec]" Name="_LMCAXIS_SETPARAMETER.LMCAXIS_PAR_SET_DELAYEDMASTERLOCK_WINDOW"/>
+    LMCAXIS_PAR_SET_MASTERVEL_OLD,  //! <Type Comment="For internal use only." Name="_LMCAXIS_SETPARAMETER.LMCAXIS_PAR_SET_MASTERVEL_OLD"/>
+    LMCAXIS_PAR_SET_POWERON_TIMEOUT  //! <Type Comment="After a PowerOn(), this is the maximum timeout&#13;&#10;for the hardware to be powered on. For axis with&#13;&#10;commutation-search this can take some time.&#13;&#10;90000ms (default)" Name="_LMCAXIS_SETPARAMETER.LMCAXIS_PAR_SET_POWERON_TIMEOUT"/>
+  )$UDINT;
+  _LMCAXIS_SETPOSITION :  //! <Type Comment="Type of the position that should be set" Name="_LMCAXIS_SETPOSITION"/>
+  (
+    LMCAXIS_SET_ACTPOS_APPUNIT,  //! <Type Comment="Sets the external position (actual position value) to the specified position. &#13;&#10;This value is set based on &quot;Resolution&quot;, &quot;Modulo&quot; and the software limits. (New position = position * Resolution)" Name="_LMCAXIS_SETPOSITION.LMCAXIS_SET_ACTPOS_APPUNIT"/>
+    LMCAXIS_SET_SETPOS_APPUNIT,  //! <Type Comment="Sets the internal position (set position value) to the given position. &#13;&#10;This value is set based on &quot;Resolution&quot; ,&quot;Modulo&quot; and the software limits. (New position = position * Resolution)&#13;&#10;" Name="_LMCAXIS_SETPOSITION.LMCAXIS_SET_SETPOS_APPUNIT"/>
+    LMCAXIS_SET_ACTPOS_INTUNIT,  //! <Type Comment="Sets the external position (actual position value) to the specified position. &#13;&#10;This value is set based on &quot;Modulo&quot; and the software limits. (New position = position)" Name="_LMCAXIS_SETPOSITION.LMCAXIS_SET_ACTPOS_INTUNIT"/>
+    LMCAXIS_SET_SETPOS_INTUNIT,  //! <Type Comment="Sets the internal position (set position value) to the given position. &#13;&#10;This value is set based on &quot;Modulo&quot; and the software limits. (New position = position)&#13;&#10;" Name="_LMCAXIS_SETPOSITION.LMCAXIS_SET_SETPOS_INTUNIT"/>
+    LMCAXIS_SET_SETPOS_INTUNIT_SPEC,  //! <Type Comment="Sets the internal position (set position value) to the given position. &#13;&#10;This value is set based on &quot;Modulo&quot; and the software limits. &#13;&#10;With this variation, the MasterPosition is also reset. (New position = position)" Name="_LMCAXIS_SETPOSITION.LMCAXIS_SET_SETPOS_INTUNIT_SPEC"/>
+    LMCAXIS_SET_ACTPOS_INTUNIT_WO_MOD,  //! <Type Comment="Sets the external position (actual position value) to the specified position.&#13;&#10;This value is set based on the software limits. (New position = position)&#13;&#10;Here, no difference is made regarding modulo axes." Name="_LMCAXIS_SETPOSITION.LMCAXIS_SET_ACTPOS_INTUNIT_WO_MOD"/>
+    LMCAXIS_SET_SETPOS_INTUNIT_WO_MOD,  //! <Type Comment="Sets the internal position (set position value) to the given position. &#13;&#10;This value is set based on the software limits.(New position = position)&#13;&#10;Here, no difference is made regarding modulo axes." Name="_LMCAXIS_SETPOSITION.LMCAXIS_SET_SETPOS_INTUNIT_WO_MOD"/>
+    LMCAXIS_SET_ACTPOS_INTUNIT_WO_MOD_SW,  //! <Type Comment="Sets the external position (actual position value) to the specified position (New position = position).&#13;&#10;Here, no difference is made regarding modulo axes and the software limits are not checked." Name="_LMCAXIS_SETPOSITION.LMCAXIS_SET_ACTPOS_INTUNIT_WO_MOD_SW"/>
+    LMCAXIS_SET_SETPOS_INTUNIT_WO_MOD_SW,  //! <Type Comment="Sets the internal position (set position value) to the specified position (New position = position).&#13;&#10;Here, no difference is made regarding modulo axes and the software limits are not checked." Name="_LMCAXIS_SETPOSITION.LMCAXIS_SET_SETPOS_INTUNIT_WO_MOD_SW"/>
+    LMCAXIS_SET_ACTPOS_APPUNIT_DEST,  //! <Type Comment="Sets the external position (actual position value) to the specified position. &#13;&#10;This value is set based on &quot;Resolution&quot;, &quot;Modulo&quot; and the software limits. (New position = position * Resolution)&#13;&#10;Sets also the destination to the specified position." Name="_LMCAXIS_SETPOSITION.LMCAXIS_SET_ACTPOS_APPUNIT_DEST"/>
+    LMCAXIS_SET_SETPOS_APPUNIT_DEST,  //! <Type Comment="Sets the internal position (set position value) to the given position. &#13;&#10;This value is set based on &quot;Resolution&quot; ,&quot;Modulo&quot; and the software limits. (New position = position * Resolution)&#13;&#10;Sets also the destination to the specified position." Name="_LMCAXIS_SETPOSITION.LMCAXIS_SET_SETPOS_APPUNIT_DEST"/>
+    LMCAXIS_SET_ACTPOS_APPUNIT_WO_MOD_SW,  //! <Type Comment="Sets the external position (actual position value) to the specified position. &#13;&#10;This value is set based on &quot;Resolution&quot; and &quot;Modulo&quot;.(New position = position * Resolution)&#13;&#10;Here, no difference is made regarding modulo axes and the software limits are not checked." Name="_LMCAXIS_SETPOSITION.LMCAXIS_SET_ACTPOS_APPUNIT_WO_MOD_SW"/>
+    LMCAXIS_SET_SETPOS_APPUNIT_WO_MOD_SW  //! <Type Comment="Sets the internal position (set position value) to the specified position. &#13;&#10;This value is set based on &quot;Resolution&quot; and &quot;Modulo&quot;.(New position = position * Resolution)&#13;&#10;Here, no difference is made regarding modulo axes and the software limits are not checked." Name="_LMCAXIS_SETPOSITION.LMCAXIS_SET_SETPOS_APPUNIT_WO_MOD_SW"/>
+  )$UDINT;
+  _LMCAXIS_SETSERVER :  //! <Type Comment="Server-ID" Name="_LMCAXIS_SETSERVER"/>
+  (
+    LMCAXIS_SET_EXUNIT,  //! <Type Comment="Set new value for server ExUnit [Increments]" Name="_LMCAXIS_SETSERVER.LMCAXIS_SET_EXUNIT"/>
+    LMCAXIS_SET_INTUNIT,  //! <Type Comment="Set new value for server IntUnit [Application units]" Name="_LMCAXIS_SETSERVER.LMCAXIS_SET_INTUNIT"/>
+    LMCAXIS_SET_VMAX,  //! <Type Comment="Set new value for server VMax [Application units/s]" Name="_LMCAXIS_SETSERVER.LMCAXIS_SET_VMAX"/>
+    LMCAXIS_SET_AMAX,  //! <Type Comment="Set new value for server AMax [Application units/s²]" Name="_LMCAXIS_SETSERVER.LMCAXIS_SET_AMAX"/>
+    LMCAXIS_SET_SWMINPOS,  //! <Type Comment="Set new value for server SWMinPos [Application units]" Name="_LMCAXIS_SETSERVER.LMCAXIS_SET_SWMINPOS"/>
+    LMCAXIS_SET_SWMAXPOS,  //! <Type Comment="Set new value for server SWMaxPos [Application units]" Name="_LMCAXIS_SETSERVER.LMCAXIS_SET_SWMAXPOS"/>
+    LMCAXIS_SET_MODULO,  //! <Type Comment="Set new value for server Modulo [Application units]" Name="_LMCAXIS_SETSERVER.LMCAXIS_SET_MODULO"/>
+    LMCAXIS_SET_T_JERK,  //! <Type Comment="Set new value for server Tjerk [ms]" Name="_LMCAXIS_SETSERVER.LMCAXIS_SET_T_JERK"/>
+    LMCAXIS_SET_MOVETYPE,  //! <Type Comment="Set new value for server MoveType" Name="_LMCAXIS_SETSERVER.LMCAXIS_SET_MOVETYPE"/>
+    LMCAXIS_SET_AEMERGENCY,  //! <Type Comment="Set new value for the server AEmergency [application units / sec²]" Name="_LMCAXIS_SETSERVER.LMCAXIS_SET_AEMERGENCY"/>
+    LMCAXIS_SET_JMAX,  //! <Type Comment="Set a new value for server JMax [ApplicationUnits/sec²/ms]&#13;&#10;for MoveType = _JERK_PROFILE only." Name="_LMCAXIS_SETSERVER.LMCAXIS_SET_JMAX"/>
+    LMCAXIS_SET_ERROR_CONFIG,  //! <Type Comment="Set user defined error configuration&#13;&#10;" Name="_LMCAXIS_SETSERVER.LMCAXIS_SET_ERROR_CONFIG"/>
+    LMCAXIS_SET_ABS_ENCODER  //! <Type Comment="This parameter is used for the activation (AbsEncoder = 1) / deactivation (AbsEncoder = 0) of reading encoder-values from a motor" Name="_LMCAXIS_SETSERVER.LMCAXIS_SET_ABS_ENCODER"/>
+  )$UDINT;
+  _LMCAXIS_SETSWENDPOS :  //! <Type Comment="LMCAXIS_SET_SWMAX_APPUNIT&#13;&#10;New SW max end position = Position * Resolution&#13;&#10;This value is set based on Resolution and Modulo.&#13;&#10;&#13;&#10;LMCAXIS_SET_SWMIN_APPUNIT&#13;&#10;New SW min end position = Position * Resolution&#13;&#10;This value is set based on Resolution and Modulo.&#13;&#10;&#13;&#10;LMCAXIS_SET_SWMAX_INTUNIT&#13;&#10;New SW max end position = Position&#13;&#10;This value is set based on Modulo.&#13;&#10;&#13;&#10;LMCAXIS_SET_SWMIN_INTUNIT&#13;&#10;New SW min end position = Position &#13;&#10;This value is set based on Modulo.(new SW min end position = Position)&#13;&#10;&#13;&#10;LMCAXIS_SET_SWMAX_INTUNIT_WO_MOD&#13;&#10;New SW Max end position = Position. &#13;&#10;Here, no difference is made regarding modulo axes.&#13;&#10;&#13;&#10;LMCAXIS_SET_SWMIN_INTUNIT_WO_MOD&#13;&#10;New SW min end position = Position. &#13;&#10;Here, no difference is made regarding modulo axes." Name="_LMCAXIS_SETSWENDPOS"/>
+  (
+    LMCAXIS_SET_SWMAX_APPUNIT,  //! <Type Comment="New SW max end position = Position * Resolution&#13;&#10;This value is set based on Resolution and Modulo." Name="_LMCAXIS_SETSWENDPOS.LMCAXIS_SET_SWMAX_APPUNIT"/>
+    LMCAXIS_SET_SWMIN_APPUNIT,  //! <Type Comment="New SW min end position = Position * Resolution&#13;&#10;This value is set based on Resolution and Modulo." Name="_LMCAXIS_SETSWENDPOS.LMCAXIS_SET_SWMIN_APPUNIT"/>
+    LMCAXIS_SET_SWMAX_INTUNIT,  //! <Type Comment="New SW max end position = Position&#13;&#10;This value is set based on Modulo." Name="_LMCAXIS_SETSWENDPOS.LMCAXIS_SET_SWMAX_INTUNIT"/>
+    LMCAXIS_SET_SWMIN_INTUNIT,  //! <Type Comment="New SW min end position = Position &#13;&#10;This value is set based on Modulo.(new SW min end position = Position)" Name="_LMCAXIS_SETSWENDPOS.LMCAXIS_SET_SWMIN_INTUNIT"/>
+    LMCAXIS_SET_SWMAX_INTUNIT_WO_MOD,  //! <Type Comment="New SW Max end position = Position. &#13;&#10;Here, no difference is made regarding modulo axes." Name="_LMCAXIS_SETSWENDPOS.LMCAXIS_SET_SWMAX_INTUNIT_WO_MOD"/>
+    LMCAXIS_SET_SWMIN_INTUNIT_WO_MOD  //! <Type Comment="New SW min end position = Position. &#13;&#10;Here, no difference is made regarding modulo axes." Name="_LMCAXIS_SETSWENDPOS.LMCAXIS_SET_SWMIN_INTUNIT_WO_MOD"/>
+  )$UDINT;
+  _LMCAXIS_STATUS : BDINT  //! <Type Comment="Status-Bits of the axis" Name="_LMCAXIS_STATUS"/>
+  [
+    1 PowerOn,  //! <Type Comment="Set if axis is activated" Name="_LMCAXIS_STATUS.PowerOn"/>
+    2 IsReferenced,  //! <Type Comment="Set if axis is referenced" Name="_LMCAXIS_STATUS.IsReferenced"/>
+    3 InPosition,  //! <Type Comment="Set if axis is in correct position" Name="_LMCAXIS_STATUS.InPosition"/>
+    4 FiltRdy,  //! <Type Comment="Set if axis is in correct position an the jerkfilter is ready" Name="_LMCAXIS_STATUS.FiltRdy"/>
+    5 Decell,  //! <Type Comment="Set if axis is braking" Name="_LMCAXIS_STATUS.Decell"/>
+    6 PosLimActive,  //! <Type Comment="Set if axis has reached one of its endpositions" Name="_LMCAXIS_STATUS.PosLimActive"/>
+    7 SetFlg,  //! <Type Comment="Set by calling one of the functions: SetPosition or ReferenceAxis&#13;&#10;Reset if the axis is activated" Name="_LMCAXIS_STATUS.SetFlg"/>
+    8 EnLesFlg,  //! <Type Comment="Set if the axis moves endless / infinitely" Name="_LMCAXIS_STATUS.EnLesFlg"/>
+    9 DirFlg,  //! <Type Comment="Set if the axis moves in negative direction - speed is negative" Name="_LMCAXIS_STATUS.DirFlg"/>
+    10 EmergStop,  //! <Type Comment="Set if the axis stops because an error occured or the axis is deactivated" Name="_LMCAXIS_STATUS.EmergStop"/>
+    11 Overflow,  //! <Type Comment="Set if a position-overflow occured" Name="_LMCAXIS_STATUS.Overflow"/>
+    12 MasterLock,  //! <Type Comment="Set if the slave-axis is coupled onto a master-axis" Name="_LMCAXIS_STATUS.MasterLock"/>
+    13 DirLock,  //! <Type Comment="the direction is locked&#13;&#10;(because of HWMin, HWMax&#13;&#10; or by PowerOnMode)" Name="_LMCAXIS_STATUS.DirLock"/>
+    14 DynSwLimit,
+    15 ActDirFlg,  //! <Type Comment="Set if the speed of the axis is negative" Name="_LMCAXIS_STATUS.ActDirFlg"/>
+    16 HandFlg,  //! <Type Comment="Set if one of the functions: PowerOff or MoveHand is called" Name="_LMCAXIS_STATUS.HandFlg"/>
+    17 ModuloFlg,  //! <Type Comment="Set if the axis is defined as a modulo-axis" Name="_LMCAXIS_STATUS.ModuloFlg"/>
+    18 NCMotion,  //! <Type Comment="Set if the axis is in NC postion mode: &quot;_NCPositioning&quot;" Name="_LMCAXIS_STATUS.NCMotion"/>
+    19 NoActPosMeth,  //! <Type Comment="Set if axis is in &quot;SimulateMode&quot; of the client &quot;ActPosition&quot; is not connected" Name="_LMCAXIS_STATUS.NoActPosMeth"/>
+    20 NoControlMeth,  //! <Type Comment="Set if axis is in &quot;SimulateMode&quot; of the client &quot;LMCController&quot; is not connected" Name="_LMCAXIS_STATUS.NoControlMeth"/>
+    21 NoRefMeth,  //! <Type Comment="Set if the client &quot;LMCReference&quot; is not connected or&#13;&#10;the function &quot;CheckConnection&quot; returns &quot;FALSE&quot; or&#13;&#10;the client &quot;ActPosition&quot; is not connected" Name="_LMCAXIS_STATUS.NoRefMeth"/>
+    22 NoActPosChk,  //! <Type Comment="Set if the client LMCSafety is connected and the function &quot;ChkHWReadyConnect&quot; returns &quot;FALSE&quot; or&#13;&#10;the client LMCSafety is not connected or&#13;&#10;the SimulateMode is active" Name="_LMCAXIS_STATUS.NoActPosChk"/>
+    23 NoPreRtWork,  //! <Type Comment="Set if the client &quot;LMCPreRtWorkTrigger&quot; is not connected" Name="_LMCAXIS_STATUS.NoPreRtWork"/>
+    24 NoPostRtWork,  //! <Type Comment="Set if the client &quot;LMCPostRtWorkTrigger&quot; is not connected" Name="_LMCAXIS_STATUS.NoPostRtWork"/>
+    25 DelayedMasterLock,  //! <Type Comment="Mode 1: Set if the slave-axis is coupled onto a master-axis and reset when the MasterLock is 0 a configurableamount of cycles&#13;&#10;Mode 2: Set if the the position and velocity is in a window within the master." Name="_LMCAXIS_STATUS.DelayedMasterLock"/>
+    26 Standstill,  //! <Type Comment="Set if axis is not moving." Name="_LMCAXIS_STATUS.Standstill"/>
+    27 BrakeForPowerOff,  //! <Type Comment="Set, if the axis is currently stoping for power off." Name="_LMCAXIS_STATUS.BrakeForPowerOff"/>
+    28 MasterError,  //! <Type Comment="Set, if some error of the master axis occured." Name="_LMCAXIS_STATUS.MasterError"/>
+    29 SlaveError,  //! <Type Comment="Set, if some error of a coupled slave axis occured." Name="_LMCAXIS_STATUS.SlaveError"/>
+    30 ReadyToPowerOn,  //! <Type Comment="Set, if the axis is ready to poweron&#13;&#10; =&gt; HWReady is okay&#13;&#10; =&gt; _DriveAxis.StateWord.SwitchedOn is 1" Name="_LMCAXIS_STATUS.ReadyToPowerOn"/>
+  ];
+  _LMCAXIS_TUNE_MODE :  //! <Type Comment="Parameter of the function: &quot;TuneAxis&quot;&#13;&#10;Movement for the purpose of optimization of the control parameters" Name="_LMCAXIS_TUNE_MODE"/>
+  (
+    LMCAXIS_TUNE_POSITON_IN_NEGATIVE_DIRECTION:=4294967294,  //! <Type Comment="Parameter of the function &quot;TuneAxis&quot;:&#13;&#10;Relative movement in negative direction" Name="_LMCAXIS_TUNE_MODE.LMCAXIS_TUNE_POSITON_IN_NEGATIVE_DIRECTION"/>
+    LMCAXIS_TUNE_ZERO_TO_NEGATIVE_POSITION:=4294967295,  //! <Type Comment="Parameter of the function &quot;TuneAxis&quot;:&#13;&#10;Movement in negative direction between position-input and zero-position" Name="_LMCAXIS_TUNE_MODE.LMCAXIS_TUNE_ZERO_TO_NEGATIVE_POSITION"/>
+    LMCAXIS_TUNE_ACTPOSITION_POSITION,  //! <Type Comment="Parameter of the function &quot;TuneAxis&quot;:&#13;&#10;Movement between the current position and the position added to the current one" Name="_LMCAXIS_TUNE_MODE.LMCAXIS_TUNE_ACTPOSITION_POSITION"/>
+    LMCAXIS_TUNE_ZERO_TO_POSITIVE_POSITION,  //! <Type Comment="Parameter of the function &quot;TuneAxis&quot;:&#13;&#10;Movement in positive direction between position-input and zero-position" Name="_LMCAXIS_TUNE_MODE.LMCAXIS_TUNE_ZERO_TO_POSITIVE_POSITION"/>
+    LMCAXIS_TUNE_POSITON_IN_POSITIVE_DIRECTION  //! <Type Comment="Parameter of the function &quot;TuneAxis&quot;:&#13;&#10;Relative movement in positiv direction" Name="_LMCAXIS_TUNE_MODE.LMCAXIS_TUNE_POSITON_IN_POSITIVE_DIRECTION"/>
+  )$DINT;
+  _LMCCONTROLLERTYPE :
+  (
+    _LMCNOCONTROLLER,  //! <Type Comment="no controller" Name="_LMCCONTROLLERTYPE._LMCNOCONTROLLER"/>
+    _LMCUSERCONTROLLER,  //! <Type Comment="user defined controller" Name="_LMCCONTROLLERTYPE._LMCUSERCONTROLLER"/>
+    _LMCDUMMYCONTROLLER,  //! <Type Comment="DummyController" Name="_LMCCONTROLLERTYPE._LMCDUMMYCONTROLLER"/>
+    _LMCHYDROCONTROLLER,  //! <Type Comment="HydroController" Name="_LMCCONTROLLERTYPE._LMCHYDROCONTROLLER"/>
+    _LMCKV_CONTROLLER,  //! <Type Comment="KV_Controller" Name="_LMCCONTROLLERTYPE._LMCKV_CONTROLLER"/>
+    _LMCNCCONTROLLER,  //! <Type Comment="NCController" Name="_LMCCONTROLLERTYPE._LMCNCCONTROLLER"/>
+    _LMCPOSCONTROLLER,  //! <Type Comment="PosController" Name="_LMCCONTROLLERTYPE._LMCPOSCONTROLLER"/>
+    _LMCDRIVEPOSONTROL,  //! <Type Comment="DrivePosController" Name="_LMCCONTROLLERTYPE._LMCDRIVEPOSONTROL"/>
+    _LMCUSERCONTROLLER_NEW:=101,
+    _LMCKV_CONTROLLER_NEW:=104,  //! <Type Comment="_LMCKVController" Name="_LMCCONTROLLERTYPE._LMCKV_CONTROLLER_NEW"/>
+    _LMCPOSCONTROLLER_NEW:=106,  //! <Type Comment="_LMCPosController" Name="_LMCCONTROLLERTYPE._LMCPOSCONTROLLER_NEW"/>
+    _LMCSIGMATEKCONTROLLER:=107,  //! <Type Comment="_LMCSigController" Name="_LMCCONTROLLERTYPE._LMCSIGMATEKCONTROLLER"/>
+    _LMCCALCMODEL_CONTROLLER  //! <Type Comment="_LMCVirtualPosController" Name="_LMCCONTROLLERTYPE._LMCCALCMODEL_CONTROLLER"/>
+  )$UDINT;
+  _POSFLAGS : BDINT
+  [
+    1 SetSFF,  //! <Type Comment="0 .. the set velocity isn&apos;t written to the drive axis object (SFF)&#13;&#10;1 .. default :the set velocity is written to the drive axis object (SFF)" Name="_POSFLAGS.SetSFF"/>
+    2 XWCalcInt,  //! <Type Comment="0 .. default : the contouring error is read directly from the drive axis object&#13;&#10;1 .. the contouring error is calculated in the DrivePosControl object&#13;&#10;" Name="_POSFLAGS.XWCalcInt"/>
+    3 WaitPowerOff,  //! <Type Comment="0 ... do not wait for the OperationEnabled-Bit of the controlword&#13;&#10;1 .. default: wait for the OperationEnabled-Bit while poweroff" Name="_POSFLAGS.WaitPowerOff"/>
+  ];
   _SDDAXISSTATE : BDINT
   [
     1 NoHW,
@@ -70,6 +536,59 @@ TYPE
     _SDDURINIT,
     _SDDEXDATA
   )$UDINT;
+  CncFlags : BDINT
+  [
+    1 HwError,  //! <Type Comment="Hardware error Flag" Name="CncFlags.HwError"/>
+    2 SwMin,  //! <Type Comment="Software endswitch minimum active" Name="CncFlags.SwMin"/>
+    3 SwMax,  //! <Type Comment="Software endswitch maximum active" Name="CncFlags.SwMax"/>
+    4 v_error,  //! <Type Comment="velocity setting error" Name="CncFlags.v_error"/>
+    5 a_error,  //! <Type Comment="Acceleration / deceleration setting error" Name="CncFlags.a_error"/>
+    6 ContrOff,  //! <Type Comment="position controller off" Name="CncFlags.ContrOff"/>
+    7 NoRef,  //! <Type Comment="no position reference" Name="CncFlags.NoRef"/>
+    8 DragLim,  //! <Type Comment="contouring error" Name="CncFlags.DragLim"/>
+    9 ComandErr,  //! <Type Comment="Command is not exepted" Name="CncFlags.ComandErr"/>
+    10 ActPosError,  //! <Type Comment="invalid position of the hardware" Name="CncFlags.ActPosError"/>
+    11 IsNotControlling,  //! <Type Comment="wake and shake is active" Name="CncFlags.IsNotControlling"/>
+    12 Follow,
+    13 OverFlowError,
+    16 GlobErr,  //! <Type Comment="Any other errors is active" Name="CncFlags.GlobErr"/>
+  ];
+#pragma pack(push, 1)
+  CNCInternalStruct : STRUCT
+    ptrExt : ^DINT;
+    ptrInt : ^DINT;
+    ptrBinOffset : ^DINT;
+    NowOverflow : DINT;
+    OverflowDelta : DINT;
+    SetPos : DINT;
+  END_STRUCT;
+#pragma pack(pop)
+  CntrFlgs : BDINT
+  [
+    1 InPosition,  //! <Type Comment="Axis is in position" Name="CntrFlgs.InPosition"/>
+    2 FiltRdy,  //! <Type Comment="Axis is in position and jerk filter is ready" Name="CntrFlgs.FiltRdy"/>
+    3 PosLimActive,  //! <Type Comment="Position limit is active, set position is over the SW end position" Name="CntrFlgs.PosLimActive"/>
+    4 Decell,  //! <Type Comment="Deceleration is active" Name="CntrFlgs.Decell"/>
+    5 bDynSWLimit,  //! <Type Comment="Set if axis has reached one of its dynamic SW endpositions" Name="CntrFlgs.bDynSWLimit"/>
+    7 SetFlg,  //! <Type Comment="Set by calling the SetPositon, CNCRefRun and NCRefRun functions Reset after activating the controller." Name="CntrFlgs.SetFlg"/>
+    10 EnLesFlg,  //! <Type Comment="Endless positioning is active" Name="CntrFlgs.EnLesFlg"/>
+    11 DirFlg,  //! <Type Comment="Commanded axis direction (0 -&gt; positive, 1 -&gt; negative)" Name="CntrFlgs.DirFlg"/>
+    12 ActDirFlg,  //! <Type Comment="Actual axis direction (0 -&gt; positive, 1 -&gt; negative)" Name="CntrFlgs.ActDirFlg"/>
+    13 EmergStop,  //! <Type Comment="Emergency stop is active" Name="CntrFlgs.EmergStop"/>
+    14 AutoRun,  //! <Type Comment="Controller output autotuning is running" Name="CntrFlgs.AutoRun"/>
+    15 AutoStop,  //! <Type Comment="Controller output autotuning is ready" Name="CntrFlgs.AutoStop"/>
+    16 Test,  //! <Type Comment="Is only queried when ControllerOn is set to 0." Name="CntrFlgs.Test"/>
+    17 NoActpos,  //! <Type Comment="The Client &quot;iActPosition&quot; is not connected" Name="CntrFlgs.NoActpos"/>
+    18 Overflow,  //! <Type Comment="The axis has an internal position overflow." Name="CntrFlgs.Overflow"/>
+    19 NoControl,  //! <Type Comment="The axis is not connected to a controller and the CNC therefore operates as a profile generator only." Name="CntrFlgs.NoControl"/>
+    20 ModuloFlg,  //! <Type Comment="The axis is defined as a modulo axis." Name="CntrFlgs.ModuloFlg"/>
+    21 NoActPosMeth,  //! <Type Comment="The &quot;iActPosition&quot; client is not connected to a server (axis operates without posi-tion feedback)." Name="CntrFlgs.NoActPosMeth"/>
+    22 NoRefMeth,  //! <Type Comment="The &quot;iRefChannal&quot; is not connected" Name="CntrFlgs.NoRefMeth"/>
+    23 NoControlMeth,  //! <Type Comment="The &quot;oSignalchannal&quot; client is not connected" Name="CntrFlgs.NoControlMeth"/>
+    24 NoSpecial,  //! <Type Comment="The &quot;oPrecyclictrigger&quot; client is not connected" Name="CntrFlgs.NoSpecial"/>
+    25 NCMotion,  //! <Type Comment="The CNC class is operated in NC mode" Name="CntrFlgs.NCMotion"/>
+    26 NoActPosChk,
+  ];
   DS402_Control : BDINT
   [
     1 SwitchOn,
@@ -134,8 +653,27 @@ TYPE
     uiChNo : UINT;
   END_STRUCT;
 #pragma pack(pop)
+  MasterStruct : STRUCT  //! <Type Comment="Pointers to the master axis data" Name="MasterStruct"/>
+    pos : ^DINT;  //! <Type Comment="Pointer to the master axis position [internal units]" Name="MasterStruct.pos"/>
+    Speed : ^DINT;  //! <Type Comment="Pointer to the master axis speed [internal units / tick]" Name="MasterStruct.Speed"/>
+    ModuloMaster : ^DINT;  //! <Type Comment="Pointer to ModuloInt of master axis [internal units]" Name="MasterStruct.ModuloMaster"/>
+    PosLREAL : pVoid;  //! <Type Comment="pointer to a LREAL value cointainig the master position [internal units]&#13;&#10;(this pointer is set and used only by _LMCAxis objects with MoveType=_JERK_PROFILE)" Name="MasterStruct.PosLREAL"/>
+    SpeedLREAL : pVoid;  //! <Type Comment="pointer to a LREAL value cointainig the master speed [internal units /tick]&#13;&#10;(this pointer is set and used only by _LMCAxis objects with MoveType=_JERK_PROFILE)" Name="MasterStruct.SpeedLREAL"/>
+    pMasterThis : pVoid;  //! <Type Comment="pointer to the _LMCAxis master object" Name="MasterStruct.pMasterThis"/>
+  END_STRUCT;
   pHwBase : ^HwBase;
   pHwBaseCDIAS : ^HwBaseCDIAS;
+  ProfileCommandStatus :
+  (
+    PassiveProfile,  //! <Type Comment="Axis are unlocked in passive mode" Name="ProfileCommandStatus.PassiveProfile"/>
+    IdleProfile,  //! <Type Comment="Axis are locked in idle mode - no motion sequences are available" Name="ProfileCommandStatus.IdleProfile"/>
+    RunProfile,  //! <Type Comment="Axes are in motion to generate a profile" Name="ProfileCommandStatus.RunProfile"/>
+    EndProfile,  //! <Type Comment="The generated profile is finished now" Name="ProfileCommandStatus.EndProfile"/>
+    ErrorProfile,  //! <Type Comment="An error occured" Name="ProfileCommandStatus.ErrorProfile"/>
+    IdleProfileRestart,  //! <Type Comment="waiting for end of restart" Name="ProfileCommandStatus.IdleProfileRestart"/>
+    WaitProfileRestart,  //! <Type Comment="waiting for end of delay time after calling ContinueNCProg()" Name="ProfileCommandStatus.WaitProfileRestart"/>
+    WaitProfileForAxInPos  //! <Type Comment="profile is waiting for the actual axes position to be in position at an exact stop" Name="ProfileCommandStatus.WaitProfileForAxInPos"/>
+  )$UDINT;
   SafetyConfigStateType :
   (
     _ModuleNotFound,

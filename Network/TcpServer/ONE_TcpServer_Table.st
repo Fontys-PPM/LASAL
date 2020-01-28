@@ -163,7 +163,8 @@ TO_UDINT(3), (10)$UDINT, 4194303$DINT, 	//COMMANDSERVER
 
 //External connections
 0$UDINT,
-0$UDINT,
+1$UDINT,
+TO_UDINT(2), "XController", C_DIR, TO_UDINT(251825882), "XController1","ClassSvr",
 
 //Magic internal connections
 0$UDINT,
