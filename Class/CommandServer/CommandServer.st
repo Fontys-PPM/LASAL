@@ -73,6 +73,8 @@ CommandServer : CLASS
   //Clients:
 	CmdRouter 	: CltChCmd_CommandRouter;
   //Variables:
+		sendBuffer : ARRAY [0..1024] OF CHAR;
+
   //Functions:
 				//! <Function Comment="This Method is called if Data is received (Overwrite it, to create a Request)" Name="Response"/>
 	FUNCTION VIRTUAL GLOBAL Response
@@ -164,9 +166,20 @@ FUNCTION VIRTUAL GLOBAL CommandServer::Response
     // socket number from which data was received
 		dSock 	: DINT;
 	END_VAR
+  VAR
+  	pSendData : CHAR;
+  END_VAR
+
 
   CmdRouter.SetData(pData:=pData,size:=udSize);
-
+  
+  
+  
+  sendBuffer[0] := 'A';
+  sendBuffer[1] := 'C';
+  sendBuffer[2] := 'K';
+  
+  SendData(pData:=#sendBuffer[0], udSize:=3, dSock:=dSock, bDirect:=0);
 
 END_FUNCTION
 

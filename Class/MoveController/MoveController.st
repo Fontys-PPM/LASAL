@@ -4,7 +4,7 @@
 
 (*!
 <Class
-	Name               = "XController"
+	Name               = "MoveController"
 	Revision           = "0.0"
 	GUID               = "{4CCE7D61-1241-4401-9247-E713ACA7A0B9}"
 	RealtimeTask       = "false"
@@ -23,7 +23,7 @@
 	</Channels>
 </Class>
 *)
-XController : CLASS
+MoveController : CLASS
   //Servers:
 	ClassSvr 	: SvrChCmd_DINT;
   //Clients:
@@ -31,11 +31,18 @@ XController : CLASS
   //Variables:
   //Functions:
 	
+	FUNCTION VIRTUAL GLOBAL Init;
+	
 	FUNCTION GLOBAL MoveAxis
 		VAR_INPUT
 			XPos 	: DINT;
 			Speed 	: DINT;
 			Accel 	: DINT;
+		END_VAR;
+	
+	FUNCTION GLOBAL TogglePower
+		VAR_INPUT
+			Power 	: BOOL;
 		END_VAR;
   //Tables:
 	FUNCTION @STD
@@ -51,50 +58,79 @@ END_CLASS;
 //}}LSL_DECLARATION
 
 
-FUNCTION GLOBAL TAB XController::@CT_
+FUNCTION GLOBAL TAB MoveController::@CT_
 0$UINT,
-2#0100000000000010$UINT, //TY_XCONTROLLER
-0$UINT, 0$UINT, (SIZEOF(::XController))$UINT, 
+2#0100000000000010$UINT, //TY_MOVECONTROLLER
+0$UINT, 0$UINT, (SIZEOF(::MoveController))$UINT, 
 1$UINT, 1$UINT, 0$UINT, 
-TO_UDINT(220044894), "XController", //Class
+TO_UDINT(1841029985), "MoveController", //Class
 TO_UDINT(0), 0, 0$UINT, 0$UINT, //Baseclass
 //Servers:
-(::XController.ClassSvr.pMeth)$UINT, _CH_CMD$UINT, 2#0000000000000000$UINT, TO_UDINT(619352855), "ClassSvr", 
+(::MoveController.ClassSvr.pMeth)$UINT, _CH_CMD$UINT, 2#0000000000000000$UINT, TO_UDINT(619352855), "ClassSvr", 
 //Clients:
-(::XController.lmcX.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(908124938), "lmcX", TO_UDINT(1422175863), "_LMCAxis", 1$UINT, 85$UINT, 
+(::MoveController.lmcX.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(908124938), "lmcX", TO_UDINT(1422175863), "_LMCAxis", 1$UINT, 85$UINT, 
 END_FUNCTION
 
 
-#define USER_CNT_XController 0
+#define USER_CNT_MoveController 0
 
 TYPE
 	_LSL_STD_VMETH	: STRUCT
 			CmdTable	: CMDMETH;
-			UserFcts	: ARRAY[0..USER_CNT_XController] OF ^Void;
+			UserFcts	: ARRAY[0..USER_CNT_MoveController] OF ^Void;
 	END_STRUCT;
 END_TYPE
 
-FUNCTION XController::@STD
+FUNCTION MoveController::@STD
 	VAR_OUTPUT
 		ret_code	: CONFSTATES;
 	END_VAR
+	VAR
+		vmt	: _LSL_STD_VMETH;
+	END_VAR
 
-	ret_code := C_OK;
+	//Command Methods
+	InitCmdTable (nCmd := nSTDCMD + USER_CNT_MoveController, pCmd := #vmt.CmdTable);
+	vmt.CmdTable.Init		:= #Init();
+	ClassSvr.pMeth		:= StoreCmd (pCmd := #vmt.CmdTable, SHARED);
+
+	IF ClassSvr.pMeth THEN
+		ret_code	:= C_OK;
+	ELSE
+		ret_code	:= C_OUTOF_NEAR;
+		RETURN;
+	END_IF;
 
 END_FUNCTION
 
 //{{LSL_IMPLEMENTATION
 
 
-FUNCTION GLOBAL XController::MoveAxis
+FUNCTION GLOBAL MoveController::MoveAxis
 	VAR_INPUT
 		XPos 	: DINT;
 		Speed 	: DINT;
 		Accel 	: DINT;
 	END_VAR
   
-  lmcX.PowerOn(Mode:=::_LMCAXIS_MOVEDIRECTION::LMCAXIS_MOVE_ANY_WAY);
   lmcX.MoveRelative(Position:=XPos, Mode:=::_LMCAXIS_MOVE_RELATIVE_MODE::LMCAXIS_MOVE_RELATIVE_TO_DESTINATION, Speed:=Speed, Accel:=Accel, Decel:=Accel, Jerk:=0);
-  //lmcX.PowerOff(Mode:=::_LMCAXIS_POWER_OFF_MODE::LMCAXIS_SMOOTH_STOPP);
+
+END_FUNCTION
+
+
+FUNCTION GLOBAL MoveController::TogglePower
+	VAR_INPUT
+		Power 	: BOOL;
+	END_VAR
   
+  IF Power = TRUE THEN
+    lmcX.PowerOn(Mode:=::_LMCAXIS_MOVEDIRECTION::LMCAXIS_MOVE_ANY_WAY);
+  ELSIF Power = FALSE THEN
+    lmcX.PowerOff(Mode:=::_LMCAXIS_POWER_OFF_MODE::LMCAXIS_SMOOTH_STOPP);
+  END_IF
+END_FUNCTION
+
+
+FUNCTION VIRTUAL GLOBAL MoveController::Init
+    TogglePower(Power:=True);
 END_FUNCTION

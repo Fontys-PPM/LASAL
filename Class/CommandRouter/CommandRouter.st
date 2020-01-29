@@ -20,8 +20,8 @@
 	<Channels>
 		<Server Name="CmdRouter" GUID="{CF3EF3C9-C556-423D-B567-DE197EC8F4DD}" Visualized="false" Initialize="false" WriteProtected="true" Retentive="false"/>
 		<Server Name="Debug" GUID="{01CF4B89-FFCD-415C-A4E0-06F6413C5D6E}" Visualized="false" Initialize="false" WriteProtected="true" Retentive="false"/>
-		<Client Name="Decoder" Required="true" Internal="false"/>
-		<Client Name="XController" Required="true" Internal="false"/>
+		<Client Name="clib" Required="false" Internal="false"/>
+		<Client Name="Controller" Required="true" Internal="false"/>
 	</Channels>
 </Class>
 *)
@@ -30,10 +30,20 @@ CommandRouter : CLASS
 	CmdRouter 	: SvrChCmd_DINT;
 	Debug 	: SvrCh_DINT;
   //Clients:
-	Decoder 	: CltChCmd_CommandDecoder;
-	XController 	: CltChCmd_XController;
+	Controller 	: CltChCmd_MoveController;
+	clib 	: CltChCmd_SigCLib;
   //Variables:
 		DataBuffer : ARRAY [0..1024] OF CHAR;
+
+		Command : ARRAY [0..4] OF CHAR;
+
+		X : ARRAY [0..5] OF CHAR;
+
+		Y : ARRAY [0..5] OF CHAR;
+
+		Z : ARRAY [0..5] OF CHAR;
+
+		Phi : ARRAY [0..5] OF CHAR;
 
   //Functions:
 	
@@ -50,8 +60,8 @@ CommandRouter : CLASS
 	FUNCTION GLOBAL TAB @CT_;
 END_CLASS;
 
-#pragma usingLtd CommandDecoder
-#pragma usingLtd XController
+#pragma usingLtd MoveController
+#pragma usingLtd SigCLib
 
 
 //}}LSL_DECLARATION
@@ -68,8 +78,8 @@ TO_UDINT(0), 0, 0$UINT, 0$UINT, //Baseclass
 (::CommandRouter.CmdRouter.pMeth)$UINT, _CH_CMD$UINT, 2#0000000000000000$UINT, TO_UDINT(119683386), "CmdRouter", 
 (::CommandRouter.Debug.pMeth)$UINT, _CH_SVR$UINT, 2#0000000000000000$UINT, TO_UDINT(2616296727), "Debug", 
 //Clients:
-(::CommandRouter.Decoder.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(3512848829), "Decoder", TO_UDINT(1132231514), "CommandDecoder", 0$UINT, 0$UINT, 
-(::CommandRouter.XController.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(220044894), "XController", TO_UDINT(220044894), "XController", 0$UINT, 0$UINT, 
+(::CommandRouter.Controller.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(1198357413), "Controller", TO_UDINT(1841029985), "MoveController", 0$UINT, 0$UINT, 
+(::CommandRouter.clib.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000000$UINT, TO_UDINT(1745651867), "clib", TO_UDINT(77440046), "SigCLib", 0$UINT, 24$UINT, 
 END_FUNCTION
 
 
@@ -107,20 +117,56 @@ FUNCTION GLOBAL CommandRouter::SetData
 	END_VAR
   
   VAR
-  	X : DINT;
+    pString : ^CHAR;
+  	counter : DINT;
+    commandSize : DINT;
+    parameterSize : DINT;
+    XVal : DINT;
+    YVal : DINT;
+    ZVal : DINT;
+    PhiVal : DINT;
   END_VAR
 
-  
+  parameterSize := 6 + 1;
+
   Debug += 1;
   
   _memcpy(ptr1:=#DataBuffer[0], ptr2:=pData, cntr:=size);
   DataBuffer[size] := 0;
+  pString := #DataBuffer[0];
   
-  Decoder.DecodeCommand(pString:=#DataBuffer[0]);
+
+  // get first 5 values (this represents the command)
+  FOR counter := 0 TO 4 BY 1 DO
+    Command[counter] := (pString+counter)^;
+  END_FOR;
   
-  X := Decoder.XVal.Read();
-  
-  XController.MoveAxis(XPos:=X, Speed:=200000, Accel:=2000000);
-  
+  // get the other values depending
+  // on the command (these represent the command parameters)
+  if clib.StrCmp(ps1:=#Command[0], ps2:="CMOVE") = 0 then
+    FOR counter := 0 TO 5 BY 1 DO
+      X[counter] := (pString+counter+parameterSize-1)^; //6
+    END_FOR;
+    
+    FOR counter := 0 TO 5 BY 1 DO
+      Y[counter] := (pString+counter+parameterSize*2-1)^; //13
+    END_FOR;
+    
+    FOR counter := 0 TO 5 BY 1 DO
+      Z[counter] := (pString+counter+parameterSize*3-1)^; //20
+    END_FOR;
+
+    FOR counter := 0 TO 5 BY 1 DO
+      Phi[counter] := (pString+counter+parameterSize*4-1)^; //27
+    END_FOR;
+    
+    XVal := clib.AToI(ps1:=#X[0]);
+    YVal := cLib.AToI(ps1:=#Y[0]);
+    ZVal := cLib.AToI(ps1:=#Y[0]);
+    PhiVal := cLib.AToI(ps1:=#Phi[0]);
+
+    Controller.MoveAxis(XPos:=XVal, Speed:=200000, Accel:=2000000);
+  end_if;
+
   
 END_FUNCTION

@@ -419,9 +419,9 @@
 			</Networks>
 		</Object>
 		<Object
-			Name       = "XController1"
+			Name       = "moveController"
 			GUID       = "{9F7A84C7-AA7E-412D-B322-4F016996E74F}"
-			Class      = "XController"
+			Class      = "MoveController"
 			Position   = "(3060,750)"
 			Visualized = "false">
 			<Channels>
@@ -436,7 +436,7 @@
 	<Connections>
 		<Connection Source="DrivePosControl1.cDriveAxis" Destination="_DriveAxis2.CmdState"/>
 		<Connection Source="_LMCAxis1.LMCController" Destination="DrivePosControl1.Signal_Input" Vertices="(2040,900),(1594,900),"/>
-		<Connection Source="XController1.lmcX" Destination="_LMCAxis1.Control" Vertices="(3060,840),(2706,840),"/>
+		<Connection Source="moveController.lmcX" Destination="_LMCAxis1.Control" Vertices="(3060,840),(2706,840),"/>
 		<Connection Source="_LMCAxis1.ActPosition" Destination="_DriveAxis2.ActPos"/>
 	</Connections>
 	<!-- Headerfiles -->

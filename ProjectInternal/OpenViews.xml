@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <OpenViews>
+	<View Key="CommandRouter" Type="2" LineNr="63"/>
+	<View Key="XAxis" Type="0"/>
+	<View Key="MoveController" Type="2" LineNr="24"/>
 	<View Key="TcpServer" Type="0"/>
-	<View Key="CommandDecoder" Type="2" LineNr="38"/>
-	<View Key="CommandRouter" Type="2" LineNr="29"/>
-	<View Key="XAxis" Type="0"/>
-	<View Key="XController" Type="2" LineNr="15"/>
-	<View Key="XAxis" Type="0"/>
+	<View Key="CommandServer" Type="2" LineNr="11"/>
+	<View Key="MoveController" Type="2" LineNr="24"/>
 	<Setting Variable="OutputDebugger" Value=""/>
 </OpenViews>

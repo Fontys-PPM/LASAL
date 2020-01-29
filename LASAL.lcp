@@ -115,7 +115,6 @@
 		<File Path=".\Class\_TCPIP_SERVER\_TCPIP_SERVER.st"/>
 		<File Path=".\Class\CommandServer\CommandServer.st"/>
 		<File Path=".\Class\CommandRouter\CommandRouter.st"/>
-		<File Path=".\Class\CommandDecoder\CommandDecoder.st"/>
 		<File Path=".\Class\_BusInterfaceSdiasDriveMng\_BusInterfaceSdiasDriveMng.st"/>
 		<File Path=".\Class\_DriveMng_DC062\_DriveMng_DC062.st"/>
 		<File Path=".\Class\_DriveMngBase\_DriveMngBase.st"/>
@@ -186,7 +185,7 @@
 		<File Path=".\Class\_LMCSafety\_LMCSafety.st"/>
 		<File Path=".\Class\Controller\Controller.st"/>
 		<File Path=".\Class\DrivePosControl\DrivePosControl.st"/>
-		<File Path=".\Class\XController\XController.st"/>
+		<File Path=".\Class\MoveController\MoveController.st"/>
 	</ClassFiles>
 	<NetworkFiles>
 		<File Path=".\Network\TcpServer\TcpServer.lcn"/>

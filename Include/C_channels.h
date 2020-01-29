@@ -315,13 +315,6 @@ typedef struct CltChCmd_ASCII_BIN
     ASCII_BIN *pCmd;
   } CltChCmd_ASCII_BIN;
 
-typedef struct CltChCmd_CommandDecoder 
-  {
-    struct SvrChCmd_DINT *pCh;
-    DINT dData;
-    CommandDecoder *pCmd;
-  } CltChCmd_CommandDecoder;
-
 typedef struct CltChCmd_CommandRouter 
   {
     struct SvrChCmd_DINT *pCh;
@@ -433,6 +426,13 @@ typedef struct CltChCmd_MerkerEx
     UDINT dData;
     MerkerEx *pCmd;
   } CltChCmd_MerkerEx;
+
+typedef struct CltChCmd_MoveController 
+  {
+    struct SvrChCmd_DINT *pCh;
+    DINT dData;
+    MoveController *pCmd;
+  } CltChCmd_MoveController;
 
 typedef struct SvrChCmd_ProfileCommandStatus 
   {
@@ -552,13 +552,6 @@ typedef struct CltChCmd_WatchdogDias
     IO_State dData;
     WatchdogDias *pCmd;
   } CltChCmd_WatchdogDias;
-
-typedef struct CltChCmd_XController 
-  {
-    struct SvrChCmd_DINT *pCh;
-    DINT dData;
-    XController *pCmd;
-  } CltChCmd_XController;
 
 typedef struct SvrCh__CommandList_PTofCls__LMCAxisBase 
   {

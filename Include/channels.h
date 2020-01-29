@@ -226,11 +226,6 @@ TYPE
     dData : DINT;
     pCmd : ^ASCII_BIN;
   END_STRUCT;
-  CltChCmd_CommandDecoder : STRUCT
-    pCh : ^SvrChCmd_DINT;
-    dData : DINT;
-    pCmd : ^CommandDecoder;
-  END_STRUCT;
   CltChCmd_CommandRouter : STRUCT
     pCh : ^SvrChCmd_DINT;
     dData : DINT;
@@ -310,6 +305,11 @@ TYPE
     pCh : ^SvrChCmd_UDINT;
     dData : UDINT;
     pCmd : ^MerkerEx;
+  END_STRUCT;
+  CltChCmd_MoveController : STRUCT
+    pCh : ^SvrChCmd_DINT;
+    dData : DINT;
+    pCmd : ^MoveController;
   END_STRUCT;
   SvrChCmd_ProfileCommandStatus : STRUCT
     pMeth : ^CMDMETH;
@@ -395,11 +395,6 @@ TYPE
     pCh : ^SvrChCmd_IO_State;
     dData : IO_State;
     pCmd : ^WatchdogDias;
-  END_STRUCT;
-  CltChCmd_XController : STRUCT
-    pCh : ^SvrChCmd_DINT;
-    dData : DINT;
-    pCmd : ^XController;
   END_STRUCT;
   SvrCh__CommandList_PTofCls__LMCAxisBase : STRUCT
     pMeth : ^CHMETH;

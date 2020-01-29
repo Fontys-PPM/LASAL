@@ -82,10 +82,9 @@ FUNCTION GLOBAL TAB ONE_TcpServer
 -1$UINT, 0$UINT, 
 0$UINT, 0$UINT,
 
-9$UDINT,
+8$UDINT,
 TO_UDINT(916194998), "_CheckSum", 1$UINT, 0$UINT, 1$UINT,
 TO_UDINT(26234884), "_TCPIP_SERVER", 1$UINT, 36$UINT, 0$UINT,
-TO_UDINT(1132231514), "CommandDecoder", 0$UINT, 0$UINT, 1$UINT,
 TO_UDINT(2047756655), "CommandRouter", 0$UINT, 0$UINT, 1$UINT,
 TO_UDINT(1706127036), "CommandServer", 0$UINT, 0$UINT, 1$UINT,
 TO_UDINT(2225119864), "MerkerEx", 1$UINT, 22$UINT, 3$UINT,
@@ -95,8 +94,6 @@ TO_UDINT(3232495061), "VirtualBaseInit", 1$UINT, 3$UINT, 0$UINT,
 
 1$UINT, TO_UDINT(554147771), "COMMANDSERVER\_BASE\CHECKSUM", 
 
-
-_NO_ATTR, TO_UDINT(1132231514), "COMMANDDECODER", 
 
 _NO_ATTR, TO_UDINT(2047756655), "COMMANDROUTER", 
 
@@ -115,32 +112,31 @@ _NO_ATTR, TO_UDINT(1706127036), "COMMANDSERVER",
 //Internal connections
 0$UDINT,
 7$UDINT,
-TO_UDINT(3), "CheckSum", TO_UDINT(0),
-TO_UDINT(3), "StrTaskName", TO_UDINT(9),
-TO_UDINT(3), "StrSemaName01", TO_UDINT(7),
-TO_UDINT(3), "StrSemaName02", TO_UDINT(8),
+TO_UDINT(2), "CheckSum", TO_UDINT(0),
+TO_UDINT(2), "StrTaskName", TO_UDINT(8),
+TO_UDINT(2), "StrSemaName01", TO_UDINT(6),
+TO_UDINT(2), "StrSemaName02", TO_UDINT(7),
+TO_UDINT(6), "MerkerEx0", TO_UDINT(3),
 TO_UDINT(7), "MerkerEx0", TO_UDINT(4),
 TO_UDINT(8), "MerkerEx0", TO_UDINT(5),
-TO_UDINT(9), "MerkerEx0", TO_UDINT(6),
 0$UDINT,
-5$UDINT,
-TO_UDINT(2), "Decoder", TO_UDINT(1), "ClassSvr",
-TO_UDINT(3), "CmdRouter", TO_UDINT(2), "CmdRouter",
+4$UDINT,
+TO_UDINT(2), "CmdRouter", TO_UDINT(1), "CmdRouter",
+TO_UDINT(6), "DataBuffer", TO_UDINT(3), "m_udLength",
 TO_UDINT(7), "DataBuffer", TO_UDINT(4), "m_udLength",
 TO_UDINT(8), "DataBuffer", TO_UDINT(5), "m_udLength",
-TO_UDINT(9), "DataBuffer", TO_UDINT(6), "m_udLength",
 
 //Initialization values
 0$UDINT,
 8$UDINT,
-TO_UDINT(3), "cPort", TO_UDINT(1985),//|TcpServer.commandServer.cPort;
-TO_UDINT(3), "cMaxConnections", TO_UDINT(0),//|TcpServer.commandServer.cMaxConnections;
-TO_UDINT(4), "ThreadSafe", TO_UDINT(0),//|TcpServer.StrSemaName01\_base\commandServer\MerkerEx0.ThreadSafe;
-TO_UDINT(5), "ThreadSafe", TO_UDINT(0),//|TcpServer.StrSemaName02\_base\commandServer\MerkerEx0.ThreadSafe;
-TO_UDINT(6), "ThreadSafe", TO_UDINT(0),//|TcpServer.StrTaskName\_base\commandServer\MerkerEx0.ThreadSafe;
-TO_UDINT(7), "SingleRealloc", TO_UDINT(1),//|TcpServer._base\commandServer\StrSemaName01.SingleRealloc;
-TO_UDINT(8), "SingleRealloc", TO_UDINT(1),//|TcpServer._base\commandServer\StrSemaName02.SingleRealloc;
-TO_UDINT(9), "SingleRealloc", TO_UDINT(1),//|TcpServer._base\commandServer\StrTaskName.SingleRealloc;
+TO_UDINT(2), "cPort", TO_UDINT(1985),//|TcpServer.commandServer.cPort;
+TO_UDINT(2), "cMaxConnections", TO_UDINT(0),//|TcpServer.commandServer.cMaxConnections;
+TO_UDINT(3), "ThreadSafe", TO_UDINT(0),//|TcpServer.StrSemaName01\_base\commandServer\MerkerEx0.ThreadSafe;
+TO_UDINT(4), "ThreadSafe", TO_UDINT(0),//|TcpServer.StrSemaName02\_base\commandServer\MerkerEx0.ThreadSafe;
+TO_UDINT(5), "ThreadSafe", TO_UDINT(0),//|TcpServer.StrTaskName\_base\commandServer\MerkerEx0.ThreadSafe;
+TO_UDINT(6), "SingleRealloc", TO_UDINT(1),//|TcpServer._base\commandServer\StrSemaName01.SingleRealloc;
+TO_UDINT(7), "SingleRealloc", TO_UDINT(1),//|TcpServer._base\commandServer\StrSemaName02.SingleRealloc;
+TO_UDINT(8), "SingleRealloc", TO_UDINT(1),//|TcpServer._base\commandServer\StrTaskName.SingleRealloc;
 
 //Symbolic initialization values
 0$UDINT,
@@ -156,7 +152,7 @@ TO_UDINT(9), "SingleRealloc", TO_UDINT(1),//|TcpServer._base\commandServer\StrTa
 
 0$UDINT,
 1$UDINT,
-TO_UDINT(3), (10)$UDINT, 4194303$DINT, 	//COMMANDSERVER
+TO_UDINT(2), (10)$UDINT, 4194303$DINT, 	//COMMANDSERVER
 
 0$UDINT,
 0$UDINT,
@@ -164,7 +160,7 @@ TO_UDINT(3), (10)$UDINT, 4194303$DINT, 	//COMMANDSERVER
 //External connections
 0$UDINT,
 1$UDINT,
-TO_UDINT(2), "XController", C_DIR, TO_UDINT(251825882), "XController1","ClassSvr",
+TO_UDINT(1), "Controller", C_DIR, TO_UDINT(1841029985), "moveController","ClassSvr",
 
 //Magic internal connections
 0$UDINT,
