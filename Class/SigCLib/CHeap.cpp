@@ -490,7 +490,12 @@ cExtern void *sigclib_heap_CTor(unsigned long size)
     size += 4;
    #endif
     
+   #ifdef HEAPBUBBLE_INUSE
+    unsigned char *pt = (unsigned char*)OS_SSR_Malloc(size + sizeof(_Heap));
+   #else    
     unsigned char *pt = (unsigned char*)sigclib_malloc(size + sizeof(_Heap));
+   #endif
+   
     if(pt != NULL)
     {
       HeapInitIntern((_Heap*)pt, (void*)(pt+sizeof(_Heap)), size);
@@ -512,7 +517,12 @@ cExtern void *sigclib_heap_DTor(void *php0)
     HeapUnLock(php); // ******************************************************** [CRITICAL SECTION]
     
     sigclib_mutex_destroy(php->mutex);
+
+   #ifdef HEAPBUBBLE_INUSE
+    OS_SSR_Free(php0);
+   #else    
     sigclib_free(php0);
+   #endif
   }
   
   return NULL;

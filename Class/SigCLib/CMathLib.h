@@ -5,15 +5,17 @@
 
   #define sigclib_pi 3.14159265358979323846264338327
   #define sigclib_rad_to_grad(p) (((p)*180) / (sigclib_pi))
-  #define sigclib_grad_to_rad(p) (((p)*sigclib_pi) / 180)
+  #define sigclib_grad_to_rad(p) (((p)*(sigclib_pi)) / 180)
   #define sigclib_arraysize(_P) (sizeof(_P) / sizeof(_P[0]))
 
   #ifdef cCompile
     #define sigclib_sprintf LSL_POS->piCRT->sprintf
 
     #define sigclib_abs(A)    (((A) < 0)? -(A) : (A))
+    #define sigclib_min(A, B) (((A) < (B))? (A) : (B))
     #define sigclib_max(A, B) (((A) > (B))? (A) : (B))
     #define sigclib_isQNAN(A) ((A) != (A))
+    #define sigclib_round(A)  (((A) >= 0)? ((A) + 0.5) : ((A) - 0.5))
     
     cExtern float sigclib_sin(float alpha);
     cExtern float sigclib_cos(float alpha);
@@ -59,6 +61,7 @@
     #define sigclib_asin(p)   asin(p)
     #define sigclib_acos(p)   acos(p)
     #define sigclib_atan(p)   atan(p)
+    #define sigclib_sqrt(p)   sqrt(p)
     
     function global __cdecl sigclib64_sin var_input alpha:lreal; end_var var_output retcode:lreal; end_var;
     function global __cdecl sigclib64_cos var_input alpha:lreal; end_var var_output retcode:lreal; end_var;

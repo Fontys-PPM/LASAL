@@ -5,7 +5,7 @@
 (*!
 <Class
 	Name               = "_FileSys"
-	Revision           = "1.19"
+	Revision           = "1.20"
 	GUID               = "{0AE62524-FC75-494D-830D-A06ECAF5AFFE}"
 	RealtimeTask       = "false"
 	CyclicTask         = "false"
@@ -30,6 +30,7 @@
 	</Dependencies>
 	<RevDoku>
 		<Owner Company="Sigmatek GmbH &amp; Co KG" Author="strgue"/>
+		<Dokumentation Revision="1.20" Date="2019-03-12" Author="praerw" Company="Sigmatek GmbH &amp; Co KG" Description="Added function SFR_GetVolumeSerialNumber"/>
 		<Dokumentation Revision="1.19" Date="2017-03-15" Author="schsas" Company="Sigmatek GmbH &amp; Co KG" Description="Check function RemoveDirectory_Full and RemoveDirectory_Full_A on NULL"/>
 		<Dokumentation Revision="1.18" Date="2015-10-21" Author="strgue" Company="Sigmatek GmbH &amp; Co KG" Description="Added functions RemoveDirectory_Full and RemoveDirectory_Full_A for OS version starting with 09.01.190 and 09.03.010"/>
 		<Dokumentation Revision="1.17" Date="2015-02-17" Author="plechr" Company="Sigmatek GmbH &amp; Co KG" Description="Changed OS-platform check for new _FileSys-methods"/>
@@ -120,6 +121,7 @@ _FileSys : CLASS
 	    SplitNameExtension : pVoid;
 	    RemoveDirectory_Full : pVoid;
 	    RemoveDirectory_Full_A : pVoid;
+	    GetVolumeSerialNumber : ^void;
 	  END_STRUCT;
 	END_TYPE
   //Servers:
@@ -789,6 +791,15 @@ _FileSys : CLASS
 		VAR_OUTPUT
 			RetVal (EAX) 	: DINT;			//! <Variable Comment="If asynchronous processing is activated, then the function returns a handle, which must be passed to the function GetAsyncState (parameter ID).&#13;&#10;Otherwise the return value is equivalent to the return value of the function RemoveDirectory." Name="RemoveDirectory_Full_A.RetVal"/>
 		END_VAR;
+				//! <Function Comment="This function reads the volume serial number of a drive." Name="GetVolumeSerialNumber"/>
+	FUNCTION __CDECL VIRTUAL GLOBAL GetVolumeSerialNumber
+		VAR_INPUT
+			drive 	: ^CHAR;
+			volumeSerialNumber 	: ^UDINT;
+		END_VAR
+		VAR_OUTPUT
+			iRC (EAX) 	: DINT;
+		END_VAR;
   //Tables:
 	FUNCTION @STD
 		VAR_OUTPUT
@@ -803,7 +814,7 @@ END_CLASS;
 FUNCTION GLOBAL TAB _FileSys::@CT_
 0$UINT,
 2#0100000000001000$UINT, //TY__FILESYS
-1$UINT, 19$UINT, (SIZEOF(::_FileSys))$UINT, 
+1$UINT, 20$UINT, (SIZEOF(::_FileSys))$UINT, 
 1$UINT, 0$UINT, 0$UINT, 
 TO_UDINT(545279513), "_FileSys", //Class
 TO_UDINT(0), 0, 0$UINT, 0$UINT, //Baseclass
@@ -813,7 +824,7 @@ TO_UDINT(0), 0, 0$UINT, 0$UINT, //Baseclass
 END_FUNCTION
 
 
-#define USER_CNT__FileSys 68
+#define USER_CNT__FileSys 69
 
 TYPE
 	_LSL_STD_VMETH	: STRUCT
@@ -994,6 +1005,24 @@ FUNCTION __CDECL DummyRemoveDirectory_Full_A
 	dRC := -1007;
 END_FUNCTION
 
+
+FUNCTION __CDECL DummyGetVolumeSerialNumber
+#pragma warning (disable:73)
+	VAR_INPUT
+		drive 	: ^CHAR;
+		volumeSerialNumber 	: ^UDINT;
+	END_VAR
+	VAR_OUTPUT
+		dRC 	: DINT;
+	END_VAR
+		
+	#pragma warning (default:73)
+  TRACE("ERROR: Function not available with this version/platform! OS >= 01.03.041 or OS >= 09.03.139 required");
+
+	dRC := -1007;
+
+END_FUNCTION
+
 FUNCTION  _FileSys::_FileSys
 VAR_OUTPUT
 	ret_code		: CONFSTATES;
@@ -1136,6 +1165,18 @@ END_VAR;
       aMeths [67] := #DummyRemoveDirectory_Full_A();
     end_if;
     
+    //Methods supported by RTK version >= 01.03.041, Salamander version >= 09.03.139
+    if (_RtOSVersion < 16#9000) & (_RtOSVersion >= 16#1329) |
+       (_RtOSVersion >= 16#938B) then
+      if pFile^.GetVolumeSerialNumber then
+        aMeths [68] := pFile^.GetVolumeSerialNumber;
+      else
+        aMeths [68] := #DummyGetVolumeSerialNumber();
+      end_if;
+
+    else
+      aMeths [68] := #DummyGetVolumeSerialNumber();
+    end_if;
     
 		ret_code  := InitOsiM_new(#aMeths[0]$void, USER_CNT__FileSys);
 	end_if;

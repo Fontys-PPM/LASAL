@@ -6,6 +6,16 @@
 		<IOConnections>
 			<IOConnection ObjSrv="_DriveAxis2" Server="CmdState" ObjClt="DrivePosControl1" Client="cDriveAxis" IOI="IOState" SortIndex="0" KeyName="000000"/>
 			<IOConnection ObjSrv="_DriveAxis2" Server="ActPos" ObjClt="_LMCAxis1" Client="ActPosition" IOI="Input" Type="Analog" SortIndex="1" KeyName="000001"/>
+			<IOConnection ObjSrv="_DriveAxis2" Server="ActCurrent" ObjClt="RefSwitchCurrent1" Client="Current" IOI="Input" Type="Analog" SortIndex="2" KeyName="000002"/>
+			<IOConnection ObjSrv="DM1611" Server="Input1" ObjClt="_LMCAxis2" Client="RefSwitch" IOI="Input" Type="Digital" SortIndex="3" KeyName="000003"/>
+			<IOConnection ObjSrv="ST1511" Server="SetFreqOut" ObjClt="NCController1" Client="oOutputSignal" IOI="Output" Type="Analog" SortIndex="4" KeyName="000004"/>
+			<IOConnection ObjSrv="ST1511" Server="ActPosition" ObjClt="_LMCAxis2" Client="ActPosition" IOI="Input" Type="Analog" SortIndex="5" KeyName="000005"/>
+			<IOConnection ObjSrv="ST1511" Server="SetFreqOut" IOI="Output" Type="Analog" SortIndex="6" KeyName="000006"/>
+			<IOConnection ObjSrv="ST1511" Server="Enable" ObjClt="NCController1" Client="oActive" IOI="Output" Type="Digital" SortIndex="7" KeyName="000007"/>
+			<IOConnection ObjSrv="ST1511" Server="Enable" IOI="Output" Type="Digital" SortIndex="8" KeyName="000008"/>
+			<IOConnection ObjSrv="ST1511" Server="ErrorQuit" ObjClt="NCController1" Client="HWErrorQuit" IOI="Output" Type="Digital" SortIndex="9" KeyName="000009"/>
+			<IOConnection ObjSrv="ST1511" Server="AxError" ObjClt="NCController1" Client="iHWErrors" IOI="IOState" Type="Digital" SortIndex="10" KeyName="000010"/>
+			<IOConnection ObjSrv="ST1511" Server="MaxCurrent" ObjClt="SetCurrent1" Client="Current" IOI="Output" Type="Analog" SortIndex="11" KeyName="000011"/>
 		</IOConnections>
 	</Entry>
 	<!-- List of Folders -->

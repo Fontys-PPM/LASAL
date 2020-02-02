@@ -406,7 +406,7 @@ FUNCTION GLOBAL TAB ONE_HW_Network
 -1$UINT, 0$UINT, 
 0$UINT, 0$UINT,
 
-38$UDINT,
+39$UDINT,
 TO_UDINT(1048633017), "_BusInterfaceSdiasDriveMng", 1$UINT, 10$UINT, 4$UINT,
 TO_UDINT(529317953), "_CanLib", 1$UINT, 10$UINT, 2$UINT,
 TO_UDINT(912370472), "_DriveAxis", 1$UINT, 63$UINT, 4$UINT,
@@ -415,7 +415,7 @@ TO_UDINT(833307860), "_DriveAxisSet", 1$UINT, 20$UINT, 4$UINT,
 TO_UDINT(1470062879), "_DriveMng_DC062", 1$UINT, 16$UINT, 4$UINT,
 TO_UDINT(496739206), "_DriveMngBase", 1$UINT, 41$UINT, 0$UINT,
 TO_UDINT(4078275645), "_SerLib", 1$UINT, 34$UINT, 2$UINT,
-TO_UDINT(2897291062), "ASCII_BIN", 1$UINT, 20$UINT, 1$UINT,
+TO_UDINT(2897291062), "ASCII_BIN", 1$UINT, 21$UINT, 1$UINT,
 TO_UDINT(3882880897), "BusInterfaceSDIASInternal", 2$UINT, 0$UINT, 0$UINT,
 TO_UDINT(658879389), "CP112_IOs", 1$UINT, 0$UINT, 1$UINT,
 TO_UDINT(794617671), "CriticalSection", 0$UINT, 4$UINT, 2$UINT,
@@ -433,6 +433,7 @@ TO_UDINT(3175101883), "SdiasBase", 1$UINT, 58$UINT, 0$UINT,
 TO_UDINT(4173303375), "SdiasHubBase", 1$UINT, 10$UINT, 1$UINT,
 TO_UDINT(2118381352), "SdiasManager", 1$UINT, 92$UINT, 1$UINT,
 TO_UDINT(1159122596), "SdiasPLC", 2$UINT, 0$UINT, 1$UINT,
+TO_UDINT(2317024038), "SetCurrent", 0$UINT, 0$UINT, 1$UINT,
 TO_UDINT(3646514510), "SR022", 1$UINT, 2$UINT, 1$UINT,
 TO_UDINT(1310079211), "ST011", 1$UINT, 11$UINT, 1$UINT,
 TO_UDINT(733517784), "ST151", 1$UINT, 2$UINT, 2$UINT,
@@ -529,6 +530,8 @@ _NO_ATTR, TO_UDINT(2190789875), "HWCONTROL1",
 
 _NO_ATTR, TO_UDINT(1378000520), "SDIASPLC1", 
 
+_NO_ATTR, TO_UDINT(1364947121), "SETCURRENT1", 
+
 _NO_ATTR, TO_UDINT(308402757), "SR0221", 
 
 _NO_ATTR, TO_UDINT(3024798335), "ST0111", 
@@ -568,10 +571,10 @@ _NO_ATTR, TO_UDINT(2395414379), "VARANMANAGER_11",
 //Internal connections
 0$UDINT,
 64$UDINT,
-TO_UDINT(0), "SerialNoStr", TO_UDINT(68),
-TO_UDINT(1), "SerialNoStr", TO_UDINT(71),
-TO_UDINT(2), "SerialNoStr", TO_UDINT(74),
-TO_UDINT(3), "SerialNoStr", TO_UDINT(77),
+TO_UDINT(0), "SerialNoStr", TO_UDINT(69),
+TO_UDINT(1), "SerialNoStr", TO_UDINT(72),
+TO_UDINT(2), "SerialNoStr", TO_UDINT(75),
+TO_UDINT(3), "SerialNoStr", TO_UDINT(78),
 TO_UDINT(6), "SDDAxSet1", TO_UDINT(10),
 TO_UDINT(6), "MerkerEx2", TO_UDINT(33),
 TO_UDINT(6), "RAMex2", TO_UDINT(49),
@@ -584,56 +587,56 @@ TO_UDINT(8), "RAMex2", TO_UDINT(51),
 TO_UDINT(9), "SDDAxSet1", TO_UDINT(13),
 TO_UDINT(9), "MerkerEx2", TO_UDINT(36),
 TO_UDINT(9), "RAMex2", TO_UDINT(52),
-TO_UDINT(14), "FWDateString", TO_UDINT(69),
-TO_UDINT(14), "FWNumSTring", TO_UDINT(70),
+TO_UDINT(14), "FWDateString", TO_UDINT(70),
+TO_UDINT(14), "FWNumSTring", TO_UDINT(71),
 TO_UDINT(14), "BusInterfaceSdiasDriveMng", TO_UDINT(0),
-TO_UDINT(15), "FWDateString", TO_UDINT(72),
-TO_UDINT(15), "FWNumSTring", TO_UDINT(73),
+TO_UDINT(15), "FWDateString", TO_UDINT(73),
+TO_UDINT(15), "FWNumSTring", TO_UDINT(74),
 TO_UDINT(15), "BusInterfaceSdiasDriveMng", TO_UDINT(1),
-TO_UDINT(16), "FWDateString", TO_UDINT(75),
-TO_UDINT(16), "FWNumSTring", TO_UDINT(76),
+TO_UDINT(16), "FWDateString", TO_UDINT(76),
+TO_UDINT(16), "FWNumSTring", TO_UDINT(77),
 TO_UDINT(16), "BusInterfaceSdiasDriveMng", TO_UDINT(2),
-TO_UDINT(17), "FWDateString", TO_UDINT(78),
-TO_UDINT(17), "FWNumSTring", TO_UDINT(79),
+TO_UDINT(17), "FWDateString", TO_UDINT(79),
+TO_UDINT(17), "FWNumSTring", TO_UDINT(80),
 TO_UDINT(17), "BusInterfaceSdiasDriveMng", TO_UDINT(3),
 TO_UDINT(21), "_SerLib1", TO_UDINT(18),
 TO_UDINT(21), "_SerLib2", TO_UDINT(19),
 TO_UDINT(21), "_CanLib1", TO_UDINT(4),
 TO_UDINT(21), "_CanLib2", TO_UDINT(5),
-TO_UDINT(24), "SerialNoStr", TO_UDINT(63),
+TO_UDINT(24), "SerialNoStr", TO_UDINT(64),
 TO_UDINT(26), "SafetyManager", TO_UDINT(53),
 TO_UDINT(26), "HWRtPostScan", TO_UDINT(27),
 TO_UDINT(53), "UdpSendData", TO_UDINT(23),
 TO_UDINT(53), "UdpReceiveData", TO_UDINT(22),
 TO_UDINT(56), "SdiasManager1", TO_UDINT(55),
 TO_UDINT(56), "SdiasHubBase1", TO_UDINT(54),
-TO_UDINT(57), "SerialNoStr", TO_UDINT(64),
 TO_UDINT(58), "SerialNoStr", TO_UDINT(65),
 TO_UDINT(59), "SerialNoStr", TO_UDINT(66),
-TO_UDINT(59), "ST151_IntVisu1", TO_UDINT(61),
 TO_UDINT(60), "SerialNoStr", TO_UDINT(67),
 TO_UDINT(60), "ST151_IntVisu1", TO_UDINT(62),
-TO_UDINT(63), "MerkerEx0", TO_UDINT(28),
-TO_UDINT(64), "MerkerEx0", TO_UDINT(29),
-TO_UDINT(65), "MerkerEx0", TO_UDINT(30),
-TO_UDINT(66), "MerkerEx0", TO_UDINT(31),
-TO_UDINT(67), "MerkerEx0", TO_UDINT(32),
-TO_UDINT(68), "MerkerEx0", TO_UDINT(37),
-TO_UDINT(69), "MerkerEx0", TO_UDINT(38),
-TO_UDINT(70), "MerkerEx0", TO_UDINT(39),
-TO_UDINT(71), "MerkerEx0", TO_UDINT(40),
-TO_UDINT(72), "MerkerEx0", TO_UDINT(41),
-TO_UDINT(73), "MerkerEx0", TO_UDINT(42),
-TO_UDINT(74), "MerkerEx0", TO_UDINT(43),
-TO_UDINT(75), "MerkerEx0", TO_UDINT(44),
-TO_UDINT(76), "MerkerEx0", TO_UDINT(45),
-TO_UDINT(77), "MerkerEx0", TO_UDINT(46),
-TO_UDINT(78), "MerkerEx0", TO_UDINT(47),
-TO_UDINT(79), "MerkerEx0", TO_UDINT(48),
-TO_UDINT(80), "ASCII_BIN1", TO_UDINT(20),
-TO_UDINT(80), "Hub_Base_Root0", TO_UDINT(25),
+TO_UDINT(61), "SerialNoStr", TO_UDINT(68),
+TO_UDINT(61), "ST151_IntVisu1", TO_UDINT(63),
+TO_UDINT(64), "MerkerEx0", TO_UDINT(28),
+TO_UDINT(65), "MerkerEx0", TO_UDINT(29),
+TO_UDINT(66), "MerkerEx0", TO_UDINT(30),
+TO_UDINT(67), "MerkerEx0", TO_UDINT(31),
+TO_UDINT(68), "MerkerEx0", TO_UDINT(32),
+TO_UDINT(69), "MerkerEx0", TO_UDINT(37),
+TO_UDINT(70), "MerkerEx0", TO_UDINT(38),
+TO_UDINT(71), "MerkerEx0", TO_UDINT(39),
+TO_UDINT(72), "MerkerEx0", TO_UDINT(40),
+TO_UDINT(73), "MerkerEx0", TO_UDINT(41),
+TO_UDINT(74), "MerkerEx0", TO_UDINT(42),
+TO_UDINT(75), "MerkerEx0", TO_UDINT(43),
+TO_UDINT(76), "MerkerEx0", TO_UDINT(44),
+TO_UDINT(77), "MerkerEx0", TO_UDINT(45),
+TO_UDINT(78), "MerkerEx0", TO_UDINT(46),
+TO_UDINT(79), "MerkerEx0", TO_UDINT(47),
+TO_UDINT(80), "MerkerEx0", TO_UDINT(48),
+TO_UDINT(81), "ASCII_BIN1", TO_UDINT(20),
+TO_UDINT(81), "Hub_Base_Root0", TO_UDINT(25),
 0$UDINT,
-68$UDINT,
+69$UDINT,
 TO_UDINT(6), "DriveMng", TO_UDINT(14), "CmdState",
 TO_UDINT(6), "DriveAxisSet", TO_UDINT(10), "Server0",
 TO_UDINT(7), "DriveMng", TO_UDINT(15), "CmdState",
@@ -651,57 +654,58 @@ TO_UDINT(12), "coRamEx", TO_UDINT(51), "m_udLength",
 TO_UDINT(13), "coMerkerEx", TO_UDINT(36), "m_udLength",
 TO_UDINT(13), "coRamEx", TO_UDINT(52), "m_udLength",
 TO_UDINT(14), "cOnline", TO_UDINT(0), "Online",
-TO_UDINT(14), "FwNumStr", TO_UDINT(70), "Data",
-TO_UDINT(14), "FwDatetr", TO_UDINT(69), "Data",
+TO_UDINT(14), "FwNumStr", TO_UDINT(71), "Data",
+TO_UDINT(14), "FwDatetr", TO_UDINT(70), "Data",
 TO_UDINT(14), "ToBusIF", TO_UDINT(0), "CallCommand",
 TO_UDINT(14), "SdiasIn", TO_UDINT(54), "ClassSvr",
 TO_UDINT(15), "cOnline", TO_UDINT(1), "Online",
-TO_UDINT(15), "FwNumStr", TO_UDINT(73), "Data",
-TO_UDINT(15), "FwDatetr", TO_UDINT(72), "Data",
+TO_UDINT(15), "FwNumStr", TO_UDINT(74), "Data",
+TO_UDINT(15), "FwDatetr", TO_UDINT(73), "Data",
 TO_UDINT(15), "ToBusIF", TO_UDINT(1), "CallCommand",
 TO_UDINT(15), "SdiasIn", TO_UDINT(54), "ClassSvr",
 TO_UDINT(16), "cOnline", TO_UDINT(2), "Online",
-TO_UDINT(16), "FwNumStr", TO_UDINT(76), "Data",
-TO_UDINT(16), "FwDatetr", TO_UDINT(75), "Data",
+TO_UDINT(16), "FwNumStr", TO_UDINT(77), "Data",
+TO_UDINT(16), "FwDatetr", TO_UDINT(76), "Data",
 TO_UDINT(16), "ToBusIF", TO_UDINT(2), "CallCommand",
 TO_UDINT(16), "SdiasIn", TO_UDINT(54), "ClassSvr",
 TO_UDINT(17), "cOnline", TO_UDINT(3), "Online",
-TO_UDINT(17), "FwNumStr", TO_UDINT(79), "Data",
-TO_UDINT(17), "FwDatetr", TO_UDINT(78), "Data",
+TO_UDINT(17), "FwNumStr", TO_UDINT(80), "Data",
+TO_UDINT(17), "FwDatetr", TO_UDINT(79), "Data",
 TO_UDINT(17), "ToBusIF", TO_UDINT(3), "CallCommand",
 TO_UDINT(17), "SdiasIn", TO_UDINT(54), "ClassSvr",
 TO_UDINT(21), "To_HwControl", TO_UDINT(26), "Control",
 TO_UDINT(24), "SdiasIn", TO_UDINT(54), "ClassSvr",
-TO_UDINT(25), "VaranConnect", TO_UDINT(80), "Control",
+TO_UDINT(25), "VaranConnect", TO_UDINT(81), "Control",
 TO_UDINT(27), "toHwControlBase", TO_UDINT(26), "Control",
 TO_UDINT(53), "To_HwControl", TO_UDINT(26), "Control",
 TO_UDINT(54), "ToNextSDIAS", TO_UDINT(55), "ClassState",
 TO_UDINT(55), "ToBusInterface", TO_UDINT(56), "CallCommand",
 TO_UDINT(56), "ToHwControl", TO_UDINT(26), "Control",
-TO_UDINT(57), "SdiasIn", TO_UDINT(54), "ClassSvr",
+TO_UDINT(57), "Current", TO_UDINT(60), "MaxCurrent",
 TO_UDINT(58), "SdiasIn", TO_UDINT(54), "ClassSvr",
 TO_UDINT(59), "SdiasIn", TO_UDINT(54), "ClassSvr",
 TO_UDINT(60), "SdiasIn", TO_UDINT(54), "ClassSvr",
-TO_UDINT(61), "toST151Base", TO_UDINT(59), "ClassState",
+TO_UDINT(61), "SdiasIn", TO_UDINT(54), "ClassSvr",
 TO_UDINT(62), "toST151Base", TO_UDINT(60), "ClassState",
-TO_UDINT(63), "DataBuffer", TO_UDINT(28), "m_udLength",
-TO_UDINT(64), "DataBuffer", TO_UDINT(29), "m_udLength",
-TO_UDINT(65), "DataBuffer", TO_UDINT(30), "m_udLength",
-TO_UDINT(66), "DataBuffer", TO_UDINT(31), "m_udLength",
-TO_UDINT(67), "DataBuffer", TO_UDINT(32), "m_udLength",
-TO_UDINT(68), "DataBuffer", TO_UDINT(37), "m_udLength",
-TO_UDINT(69), "DataBuffer", TO_UDINT(38), "m_udLength",
-TO_UDINT(70), "DataBuffer", TO_UDINT(39), "m_udLength",
-TO_UDINT(71), "DataBuffer", TO_UDINT(40), "m_udLength",
-TO_UDINT(72), "DataBuffer", TO_UDINT(41), "m_udLength",
-TO_UDINT(73), "DataBuffer", TO_UDINT(42), "m_udLength",
-TO_UDINT(74), "DataBuffer", TO_UDINT(43), "m_udLength",
-TO_UDINT(75), "DataBuffer", TO_UDINT(44), "m_udLength",
-TO_UDINT(76), "DataBuffer", TO_UDINT(45), "m_udLength",
-TO_UDINT(77), "DataBuffer", TO_UDINT(46), "m_udLength",
-TO_UDINT(78), "DataBuffer", TO_UDINT(47), "m_udLength",
-TO_UDINT(79), "DataBuffer", TO_UDINT(48), "m_udLength",
-TO_UDINT(80), "To_HwControl", TO_UDINT(26), "Control",
+TO_UDINT(63), "toST151Base", TO_UDINT(61), "ClassState",
+TO_UDINT(64), "DataBuffer", TO_UDINT(28), "m_udLength",
+TO_UDINT(65), "DataBuffer", TO_UDINT(29), "m_udLength",
+TO_UDINT(66), "DataBuffer", TO_UDINT(30), "m_udLength",
+TO_UDINT(67), "DataBuffer", TO_UDINT(31), "m_udLength",
+TO_UDINT(68), "DataBuffer", TO_UDINT(32), "m_udLength",
+TO_UDINT(69), "DataBuffer", TO_UDINT(37), "m_udLength",
+TO_UDINT(70), "DataBuffer", TO_UDINT(38), "m_udLength",
+TO_UDINT(71), "DataBuffer", TO_UDINT(39), "m_udLength",
+TO_UDINT(72), "DataBuffer", TO_UDINT(40), "m_udLength",
+TO_UDINT(73), "DataBuffer", TO_UDINT(41), "m_udLength",
+TO_UDINT(74), "DataBuffer", TO_UDINT(42), "m_udLength",
+TO_UDINT(75), "DataBuffer", TO_UDINT(43), "m_udLength",
+TO_UDINT(76), "DataBuffer", TO_UDINT(44), "m_udLength",
+TO_UDINT(77), "DataBuffer", TO_UDINT(45), "m_udLength",
+TO_UDINT(78), "DataBuffer", TO_UDINT(46), "m_udLength",
+TO_UDINT(79), "DataBuffer", TO_UDINT(47), "m_udLength",
+TO_UDINT(80), "DataBuffer", TO_UDINT(48), "m_udLength",
+TO_UDINT(81), "To_HwControl", TO_UDINT(26), "Control",
 
 //Initialization values
 0$UDINT,
@@ -807,133 +811,133 @@ TO_UDINT(54), "SplitterPlace", TO_UDINT(0),//|HW_Network.SdiasPLC1\SdiasHubBase1
 TO_UDINT(55), "DeviceID", TO_UDINT(0),//|HW_Network.SdiasPLC1\SdiasManager1.DeviceID;
 TO_UDINT(56), "CycleTime", TO_UDINT(1000),//|HW_Network.SdiasPLC1.CycleTime;
 TO_UDINT(56), "IsoStartPoint", TO_UDINT(50),//|HW_Network.SdiasPLC1.IsoStartPoint;
-TO_UDINT(57), "LEDControl", TO_UDINT(0),//|HW_Network.SR0221.LEDControl;
-TO_UDINT(57), "MinPulse", TO_UDINT(7),//|HW_Network.SR0221.MinPulse;
-TO_UDINT(57), "Place", TO_UDINT(6),//|HW_Network.SR0221.Place;
-TO_UDINT(57), "Required", TO_UDINT(1),//|HW_Network.SR0221.Required;
-TO_UDINT(57), "PWMPeriod", TO_UDINT(32),//|HW_Network.SR0221.PWMPeriod;
-TO_UDINT(57), "I2TThreshold", TO_UDINT(100),//|HW_Network.SR0221.I2TThreshold;
-TO_UDINT(57), "EncMode", TO_UDINT(1),//|HW_Network.SR0221.EncMode;
-TO_UDINT(57), "EncSampling", TO_UDINT(3),//|HW_Network.SR0221.EncSampling;
-TO_UDINT(57), "EncDirection", TO_UDINT(0),//|HW_Network.SR0221.EncDirection;
-TO_UDINT(57), "InvertZeroPosition", TO_UDINT(0),//|HW_Network.SR0221.InvertZeroPosition;
-TO_UDINT(57), "ABCountMode", TO_UDINT(0),//|HW_Network.SR0221.ABCountMode;
-TO_UDINT(57), "ExtendedData", TO_UDINT(0),//|HW_Network.SR0221.ExtendedData;
-TO_UDINT(58), "LEDControl", TO_UDINT(0),//|HW_Network.ST0111.LEDControl;
-TO_UDINT(58), "Place", TO_UDINT(8),//|HW_Network.ST0111.Place;
-TO_UDINT(58), "Required", TO_UDINT(1),//|HW_Network.ST0111.Required;
-TO_UDINT(58), "UsePulseCntCorrection", TO_UDINT(0),//|HW_Network.ST0111.UsePulseCntCorrection;
-TO_UDINT(58), "InvertEnable", TO_UDINT(0),//|HW_Network.ST0111.InvertEnable;
-TO_UDINT(58), "Deathtime", TO_UDINT(60),//|HW_Network.ST0111.Deathtime;
-TO_UDINT(58), "Input1Latch", TO_UDINT(0),//|HW_Network.ST0111.Input1Latch;
-TO_UDINT(58), "Input2Latch", TO_UDINT(0),//|HW_Network.ST0111.Input2Latch;
-TO_UDINT(58), "Input3Latch", TO_UDINT(0),//|HW_Network.ST0111.Input3Latch;
-TO_UDINT(58), "ZPulseLatch", TO_UDINT(0),//|HW_Network.ST0111.ZPulseLatch;
-TO_UDINT(59), "LEDControl", TO_UDINT(0),//|HW_Network.ST1511.LEDControl;
-TO_UDINT(59), "CurrentIncrease", TO_UDINT(1),//|HW_Network.ST1511.CurrentIncrease;
-TO_UDINT(59), "HWRampdownDeltaFrequency", TO_UDINT(40),//|HW_Network.ST1511.HWRampdownDeltaFrequency;
-TO_UDINT(59), "HWRampdownDeltaTime", TO_UDINT(1),//|HW_Network.ST1511.HWRampdownDeltaTime;
-TO_UDINT(59), "CurrentOffsetAdjBridge1", TO_UDINT(100),//|HW_Network.ST1511.CurrentOffsetAdjBridge1;
-TO_UDINT(59), "CurrentOffsetAdjBridge2", TO_UDINT(100),//|HW_Network.ST1511.CurrentOffsetAdjBridge2;
-TO_UDINT(59), "ChopperOffTime", TO_UDINT(1562),//|HW_Network.ST1511.ChopperOffTime;
-TO_UDINT(59), "ChopperOnTimeMin", TO_UDINT(180),//|HW_Network.ST1511.ChopperOnTimeMin;
-TO_UDINT(59), "FastDecayTime", TO_UDINT(200),//|HW_Network.ST1511.FastDecayTime;
-TO_UDINT(59), "FastDecayTimeFallingStep", TO_UDINT(600),//|HW_Network.ST1511.FastDecayTimeFallingStep;
-TO_UDINT(59), "EnableSteps", TO_UDINT(2#1000111),//|HW_Network.ST1511.EnableSteps;
-TO_UDINT(59), "FrequLimitIncrease2to1", TO_UDINT(50000),//|HW_Network.ST1511.FrequLimitIncrease2to1;
-TO_UDINT(59), "FrequLimitIncrease4to2", TO_UDINT(40000),//|HW_Network.ST1511.FrequLimitIncrease4to2;
-TO_UDINT(59), "FrequLimitIncrease8to4", TO_UDINT(30000),//|HW_Network.ST1511.FrequLimitIncrease8to4;
-TO_UDINT(59), "FrequLimitIncrease16to8", TO_UDINT(20000),//|HW_Network.ST1511.FrequLimitIncrease16to8;
-TO_UDINT(59), "FrequLimitIncrease32to16", TO_UDINT(10000),//|HW_Network.ST1511.FrequLimitIncrease32to16;
-TO_UDINT(59), "FrequLimitIncrease64to32", TO_UDINT(5000),//|HW_Network.ST1511.FrequLimitIncrease64to32;
-TO_UDINT(59), "FrequLimitDecrease1to2", TO_UDINT(0),//|HW_Network.ST1511.FrequLimitDecrease1to2;
-TO_UDINT(59), "FrequLimitDecrease2to4", TO_UDINT(0),//|HW_Network.ST1511.FrequLimitDecrease2to4;
-TO_UDINT(59), "FrequLimitDecrease4to8", TO_UDINT(0),//|HW_Network.ST1511.FrequLimitDecrease4to8;
-TO_UDINT(59), "FrequLimitDecrease8to16", TO_UDINT(0),//|HW_Network.ST1511.FrequLimitDecrease8to16;
-TO_UDINT(59), "FrequLimitDecrease16to32", TO_UDINT(0),//|HW_Network.ST1511.FrequLimitDecrease16to32;
-TO_UDINT(59), "FrequLimitDecrease32to64", TO_UDINT(0),//|HW_Network.ST1511.FrequLimitDecrease32to64;
-TO_UDINT(59), "Place", TO_UDINT(5),//|HW_Network.ST1511.Place;
-TO_UDINT(59), "Required", TO_UDINT(1),//|HW_Network.ST1511.Required;
-TO_UDINT(59), "InvertEncoder", TO_UDINT(0),//|HW_Network.ST1511.InvertEncoder;
-TO_UDINT(59), "InvertZeroPosition", TO_UDINT(0),//|HW_Network.ST1511.InvertZeroPosition;
-TO_UDINT(59), "EncoderSampling", TO_UDINT(3),//|HW_Network.ST1511.EncoderSampling;
-TO_UDINT(59), "EncMode", TO_UDINT(0),//|HW_Network.ST1511.EncMode;
-TO_UDINT(59), "LatchType", TO_UDINT(0),//|HW_Network.ST1511.LatchType;
-TO_UDINT(59), "ABCountMode", TO_UDINT(1),//|HW_Network.ST1511.ABCountMode;
-TO_UDINT(59), "StallCurrentReduction", TO_UDINT(0),//|HW_Network.ST1511.StallCurrentReduction;
-TO_UDINT(59), "StallCurrentWindow", TO_UDINT(0),//|HW_Network.ST1511.StallCurrentWindow;
-TO_UDINT(59), "EnableRegenResistor", TO_UDINT(0),//|HW_Network.ST1511.EnableRegenResistor;
-TO_UDINT(59), "RegenResistance", TO_UDINT(150),//|HW_Network.ST1511.RegenResistance;
-TO_UDINT(59), "RatedMaxPower", TO_UDINT(1000),//|HW_Network.ST1511.RatedMaxPower;
-TO_UDINT(59), "LoadThresholdWarning", TO_UDINT(80),//|HW_Network.ST1511.LoadThresholdWarning;
-TO_UDINT(59), "LoadThresholdBridge", TO_UDINT(90),//|HW_Network.ST1511.LoadThresholdBridge;
-TO_UDINT(59), "LoadThresholdResistor", TO_UDINT(100),//|HW_Network.ST1511.LoadThresholdResistor;
-TO_UDINT(59), "SteppingHysteresis", TO_UDINT(64),//|HW_Network.ST1511.SteppingHysteresis;
-TO_UDINT(59), "CompModeVST", TO_UDINT(0),//|HW_Network.ST1511.CompModeVST;
-TO_UDINT(59), "UseOszi", TO_UDINT(0),//|HW_Network.ST1511.UseOszi;
-TO_UDINT(60), "LEDControl", TO_UDINT(0),//|HW_Network.ST1512.LEDControl;
-TO_UDINT(60), "CurrentIncrease", TO_UDINT(1),//|HW_Network.ST1512.CurrentIncrease;
-TO_UDINT(60), "HWRampdownDeltaFrequency", TO_UDINT(40),//|HW_Network.ST1512.HWRampdownDeltaFrequency;
-TO_UDINT(60), "HWRampdownDeltaTime", TO_UDINT(1),//|HW_Network.ST1512.HWRampdownDeltaTime;
-TO_UDINT(60), "CurrentOffsetAdjBridge1", TO_UDINT(100),//|HW_Network.ST1512.CurrentOffsetAdjBridge1;
-TO_UDINT(60), "CurrentOffsetAdjBridge2", TO_UDINT(100),//|HW_Network.ST1512.CurrentOffsetAdjBridge2;
-TO_UDINT(60), "ChopperOffTime", TO_UDINT(1562),//|HW_Network.ST1512.ChopperOffTime;
-TO_UDINT(60), "ChopperOnTimeMin", TO_UDINT(180),//|HW_Network.ST1512.ChopperOnTimeMin;
-TO_UDINT(60), "FastDecayTime", TO_UDINT(200),//|HW_Network.ST1512.FastDecayTime;
-TO_UDINT(60), "FastDecayTimeFallingStep", TO_UDINT(600),//|HW_Network.ST1512.FastDecayTimeFallingStep;
-TO_UDINT(60), "EnableSteps", TO_UDINT(2#1000111),//|HW_Network.ST1512.EnableSteps;
-TO_UDINT(60), "FrequLimitIncrease2to1", TO_UDINT(50000),//|HW_Network.ST1512.FrequLimitIncrease2to1;
-TO_UDINT(60), "FrequLimitIncrease4to2", TO_UDINT(40000),//|HW_Network.ST1512.FrequLimitIncrease4to2;
-TO_UDINT(60), "FrequLimitIncrease8to4", TO_UDINT(30000),//|HW_Network.ST1512.FrequLimitIncrease8to4;
-TO_UDINT(60), "FrequLimitIncrease16to8", TO_UDINT(20000),//|HW_Network.ST1512.FrequLimitIncrease16to8;
-TO_UDINT(60), "FrequLimitIncrease32to16", TO_UDINT(10000),//|HW_Network.ST1512.FrequLimitIncrease32to16;
-TO_UDINT(60), "FrequLimitIncrease64to32", TO_UDINT(5000),//|HW_Network.ST1512.FrequLimitIncrease64to32;
-TO_UDINT(60), "FrequLimitDecrease1to2", TO_UDINT(0),//|HW_Network.ST1512.FrequLimitDecrease1to2;
-TO_UDINT(60), "FrequLimitDecrease2to4", TO_UDINT(0),//|HW_Network.ST1512.FrequLimitDecrease2to4;
-TO_UDINT(60), "FrequLimitDecrease4to8", TO_UDINT(0),//|HW_Network.ST1512.FrequLimitDecrease4to8;
-TO_UDINT(60), "FrequLimitDecrease8to16", TO_UDINT(0),//|HW_Network.ST1512.FrequLimitDecrease8to16;
-TO_UDINT(60), "FrequLimitDecrease16to32", TO_UDINT(0),//|HW_Network.ST1512.FrequLimitDecrease16to32;
-TO_UDINT(60), "FrequLimitDecrease32to64", TO_UDINT(0),//|HW_Network.ST1512.FrequLimitDecrease32to64;
-TO_UDINT(60), "Place", TO_UDINT(7),//|HW_Network.ST1512.Place;
-TO_UDINT(60), "Required", TO_UDINT(1),//|HW_Network.ST1512.Required;
-TO_UDINT(60), "InvertEncoder", TO_UDINT(0),//|HW_Network.ST1512.InvertEncoder;
-TO_UDINT(60), "InvertZeroPosition", TO_UDINT(0),//|HW_Network.ST1512.InvertZeroPosition;
-TO_UDINT(60), "EncoderSampling", TO_UDINT(3),//|HW_Network.ST1512.EncoderSampling;
-TO_UDINT(60), "EncMode", TO_UDINT(0),//|HW_Network.ST1512.EncMode;
-TO_UDINT(60), "LatchType", TO_UDINT(0),//|HW_Network.ST1512.LatchType;
-TO_UDINT(60), "ABCountMode", TO_UDINT(1),//|HW_Network.ST1512.ABCountMode;
-TO_UDINT(60), "StallCurrentReduction", TO_UDINT(0),//|HW_Network.ST1512.StallCurrentReduction;
-TO_UDINT(60), "StallCurrentWindow", TO_UDINT(0),//|HW_Network.ST1512.StallCurrentWindow;
-TO_UDINT(60), "EnableRegenResistor", TO_UDINT(0),//|HW_Network.ST1512.EnableRegenResistor;
-TO_UDINT(60), "RegenResistance", TO_UDINT(150),//|HW_Network.ST1512.RegenResistance;
-TO_UDINT(60), "RatedMaxPower", TO_UDINT(1000),//|HW_Network.ST1512.RatedMaxPower;
-TO_UDINT(60), "LoadThresholdWarning", TO_UDINT(80),//|HW_Network.ST1512.LoadThresholdWarning;
-TO_UDINT(60), "LoadThresholdBridge", TO_UDINT(90),//|HW_Network.ST1512.LoadThresholdBridge;
-TO_UDINT(60), "LoadThresholdResistor", TO_UDINT(100),//|HW_Network.ST1512.LoadThresholdResistor;
-TO_UDINT(60), "SteppingHysteresis", TO_UDINT(64),//|HW_Network.ST1512.SteppingHysteresis;
-TO_UDINT(60), "CompModeVST", TO_UDINT(0),//|HW_Network.ST1512.CompModeVST;
-TO_UDINT(60), "UseOszi", TO_UDINT(0),//|HW_Network.ST1512.UseOszi;
-TO_UDINT(63), "SingleRealloc", TO_UDINT(1),//|HW_Network._base\DM1611\SerialNoStr.SingleRealloc;
-TO_UDINT(64), "SingleRealloc", TO_UDINT(1),//|HW_Network._base\SR0221\SerialNoStr.SingleRealloc;
-TO_UDINT(65), "SingleRealloc", TO_UDINT(1),//|HW_Network._base\ST0111\SerialNoStr.SingleRealloc;
-TO_UDINT(66), "SingleRealloc", TO_UDINT(1),//|HW_Network._base\_base\ST1511\SerialNoStr.SingleRealloc;
-TO_UDINT(67), "SingleRealloc", TO_UDINT(1),//|HW_Network._base\_base\ST1512\SerialNoStr.SingleRealloc;
-TO_UDINT(68), "SingleRealloc", TO_UDINT(1),//|HW_Network._base\BusInterfaceSdiasDriveMng\_DriveMng_DC0621\SerialNoStr.SingleRealloc;
-TO_UDINT(69), "SingleRealloc", TO_UDINT(1),//|HW_Network._DriveMng_DC0621\FWDateString.SingleRealloc;
-TO_UDINT(70), "SingleRealloc", TO_UDINT(1),//|HW_Network._DriveMng_DC0621\FWNumSTring.SingleRealloc;
-TO_UDINT(71), "SingleRealloc", TO_UDINT(1),//|HW_Network._base\BusInterfaceSdiasDriveMng\_DriveMng_DC0622\SerialNoStr.SingleRealloc;
-TO_UDINT(72), "SingleRealloc", TO_UDINT(1),//|HW_Network._DriveMng_DC0622\FWDateString.SingleRealloc;
-TO_UDINT(73), "SingleRealloc", TO_UDINT(1),//|HW_Network._DriveMng_DC0622\FWNumSTring.SingleRealloc;
-TO_UDINT(74), "SingleRealloc", TO_UDINT(1),//|HW_Network._base\BusInterfaceSdiasDriveMng\_DriveMng_DC0623\SerialNoStr.SingleRealloc;
-TO_UDINT(75), "SingleRealloc", TO_UDINT(1),//|HW_Network._DriveMng_DC0623\FWDateString.SingleRealloc;
-TO_UDINT(76), "SingleRealloc", TO_UDINT(1),//|HW_Network._DriveMng_DC0623\FWNumSTring.SingleRealloc;
-TO_UDINT(77), "SingleRealloc", TO_UDINT(1),//|HW_Network._base\BusInterfaceSdiasDriveMng\_DriveMng_DC0624\SerialNoStr.SingleRealloc;
-TO_UDINT(78), "SingleRealloc", TO_UDINT(1),//|HW_Network._DriveMng_DC0624\FWDateString.SingleRealloc;
-TO_UDINT(79), "SingleRealloc", TO_UDINT(1),//|HW_Network._DriveMng_DC0624\FWNumSTring.SingleRealloc;
-TO_UDINT(80), "VaranManagerTime", TO_UDINT(1000000),//|HW_Network.VaranManager_11.VaranManagerTime;
-TO_UDINT(80), "VaranManagerNr", TO_UDINT(0),//|HW_Network.VaranManager_11.VaranManagerNr;
-TO_UDINT(80), "PayloadFrame", TO_UDINT(0),//|HW_Network.VaranManager_11.PayloadFrame;
-TO_UDINT(80), "CoreSelect", TO_UDINT(0),//|HW_Network.VaranManager_11.CoreSelect;
+TO_UDINT(58), "LEDControl", TO_UDINT(0),//|HW_Network.SR0221.LEDControl;
+TO_UDINT(58), "MinPulse", TO_UDINT(7),//|HW_Network.SR0221.MinPulse;
+TO_UDINT(58), "Place", TO_UDINT(6),//|HW_Network.SR0221.Place;
+TO_UDINT(58), "Required", TO_UDINT(1),//|HW_Network.SR0221.Required;
+TO_UDINT(58), "PWMPeriod", TO_UDINT(32),//|HW_Network.SR0221.PWMPeriod;
+TO_UDINT(58), "I2TThreshold", TO_UDINT(100),//|HW_Network.SR0221.I2TThreshold;
+TO_UDINT(58), "EncMode", TO_UDINT(1),//|HW_Network.SR0221.EncMode;
+TO_UDINT(58), "EncSampling", TO_UDINT(3),//|HW_Network.SR0221.EncSampling;
+TO_UDINT(58), "EncDirection", TO_UDINT(0),//|HW_Network.SR0221.EncDirection;
+TO_UDINT(58), "InvertZeroPosition", TO_UDINT(0),//|HW_Network.SR0221.InvertZeroPosition;
+TO_UDINT(58), "ABCountMode", TO_UDINT(0),//|HW_Network.SR0221.ABCountMode;
+TO_UDINT(58), "ExtendedData", TO_UDINT(0),//|HW_Network.SR0221.ExtendedData;
+TO_UDINT(59), "LEDControl", TO_UDINT(0),//|HW_Network.ST0111.LEDControl;
+TO_UDINT(59), "Place", TO_UDINT(8),//|HW_Network.ST0111.Place;
+TO_UDINT(59), "Required", TO_UDINT(1),//|HW_Network.ST0111.Required;
+TO_UDINT(59), "UsePulseCntCorrection", TO_UDINT(0),//|HW_Network.ST0111.UsePulseCntCorrection;
+TO_UDINT(59), "InvertEnable", TO_UDINT(0),//|HW_Network.ST0111.InvertEnable;
+TO_UDINT(59), "Deathtime", TO_UDINT(60),//|HW_Network.ST0111.Deathtime;
+TO_UDINT(59), "Input1Latch", TO_UDINT(0),//|HW_Network.ST0111.Input1Latch;
+TO_UDINT(59), "Input2Latch", TO_UDINT(0),//|HW_Network.ST0111.Input2Latch;
+TO_UDINT(59), "Input3Latch", TO_UDINT(0),//|HW_Network.ST0111.Input3Latch;
+TO_UDINT(59), "ZPulseLatch", TO_UDINT(0),//|HW_Network.ST0111.ZPulseLatch;
+TO_UDINT(60), "LEDControl", TO_UDINT(0),//|HW_Network.ST1511.LEDControl;
+TO_UDINT(60), "CurrentIncrease", TO_UDINT(1),//|HW_Network.ST1511.CurrentIncrease;
+TO_UDINT(60), "HWRampdownDeltaFrequency", TO_UDINT(40),//|HW_Network.ST1511.HWRampdownDeltaFrequency;
+TO_UDINT(60), "HWRampdownDeltaTime", TO_UDINT(1),//|HW_Network.ST1511.HWRampdownDeltaTime;
+TO_UDINT(60), "CurrentOffsetAdjBridge1", TO_UDINT(100),//|HW_Network.ST1511.CurrentOffsetAdjBridge1;
+TO_UDINT(60), "CurrentOffsetAdjBridge2", TO_UDINT(100),//|HW_Network.ST1511.CurrentOffsetAdjBridge2;
+TO_UDINT(60), "ChopperOffTime", TO_UDINT(1562),//|HW_Network.ST1511.ChopperOffTime;
+TO_UDINT(60), "ChopperOnTimeMin", TO_UDINT(180),//|HW_Network.ST1511.ChopperOnTimeMin;
+TO_UDINT(60), "FastDecayTime", TO_UDINT(200),//|HW_Network.ST1511.FastDecayTime;
+TO_UDINT(60), "FastDecayTimeFallingStep", TO_UDINT(600),//|HW_Network.ST1511.FastDecayTimeFallingStep;
+TO_UDINT(60), "EnableSteps", TO_UDINT(2#1000111),//|HW_Network.ST1511.EnableSteps;
+TO_UDINT(60), "FrequLimitIncrease2to1", TO_UDINT(50000),//|HW_Network.ST1511.FrequLimitIncrease2to1;
+TO_UDINT(60), "FrequLimitIncrease4to2", TO_UDINT(40000),//|HW_Network.ST1511.FrequLimitIncrease4to2;
+TO_UDINT(60), "FrequLimitIncrease8to4", TO_UDINT(30000),//|HW_Network.ST1511.FrequLimitIncrease8to4;
+TO_UDINT(60), "FrequLimitIncrease16to8", TO_UDINT(20000),//|HW_Network.ST1511.FrequLimitIncrease16to8;
+TO_UDINT(60), "FrequLimitIncrease32to16", TO_UDINT(10000),//|HW_Network.ST1511.FrequLimitIncrease32to16;
+TO_UDINT(60), "FrequLimitIncrease64to32", TO_UDINT(5000),//|HW_Network.ST1511.FrequLimitIncrease64to32;
+TO_UDINT(60), "FrequLimitDecrease1to2", TO_UDINT(0),//|HW_Network.ST1511.FrequLimitDecrease1to2;
+TO_UDINT(60), "FrequLimitDecrease2to4", TO_UDINT(0),//|HW_Network.ST1511.FrequLimitDecrease2to4;
+TO_UDINT(60), "FrequLimitDecrease4to8", TO_UDINT(0),//|HW_Network.ST1511.FrequLimitDecrease4to8;
+TO_UDINT(60), "FrequLimitDecrease8to16", TO_UDINT(0),//|HW_Network.ST1511.FrequLimitDecrease8to16;
+TO_UDINT(60), "FrequLimitDecrease16to32", TO_UDINT(0),//|HW_Network.ST1511.FrequLimitDecrease16to32;
+TO_UDINT(60), "FrequLimitDecrease32to64", TO_UDINT(0),//|HW_Network.ST1511.FrequLimitDecrease32to64;
+TO_UDINT(60), "Place", TO_UDINT(5),//|HW_Network.ST1511.Place;
+TO_UDINT(60), "Required", TO_UDINT(1),//|HW_Network.ST1511.Required;
+TO_UDINT(60), "InvertEncoder", TO_UDINT(0),//|HW_Network.ST1511.InvertEncoder;
+TO_UDINT(60), "InvertZeroPosition", TO_UDINT(0),//|HW_Network.ST1511.InvertZeroPosition;
+TO_UDINT(60), "EncoderSampling", TO_UDINT(3),//|HW_Network.ST1511.EncoderSampling;
+TO_UDINT(60), "EncMode", TO_UDINT(0),//|HW_Network.ST1511.EncMode;
+TO_UDINT(60), "LatchType", TO_UDINT(0),//|HW_Network.ST1511.LatchType;
+TO_UDINT(60), "ABCountMode", TO_UDINT(1),//|HW_Network.ST1511.ABCountMode;
+TO_UDINT(60), "StallCurrentReduction", TO_UDINT(0),//|HW_Network.ST1511.StallCurrentReduction;
+TO_UDINT(60), "StallCurrentWindow", TO_UDINT(0),//|HW_Network.ST1511.StallCurrentWindow;
+TO_UDINT(60), "EnableRegenResistor", TO_UDINT(0),//|HW_Network.ST1511.EnableRegenResistor;
+TO_UDINT(60), "RegenResistance", TO_UDINT(150),//|HW_Network.ST1511.RegenResistance;
+TO_UDINT(60), "RatedMaxPower", TO_UDINT(1000),//|HW_Network.ST1511.RatedMaxPower;
+TO_UDINT(60), "LoadThresholdWarning", TO_UDINT(80),//|HW_Network.ST1511.LoadThresholdWarning;
+TO_UDINT(60), "LoadThresholdBridge", TO_UDINT(90),//|HW_Network.ST1511.LoadThresholdBridge;
+TO_UDINT(60), "LoadThresholdResistor", TO_UDINT(100),//|HW_Network.ST1511.LoadThresholdResistor;
+TO_UDINT(60), "SteppingHysteresis", TO_UDINT(64),//|HW_Network.ST1511.SteppingHysteresis;
+TO_UDINT(60), "CompModeVST", TO_UDINT(0),//|HW_Network.ST1511.CompModeVST;
+TO_UDINT(60), "UseOszi", TO_UDINT(0),//|HW_Network.ST1511.UseOszi;
+TO_UDINT(61), "LEDControl", TO_UDINT(0),//|HW_Network.ST1512.LEDControl;
+TO_UDINT(61), "CurrentIncrease", TO_UDINT(1),//|HW_Network.ST1512.CurrentIncrease;
+TO_UDINT(61), "HWRampdownDeltaFrequency", TO_UDINT(40),//|HW_Network.ST1512.HWRampdownDeltaFrequency;
+TO_UDINT(61), "HWRampdownDeltaTime", TO_UDINT(1),//|HW_Network.ST1512.HWRampdownDeltaTime;
+TO_UDINT(61), "CurrentOffsetAdjBridge1", TO_UDINT(100),//|HW_Network.ST1512.CurrentOffsetAdjBridge1;
+TO_UDINT(61), "CurrentOffsetAdjBridge2", TO_UDINT(100),//|HW_Network.ST1512.CurrentOffsetAdjBridge2;
+TO_UDINT(61), "ChopperOffTime", TO_UDINT(1562),//|HW_Network.ST1512.ChopperOffTime;
+TO_UDINT(61), "ChopperOnTimeMin", TO_UDINT(180),//|HW_Network.ST1512.ChopperOnTimeMin;
+TO_UDINT(61), "FastDecayTime", TO_UDINT(200),//|HW_Network.ST1512.FastDecayTime;
+TO_UDINT(61), "FastDecayTimeFallingStep", TO_UDINT(600),//|HW_Network.ST1512.FastDecayTimeFallingStep;
+TO_UDINT(61), "EnableSteps", TO_UDINT(2#1000111),//|HW_Network.ST1512.EnableSteps;
+TO_UDINT(61), "FrequLimitIncrease2to1", TO_UDINT(50000),//|HW_Network.ST1512.FrequLimitIncrease2to1;
+TO_UDINT(61), "FrequLimitIncrease4to2", TO_UDINT(40000),//|HW_Network.ST1512.FrequLimitIncrease4to2;
+TO_UDINT(61), "FrequLimitIncrease8to4", TO_UDINT(30000),//|HW_Network.ST1512.FrequLimitIncrease8to4;
+TO_UDINT(61), "FrequLimitIncrease16to8", TO_UDINT(20000),//|HW_Network.ST1512.FrequLimitIncrease16to8;
+TO_UDINT(61), "FrequLimitIncrease32to16", TO_UDINT(10000),//|HW_Network.ST1512.FrequLimitIncrease32to16;
+TO_UDINT(61), "FrequLimitIncrease64to32", TO_UDINT(5000),//|HW_Network.ST1512.FrequLimitIncrease64to32;
+TO_UDINT(61), "FrequLimitDecrease1to2", TO_UDINT(0),//|HW_Network.ST1512.FrequLimitDecrease1to2;
+TO_UDINT(61), "FrequLimitDecrease2to4", TO_UDINT(0),//|HW_Network.ST1512.FrequLimitDecrease2to4;
+TO_UDINT(61), "FrequLimitDecrease4to8", TO_UDINT(0),//|HW_Network.ST1512.FrequLimitDecrease4to8;
+TO_UDINT(61), "FrequLimitDecrease8to16", TO_UDINT(0),//|HW_Network.ST1512.FrequLimitDecrease8to16;
+TO_UDINT(61), "FrequLimitDecrease16to32", TO_UDINT(0),//|HW_Network.ST1512.FrequLimitDecrease16to32;
+TO_UDINT(61), "FrequLimitDecrease32to64", TO_UDINT(0),//|HW_Network.ST1512.FrequLimitDecrease32to64;
+TO_UDINT(61), "Place", TO_UDINT(7),//|HW_Network.ST1512.Place;
+TO_UDINT(61), "Required", TO_UDINT(1),//|HW_Network.ST1512.Required;
+TO_UDINT(61), "InvertEncoder", TO_UDINT(0),//|HW_Network.ST1512.InvertEncoder;
+TO_UDINT(61), "InvertZeroPosition", TO_UDINT(0),//|HW_Network.ST1512.InvertZeroPosition;
+TO_UDINT(61), "EncoderSampling", TO_UDINT(3),//|HW_Network.ST1512.EncoderSampling;
+TO_UDINT(61), "EncMode", TO_UDINT(0),//|HW_Network.ST1512.EncMode;
+TO_UDINT(61), "LatchType", TO_UDINT(0),//|HW_Network.ST1512.LatchType;
+TO_UDINT(61), "ABCountMode", TO_UDINT(1),//|HW_Network.ST1512.ABCountMode;
+TO_UDINT(61), "StallCurrentReduction", TO_UDINT(0),//|HW_Network.ST1512.StallCurrentReduction;
+TO_UDINT(61), "StallCurrentWindow", TO_UDINT(0),//|HW_Network.ST1512.StallCurrentWindow;
+TO_UDINT(61), "EnableRegenResistor", TO_UDINT(0),//|HW_Network.ST1512.EnableRegenResistor;
+TO_UDINT(61), "RegenResistance", TO_UDINT(150),//|HW_Network.ST1512.RegenResistance;
+TO_UDINT(61), "RatedMaxPower", TO_UDINT(1000),//|HW_Network.ST1512.RatedMaxPower;
+TO_UDINT(61), "LoadThresholdWarning", TO_UDINT(80),//|HW_Network.ST1512.LoadThresholdWarning;
+TO_UDINT(61), "LoadThresholdBridge", TO_UDINT(90),//|HW_Network.ST1512.LoadThresholdBridge;
+TO_UDINT(61), "LoadThresholdResistor", TO_UDINT(100),//|HW_Network.ST1512.LoadThresholdResistor;
+TO_UDINT(61), "SteppingHysteresis", TO_UDINT(64),//|HW_Network.ST1512.SteppingHysteresis;
+TO_UDINT(61), "CompModeVST", TO_UDINT(0),//|HW_Network.ST1512.CompModeVST;
+TO_UDINT(61), "UseOszi", TO_UDINT(0),//|HW_Network.ST1512.UseOszi;
+TO_UDINT(64), "SingleRealloc", TO_UDINT(1),//|HW_Network._base\DM1611\SerialNoStr.SingleRealloc;
+TO_UDINT(65), "SingleRealloc", TO_UDINT(1),//|HW_Network._base\SR0221\SerialNoStr.SingleRealloc;
+TO_UDINT(66), "SingleRealloc", TO_UDINT(1),//|HW_Network._base\ST0111\SerialNoStr.SingleRealloc;
+TO_UDINT(67), "SingleRealloc", TO_UDINT(1),//|HW_Network._base\_base\ST1511\SerialNoStr.SingleRealloc;
+TO_UDINT(68), "SingleRealloc", TO_UDINT(1),//|HW_Network._base\_base\ST1512\SerialNoStr.SingleRealloc;
+TO_UDINT(69), "SingleRealloc", TO_UDINT(1),//|HW_Network._base\BusInterfaceSdiasDriveMng\_DriveMng_DC0621\SerialNoStr.SingleRealloc;
+TO_UDINT(70), "SingleRealloc", TO_UDINT(1),//|HW_Network._DriveMng_DC0621\FWDateString.SingleRealloc;
+TO_UDINT(71), "SingleRealloc", TO_UDINT(1),//|HW_Network._DriveMng_DC0621\FWNumSTring.SingleRealloc;
+TO_UDINT(72), "SingleRealloc", TO_UDINT(1),//|HW_Network._base\BusInterfaceSdiasDriveMng\_DriveMng_DC0622\SerialNoStr.SingleRealloc;
+TO_UDINT(73), "SingleRealloc", TO_UDINT(1),//|HW_Network._DriveMng_DC0622\FWDateString.SingleRealloc;
+TO_UDINT(74), "SingleRealloc", TO_UDINT(1),//|HW_Network._DriveMng_DC0622\FWNumSTring.SingleRealloc;
+TO_UDINT(75), "SingleRealloc", TO_UDINT(1),//|HW_Network._base\BusInterfaceSdiasDriveMng\_DriveMng_DC0623\SerialNoStr.SingleRealloc;
+TO_UDINT(76), "SingleRealloc", TO_UDINT(1),//|HW_Network._DriveMng_DC0623\FWDateString.SingleRealloc;
+TO_UDINT(77), "SingleRealloc", TO_UDINT(1),//|HW_Network._DriveMng_DC0623\FWNumSTring.SingleRealloc;
+TO_UDINT(78), "SingleRealloc", TO_UDINT(1),//|HW_Network._base\BusInterfaceSdiasDriveMng\_DriveMng_DC0624\SerialNoStr.SingleRealloc;
+TO_UDINT(79), "SingleRealloc", TO_UDINT(1),//|HW_Network._DriveMng_DC0624\FWDateString.SingleRealloc;
+TO_UDINT(80), "SingleRealloc", TO_UDINT(1),//|HW_Network._DriveMng_DC0624\FWNumSTring.SingleRealloc;
+TO_UDINT(81), "VaranManagerTime", TO_UDINT(1000000),//|HW_Network.VaranManager_11.VaranManagerTime;
+TO_UDINT(81), "VaranManagerNr", TO_UDINT(0),//|HW_Network.VaranManager_11.VaranManagerNr;
+TO_UDINT(81), "PayloadFrame", TO_UDINT(0),//|HW_Network.VaranManager_11.PayloadFrame;
+TO_UDINT(81), "CoreSelect", TO_UDINT(0),//|HW_Network.VaranManager_11.CoreSelect;
 
 //Symbolic initialization values
 0$UDINT,

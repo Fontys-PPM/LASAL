@@ -11,6 +11,26 @@ TYPE
     dData : _LMCPublisher::_Config_;
     pCmd : ^SVRCHCMD;
   END_STRUCT;
+  SvrCh__LMCAXIS_ERROR : STRUCT
+    pMeth : ^CHMETH;
+    dData : _LMCAXIS_ERROR;
+    pDsc : ^SVRDSC;
+  END_STRUCT;
+  CltCh__LMCAXIS_ERROR : STRUCT
+    pCh : ^SvrCh__LMCAXIS_ERROR;
+    dData : _LMCAXIS_ERROR;
+    pCmd : ^SVRCHCMD;
+  END_STRUCT;
+  SvrCh__LMCAXIS_STATUS : STRUCT
+    pMeth : ^CHMETH;
+    dData : _LMCAXIS_STATUS;
+    pDsc : ^SVRDSC;
+  END_STRUCT;
+  CltCh__LMCAXIS_STATUS : STRUCT
+    pCh : ^SvrCh__LMCAXIS_STATUS;
+    dData : _LMCAXIS_STATUS;
+    pCmd : ^SVRCHCMD;
+  END_STRUCT;
   SvrCh__POSFLAGS : STRUCT
     pMeth : ^CHMETH;
     dData : _POSFLAGS;
@@ -19,6 +39,16 @@ TYPE
   CltCh__POSFLAGS : STRUCT
     pCh : ^SvrCh__POSFLAGS;
     dData : _POSFLAGS;
+    pCmd : ^SVRCHCMD;
+  END_STRUCT;
+  SvrCh_CncFlags : STRUCT
+    pMeth : ^CHMETH;
+    dData : CncFlags;
+    pDsc : ^SVRDSC;
+  END_STRUCT;
+  CltCh_CncFlags : STRUCT
+    pCh : ^SvrCh_CncFlags;
+    dData : CncFlags;
     pCmd : ^SVRCHCMD;
   END_STRUCT;
   SvrCh_DINT : STRUCT
@@ -231,6 +261,16 @@ TYPE
     dData : DINT;
     pCmd : ^CommandRouter;
   END_STRUCT;
+  SvrChCmd__FSM_TCP_USER : STRUCT
+    pMeth : ^CMDMETH;
+    dData : _FSM_TCP_USER;
+    pDsc : ^SVRDSC;
+  END_STRUCT;
+  CltChCmd_CommandServer : STRUCT
+    pCh : ^SvrChCmd__FSM_TCP_USER;
+    dData : _FSM_TCP_USER;
+    pCmd : ^CommandServer;
+  END_STRUCT;
   CltChCmd_Controller : STRUCT
     pCh : ^SvrChCmd_DINT;
     dData : DINT;
@@ -306,9 +346,14 @@ TYPE
     dData : UDINT;
     pCmd : ^MerkerEx;
   END_STRUCT;
+  SvrChCmd__Status_PTofCls_MoveController : STRUCT
+    pMeth : ^CMDMETH;
+    dData : MoveController::_Status;
+    pDsc : ^SVRDSC;
+  END_STRUCT;
   CltChCmd_MoveController : STRUCT
-    pCh : ^SvrChCmd_DINT;
-    dData : DINT;
+    pCh : ^SvrChCmd__Status_PTofCls_MoveController;
+    dData : MoveController::_Status;
     pCmd : ^MoveController;
   END_STRUCT;
   SvrChCmd_ProfileCommandStatus : STRUCT
@@ -431,11 +476,6 @@ TYPE
     dData : _LMCAXIS_CMDERROR;
     pDsc : ^SVRDSC;
   END_STRUCT;
-  SvrCh__LMCAXIS_ERROR : STRUCT
-    pMeth : ^CHMETH;
-    dData : _LMCAXIS_ERROR;
-    pDsc : ^SVRDSC;
-  END_STRUCT;
   SvrCh__LMCAXIS_ERROR_CONFIG : STRUCT
     pMeth : ^CHMETH;
     dData : _LMCAXIS_ERROR_CONFIG;
@@ -484,11 +524,6 @@ TYPE
   SvrCh__LMCAXIS_SETSWENDPOS : STRUCT
     pMeth : ^CHMETH;
     dData : _LMCAXIS_SETSWENDPOS;
-    pDsc : ^SVRDSC;
-  END_STRUCT;
-  SvrCh__LMCAXIS_STATUS : STRUCT
-    pMeth : ^CHMETH;
-    dData : _LMCAXIS_STATUS;
     pDsc : ^SVRDSC;
   END_STRUCT;
   SvrCh__LMCCONTROLLERTYPE : STRUCT
@@ -549,11 +584,6 @@ TYPE
   SvrCh_t_SR_Fw_State_PTofCls_SR022 : STRUCT
     pMeth : ^CHMETH;
     dData : SR022::t_SR_Fw_State;
-    pDsc : ^SVRDSC;
-  END_STRUCT;
-  SvrChCmd__FSM_TCP_USER : STRUCT
-    pMeth : ^CMDMETH;
-    dData : _FSM_TCP_USER;
     pDsc : ^SVRDSC;
   END_STRUCT;
 END_TYPE

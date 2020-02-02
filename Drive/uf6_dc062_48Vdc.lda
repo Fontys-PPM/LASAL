@@ -113,8 +113,8 @@
 		<Param Id="90" Va="1000" VT="0"/>
 		<Param Id="91" Va="775" VT="0"/>
 		<Param Id="92" Va="0" VT="0"/>
-		<Param Id="93" Va="3591" VT="0"/>
-		<Param Id="94" Va="5" VT="0"/>
+		<Param Id="93" Va="2567" VT="0"/>
+		<Param Id="94" Va="0" VT="0"/>
 		<Param Id="95" Va="1000" VT="0"/>
 		<Param Id="99" Va="80" VT="0"/>
 	</Params>

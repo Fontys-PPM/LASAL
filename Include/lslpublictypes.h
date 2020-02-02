@@ -338,6 +338,21 @@ MerkerEx : CLASS_PUBLIC
 	END_TYPE
 END_CLASS;
 #pragma define (restore)
+MoveController : CLASS_PUBLIC
+	TYPE
+	  _Status :
+	  (
+	    _Idle,
+	    _PowerOn,
+	    _PowerIsOn,
+	    _refRun,
+	    _RefrunOk,
+	    _MoveAbosolute,
+	    _InPosition
+	  )$UDINT;
+	END_TYPE
+END_CLASS;
+#pragma define (restore)
 SafetyCDIAS_Base : CLASS_PUBLIC
 #include "..\Class\SafetyCDIAS_Base\SafetyCDIAS_Base.h"
 #include "..\Source\interfaces\lsl_st_safety.h"

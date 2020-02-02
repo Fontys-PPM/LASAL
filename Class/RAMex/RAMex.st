@@ -661,7 +661,8 @@ END_VAR
 	  END_IF;
 	  
     ELSE
-      // -- So wars einmal vor dem Jahr 2002
+      // Kein Sram vorhanden
+      TRACE_ERR("no SRAM available on this platform (needed by a RAMex object)");
       ret_code	:=  C_INCOMPATIBLE;
 	end_if;
 

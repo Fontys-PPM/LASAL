@@ -14,6 +14,34 @@ typedef struct CltCh__Config__PTofCls__LMCPublisher
     SVRCHCMD *pCmd;
   } CltCh__Config__PTofCls__LMCPublisher;
 
+typedef struct SvrCh__LMCAXIS_ERROR 
+  {
+    CHMETH *pMeth;
+    _LMCAXIS_ERROR dData;
+    SVRDSC *pDsc;
+  } SvrCh__LMCAXIS_ERROR;
+
+typedef struct CltCh__LMCAXIS_ERROR 
+  {
+    struct SvrCh__LMCAXIS_ERROR *pCh;
+    _LMCAXIS_ERROR dData;
+    SVRCHCMD *pCmd;
+  } CltCh__LMCAXIS_ERROR;
+
+typedef struct SvrCh__LMCAXIS_STATUS 
+  {
+    CHMETH *pMeth;
+    _LMCAXIS_STATUS dData;
+    SVRDSC *pDsc;
+  } SvrCh__LMCAXIS_STATUS;
+
+typedef struct CltCh__LMCAXIS_STATUS 
+  {
+    struct SvrCh__LMCAXIS_STATUS *pCh;
+    _LMCAXIS_STATUS dData;
+    SVRCHCMD *pCmd;
+  } CltCh__LMCAXIS_STATUS;
+
 typedef struct SvrCh__POSFLAGS 
   {
     CHMETH *pMeth;
@@ -27,6 +55,20 @@ typedef struct CltCh__POSFLAGS
     _POSFLAGS dData;
     SVRCHCMD *pCmd;
   } CltCh__POSFLAGS;
+
+typedef struct SvrCh_CncFlags 
+  {
+    CHMETH *pMeth;
+    CncFlags dData;
+    SVRDSC *pDsc;
+  } SvrCh_CncFlags;
+
+typedef struct CltCh_CncFlags 
+  {
+    struct SvrCh_CncFlags *pCh;
+    CncFlags dData;
+    SVRCHCMD *pCmd;
+  } CltCh_CncFlags;
 
 typedef struct SvrCh_DINT 
   {
@@ -322,6 +364,20 @@ typedef struct CltChCmd_CommandRouter
     CommandRouter *pCmd;
   } CltChCmd_CommandRouter;
 
+typedef struct SvrChCmd__FSM_TCP_USER 
+  {
+    CMDMETH *pMeth;
+    _FSM_TCP_USER dData;
+    SVRDSC *pDsc;
+  } SvrChCmd__FSM_TCP_USER;
+
+typedef struct CltChCmd_CommandServer 
+  {
+    struct SvrChCmd__FSM_TCP_USER *pCh;
+    _FSM_TCP_USER dData;
+    CommandServer *pCmd;
+  } CltChCmd_CommandServer;
+
 typedef struct CltChCmd_Controller 
   {
     struct SvrChCmd_DINT *pCh;
@@ -427,10 +483,17 @@ typedef struct CltChCmd_MerkerEx
     MerkerEx *pCmd;
   } CltChCmd_MerkerEx;
 
+typedef struct SvrChCmd__Status_PTofCls_MoveController 
+  {
+    CMDMETH *pMeth;
+    _Status dData;
+    SVRDSC *pDsc;
+  } SvrChCmd__Status_PTofCls_MoveController;
+
 typedef struct CltChCmd_MoveController 
   {
-    struct SvrChCmd_DINT *pCh;
-    DINT dData;
+    struct SvrChCmd__Status_PTofCls_MoveController *pCh;
+    _Status dData;
     MoveController *pCmd;
   } CltChCmd_MoveController;
 
@@ -602,13 +665,6 @@ typedef struct SvrCh__LMCAXIS_CMDERROR
     SVRDSC *pDsc;
   } SvrCh__LMCAXIS_CMDERROR;
 
-typedef struct SvrCh__LMCAXIS_ERROR 
-  {
-    CHMETH *pMeth;
-    _LMCAXIS_ERROR dData;
-    SVRDSC *pDsc;
-  } SvrCh__LMCAXIS_ERROR;
-
 typedef struct SvrCh__LMCAXIS_ERROR_CONFIG 
   {
     CHMETH *pMeth;
@@ -678,13 +734,6 @@ typedef struct SvrCh__LMCAXIS_SETSWENDPOS
     _LMCAXIS_SETSWENDPOS dData;
     SVRDSC *pDsc;
   } SvrCh__LMCAXIS_SETSWENDPOS;
-
-typedef struct SvrCh__LMCAXIS_STATUS 
-  {
-    CHMETH *pMeth;
-    _LMCAXIS_STATUS dData;
-    SVRDSC *pDsc;
-  } SvrCh__LMCAXIS_STATUS;
 
 typedef struct SvrCh__LMCCONTROLLERTYPE 
   {
@@ -769,11 +818,4 @@ typedef struct SvrCh_t_SR_Fw_State_PTofCls_SR022
     t_SR_Fw_State dData;
     SVRDSC *pDsc;
   } SvrCh_t_SR_Fw_State_PTofCls_SR022;
-
-typedef struct SvrChCmd__FSM_TCP_USER 
-  {
-    CMDMETH *pMeth;
-    _FSM_TCP_USER dData;
-    SVRDSC *pDsc;
-  } SvrChCmd__FSM_TCP_USER;
 

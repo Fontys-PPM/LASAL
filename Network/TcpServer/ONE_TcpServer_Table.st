@@ -84,7 +84,7 @@ FUNCTION GLOBAL TAB ONE_TcpServer
 
 8$UDINT,
 TO_UDINT(916194998), "_CheckSum", 1$UINT, 0$UINT, 1$UINT,
-TO_UDINT(26234884), "_TCPIP_SERVER", 1$UINT, 36$UINT, 0$UINT,
+TO_UDINT(26234884), "_TCPIP_SERVER", 1$UINT, 37$UINT, 0$UINT,
 TO_UDINT(2047756655), "CommandRouter", 0$UINT, 0$UINT, 1$UINT,
 TO_UDINT(1706127036), "CommandServer", 0$UINT, 0$UINT, 1$UINT,
 TO_UDINT(2225119864), "MerkerEx", 1$UINT, 22$UINT, 3$UINT,
@@ -120,7 +120,8 @@ TO_UDINT(6), "MerkerEx0", TO_UDINT(3),
 TO_UDINT(7), "MerkerEx0", TO_UDINT(4),
 TO_UDINT(8), "MerkerEx0", TO_UDINT(5),
 0$UDINT,
-4$UDINT,
+5$UDINT,
+TO_UDINT(1), "CommandServer", TO_UDINT(2), "sControl",
 TO_UDINT(2), "CmdRouter", TO_UDINT(1), "CmdRouter",
 TO_UDINT(6), "DataBuffer", TO_UDINT(3), "m_udLength",
 TO_UDINT(7), "DataBuffer", TO_UDINT(4), "m_udLength",
@@ -128,7 +129,11 @@ TO_UDINT(8), "DataBuffer", TO_UDINT(5), "m_udLength",
 
 //Initialization values
 0$UDINT,
-8$UDINT,
+12$UDINT,
+TO_UDINT(1), "Speed", TO_UDINT(2000000),//|TcpServer.commandRouter.Speed;
+TO_UDINT(1), "Acc", TO_UDINT(10000000),//|TcpServer.commandRouter.Acc;
+TO_UDINT(1), "Controller", TO_UDINT(MoveController::_Idle),//|TcpServer.commandRouter.Controller;
+TO_UDINT(1), "clib", TO_UDINT(0),//|TcpServer.commandRouter.clib;
 TO_UDINT(2), "cPort", TO_UDINT(1985),//|TcpServer.commandServer.cPort;
 TO_UDINT(2), "cMaxConnections", TO_UDINT(0),//|TcpServer.commandServer.cMaxConnections;
 TO_UDINT(3), "ThreadSafe", TO_UDINT(0),//|TcpServer.StrSemaName01\_base\commandServer\MerkerEx0.ThreadSafe;
@@ -160,7 +165,7 @@ TO_UDINT(2), (10)$UDINT, 4194303$DINT, 	//COMMANDSERVER
 //External connections
 0$UDINT,
 1$UDINT,
-TO_UDINT(1), "Controller", C_DIR, TO_UDINT(1841029985), "moveController","ClassSvr",
+TO_UDINT(1), "Controller", C_DIR, TO_UDINT(1841029985), "moveController","Status",
 
 //Magic internal connections
 0$UDINT,

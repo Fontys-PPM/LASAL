@@ -144,123 +144,274 @@ FUNCTION GLOBAL TAB ONE_XAxis
 -1$UINT, 0$UINT, 
 0$UINT, 0$UINT,
 
-17$UDINT,
+19$UDINT,
 TO_UDINT(1047453148), "_AxisBase", 1$UINT, 53$UINT, 0$UINT,
-TO_UDINT(3162349954), "_LMCABSEncoder", 1$UINT, 0$UINT, 1$UINT,
-TO_UDINT(1422175863), "_LMCAxis", 1$UINT, 85$UINT, 1$UINT,
+TO_UDINT(3162349954), "_LMCABSEncoder", 1$UINT, 0$UINT, 2$UINT,
+TO_UDINT(1422175863), "_LMCAxis", 1$UINT, 85$UINT, 2$UINT,
 TO_UDINT(280984637), "_LMCAxisBase", 2$UINT, 76$UINT, 0$UINT,
-TO_UDINT(2147194214), "_LMCAxisRef", 1$UINT, 31$UINT, 1$UINT,
-TO_UDINT(3113915997), "_LMCAxisVis", 1$UINT, 36$UINT, 1$UINT,
-TO_UDINT(3511906983), "_LMCAxisVisInt", 1$UINT, 57$UINT, 1$UINT,
-TO_UDINT(1670072687), "_LMCAxisVisLogHandle", 1$UINT, 0$UINT, 1$UINT,
-TO_UDINT(4049061347), "_LMCAxisVisLogViewer", 1$UINT, 0$UINT, 5$UINT,
-TO_UDINT(3953984284), "_LMCAxisVisPara", 1$UINT, 13$UINT, 1$UINT,
-TO_UDINT(838927485), "_LMCMathFunctions", 1$UINT, 68$UINT, 1$UINT,
-TO_UDINT(1117088251), "_LMCPublisher", 1$UINT, 0$UINT, 1$UINT,
+TO_UDINT(2147194214), "_LMCAxisRef", 1$UINT, 31$UINT, 2$UINT,
+TO_UDINT(3113915997), "_LMCAxisVis", 1$UINT, 36$UINT, 2$UINT,
+TO_UDINT(3511906983), "_LMCAxisVisInt", 1$UINT, 57$UINT, 2$UINT,
+TO_UDINT(1670072687), "_LMCAxisVisLogHandle", 1$UINT, 0$UINT, 2$UINT,
+TO_UDINT(4049061347), "_LMCAxisVisLogViewer", 1$UINT, 0$UINT, 10$UINT,
+TO_UDINT(3953984284), "_LMCAxisVisPara", 1$UINT, 13$UINT, 2$UINT,
+TO_UDINT(838927485), "_LMCMathFunctions", 1$UINT, 68$UINT, 2$UINT,
+TO_UDINT(1117088251), "_LMCPublisher", 1$UINT, 0$UINT, 2$UINT,
 TO_UDINT(1736530975), "_LMCRefBase", 1$UINT, 11$UINT, 0$UINT,
-TO_UDINT(3213872914), "_LMCSafety", 1$UINT, 21$UINT, 1$UINT,
+TO_UDINT(3213872914), "_LMCSafety", 1$UINT, 21$UINT, 2$UINT,
 TO_UDINT(1198357413), "Controller", 1$UINT, 42$UINT, 0$UINT,
 TO_UDINT(856977503), "DrivePosControl", 1$UINT, 82$UINT, 1$UINT,
 TO_UDINT(1841029985), "MoveController", 0$UINT, 0$UINT, 1$UINT,
+TO_UDINT(1238027964), "NCController", 1$UINT, 71$UINT, 1$UINT,
+TO_UDINT(1637991794), "RefSwitchCurrent", 0$UINT, 0$UINT, 1$UINT,
 
 
 1$UINT, TO_UDINT(1342472465), "_LMCAXIS1\_LMCABSENCODER1", 
+1$UINT, TO_UDINT(60742293), "_LMCAXIS2\_LMCABSENCODER1", 
 
 _NO_ATTR, TO_UDINT(1307168646), "_LMCAXIS1", 
+_NO_ATTR, TO_UDINT(3571490364), "_LMCAXIS2", 
 
 
 1$UINT, TO_UDINT(3579867825), "_LMCAXIS1\_LMCAXISREF1", 
+1$UINT, TO_UDINT(2835437418), "_LMCAXIS2\_LMCAXISREF1", 
 
 1$UINT, TO_UDINT(1689123478), "_LMCAXIS1\_LMCAXISVIS1", 
+1$UINT, TO_UDINT(416079693), "_LMCAXIS2\_LMCAXISVIS1", 
 
 1$UINT, TO_UDINT(1855218614), "_LMCAXIS1\_LMCAXISVIS1\_LMCAXISVISINT1", 
+1$UINT, TO_UDINT(708134574), "_LMCAXIS2\_LMCAXISVIS1\_LMCAXISVISINT1", 
 
 1$UINT, TO_UDINT(1004507117), "_LMCAXIS1\_LMCAXISVIS1\_LMCAXISVISLOGHANDLE1", 
+1$UINT, TO_UDINT(1598026771), "_LMCAXIS2\_LMCAXISVIS1\_LMCAXISVISLOGHANDLE1", 
 
 1$UINT, TO_UDINT(3745750122), "_LMCAXIS1\_LMCAXISVIS1\_LMCAXISVISLOGVIEWER1", 
 1$UINT, TO_UDINT(1179307472), "_LMCAXIS1\_LMCAXISVIS1\_LMCAXISVISLOGVIEWER2", 
 1$UINT, TO_UDINT(827194694), "_LMCAXIS1\_LMCAXISVIS1\_LMCAXISVISLOGVIEWER3", 
 1$UINT, TO_UDINT(2938726629), "_LMCAXIS1\_LMCAXISVIS1\_LMCAXISVISLOGVIEWER4", 
 1$UINT, TO_UDINT(3626915955), "_LMCAXIS1\_LMCAXISVIS1\_LMCAXISVISLOGVIEWER5", 
+1$UINT, TO_UDINT(3148081044), "_LMCAXIS2\_LMCAXISVIS1\_LMCAXISVISLOGVIEWER1", 
+1$UINT, TO_UDINT(581613102), "_LMCAXIS2\_LMCAXISVIS1\_LMCAXISVISLOGVIEWER2", 
+1$UINT, TO_UDINT(1437435576), "_LMCAXIS2\_LMCAXISVIS1\_LMCAXISVISLOGVIEWER3", 
+1$UINT, TO_UDINT(3418952475), "_LMCAXIS2\_LMCAXISVIS1\_LMCAXISVISLOGVIEWER4", 
+1$UINT, TO_UDINT(3167626125), "_LMCAXIS2\_LMCAXISVIS1\_LMCAXISVISLOGVIEWER5", 
 
 1$UINT, TO_UDINT(3213987212), "_LMCAXIS1\_LMCAXISVIS1\_LMCAXISVISPARA1", 
+1$UINT, TO_UDINT(2897851647), "_LMCAXIS2\_LMCAXISVIS1\_LMCAXISVISPARA1", 
 
 1$UINT, TO_UDINT(3296030471), "_LMCAXIS1\_LMCMATHFUNCTIONS1", 
+1$UINT, TO_UDINT(1809588941), "_LMCAXIS2\_LMCMATHFUNCTIONS1", 
 
 1$UINT, TO_UDINT(454471087), "_LMCAXIS1\_LMCPUBLISHER1", 
+1$UINT, TO_UDINT(853416285), "_LMCAXIS2\_LMCPUBLISHER1", 
 
 
 1$UINT, TO_UDINT(7905635), "_LMCAXIS1\_LMCSAFETY1", 
+1$UINT, TO_UDINT(3182611885), "_LMCAXIS2\_LMCSAFETY1", 
 
 
 _NO_ATTR, TO_UDINT(2017179554), "DRIVEPOSCONTROL1", 
 
 _NO_ATTR, TO_UDINT(1841029985), "MOVECONTROLLER", 
 
+_NO_ATTR, TO_UDINT(1094900446), "NCCONTROLLER1", 
+
+_NO_ATTR, TO_UDINT(1035361890), "REFSWITCHCURRENT1", 
+
 //Internal connections
 0$UDINT,
-14$UDINT,
-TO_UDINT(1), "_LMCMathFunctions1", TO_UDINT(12),
-TO_UDINT(1), "_LMCABSEncoder1", TO_UDINT(0),
-TO_UDINT(1), "_LMCAxisVis1", TO_UDINT(3),
-TO_UDINT(1), "_LMCAxisRef1", TO_UDINT(2),
-TO_UDINT(1), "_LMCSafety1", TO_UDINT(14),
-TO_UDINT(1), "_LMCPublisher1", TO_UDINT(13),
-TO_UDINT(3), "_LMCAxisVisInt1", TO_UDINT(4),
-TO_UDINT(3), "_LMCAxisVisPara1", TO_UDINT(11),
-TO_UDINT(3), "_LMCAxisVisLogViewer1", TO_UDINT(6),
-TO_UDINT(3), "_LMCAxisVisLogViewer2", TO_UDINT(7),
-TO_UDINT(3), "_LMCAxisVisLogViewer3", TO_UDINT(8),
-TO_UDINT(3), "_LMCAxisVisLogViewer4", TO_UDINT(9),
-TO_UDINT(3), "_LMCAxisVisLogViewer5", TO_UDINT(10),
-TO_UDINT(3), "_LMCAxisVisLogHandle1", TO_UDINT(5),
+28$UDINT,
+TO_UDINT(2), "_LMCMathFunctions1", TO_UDINT(24),
+TO_UDINT(2), "_LMCABSEncoder1", TO_UDINT(0),
+TO_UDINT(2), "_LMCAxisVis1", TO_UDINT(6),
+TO_UDINT(2), "_LMCAxisRef1", TO_UDINT(4),
+TO_UDINT(2), "_LMCSafety1", TO_UDINT(28),
+TO_UDINT(2), "_LMCPublisher1", TO_UDINT(26),
+TO_UDINT(3), "_LMCMathFunctions1", TO_UDINT(25),
+TO_UDINT(3), "_LMCABSEncoder1", TO_UDINT(1),
+TO_UDINT(3), "_LMCAxisVis1", TO_UDINT(7),
+TO_UDINT(3), "_LMCAxisRef1", TO_UDINT(5),
+TO_UDINT(3), "_LMCSafety1", TO_UDINT(29),
+TO_UDINT(3), "_LMCPublisher1", TO_UDINT(27),
+TO_UDINT(6), "_LMCAxisVisInt1", TO_UDINT(8),
+TO_UDINT(6), "_LMCAxisVisPara1", TO_UDINT(22),
+TO_UDINT(6), "_LMCAxisVisLogViewer1", TO_UDINT(12),
+TO_UDINT(6), "_LMCAxisVisLogViewer2", TO_UDINT(13),
+TO_UDINT(6), "_LMCAxisVisLogViewer3", TO_UDINT(14),
+TO_UDINT(6), "_LMCAxisVisLogViewer4", TO_UDINT(15),
+TO_UDINT(6), "_LMCAxisVisLogViewer5", TO_UDINT(16),
+TO_UDINT(6), "_LMCAxisVisLogHandle1", TO_UDINT(10),
+TO_UDINT(7), "_LMCAxisVisInt1", TO_UDINT(9),
+TO_UDINT(7), "_LMCAxisVisPara1", TO_UDINT(23),
+TO_UDINT(7), "_LMCAxisVisLogViewer1", TO_UDINT(17),
+TO_UDINT(7), "_LMCAxisVisLogViewer2", TO_UDINT(18),
+TO_UDINT(7), "_LMCAxisVisLogViewer3", TO_UDINT(19),
+TO_UDINT(7), "_LMCAxisVisLogViewer4", TO_UDINT(20),
+TO_UDINT(7), "_LMCAxisVisLogViewer5", TO_UDINT(21),
+TO_UDINT(7), "_LMCAxisVisLogHandle1", TO_UDINT(11),
 0$UDINT,
-15$UDINT,
-TO_UDINT(1), "LMCController", TO_UDINT(15), "Signal_Input",
-TO_UDINT(1), "LMCMath", TO_UDINT(12), "ClassSvr",
-TO_UDINT(1), "LMCSafety", TO_UDINT(14), "ClassSvr",
-TO_UDINT(1), "LMCReference", TO_UDINT(2), "RefInput",
-TO_UDINT(1), "LMCAbsEncoder", TO_UDINT(0), "ClassSvr",
-TO_UDINT(1), "LMCPublisher", TO_UDINT(13), "ClassSvr",
-TO_UDINT(3), "LMCAxisBase", TO_UDINT(1), "Control",
-TO_UDINT(4), "LMCAxisVisPara", TO_UDINT(11), "ClassSvr",
-TO_UDINT(6), "LogIndex", TO_UDINT(5), "LogIndex",
-TO_UDINT(7), "LogIndex", TO_UDINT(5), "LogIndex",
-TO_UDINT(8), "LogIndex", TO_UDINT(5), "LogIndex",
-TO_UDINT(9), "LogIndex", TO_UDINT(5), "LogIndex",
-TO_UDINT(10), "LogIndex", TO_UDINT(5), "LogIndex",
-TO_UDINT(11), "ocLMCAxisVisInt", TO_UDINT(4), "ClassSvr",
-TO_UDINT(16), "lmcX", TO_UDINT(1), "Control",
+32$UDINT,
+TO_UDINT(2), "LMCController", TO_UDINT(30), "Signal_Input",
+TO_UDINT(2), "LMCMath", TO_UDINT(24), "ClassSvr",
+TO_UDINT(2), "LMCSafety", TO_UDINT(28), "ClassSvr",
+TO_UDINT(2), "LMCReference", TO_UDINT(4), "RefInput",
+TO_UDINT(2), "LMCAbsEncoder", TO_UDINT(0), "ClassSvr",
+TO_UDINT(2), "LMCPublisher", TO_UDINT(26), "ClassSvr",
+TO_UDINT(2), "RefSwitch", TO_UDINT(33), "Switch",
+TO_UDINT(3), "LMCController", TO_UDINT(32), "Signal_Input",
+TO_UDINT(3), "LMCMath", TO_UDINT(25), "ClassSvr",
+TO_UDINT(3), "LMCSafety", TO_UDINT(29), "ClassSvr",
+TO_UDINT(3), "LMCReference", TO_UDINT(5), "RefInput",
+TO_UDINT(3), "LMCAbsEncoder", TO_UDINT(1), "ClassSvr",
+TO_UDINT(3), "LMCPublisher", TO_UDINT(27), "ClassSvr",
+TO_UDINT(6), "LMCAxisBase", TO_UDINT(2), "Control",
+TO_UDINT(7), "LMCAxisBase", TO_UDINT(3), "Control",
+TO_UDINT(8), "LMCAxisVisPara", TO_UDINT(22), "ClassSvr",
+TO_UDINT(9), "LMCAxisVisPara", TO_UDINT(23), "ClassSvr",
+TO_UDINT(12), "LogIndex", TO_UDINT(10), "LogIndex",
+TO_UDINT(13), "LogIndex", TO_UDINT(10), "LogIndex",
+TO_UDINT(14), "LogIndex", TO_UDINT(10), "LogIndex",
+TO_UDINT(15), "LogIndex", TO_UDINT(10), "LogIndex",
+TO_UDINT(16), "LogIndex", TO_UDINT(10), "LogIndex",
+TO_UDINT(17), "LogIndex", TO_UDINT(11), "LogIndex",
+TO_UDINT(18), "LogIndex", TO_UDINT(11), "LogIndex",
+TO_UDINT(19), "LogIndex", TO_UDINT(11), "LogIndex",
+TO_UDINT(20), "LogIndex", TO_UDINT(11), "LogIndex",
+TO_UDINT(21), "LogIndex", TO_UDINT(11), "LogIndex",
+TO_UDINT(22), "ocLMCAxisVisInt", TO_UDINT(8), "ClassSvr",
+TO_UDINT(23), "ocLMCAxisVisInt", TO_UDINT(9), "ClassSvr",
+TO_UDINT(31), "lmcX", TO_UDINT(2), "Control",
+TO_UDINT(31), "lmcY", TO_UDINT(3), "Control",
+TO_UDINT(32), "cMaxSpeed", TO_UDINT(3), "VMax",
 
 //Initialization values
 0$UDINT,
-26$UDINT,
-TO_UDINT(1), "SimulateMode", TO_UDINT(0),//|XAxis._LMCAxis1.SimulateMode;
-TO_UDINT(1), "ExUnits", TO_UDINT(80000),//|XAxis._LMCAxis1.ExUnits;
-TO_UDINT(1), "IntUnits", TO_UDINT(100),//|XAxis._LMCAxis1.IntUnits;
-TO_UDINT(1), "VMax", TO_UDINT(5m),//|XAxis._LMCAxis1.VMax;
-TO_UDINT(1), "AMax", TO_UDINT(50m),//|XAxis._LMCAxis1.AMax;
-TO_UDINT(1), "Tjerk", TO_UDINT(0),//|XAxis._LMCAxis1.Tjerk;
-TO_UDINT(1), "MoveType", TO_UDINT(_RAMP_Profile),//|XAxis._LMCAxis1.MoveType;
-TO_UDINT(1), "Resolution", TO_UDINT(1),//|XAxis._LMCAxis1.Resolution;
-TO_UDINT(1), "Modulo", TO_UDINT(0),//|XAxis._LMCAxis1.Modulo;
-TO_UDINT(1), "SWMinPos", TO_UDINT(0),//|XAxis._LMCAxis1.SWMinPos;
-TO_UDINT(1), "SWMaxPos", TO_UDINT(0),//|XAxis._LMCAxis1.SWMaxPos;
-TO_UDINT(1), "ErrorConfig", TO_UDINT(2#0000000001000000),//|XAxis._LMCAxis1.ErrorConfig;
-TO_UDINT(1), "AEmergency", TO_UDINT(0),//|XAxis._LMCAxis1.AEmergency;
-TO_UDINT(1), "JMax", TO_UDINT(0),//|XAxis._LMCAxis1.JMax;
-TO_UDINT(1), "Config", TO_UDINT(0),//|XAxis._LMCAxis1.Config;
-TO_UDINT(1), "ID", TO_UDINT(0),//|XAxis._LMCAxis1.ID;
-TO_UDINT(4), "TriangleMode", TO_UDINT(1),//|XAxis._LMCAxisVis1\_LMCAxis1\_LMCAxisVisInt1.TriangleMode;
-TO_UDINT(6), "LogOffset", TO_UDINT(0),//|XAxis._LMCAxisVis1\_LMCAxis1\_LMCAxisVisLogViewer1.LogOffset;
-TO_UDINT(7), "LogOffset", TO_UDINT(1),//|XAxis._LMCAxisVis1\_LMCAxis1\_LMCAxisVisLogViewer2.LogOffset;
-TO_UDINT(8), "LogOffset", TO_UDINT(2),//|XAxis._LMCAxisVis1\_LMCAxis1\_LMCAxisVisLogViewer3.LogOffset;
-TO_UDINT(9), "LogOffset", TO_UDINT(3),//|XAxis._LMCAxisVis1\_LMCAxis1\_LMCAxisVisLogViewer4.LogOffset;
-TO_UDINT(10), "LogOffset", TO_UDINT(4),//|XAxis._LMCAxisVis1\_LMCAxis1\_LMCAxisVisLogViewer5.LogOffset;
-TO_UDINT(11), "MovRefPosWindow", TO_UDINT(0),//|XAxis._LMCAxisVis1\_LMCAxis1\_LMCAxisVisPara1.MovRefPosWindow;
-TO_UDINT(13), "Config", TO_UDINT(0),//|XAxis._LMCAxis1\_LMCPublisher1.Config;
-TO_UDINT(13), "ID", TO_UDINT(0),//|XAxis._LMCAxis1\_LMCPublisher1.ID;
-TO_UDINT(15), "SetConf", TO_UDINT(2#101),//|XAxis.DrivePosControl1.SetConf;
+125$UDINT,
+TO_UDINT(0), "AbsEncoder", TO_UDINT(0),//|XAxis._LMCAxis1\_LMCABSEncoder1.AbsEncoder;
+TO_UDINT(1), "AbsEncoder", TO_UDINT(0),//|XAxis._LMCAxis2\_LMCABSEncoder1.AbsEncoder;
+TO_UDINT(2), "SimulateMode", TO_UDINT(0),//|XAxis._LMCAxis1.SimulateMode;
+TO_UDINT(2), "ExUnits", TO_UDINT(20000),//|XAxis._LMCAxis1.ExUnits;
+TO_UDINT(2), "IntUnits", TO_UDINT(100000),//|XAxis._LMCAxis1.IntUnits;
+TO_UDINT(2), "VMax", TO_UDINT(50000000),//|XAxis._LMCAxis1.VMax;
+TO_UDINT(2), "AMax", TO_UDINT(500000000),//|XAxis._LMCAxis1.AMax;
+TO_UDINT(2), "Tjerk", TO_UDINT(0),//|XAxis._LMCAxis1.Tjerk;
+TO_UDINT(2), "MoveType", TO_UDINT(_RAMP_PROFILE),//|XAxis._LMCAxis1.MoveType;
+TO_UDINT(2), "Resolution", TO_UDINT(1),//|XAxis._LMCAxis1.Resolution;
+TO_UDINT(2), "Modulo", TO_UDINT(0),//|XAxis._LMCAxis1.Modulo;
+TO_UDINT(2), "SWMinPos", TO_UDINT(-117440512),//|XAxis._LMCAxis1.SWMinPos;
+TO_UDINT(2), "SWMaxPos", TO_UDINT(117440512),//|XAxis._LMCAxis1.SWMaxPos;
+TO_UDINT(2), "ErrorConfig", TO_UDINT(2#00000000000000000000000001000000),//|XAxis._LMCAxis1.ErrorConfig;
+TO_UDINT(2), "AEmergency", TO_UDINT(0),//|XAxis._LMCAxis1.AEmergency;
+TO_UDINT(2), "JMax", TO_UDINT(0),//|XAxis._LMCAxis1.JMax;
+TO_UDINT(2), "AbsEncoder", TO_UDINT(0),//|XAxis._LMCAxis1.AbsEncoder;
+TO_UDINT(2), "ActPosition", TO_UDINT(0),//|XAxis._LMCAxis1.ActPosition;
+TO_UDINT(2), "LMCController", TO_UDINT(-8000),//|XAxis._LMCAxis1.LMCController;
+TO_UDINT(2), "LMCPreRtWorkTrigger", TO_UDINT(0),//|XAxis._LMCAxis1.LMCPreRtWorkTrigger;
+TO_UDINT(2), "LMCPostRtWorkTrigger", TO_UDINT(0),//|XAxis._LMCAxis1.LMCPostRtWorkTrigger;
+TO_UDINT(2), "HWReady", TO_UDINT(1),//|XAxis._LMCAxis1.HWReady;
+TO_UDINT(2), "HWError", TO_UDINT(0),//|XAxis._LMCAxis1.HWError;
+TO_UDINT(2), "HWMin", TO_UDINT(0),//|XAxis._LMCAxis1.HWMin;
+TO_UDINT(2), "HWMax", TO_UDINT(0),//|XAxis._LMCAxis1.HWMax;
+TO_UDINT(2), "ZImpulse", TO_UDINT(0),//|XAxis._LMCAxis1.ZImpulse;
+TO_UDINT(2), "RefSwitch", TO_UDINT(0),//|XAxis._LMCAxis1.RefSwitch;
+TO_UDINT(2), "LatchPos", TO_UDINT(0),//|XAxis._LMCAxis1.LatchPos;
+TO_UDINT(2), "Emergency", TO_UDINT(0),//|XAxis._LMCAxis1.Emergency;
+TO_UDINT(2), "Provider", TO_UDINT(PassiveProfile),//|XAxis._LMCAxis1.Provider;
+TO_UDINT(2), "Config", TO_UDINT(2#00000000000000000000000000000000),//|XAxis._LMCAxis1.Config;
+TO_UDINT(2), "ID", TO_UDINT(0),//|XAxis._LMCAxis1.ID;
+TO_UDINT(3), "SimulateMode", TO_UDINT(0),//|XAxis._LMCAxis2.SimulateMode;
+TO_UDINT(3), "ExUnits", TO_UDINT(128),//|XAxis._LMCAxis2.ExUnits;
+TO_UDINT(3), "IntUnits", TO_UDINT(15000),//|XAxis._LMCAxis2.IntUnits;
+TO_UDINT(3), "VMax", TO_UDINT(50000000),//|XAxis._LMCAxis2.VMax;
+TO_UDINT(3), "AMax", TO_UDINT(500000000),//|XAxis._LMCAxis2.AMax;
+TO_UDINT(3), "Tjerk", TO_UDINT(0),//|XAxis._LMCAxis2.Tjerk;
+TO_UDINT(3), "MoveType", TO_UDINT(_RAMP_PROFILE),//|XAxis._LMCAxis2.MoveType;
+TO_UDINT(3), "Resolution", TO_UDINT(1),//|XAxis._LMCAxis2.Resolution;
+TO_UDINT(3), "Modulo", TO_UDINT(0),//|XAxis._LMCAxis2.Modulo;
+TO_UDINT(3), "SWMinPos", TO_UDINT(-117440512),//|XAxis._LMCAxis2.SWMinPos;
+TO_UDINT(3), "SWMaxPos", TO_UDINT(117440512),//|XAxis._LMCAxis2.SWMaxPos;
+TO_UDINT(3), "ErrorConfig", TO_UDINT(2#00000000000000000000000001000000),//|XAxis._LMCAxis2.ErrorConfig;
+TO_UDINT(3), "AEmergency", TO_UDINT(0),//|XAxis._LMCAxis2.AEmergency;
+TO_UDINT(3), "JMax", TO_UDINT(0),//|XAxis._LMCAxis2.JMax;
+TO_UDINT(3), "AbsEncoder", TO_UDINT(0),//|XAxis._LMCAxis2.AbsEncoder;
+TO_UDINT(3), "ActPosition", TO_UDINT(0),//|XAxis._LMCAxis2.ActPosition;
+TO_UDINT(3), "LMCController", TO_UDINT(0),//|XAxis._LMCAxis2.LMCController;
+TO_UDINT(3), "LMCPreRtWorkTrigger", TO_UDINT(0),//|XAxis._LMCAxis2.LMCPreRtWorkTrigger;
+TO_UDINT(3), "LMCPostRtWorkTrigger", TO_UDINT(0),//|XAxis._LMCAxis2.LMCPostRtWorkTrigger;
+TO_UDINT(3), "HWReady", TO_UDINT(0),//|XAxis._LMCAxis2.HWReady;
+TO_UDINT(3), "HWError", TO_UDINT(0),//|XAxis._LMCAxis2.HWError;
+TO_UDINT(3), "HWMin", TO_UDINT(0),//|XAxis._LMCAxis2.HWMin;
+TO_UDINT(3), "HWMax", TO_UDINT(0),//|XAxis._LMCAxis2.HWMax;
+TO_UDINT(3), "ZImpulse", TO_UDINT(0),//|XAxis._LMCAxis2.ZImpulse;
+TO_UDINT(3), "RefSwitch", TO_UDINT(0),//|XAxis._LMCAxis2.RefSwitch;
+TO_UDINT(3), "LatchPos", TO_UDINT(0),//|XAxis._LMCAxis2.LatchPos;
+TO_UDINT(3), "Emergency", TO_UDINT(0),//|XAxis._LMCAxis2.Emergency;
+TO_UDINT(3), "Provider", TO_UDINT(PassiveProfile),//|XAxis._LMCAxis2.Provider;
+TO_UDINT(3), "Config", TO_UDINT(2#00000000000000000000000000000000),//|XAxis._LMCAxis2.Config;
+TO_UDINT(3), "ID", TO_UDINT(0),//|XAxis._LMCAxis2.ID;
+TO_UDINT(4), "HWMin", TO_UDINT(0),//|XAxis._LMCAxis1\_LMCAxisRef1.HWMin;
+TO_UDINT(4), "HWMax", TO_UDINT(0),//|XAxis._LMCAxis1\_LMCAxisRef1.HWMax;
+TO_UDINT(4), "ZImpulse", TO_UDINT(0),//|XAxis._LMCAxis1\_LMCAxisRef1.ZImpulse;
+TO_UDINT(4), "RefSwitch", TO_UDINT(0),//|XAxis._LMCAxis1\_LMCAxisRef1.RefSwitch;
+TO_UDINT(4), "LatchPos", TO_UDINT(0),//|XAxis._LMCAxis1\_LMCAxisRef1.LatchPos;
+TO_UDINT(5), "HWMin", TO_UDINT(0),//|XAxis._LMCAxis2\_LMCAxisRef1.HWMin;
+TO_UDINT(5), "HWMax", TO_UDINT(0),//|XAxis._LMCAxis2\_LMCAxisRef1.HWMax;
+TO_UDINT(5), "ZImpulse", TO_UDINT(0),//|XAxis._LMCAxis2\_LMCAxisRef1.ZImpulse;
+TO_UDINT(5), "RefSwitch", TO_UDINT(0),//|XAxis._LMCAxis2\_LMCAxisRef1.RefSwitch;
+TO_UDINT(5), "LatchPos", TO_UDINT(0),//|XAxis._LMCAxis2\_LMCAxisRef1.LatchPos;
+TO_UDINT(8), "TriangleMode", TO_UDINT(1),//|XAxis._LMCAxisVis1\_LMCAxis1\_LMCAxisVisInt1.TriangleMode;
+TO_UDINT(9), "TriangleMode", TO_UDINT(1),//|XAxis._LMCAxisVis1\_LMCAxis2\_LMCAxisVisInt1.TriangleMode;
+TO_UDINT(9), "TabState", TO_UDINT(2),//|XAxis._LMCAxisVis1\_LMCAxis2\_LMCAxisVisInt1.TabState;
+TO_UDINT(9), "GlobalTab", TO_UDINT(0),//|XAxis._LMCAxisVis1\_LMCAxis2\_LMCAxisVisInt1.GlobalTab;
+TO_UDINT(12), "LogOffset", TO_UDINT(0),//|XAxis._LMCAxisVis1\_LMCAxis1\_LMCAxisVisLogViewer1.LogOffset;
+TO_UDINT(13), "LogOffset", TO_UDINT(1),//|XAxis._LMCAxisVis1\_LMCAxis1\_LMCAxisVisLogViewer2.LogOffset;
+TO_UDINT(14), "LogOffset", TO_UDINT(2),//|XAxis._LMCAxisVis1\_LMCAxis1\_LMCAxisVisLogViewer3.LogOffset;
+TO_UDINT(15), "LogOffset", TO_UDINT(3),//|XAxis._LMCAxisVis1\_LMCAxis1\_LMCAxisVisLogViewer4.LogOffset;
+TO_UDINT(16), "LogOffset", TO_UDINT(4),//|XAxis._LMCAxisVis1\_LMCAxis1\_LMCAxisVisLogViewer5.LogOffset;
+TO_UDINT(17), "LogOffset", TO_UDINT(0),//|XAxis._LMCAxisVis1\_LMCAxis2\_LMCAxisVisLogViewer1.LogOffset;
+TO_UDINT(18), "LogOffset", TO_UDINT(1),//|XAxis._LMCAxisVis1\_LMCAxis2\_LMCAxisVisLogViewer2.LogOffset;
+TO_UDINT(19), "LogOffset", TO_UDINT(2),//|XAxis._LMCAxisVis1\_LMCAxis2\_LMCAxisVisLogViewer3.LogOffset;
+TO_UDINT(20), "LogOffset", TO_UDINT(3),//|XAxis._LMCAxisVis1\_LMCAxis2\_LMCAxisVisLogViewer4.LogOffset;
+TO_UDINT(21), "LogOffset", TO_UDINT(4),//|XAxis._LMCAxisVis1\_LMCAxis2\_LMCAxisVisLogViewer5.LogOffset;
+TO_UDINT(22), "MovRefPosWindow", TO_UDINT(0),//|XAxis._LMCAxisVis1\_LMCAxis1\_LMCAxisVisPara1.MovRefPosWindow;
+TO_UDINT(23), "MovRefPosWindow", TO_UDINT(0),//|XAxis._LMCAxisVis1\_LMCAxis2\_LMCAxisVisPara1.MovRefPosWindow;
+TO_UDINT(26), "Provider", TO_UDINT(PassiveProfile),//|XAxis._LMCAxis1\_LMCPublisher1.Provider;
+TO_UDINT(26), "Config", TO_UDINT(2#00000000000000000000000000000000),//|XAxis._LMCAxis1\_LMCPublisher1.Config;
+TO_UDINT(26), "ID", TO_UDINT(0),//|XAxis._LMCAxis1\_LMCPublisher1.ID;
+TO_UDINT(27), "Provider", TO_UDINT(PassiveProfile),//|XAxis._LMCAxis2\_LMCPublisher1.Provider;
+TO_UDINT(27), "Config", TO_UDINT(2#00000000000000000000000000000000),//|XAxis._LMCAxis2\_LMCPublisher1.Config;
+TO_UDINT(27), "ID", TO_UDINT(0),//|XAxis._LMCAxis2\_LMCPublisher1.ID;
+TO_UDINT(28), "HWReady", TO_UDINT(1),//|XAxis._LMCAxis1\_LMCSafety1.HWReady;
+TO_UDINT(28), "HWError", TO_UDINT(0),//|XAxis._LMCAxis1\_LMCSafety1.HWError;
+TO_UDINT(28), "HWMin", TO_UDINT(0),//|XAxis._LMCAxis1\_LMCSafety1.HWMin;
+TO_UDINT(28), "HWMax", TO_UDINT(0),//|XAxis._LMCAxis1\_LMCSafety1.HWMax;
+TO_UDINT(28), "Emergency", TO_UDINT(0),//|XAxis._LMCAxis1\_LMCSafety1.Emergency;
+TO_UDINT(28), "LMCController", TO_UDINT(-8000),//|XAxis._LMCAxis1\_LMCSafety1.LMCController;
+TO_UDINT(29), "HWReady", TO_UDINT(0),//|XAxis._LMCAxis2\_LMCSafety1.HWReady;
+TO_UDINT(29), "HWError", TO_UDINT(0),//|XAxis._LMCAxis2\_LMCSafety1.HWError;
+TO_UDINT(29), "HWMin", TO_UDINT(0),//|XAxis._LMCAxis2\_LMCSafety1.HWMin;
+TO_UDINT(29), "HWMax", TO_UDINT(0),//|XAxis._LMCAxis2\_LMCSafety1.HWMax;
+TO_UDINT(29), "Emergency", TO_UDINT(0),//|XAxis._LMCAxis2\_LMCSafety1.Emergency;
+TO_UDINT(29), "LMCController", TO_UDINT(0),//|XAxis._LMCAxis2\_LMCSafety1.LMCController;
+TO_UDINT(30), "SetConf", TO_UDINT(2#101),//|XAxis.DrivePosControl1.SetConf;
+TO_UDINT(32), "iHWErrors", TO_UDINT(0),//|XAxis.NCController1.iHWErrors;
+TO_UDINT(32), "vHWDelay", TO_UDINT(0),//|XAxis.NCController1.vHWDelay;
+TO_UDINT(32), "oActive", TO_UDINT(0),//|XAxis.NCController1.oActive;
+TO_UDINT(32), "odirection", TO_UDINT(0),//|XAxis.NCController1.odirection;
+TO_UDINT(32), "oOutputSignal", TO_UDINT(0),//|XAxis.NCController1.oOutputSignal;
+TO_UDINT(32), "cMaxSignal", TO_UDINT(10000),//|XAxis.NCController1.cMaxSignal;
+TO_UDINT(32), "cOffSignal", TO_UDINT(0),//|XAxis.NCController1.cOffSignal;
+TO_UDINT(32), "cMaxSpeed", TO_UDINT(5000000),//|XAxis.NCController1.cMaxSpeed;
+TO_UDINT(32), "cMinSpeed", TO_UDINT(5000),//|XAxis.NCController1.cMinSpeed;
+TO_UDINT(32), "vDeadBand", TO_UDINT(0),//|XAxis.NCController1.vDeadBand;
+TO_UDINT(32), "vKV", TO_UDINT(10000),//|XAxis.NCController1.vKV;
+TO_UDINT(32), "vKI", TO_UDINT(10),//|XAxis.NCController1.vKI;
+TO_UDINT(32), "cImode", TO_UDINT(0),//|XAxis.NCController1.cImode;
+TO_UDINT(32), "vTimeOut", TO_UDINT(0),//|XAxis.NCController1.vTimeOut;
+TO_UDINT(32), "cEmerStop", TO_UDINT(50000000),//|XAxis.NCController1.cEmerStop;
+TO_UDINT(32), "cInposControl", TO_UDINT(0),//|XAxis.NCController1.cInposControl;
+TO_UDINT(32), "cInposDelay", TO_UDINT(0),//|XAxis.NCController1.cInposDelay;
+TO_UDINT(32), "HWErrorQuit", TO_UDINT(0),//|XAxis.NCController1.HWErrorQuit;
 
 //Symbolic initialization values
 0$UDINT,
@@ -272,46 +423,78 @@ TO_UDINT(15), "SetConf", TO_UDINT(2#101),//|XAxis.DrivePosControl1.SetConf;
 
 //Configuration of tasks (RealTime, Cyclic, Background)
 0$UDINT,
-1$UDINT,
-TO_UDINT(1), (1)$UDINT, 4194303$DINT, 	//_LMCAXIS1
+4$UDINT,
+TO_UDINT(2), (1)$UDINT, 4194303$DINT, 	//_LMCAXIS1
+TO_UDINT(3), (1)$UDINT, 4194303$DINT, 	//_LMCAXIS2
+TO_UDINT(31), (1)$UDINT, 4194303$DINT, 	//MOVECONTROLLER
+TO_UDINT(33), (1)$UDINT, 4194303$DINT, 	//REFSWITCHCURRENT1
 
 0$UDINT,
 0$UDINT,
 
 0$UDINT,
-1$UDINT,
-TO_UDINT(1), (100)$UDINT, 4194303$DINT, 	//_LMCAXIS1
+2$UDINT,
+TO_UDINT(2), (100)$UDINT, 4194303$DINT, 	//_LMCAXIS1
+TO_UDINT(3), (100)$UDINT, 4194303$DINT, 	//_LMCAXIS2
 
 //External connections
 0$UDINT,
-2$UDINT,
-TO_UDINT(1), "ActPosition", C_TRY, TO_UDINT(794195804), "_DriveAxis2","ActPos",
-TO_UDINT(15), "cDriveAxis", C_TRY, TO_UDINT(794195804), "_DriveAxis2","CmdState",
+9$UDINT,
+TO_UDINT(2), "ActPosition", C_TRY, TO_UDINT(794195804), "_DriveAxis2","ActPos",
+TO_UDINT(3), "ActPosition", C_TRY, TO_UDINT(201264582), "ST1511","ActPosition",
+TO_UDINT(3), "RefSwitch", C_TRY, TO_UDINT(2056942671), "DM1611","Input1",
+TO_UDINT(30), "cDriveAxis", C_TRY, TO_UDINT(794195804), "_DriveAxis2","CmdState",
+TO_UDINT(32), "iHWErrors", C_TRY, TO_UDINT(201264582), "ST1511","AxError",
+TO_UDINT(32), "oActive", C_TRY, TO_UDINT(201264582), "ST1511","Enable",
+TO_UDINT(32), "oOutputSignal", C_TRY, TO_UDINT(201264582), "ST1511","SetFreqOut",
+TO_UDINT(32), "HWErrorQuit", C_TRY, TO_UDINT(201264582), "ST1511","ErrorQuit",
+TO_UDINT(33), "Current", C_DIR, TO_UDINT(794195804), "_DriveAxis2","ActCurrent",
 
 //Magic internal connections
 0$UDINT,
-21$UDINT,
-TO_UDINT(2), "HWMin", TO_UDINT(1), "HWMin",
-TO_UDINT(2), "HWMax", TO_UDINT(1), "HWMax",
-TO_UDINT(2), "ZImpulse", TO_UDINT(1), "ZImpulse",
-TO_UDINT(2), "RefSwitch", TO_UDINT(1), "RefSwitch",
-TO_UDINT(2), "LatchPos", TO_UDINT(1), "LatchPos",
-TO_UDINT(4), "LMCAxisBase", TO_UDINT(3), "LMCAxisBase",
-TO_UDINT(5), "LMCAxisBase", TO_UDINT(3), "LMCAxisBase",
-TO_UDINT(6), "LMCAxisBase", TO_UDINT(3), "LMCAxisBase",
-TO_UDINT(7), "LMCAxisBase", TO_UDINT(3), "LMCAxisBase",
-TO_UDINT(8), "LMCAxisBase", TO_UDINT(3), "LMCAxisBase",
-TO_UDINT(9), "LMCAxisBase", TO_UDINT(3), "LMCAxisBase",
-TO_UDINT(10), "LMCAxisBase", TO_UDINT(3), "LMCAxisBase",
-TO_UDINT(13), "Provider", TO_UDINT(1), "Provider",
-TO_UDINT(13), "Config", TO_UDINT(1), "Config",
-TO_UDINT(13), "ID", TO_UDINT(1), "ID",
-TO_UDINT(14), "HWReady", TO_UDINT(1), "HWReady",
-TO_UDINT(14), "HWError", TO_UDINT(1), "HWError",
-TO_UDINT(14), "HWMin", TO_UDINT(1), "HWMin",
-TO_UDINT(14), "HWMax", TO_UDINT(1), "HWMax",
-TO_UDINT(14), "Emergency", TO_UDINT(1), "Emergency",
-TO_UDINT(14), "LMCController", TO_UDINT(1), "LMCController",
+42$UDINT,
+TO_UDINT(4), "HWMin", TO_UDINT(2), "HWMin",
+TO_UDINT(4), "HWMax", TO_UDINT(2), "HWMax",
+TO_UDINT(4), "ZImpulse", TO_UDINT(2), "ZImpulse",
+TO_UDINT(4), "RefSwitch", TO_UDINT(2), "RefSwitch",
+TO_UDINT(4), "LatchPos", TO_UDINT(2), "LatchPos",
+TO_UDINT(5), "HWMin", TO_UDINT(3), "HWMin",
+TO_UDINT(5), "HWMax", TO_UDINT(3), "HWMax",
+TO_UDINT(5), "ZImpulse", TO_UDINT(3), "ZImpulse",
+TO_UDINT(5), "RefSwitch", TO_UDINT(3), "RefSwitch",
+TO_UDINT(5), "LatchPos", TO_UDINT(3), "LatchPos",
+TO_UDINT(8), "LMCAxisBase", TO_UDINT(6), "LMCAxisBase",
+TO_UDINT(9), "LMCAxisBase", TO_UDINT(7), "LMCAxisBase",
+TO_UDINT(10), "LMCAxisBase", TO_UDINT(6), "LMCAxisBase",
+TO_UDINT(11), "LMCAxisBase", TO_UDINT(7), "LMCAxisBase",
+TO_UDINT(12), "LMCAxisBase", TO_UDINT(6), "LMCAxisBase",
+TO_UDINT(13), "LMCAxisBase", TO_UDINT(6), "LMCAxisBase",
+TO_UDINT(14), "LMCAxisBase", TO_UDINT(6), "LMCAxisBase",
+TO_UDINT(15), "LMCAxisBase", TO_UDINT(6), "LMCAxisBase",
+TO_UDINT(16), "LMCAxisBase", TO_UDINT(6), "LMCAxisBase",
+TO_UDINT(17), "LMCAxisBase", TO_UDINT(7), "LMCAxisBase",
+TO_UDINT(18), "LMCAxisBase", TO_UDINT(7), "LMCAxisBase",
+TO_UDINT(19), "LMCAxisBase", TO_UDINT(7), "LMCAxisBase",
+TO_UDINT(20), "LMCAxisBase", TO_UDINT(7), "LMCAxisBase",
+TO_UDINT(21), "LMCAxisBase", TO_UDINT(7), "LMCAxisBase",
+TO_UDINT(26), "Provider", TO_UDINT(2), "Provider",
+TO_UDINT(26), "Config", TO_UDINT(2), "Config",
+TO_UDINT(26), "ID", TO_UDINT(2), "ID",
+TO_UDINT(27), "Provider", TO_UDINT(3), "Provider",
+TO_UDINT(27), "Config", TO_UDINT(3), "Config",
+TO_UDINT(27), "ID", TO_UDINT(3), "ID",
+TO_UDINT(28), "HWReady", TO_UDINT(2), "HWReady",
+TO_UDINT(28), "HWError", TO_UDINT(2), "HWError",
+TO_UDINT(28), "HWMin", TO_UDINT(2), "HWMin",
+TO_UDINT(28), "HWMax", TO_UDINT(2), "HWMax",
+TO_UDINT(28), "Emergency", TO_UDINT(2), "Emergency",
+TO_UDINT(28), "LMCController", TO_UDINT(2), "LMCController",
+TO_UDINT(29), "HWReady", TO_UDINT(3), "HWReady",
+TO_UDINT(29), "HWError", TO_UDINT(3), "HWError",
+TO_UDINT(29), "HWMin", TO_UDINT(3), "HWMin",
+TO_UDINT(29), "HWMax", TO_UDINT(3), "HWMax",
+TO_UDINT(29), "Emergency", TO_UDINT(3), "Emergency",
+TO_UDINT(29), "LMCController", TO_UDINT(3), "LMCController",
 
 //Configuration of timeslots of tasks (RealTime, Cyclic)
 #ifdef __LSLLDR_TIMESLOTS__
@@ -333,15 +516,19 @@ TO_UDINT(14), "LMCController", TO_UDINT(1), "LMCController",
 #ifdef __LSLLDR_TASKID__
 "\\\\TASKS2  "
 0$UDINT,
-1$UDINT,
+4$UDINT,
 (0)$UDINT, 	//_LMCAXIS1
+(0)$UDINT, 	//_LMCAXIS2
+(0)$UDINT, 	//MOVECONTROLLER
+(0)$UDINT, 	//REFSWITCHCURRENT1
 
 0$UDINT,
 0$UDINT,
 
 0$UDINT,
-1$UDINT,
+2$UDINT,
 (0)$UDINT, 	//_LMCAXIS1
+(0)$UDINT, 	//_LMCAXIS2
 
 #endif //__LSLLDR_TASKID__
 

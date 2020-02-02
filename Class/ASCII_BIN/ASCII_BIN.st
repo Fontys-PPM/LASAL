@@ -5,7 +5,7 @@
 (*!
 <Class
 	Name               = "ASCII_BIN"
-	Revision           = "1.20"
+	Revision           = "1.21"
 	GUID               = "{CBAEE384-C115-4DE8-8094-C7D4F0EF8746}"
 	RealtimeTask       = "false"
 	CyclicTask         = "false"
@@ -24,6 +24,7 @@
 	</Channels>
 	<RevDoku>
 		<Owner Company="Sigmatek"/>
+		<Dokumentation Revision="1.21" Date="2019-09-16" Author="SakEmi" Company="Sigmatek" Description="Overflow correction"/>
 		<Dokumentation Revision="1.20" Date="2013-07-12" Author="spimar" Company="Sigmatek" Description="- complemented method comments&#13;&#10;- ARM ready&#13;&#10;- Fixed a bug in Ascii2Bin() to be able to convert a full DINT value;&#13;&#10;- Now it is possible to convert a unrestricted number of characters (Ascii2Bin, Ascii2udBin). &#13;&#10;- If the number of characters doesn’t fit into the datatype(DINT, UDINT), an errorbit is set and the value is cut off at the last character which fits into the datatype;"/>
 		<Dokumentation Revision="1.10" Date="2012-06-28" Author="spimar" Company="Sigmatek" Description="The global functions are now virtual;"/>
 		<Dokumentation Revision="1.9" Date="2012-02-09" Author="spimar" Company="Sigmatek" Description="The functions Ascii2udBin and Ascii2Bin doesn&apos;t support a string which begins with a plus &apos;+&apos; sign."/>
@@ -98,7 +99,7 @@ END_CLASS;
 FUNCTION GLOBAL TAB ASCII_BIN::@CT_
 0$UINT,
 2#0100000000000000$UINT, //TY_ASCII_BIN
-1$UINT, 20$UINT, (SIZEOF(::ASCII_BIN))$UINT, 
+1$UINT, 21$UINT, (SIZEOF(::ASCII_BIN))$UINT, 
 1$UINT, 0$UINT, 0$UINT, 
 TO_UDINT(2897291062), "ASCII_BIN", //Class
 TO_UDINT(0), 0, 0$UINT, 0$UINT, //Baseclass
@@ -529,7 +530,11 @@ END_VAR
   end_while;
   
   //if (fehler <> 16#FFFF) then //FesGue 22.11.11
-  if (fehler = 0) then // don´t do this when a error is occured
+  if (fehler = 0) then // don´t do this when a error is occured    
+    // #2929 decrease counter if there is an overflow so that the number of decimal places is correct // sakemi 12.09.2019
+    if (overflow = TRUE) then
+      counter -= 1;
+    end_if;
     if (m_dec_point <> -1) & (m_dec_point < counter$SINT) then
       ptb^ := (counter - m_dec_point)$BINT;
     end_if;

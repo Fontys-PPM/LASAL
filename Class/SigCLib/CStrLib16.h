@@ -38,11 +38,6 @@
     // seek address of uni-0-string 'lookfor' in uni-0-string 'searchee'. function will return valid pointer or NULL if 'lookfor' is not found in 'searchee'.
     cExtern unsigned short* sigclib_strstr16(const unsigned short* searchee, const unsigned short* lookfor);
     
-    // convert unicode-0-string to utf8-0-string, function will return number of characters in destination
-    cExtern unsigned long   sigclib_str16_to_utf8(void *dst, const void *src);
-    
-    // convert utf8-0-string to unicode-0-string, function will return number of characters in destination
-    cExtern unsigned long   sigclib_utf8_to_str16(void *dst, const void *src);
     
   #else
   
@@ -78,12 +73,6 @@
     
     // seek address of uni-0-string 'lookfor' in uni-0-string 'searchee'. function will return valid pointer or NULL if 'lookfor' is not found in 'searchee'.
     function global __cdecl sigclib_strstr16 var_input searchee:^uint; lookfor:^uint; end_var var_output retcode:^uint; end_var;
-
-    // convert unicode-0-string to utf8-0-string, function will return number of characters in destination
-    function global __cdecl sigclib_str16_to_utf8 var_input dst:^void; src:^void; end_var var_output retcode:udint; end_var;
-    
-    // convert utf8-0-string to unicode-0-string, function will return number of characters in destination
-    function global __cdecl sigclib_utf8_to_str16 var_input dst:^void; src:^void; end_var var_output retcode:udint; end_var;
     
   #endif
 #endif  

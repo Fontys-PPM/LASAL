@@ -81,7 +81,7 @@
 (*!
 <Class
 	Name               = "_TCPIP_SERVER"
-	Revision           = "1.36"
+	Revision           = "1.37"
 	GUID               = "{E84BD10E-292D-4E0D-BB1B-39D896115F6E}"
 	RealtimeTask       = "false"
 	CyclicTask         = "true"
@@ -125,6 +125,7 @@
 	</Dependencies>
 	<RevDoku>
 		<Owner Company="SIGMATEK" Author="KELSTE"/>
+		<Dokumentation Revision="1.37" Date="2019-02-07" Author="HubChr" Company="SIGMATEK" Description="cTimeout now also works if client is completely disconnected"/>
 		<Dokumentation Revision="1.36" Date="2018-02-22" Author="SchMat" Company="SIGMATEK" Description="- bugfix: send more than 5840 byte"/>
 		<Dokumentation Revision="1.35" Date="2018-02-05" Author="SchMat" Company="SIGMATEK" Description="-corrected defines because of identical redefinition warning by using _TCPIP_CLIENT and _TCPIP_SERVER in same network"/>
 		<Dokumentation Revision="1.34" Date="2017-10-27" Author="SchMat" Company="SIGMATEK" Description="- bugfix using async task at multi core CPUs&#13;&#10;- run cyclic task also in case of using async communication to do the CyWork of derived classes"/>
@@ -670,7 +671,7 @@ END_CLASS;
 FUNCTION GLOBAL TAB _TCPIP_SERVER::@CT_
 0$UINT,
 2#0100000000000000$UINT, //TY__TCPIP_SERVER
-1$UINT, 36$UINT, (SIZEOF(::_TCPIP_SERVER))$UINT, 
+1$UINT, 37$UINT, (SIZEOF(::_TCPIP_SERVER))$UINT, 
 5$UINT, 13$UINT, 0$UINT, 
 TO_UDINT(26234884), "_TCPIP_SERVER", //Class
 TO_UDINT(0), 0, 0$UINT, 0$UINT, //Baseclass
@@ -688,7 +689,7 @@ TO_UDINT(0), 0, 0$UINT, 0$UINT, //Baseclass
 (::_TCPIP_SERVER.cConfig.pCh)$UINT, _CH_CLT_DATA$UINT, 2#0000000000000000$UINT, TO_UDINT(2101344707), "cConfig", 
 (::_TCPIP_SERVER.co_StdLib.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000000$UINT, TO_UDINT(3072335391), "co_StdLib", TO_UDINT(3689364044), "_StdLib", 0$UINT, 0$UINT, 
 (::_TCPIP_SERVER.co_MultiTask.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000000$UINT, TO_UDINT(123997224), "co_MultiTask", TO_UDINT(2641766936), "_MultiTask", 1$UINT, 1$UINT, 
-(::_TCPIP_SERVER.co_SigCLib.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000000$UINT, TO_UDINT(2195423801), "co_SigCLib", TO_UDINT(77440046), "SigCLib", 0$UINT, 24$UINT, 
+(::_TCPIP_SERVER.co_SigCLib.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000000$UINT, TO_UDINT(2195423801), "co_SigCLib", TO_UDINT(77440046), "SigCLib", 0$UINT, 30$UINT, 
 (::_TCPIP_SERVER.CheckSum.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(408699862), "CheckSum", TO_UDINT(916194998), "_CheckSum", 1$UINT, 0$UINT, 
 (::_TCPIP_SERVER.StrTaskName.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(3109787989), "StrTaskName", TO_UDINT(1850111279), "String", 1$UINT, 10$UINT, 
 (::_TCPIP_SERVER.StrSemaName01.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(4079954366), "StrSemaName01", TO_UDINT(1850111279), "String", 1$UINT, 10$UINT, 
@@ -1203,7 +1204,7 @@ END_VAR
             pActConn^.FSM_TCP := _STATE_CONN_SOCK_OPT;
           else
             dBytes := OS_TCP_USER_NREAD_AVAILABLE(pActConn^.dSocket);
-            if (dBytes < 0) then
+            if (dBytes <= 0) then
               if (dBytes <> TCP_NOT_READY) then
                 ConnSocketError(pActConn^.dSocket, pActConn^.FSM_TCP, TCP_SVR_ERR_GROUP_OS, dBytes);
                 pActConn^.FSM_TCP := _STATE_SHUTDOWN;

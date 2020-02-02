@@ -82,6 +82,7 @@
   
 #endif
 
+
 //Atomic Operationen
 //type __sync_fetch_and_or (type *ptr, type value, ...)
 //type __sync_fetch_and_and (type *ptr, type value, ...)
@@ -91,4 +92,77 @@
 //type __sync_and_and_fetch (type *ptr, type value, ...)
 //type __sync_xor_and_fetch (type *ptr, type value, ...)
 //type __sync_nand_and_fetch (type *ptr, type value, ...)
+
+
+// ************************************************************************************************
+// USAGE
+// ************************************************************************************************
+
+// ------------------------------------------------------------------------------------------------
+// unsigned long sigclib_atomic_getU32(unsigned long *pValue);
+// long sigclib_atomic_getS32(long *pValue);
+// atomic get u32
+// --> pValue .......... address of data (NOTE: has to be 32bit-aligned)
+// <-- function will return value of given address
+
+// ------------------------------------------------------------------------------------------------
+// unsigned long sigclib_atomic_setU32(unsigned long *pValue, unsigned long value);
+// long sigclib_atomic_setS32(long *pValue, long value);
+// atomic set u32
+// --> pValue .......... address of data (NOTE: has to be 32bit-aligned)
+// --> value ........... value to set
+// <-- function will return value of data before set was performed
+    
+// ------------------------------------------------------------------------------------------------
+// unsigned long sigclib_atomic_incU32(unsigned long *pValue);
+// long sigclib_atomic_incS32(long *pValue);
+// atomic increment of u32bit, return value corresponds to value before operator was executed
+// --> pValue .......... address of data (NOTE: has to be 32bit-aligned)
+// <-- function will return corresponding value before operator was executed
+    
+// ------------------------------------------------------------------------------------------------
+// unsigned long sigclib_atomic_decU32(unsigned long *pValue);
+// long sigclib_atomic_decS32(long *pValue);
+// atomic decrement of u32bit, return value corresponds to value before operator was executed
+// --> pValue .......... address of data (NOTE: has to be 32bit-aligned)
+// <-- function will return corresponding value before operator was executed
+    
+// ------------------------------------------------------------------------------------------------
+// unsigned long sigclib_atomic_addU32(unsigned long *pValue, unsigned long addVal);
+// long sigclib_atomic_addS32(long *pValue, long addVal);
+// atomic add of u32bit, return value corresponds to value before operator was executed
+// --> pValue .......... address of data (NOTE: has to be 32bit-aligned)
+// --> addval .......... value to add
+// <-- function will return corresponding value before operator was executed
+    
+// ------------------------------------------------------------------------------------------------
+// unsigned long sigclib_atomic_subU32(unsigned long *pValue, unsigned long addVal);
+// long sigclib_atomic_subS32(long *pValue, long subVal);
+// atomic sub of u32bit, return value corresponds to value before operator was executed
+// --> pValue .......... address of data (NOTE: has to be 32bit-aligned)
+// --> addval .......... value to sub
+// <-- function will return corresponding value before operator was executed
+    
+// ------------------------------------------------------------------------------------------------
+// unsigned long sigclib_atomic_swpU32(unsigned long *pValue, unsigned long swpVal);
+// long sigclib_atomic_swpS32(long *pValue, long swpVal);
+// atomic swap of u32bit, return value corresponds to value before operator was executed
+// --> pValue .......... address of data (NOTE: has to be 32bit-aligned)
+// <-- function will return corresponding value before operator was executed
+    
+// ------------------------------------------------------------------------------------------------
+// unsigned long sigclib_atomic_cmpxchgU32(unsigned long *pValue, unsigned long cmpVal, unsigned long newVal);
+// long sigclib_atomic_cmpxchgS32(long *pValue, long cmpVal, long newVal);
+// atomic compareXchange u32 bit, return value corresponds to value before operator was executed
+// --> pValue .......... address of data (NOTE: has to be 32bit-aligned)
+// --> cmpVal .......... value to compare
+// --> newval .......... new value
+// <-- function will return corresponding value before operator was executed
+// pseudocode: 
+//   retcode = *pValue; 
+//   if(*pValue == cmpVal)
+//   {
+//     *pvalue = newVal;                 
+//   }
+//   return retcode;
 

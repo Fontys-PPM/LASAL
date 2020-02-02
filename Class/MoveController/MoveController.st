@@ -7,7 +7,8 @@
 	Name               = "MoveController"
 	Revision           = "0.0"
 	GUID               = "{4CCE7D61-1241-4401-9247-E713ACA7A0B9}"
-	RealtimeTask       = "false"
+	RealtimeTask       = "true"
+	DefRealtime        = "1 ms"
 	CyclicTask         = "false"
 	BackgroundTask     = "false"
 	Sigmatek           = "false"
@@ -18,24 +19,60 @@
 	SharedCommandTable = "true"
 	Objectsize         = "(284,120)">
 	<Channels>
-		<Server Name="ClassSvr" GUID="{BCEBFDDD-48AC-43AD-99EE-DDEFE12E9880}" Visualized="false" Initialize="false" WriteProtected="true" Retentive="false"/>
+		<Server Name="sPower" GUID="{35C57A0D-055C-4F87-9F38-0A086F78AAB4}" Visualized="false" Initialize="false" WriteProtected="false" Retentive="false"/>
+		<Server Name="Status" GUID="{BCEBFDDD-48AC-43AD-99EE-DDEFE12E9880}" Visualized="false" Initialize="false" WriteProtected="false" Retentive="false"/>
 		<Client Name="lmcX" Required="true" Internal="false"/>
+		<Client Name="lmcY" Required="true" Internal="false"/>
 	</Channels>
 </Class>
 *)
 MoveController : CLASS
+	TYPE
+#pragma pack(push, 1)
+	  _Move : STRUCT
+	    Start : DINT;
+	    X : DINT;
+	    Z : DINT;
+	    Y : DINT;
+	    Speed : DINT;
+	    Acc : DINT;
+	  END_STRUCT;
+#pragma pack(pop)
+	  _Status :  //! <Type Public="true" Name="_Status"/>
+	  (
+	    _Idle,
+	    _PowerOn,
+	    _PowerIsOn,
+	    _refRun,
+	    _RefrunOk,
+	    _MoveAbosolute,
+	    _InPosition
+	  )$UDINT;
+	END_TYPE
   //Servers:
-	ClassSvr 	: SvrChCmd_DINT;
+	Status 	: SvrChCmd__Status_PTofCls_MoveController;
+	sPower 	: SvrCh_DINT;
   //Clients:
 	lmcX 	: CltChCmd__LMCAxis;
+	lmcY 	: CltChCmd__LMCAxis;
   //Variables:
+		NewMove 	: _Move;
   //Functions:
 	
 	FUNCTION VIRTUAL GLOBAL Init;
 	
+	FUNCTION VIRTUAL GLOBAL RtWork
+		VAR_INPUT
+			EAX 	: UDINT;
+		END_VAR
+		VAR_OUTPUT
+			state (EAX) 	: UDINT;
+		END_VAR;
+	
 	FUNCTION GLOBAL MoveAxis
 		VAR_INPUT
 			XPos 	: DINT;
+			YPos 	: DINT;
 			Speed 	: DINT;
 			Accel 	: DINT;
 		END_VAR;
@@ -44,6 +81,8 @@ MoveController : CLASS
 		VAR_INPUT
 			Power 	: BOOL;
 		END_VAR;
+	
+	FUNCTION StateMachine;
   //Tables:
 	FUNCTION @STD
 		VAR_OUTPUT
@@ -62,13 +101,15 @@ FUNCTION GLOBAL TAB MoveController::@CT_
 0$UINT,
 2#0100000000000010$UINT, //TY_MOVECONTROLLER
 0$UINT, 0$UINT, (SIZEOF(::MoveController))$UINT, 
-1$UINT, 1$UINT, 0$UINT, 
+2$UINT, 2$UINT, 0$UINT, 
 TO_UDINT(1841029985), "MoveController", //Class
 TO_UDINT(0), 0, 0$UINT, 0$UINT, //Baseclass
 //Servers:
-(::MoveController.ClassSvr.pMeth)$UINT, _CH_CMD$UINT, 2#0000000000000000$UINT, TO_UDINT(619352855), "ClassSvr", 
+(::MoveController.Status.pMeth)$UINT, _CH_CMD$UINT, 2#0000000000000000$UINT, TO_UDINT(2348327578), "Status", 
+(::MoveController.sPower.pMeth)$UINT, _CH_SVR$UINT, 2#0000000000000000$UINT, TO_UDINT(2703552503), "sPower", 
 //Clients:
 (::MoveController.lmcX.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(908124938), "lmcX", TO_UDINT(1422175863), "_LMCAxis", 1$UINT, 85$UINT, 
+(::MoveController.lmcY.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(1093129116), "lmcY", TO_UDINT(1422175863), "_LMCAxis", 1$UINT, 85$UINT, 
 END_FUNCTION
 
 
@@ -91,10 +132,19 @@ FUNCTION MoveController::@STD
 
 	//Command Methods
 	InitCmdTable (nCmd := nSTDCMD + USER_CNT_MoveController, pCmd := #vmt.CmdTable);
+	vmt.CmdTable.Write		:= #M_WR_DIRECT();
 	vmt.CmdTable.Init		:= #Init();
-	ClassSvr.pMeth		:= StoreCmd (pCmd := #vmt.CmdTable, SHARED);
+	vmt.CmdTable.RtWork		:= #RtWork();
+	Status.pMeth		:= StoreCmd (pCmd := #vmt.CmdTable, SHARED);
 
-	IF ClassSvr.pMeth THEN
+	IF Status.pMeth THEN
+		ret_code	:= C_OK;
+	ELSE
+		ret_code	:= C_OUTOF_NEAR;
+		RETURN;
+	END_IF;
+	sPower.pMeth			:= StoreMethod( #M_RD_DIRECT(), #M_WR_DIRECT() );
+	IF sPower.pMeth THEN
 		ret_code	:= C_OK;
 	ELSE
 		ret_code	:= C_OUTOF_NEAR;
@@ -105,16 +155,99 @@ END_FUNCTION
 
 //{{LSL_IMPLEMENTATION
 
+FUNCTION VIRTUAL GLOBAL MoveController::Init
+END_FUNCTION
 
+
+FUNCTION VIRTUAL GLOBAL MoveController::RtWork
+	VAR_INPUT
+		EAX 	: UDINT;
+	END_VAR
+	VAR_OUTPUT
+		state (EAX) 	: UDINT;
+	END_VAR
+  
+  StateMachine();
+	state := READY;
+
+END_FUNCTION
+
+
+FUNCTION MoveController::StateMachine
+
+case Status of
+_Status::_Idle:
+  if lmcX.AxisStatus.ReadyToPowerOn & lmcY.AxisStatus.ReadyToPowerOn then
+    if sPower then 
+      Status:=_Status::_PowerOn;
+    end_if;
+  end_if;
+  
+_Status::_PowerOn:
+  lmcX.PowerOn(Mode:=::_LMCAXIS_MOVEDIRECTION::LMCAXIS_MOVE_ANY_WAY);
+  lmcY.PowerOn(Mode:=::_LMCAXIS_MOVEDIRECTION::LMCAXIS_MOVE_ANY_WAY);
+  Status:=_Status::_refRun;
+
+_Status::_refRun:
+  if lmcX.AxisStatus.PowerOn then
+    lmcX.MoveReference(Mode:=_LMCAXIS_REFMODE.NoZImpulse , Position:=0, VRef1:=200000, VRef2:=50000, Accel:=5000000, PositionWindow:=50000, RefJerk:=0);
+    lmcY.MoveReference(Mode:=_LMCAXIS_REFMODE.NoZImpulse | _LMCAXIS_REFMODE.RefDirection, Position:=0, VRef1:=2000000, VRef2:=500000, Accel:=20000000, PositionWindow:=50000, RefJerk:=0);
+    //lmcY.MoveReference(Mode:=_LMCAXIS_REFMODE.NoZImpulse |_LMCAXIS_REFMODE.RefDirection , Position:=, VRef1:=, VRef2:=, Accel:=, PositionWindow:=, RefJerk:=);
+    Status:=_Status::_RefrunOk;
+  end_if;
+
+_Status::_RefrunOk:
+  if lmcX.AxisStatus.IsReferenced & lmcY.AxisStatus.IsReferenced then
+    Status:=_Status::_PowerIsOn;
+  end_if;
+  
+_Status::_PowerIsOn:
+  if lmcX.AxisStatus.PowerOn then
+    If NewMove.Start then
+      Status:=_Status::_MoveAbosolute;
+    end_if;
+    
+  end_if;
+  
+  IF sPower = FALSE THEN
+    lmcX.PowerOff(Mode:=::_LMCAXIS_POWER_OFF_MODE::LMCAXIS_SMOOTH_STOPP);
+    lmcY.PowerOff(Mode:=::_LMCAXIS_POWER_OFF_MODE::LMCAXIS_SMOOTH_STOPP);
+    Status:=_Status::_Idle;
+  END_IF;
+
+
+_Status::_MoveAbosolute:
+
+  lmcx.MoveAbsolute(Position:=NewMove.X, Speed:=NewMove.Speed, Accel:=NewMove.Acc, Decel:=NewMove.Acc, Jerk:=0);
+  lmcY.MoveAbsolute(Position:=NewMove.Y, Speed:=NewMove.Speed, Accel:=NewMove.Acc, Decel:=NewMove.Acc, Jerk:=0);
+  Status:=_Status::_InPosition;
+  
+_Status::_InPosition:
+  if lmcX.InPosition(Mode:=::_LMCAXIS_QUERY_POSITION_MODE::LMCAXIS_ACTPOS_IN_WINDOW_APP_UNITS, PositionWindow:=1000) &
+     lmcY.InPosition(Mode:=::_LMCAXIS_QUERY_POSITION_MODE::LMCAXIS_ACTPOS_IN_WINDOW_APP_UNITS, PositionWindow:=1000) then
+    NewMove.Start:=FALSE;
+    Status:=_Status::_PowerIsOn;
+    
+  end_if;
+
+end_case;
+
+END_FUNCTION
 FUNCTION GLOBAL MoveController::MoveAxis
 	VAR_INPUT
 		XPos 	: DINT;
+		YPos 	: DINT;
 		Speed 	: DINT;
 		Accel 	: DINT;
 	END_VAR
   
-  lmcX.MoveRelative(Position:=XPos, Mode:=::_LMCAXIS_MOVE_RELATIVE_MODE::LMCAXIS_MOVE_RELATIVE_TO_DESTINATION, Speed:=Speed, Accel:=Accel, Decel:=Accel, Jerk:=0);
-
+  NewMove.X := XPos;
+  NewMove.Y := YPos;
+  NewMove.Speed := Speed;
+  NewMove.Acc := Accel;
+  
+  NewMove.Start:=TRUE;
+  
 END_FUNCTION
 
 
@@ -122,15 +255,6 @@ FUNCTION GLOBAL MoveController::TogglePower
 	VAR_INPUT
 		Power 	: BOOL;
 	END_VAR
-  
-  IF Power = TRUE THEN
-    lmcX.PowerOn(Mode:=::_LMCAXIS_MOVEDIRECTION::LMCAXIS_MOVE_ANY_WAY);
-  ELSIF Power = FALSE THEN
-    lmcX.PowerOff(Mode:=::_LMCAXIS_POWER_OFF_MODE::LMCAXIS_SMOOTH_STOPP);
-  END_IF
-END_FUNCTION
+  sPower:=Power;
 
-
-FUNCTION VIRTUAL GLOBAL MoveController::Init
-    TogglePower(Power:=True);
 END_FUNCTION

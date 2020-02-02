@@ -16,7 +16,7 @@
 #ifndef _CHeap_H
  #define _CHeap_H
  
- #include "..\SigCLib\DefineCompiler.h" 
+ #include "DefineCompiler.h" 
 
  #ifdef cCompile
    
@@ -26,7 +26,7 @@
   // destroy already created heap
   cExtern void *sigclib_heap_DTor(void *php0);
   
-  // check whole heap or single herapblock
+  // check whole heap or single heapblock
   cExtern unsigned long sigclib_heap_check(void *php0, void *pt);
   
   // free whole data on heap
@@ -59,7 +59,7 @@
   // destroy already created heap
   function global __cdecl sigclib_heap_DTor var_input php0:^void; end_var var_output retcode:^void; end_var;
   
-  // check whole heap or single herapblock
+  // check whole heap or single heapblock
   function global __cdecl sigclib_heap_check var_input php0:^void; pt:^void; end_var var_output retcode:udint; end_var;
   
   // free whole data on heap

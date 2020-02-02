@@ -136,7 +136,7 @@
 			Name       = "_DriveAxis2"
 			GUID       = "{5166F820-3904-405F-B642-11C1A51BFD60}"
 			Class      = "_DriveAxis"
-			Position   = "(6540,90)"
+			Position   = "(6510,90)"
 			Visualized = "true"
 			Remotely   = "true">
 			<Channels>
@@ -266,7 +266,7 @@
 			Name       = "_DriveAxis3"
 			GUID       = "{8FA974A7-31BB-4428-ADD9-950A795228EC}"
 			Class      = "_DriveAxis"
-			Position   = "(8100,90)"
+			Position   = "(6570,1440)"
 			Visualized = "true"
 			Remotely   = "true">
 			<Channels>
@@ -396,7 +396,7 @@
 			Name       = "_DriveAxis4"
 			GUID       = "{AAA90B19-0D9E-468B-BBC7-6E5853A1138A}"
 			Class      = "_DriveAxis"
-			Position   = "(9660,90)"
+			Position   = "(6600,2760)"
 			Visualized = "true"
 			Remotely   = "true">
 			<Channels>
@@ -1024,7 +1024,7 @@
 			Name       = "_DriveMng_DC0623"
 			GUID       = "{B6DC08D3-A2CC-4E28-8D0F-9572A6B3CD02}"
 			Class      = "_DriveMng_DC062"
-			Position   = "(7320,90)"
+			Position   = "(5850,1440)"
 			Visualized = "true"
 			Remotely   = "true"
 			CyclicTime = "10 ms">
@@ -1273,7 +1273,7 @@
 			Name       = "_DriveMng_DC0624"
 			GUID       = "{E2A2EDD4-774D-489B-B2FB-0C7F7C71BA88}"
 			Class      = "_DriveMng_DC062"
-			Position   = "(8880,90)"
+			Position   = "(5880,2790)"
 			Visualized = "true"
 			Remotely   = "true"
 			CyclicTime = "10 ms">
@@ -1596,7 +1596,7 @@
 			Name       = "DM1611"
 			GUID       = "{185491D3-2AE4-4F0B-A27B-B645D1786828}"
 			Class      = "DM161"
-			Position   = "(10440,90)"
+			Position   = "(4140,3000)"
 			Visualized = "true"
 			Remotely   = "true">
 			<Channels>
@@ -1918,10 +1918,21 @@
 			</Networks>
 		</Object>
 		<Object
+			Name       = "SetCurrent1"
+			GUID       = "{F9A47880-3654-409E-B18F-950D706DC561}"
+			Class      = "SetCurrent"
+			Position   = "(9270,2940)"
+			Visualized = "false">
+			<Channels>
+				<Server Name="ClassSvr"/>
+				<Client Name="Current"/>
+			</Channels>
+		</Object>
+		<Object
 			Name       = "SR0221"
 			GUID       = "{7D8DB7E9-C815-4CF4-A728-82F9AFEE44A7}"
 			Class      = "SR022"
-			Position   = "(12270,90)"
+			Position   = "(9300,720)"
 			Visualized = "true"
 			Remotely   = "true">
 			<Channels>
@@ -2049,7 +2060,7 @@
 			Name       = "ST0111"
 			GUID       = "{234CDFC2-B864-4D15-A5F6-59038AF460C1}"
 			Class      = "ST011"
-			Position   = "(14160,90)"
+			Position   = "(11430,570)"
 			Visualized = "true"
 			Remotely   = "true">
 			<Channels>
@@ -2184,7 +2195,7 @@
 			Name       = "ST1511"
 			GUID       = "{8DCC1C6E-0115-42A2-974C-D3C70485733B}"
 			Class      = "ST151"
-			Position   = "(11130,90)"
+			Position   = "(8070,840)"
 			Visualized = "true"
 			Remotely   = "true">
 			<Channels>
@@ -2469,7 +2480,7 @@
 			Name       = "ST1512"
 			GUID       = "{CF3A87BD-71B6-47B0-9792-C1323B969859}"
 			Class      = "ST151"
-			Position   = "(13020,90)"
+			Position   = "(10110,570)"
 			Visualized = "true"
 			Remotely   = "true">
 			<Channels>
@@ -2907,16 +2918,17 @@
 		<Connection Source="_DriveMng_DC0621.SdiasIn" Destination="SdiasPLC1.SdiasOut_1" Vertices="(4200,180),(3206,780),"/>
 		<Connection Source="_DriveAxis1.DriveMng" Destination="_DriveMng_DC0621.CmdState" Vertices="(4980,180),(4802,180),"/>
 		<Connection Source="_DriveMng_DC0622.SdiasIn" Destination="SdiasPLC1.SdiasOut_1" Vertices="(5760,180),(3206,780),"/>
-		<Connection Source="_DriveAxis2.DriveMng" Destination="_DriveMng_DC0622.CmdState" Vertices="(6540,180),(6362,180),"/>
-		<Connection Source="_DriveMng_DC0623.SdiasIn" Destination="SdiasPLC1.SdiasOut_1" Vertices="(7320,180),(3206,780),"/>
-		<Connection Source="_DriveAxis3.DriveMng" Destination="_DriveMng_DC0623.CmdState" Vertices="(8100,180),(7922,180),"/>
-		<Connection Source="_DriveMng_DC0624.SdiasIn" Destination="SdiasPLC1.SdiasOut_1" Vertices="(8880,180),(3206,780),"/>
-		<Connection Source="_DriveAxis4.DriveMng" Destination="_DriveMng_DC0624.CmdState" Vertices="(9660,180),(9482,180),"/>
-		<Connection Source="DM1611.SdiasIn" Destination="SdiasPLC1.SdiasOut_1" Vertices="(10440,180),(3206,780),"/>
-		<Connection Source="ST1511.SdiasIn" Destination="SdiasPLC1.SdiasOut_1" Vertices="(11130,180),(3206,780),"/>
-		<Connection Source="SR0221.SdiasIn" Destination="SdiasPLC1.SdiasOut_1" Vertices="(12270,180),(3206,780),"/>
-		<Connection Source="ST1512.SdiasIn" Destination="SdiasPLC1.SdiasOut_1" Vertices="(13020,180),(3206,780),"/>
-		<Connection Source="ST0111.SdiasIn" Destination="SdiasPLC1.SdiasOut_1" Vertices="(14160,180),(3206,780),"/>
+		<Connection Source="_DriveAxis2.DriveMng" Destination="_DriveMng_DC0622.CmdState" Vertices="(6510,180),(6362,180),"/>
+		<Connection Source="_DriveMng_DC0623.SdiasIn" Destination="SdiasPLC1.SdiasOut_1" Vertices="(5850,1530),(3206,780),"/>
+		<Connection Source="_DriveAxis3.DriveMng" Destination="_DriveMng_DC0623.CmdState" Vertices="(6570,1530),(6452,1530),"/>
+		<Connection Source="_DriveMng_DC0624.SdiasIn" Destination="SdiasPLC1.SdiasOut_1" Vertices="(5880,2880),(3206,780),"/>
+		<Connection Source="_DriveAxis4.DriveMng" Destination="_DriveMng_DC0624.CmdState" Vertices="(6600,2850),(6482,2880),"/>
+		<Connection Source="DM1611.SdiasIn" Destination="SdiasPLC1.SdiasOut_1" Vertices="(4140,3090),(3206,780),"/>
+		<Connection Source="ST1511.SdiasIn" Destination="SdiasPLC1.SdiasOut_1" Vertices="(8070,930),(3206,780),"/>
+		<Connection Source="SR0221.SdiasIn" Destination="SdiasPLC1.SdiasOut_1" Vertices="(9300,810),(3206,780),"/>
+		<Connection Source="ST1512.SdiasIn" Destination="SdiasPLC1.SdiasOut_1" Vertices="(10110,660),(3206,780),"/>
+		<Connection Source="ST0111.SdiasIn" Destination="SdiasPLC1.SdiasOut_1" Vertices="(11430,660),(3206,780),"/>
+		<Connection Source="SetCurrent1.Current" Destination="ST1511.MaxCurrent" Vertices="(9270,3030),(9026,3030),"/>
 	</Connections>
 	<!-- Headerfiles -->
 	<Options>

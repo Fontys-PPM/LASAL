@@ -5,7 +5,7 @@
 (*!
 <Class
 	Name               = "_OSKernel"
-	Revision           = "0.4"
+	Revision           = "0.5"
 	GUID               = "{4294CD82-628C-11D6-8832-0048545E88BC}"
 	RealtimeTask       = "false"
 	CyclicTask         = "false"
@@ -30,6 +30,7 @@
 	</Dependencies>
 	<RevDoku>
 		<Owner Company="Sigmatek GmbH &amp; Co KG"/>
+		<Dokumentation Revision="0.5" Date="2019-07-24" Author="hauale" Company="Sigmatek GmbH &amp; Co KG" Description="Added new function ReadDateTime"/>
 		<Dokumentation Revision="0.4" Date="2012-01-01" Author="kiltob" Company="Sigmatek GmbH &amp; Co KG" Description="Some minor fixes"/>
 		<Dokumentation Revision="0.3" Date="2012-03-28" Author="kiltob" Company="Sigmatek GmbH &amp; Co KG" Description="Added new function ResetRunApp"/>
 	</RevDoku>
@@ -105,7 +106,7 @@ _OSKernel : CLASS
 	    mallocV1 : pVoid;
 	    reallocV1 : pVoid;
 	    SSR_Reboot : pVoid;
-	    dummy33 : pVoid;
+	    ReadDateTime : pVoid;
 	    dummy34 : pVoid;
 	    dummy35 : pVoid;
 	    dummy36 : pVoid;
@@ -236,6 +237,11 @@ _OSKernel : CLASS
 		END_VAR;
 				//! <Function Comment="Reset and Run the application" Name="ResetRunApp"/>
 	FUNCTION __CDECL VIRTUAL GLOBAL ResetRunApp;
+				//! <Function Comment="This function reads the system current date and time" Name="ReadDateTime"/>
+	FUNCTION __CDECL VIRTUAL GLOBAL ReadDateTime
+		VAR_INPUT
+			Time_LSL 	: ^SYSDATETIMEMS;			//! <Variable Comment="Parameter DateStruct points to an SYSTIMEMS structure. If it succeeds, the structure is filled with the actual values." Name="ReadDateTime.Time_LSL"/>
+		END_VAR;
   //Tables:
 	FUNCTION @STD
 		VAR_OUTPUT
@@ -250,7 +256,7 @@ END_CLASS;
 FUNCTION GLOBAL TAB _OSKernel::@CT_
 0$UINT,
 2#0100000000001000$UINT, //TY__OSKERNEL
-0$UINT, 4$UINT, (SIZEOF(::_OSKernel))$UINT, 
+0$UINT, 5$UINT, (SIZEOF(::_OSKernel))$UINT, 
 1$UINT, 0$UINT, 0$UINT, 
 TO_UDINT(3045737964), "_OSKernel", //Class
 TO_UDINT(0), 0, 0$UINT, 0$UINT, //Baseclass
@@ -260,7 +266,7 @@ TO_UDINT(0), 0, 0$UINT, 0$UINT, //Baseclass
 END_FUNCTION
 
 
-#define USER_CNT__OSKernel 16
+#define USER_CNT__OSKernel 17
 
 TYPE
 	_LSL_STD_VMETH	: STRUCT
@@ -363,6 +369,8 @@ END_VAR;
     else
       aMeths [15] := #DummyParam0Ret0();
     end_if;
+    
+      aMeths [16] := pSSR^.ReadDateTime;
 
 		ret_code	:= InitOsiM_new(#aMeths[0]$void, USER_CNT__OSKernel);
 	end_if;
@@ -405,4 +413,3 @@ END_FUNCTION //  OSKernel::OSKernel
 //		aMeths [0]	:= pSSR^.EE_read
 //		aMeths [0]	:= pSSR^.EE_write
 //		aMeths [0]	:= pSSR^.ButtonPressed
-

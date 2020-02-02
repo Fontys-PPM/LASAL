@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <Project
-	Version            = "12"
+	Version            = "13"
 	Name               = "LASAL"
+	OnlineConnection   = "ppm"
 	SolutionType       = "Large"
 	WriteSrvListOnSave = "true"
 	CLASSType          = "true">
+	<OnlineConnectionInfo>
+		<TCPIP ConfigName="ppm" BUS="3" Password="" IP="10.101.10.150" PORT="1954" SomeFlags="0" PLCID="" Repeater="0" SSLTLS="0" Favorite="0"/>
+	</OnlineConnectionInfo>
 	<HeaderFiles>
 		<File Path=".\Include\unit.h"/>
 		<File Path=".\Include\global.h"/>
@@ -83,6 +87,9 @@
 		<File Path=".\Class\_LMCAxisBase\C_MathAxis.h"/>
 		<File Path=".\Class\_LMCAxisBase\_LMCTraceView.h"/>
 		<File Path=".\Class\_LMCMathFunctions\C_MathFunct.h"/>
+		<File Path=".\Class\SigCLib\CTcpIp.h"/>
+		<File Path=".\Class\SigCLib\CLimits.h"/>
+		<File Path=".\Class\SigCLib\CDeEncode.h"/>
 	</HeaderFiles>
 	<ClassFiles>
 		<File Path=".\Source\code\OsiBaseNew.st"/>
@@ -186,6 +193,15 @@
 		<File Path=".\Class\Controller\Controller.st"/>
 		<File Path=".\Class\DrivePosControl\DrivePosControl.st"/>
 		<File Path=".\Class\MoveController\MoveController.st"/>
+		<File Path=".\Class\RefSwitchCurrent\RefSwitchCurrent.st"/>
+		<File Path=".\Class\DummyController\DummyController.st"/>
+		<File Path=".\Class\Invert\Invert.st"/>
+		<File Path=".\Class\PosController\PosController.st"/>
+		<File Path=".\Class\SetCurrent\SetCurrent.st"/>
+		<File Path=".\Class\NCController\NCController.st"/>
+		<File Path=".\Class\SendNow\SendNow.st"/>
+		<File Path=".\Class\SigCLib\CStrLibEx.cpp"/>
+		<File Path=".\Class\SigCLib\CDeEncode.cpp"/>
 	</ClassFiles>
 	<NetworkFiles>
 		<File Path=".\Network\TcpServer\TcpServer.lcn"/>
@@ -206,7 +222,7 @@
 		<Target UseFPU="true" Processor="ARM">
 		</Target>
 		<Compiler
-			CompilerVersion         = "46"
+			CompilerVersion         = "56"
 			VariableNeverUsed       = "true"
 			ValueNeverUsed          = "true"
 			LabelNeverUsed          = "true"
@@ -310,12 +326,14 @@
 				<Folder Name="Memory">
 					<Class Name="RamFile"/>
 				</Folder>
+				<Folder Name="TCPIP">
+					<Class Name="_TCPIP_SERVER"/>
+				</Folder>
 			</Folder>
 			<Folder Name="Communication">
 				<Class Name="_CanLib"/>
 				<Class Name="_SerLib"/>
 				<Folder Name="TCPIP">
-					<Class Name="_TCPIP_SERVER"/>
 				</Folder>
 			</Folder>
 			<Folder Name="Conversion">
@@ -347,6 +365,9 @@
 				</Folder>
 				<Folder Name="Controller">
 					<Class Name="DrivePosControl"/>
+					<Class Name="DummyController"/>
+					<Class Name="NCController"/>
+					<Class Name="PosController"/>
 				</Folder>
 			</Folder>
 		</Folder>
@@ -409,17 +430,17 @@
 			<Unit Name="mm2" Factor="10" Ref="S" Comment="x.x sqare millimeter"/>
 		</UnitGrp>
 		<UnitGrp Name="Force">
-			<Unit Name="kN" Factor="1000 N" Ref="S"/>
+			<Unit Name="kN" Factor="1000 N" BaseDivisor="1000" Ref="S" Base="N"/>
 			<Unit Name="N" Factor="1" Ref="S"/>
 		</UnitGrp>
 		<UnitGrp Name="Length">
-			<Unit Name="m" Factor="1000 mm" Ref="S"/>
+			<Unit Name="m" Factor="1000 mm" BaseDivisor="1000" Ref="S" Base="mm"/>
 			<Unit Name="mm" Factor="10000" Ref="S"/>
 		</UnitGrp>
 		<UnitGrp Name="Memory">
-			<Unit Name="GB" Factor="1024 MB" Ref="S"/>
+			<Unit Name="GB" Factor="1024 MB" BaseDivisor="1024" Ref="S" Base="MB"/>
 			<Unit Name="kB" Factor="1024" Ref="S"/>
-			<Unit Name="MB" Factor="1024 kB" Ref="S"/>
+			<Unit Name="MB" Factor="1024 kB" BaseDivisor="1024" Ref="S" Base="kB"/>
 		</UnitGrp>
 		<UnitGrp Name="Pressure">
 			<Unit Name="bar" Factor="1000" Ref="S" Comment="x.xxx Bar ( MilliBar)"/>
@@ -432,11 +453,11 @@
 			<Unit Name="mmpsec" Factor="10000" Ref="S"/>
 		</UnitGrp>
 		<UnitGrp Name="Time">
-			<Unit Name="hours" Factor="60 min" Ref="S"/>
-			<Unit Name="min" Factor="60 secs" Ref="S"/>
+			<Unit Name="hours" Factor="60 min" BaseDivisor="60" Ref="S" Base="min"/>
+			<Unit Name="min" Factor="60 secs" BaseDivisor="60" Ref="S" Base="secs"/>
 			<Unit Name="ms" Factor="1" Ref="S"/>
 			<Unit Name="sec" Factor="1000" Ref="S"/>
-			<Unit Name="secs" Factor="1000 ms" Ref="S"/>
+			<Unit Name="secs" Factor="1000 ms" BaseDivisor="1000" Ref="S" Base="ms"/>
 		</UnitGrp>
 		<UnitGrp Name="Volume">
 			<Unit Name="ccm" Factor="1" Ref="S" Comment="cubic centimeter"/>

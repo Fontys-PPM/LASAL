@@ -13,17 +13,17 @@
 #define  mm2	*10	//x.x sqare millimeter
 
 //Force
-#define  kN	*1000 N
+#define  kN	*1000
 #define  N	*1
 
 //Length
-#define  m	*1000 mm
+#define  m	*1000*10000
 #define  mm	*10000
 
 //Memory
-#define  GB	*1024 MB
+#define  GB	*1024*1024*1024
 #define  kB	*1024
-#define  MB	*1024 kB
+#define  MB	*1024*1024
 
 //Pressure
 #define  bar	*1000	//x.xxx Bar ( MilliBar)
@@ -36,11 +36,11 @@
 #define  mmpsec	*10000
 
 //Time
-#define  hours	*60 min
-#define  min	*60 secs
+#define  hours	*60*60*1000
+#define  min	*60*1000
 #define  ms	*1
 #define  sec	*1000
-#define  secs	*1000 ms
+#define  secs	*1000
 
 //Volume
 #define  ccm	*1	//cubic centimeter

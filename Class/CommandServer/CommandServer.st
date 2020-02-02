@@ -75,6 +75,7 @@ CommandServer : CLASS
   //Variables:
 		sendBuffer : ARRAY [0..1024] OF CHAR;
 
+		Socket 	: DINT;
   //Functions:
 				//! <Function Comment="This Method is called if Data is received (Overwrite it, to create a Request)" Name="Response"/>
 	FUNCTION VIRTUAL GLOBAL Response
@@ -82,6 +83,11 @@ CommandServer : CLASS
 			pData 	: ^void;			//! <Variable Comment="Pointer to Data" Name="Response.pData"/>
 			udSize 	: UDINT;			//! <Variable Comment="Size of Data" Name="Response.udSize"/>
 			dSock 	: DINT;			//! <Variable Comment="Socketnumber" Name="Response.dSock"/>
+		END_VAR;
+	
+	FUNCTION GLOBAL SendStatus
+		VAR_INPUT
+			Status 	: DINT;
 		END_VAR;
   //Tables:
 	FUNCTION @STD
@@ -103,7 +109,7 @@ FUNCTION GLOBAL TAB CommandServer::@CT_
 0$UINT, 0$UINT, (SIZEOF(::CommandServer))$UINT, 
 0$UINT, 1$UINT, 0$UINT, 
 TO_UDINT(1706127036), "CommandServer", //Class
-TO_UDINT(26234884), "_TCPIP_SERVER", 1$UINT, 36$UINT, //Baseclass
+TO_UDINT(26234884), "_TCPIP_SERVER", 1$UINT, 37$UINT, //Baseclass
 //Servers:
 //Clients:
 (::CommandServer.CmdRouter.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(119683386), "CmdRouter", TO_UDINT(2047756655), "CommandRouter", 0$UINT, 0$UINT, 
@@ -170,6 +176,7 @@ FUNCTION VIRTUAL GLOBAL CommandServer::Response
   	pSendData : CHAR;
   END_VAR
 
+  Socket:=dSock;
 
   CmdRouter.SetData(pData:=pData,size:=udSize);
   
@@ -184,3 +191,18 @@ FUNCTION VIRTUAL GLOBAL CommandServer::Response
 END_FUNCTION
 
 
+
+
+FUNCTION GLOBAL CommandServer::SendStatus
+	VAR_INPUT
+		Status 	: DINT;
+	END_VAR
+  
+    
+  sendBuffer[0] := 'A';
+  sendBuffer[1] := 'C';
+  sendBuffer[2] := 'K';
+  
+  SendData(pData:=#sendBuffer[0], udSize:=3, dSock:=Socket, bDirect:=1);
+
+END_FUNCTION

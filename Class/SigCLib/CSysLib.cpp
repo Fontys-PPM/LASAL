@@ -1,13 +1,12 @@
 //<NewSigmatekCFileOptimize/>
-// +-------------------------------------------------------------------------------+
-// +-[   copyright ] Sigmatek GmbH & CoKG                                          |
-// +-[      author ] kolott                                                        |
-// +-[        date ] 08.07.2016                                                    |
-// +-[ description ]---------------------------------------------------------------+
-// |                                                                               |
-// |                                                                               |
-// +-------------------------------------------------------------------------------+
-
+// +----------------------------------------------------------------------------------------------+
+// +-[   copyright ] Sigmatek GmbH & CoKG                                                         |
+// +-[      author ] kolott                                                                       |
+// +-[        date ] 08.07.2016                                                                   |
+// +-[ description ]------------------------------------------------------------------------------+
+// |                                                                                              |
+// |                                                                                              |
+// +----------------------------------------------------------------------------------------------+
 
 #include "SigCLib.h"
 #include "RTOS_C_Interfaces.h"
@@ -35,4 +34,49 @@ void *sigclib_cilget(const char *name)
     }
   }
   return NULL;
+}
+
+void sigclib_reset(void)
+{
+  sigclib_serviceprovider("exec reset");
+}  
+
+void sigclib_restart(void)
+{
+  sigclib_serviceprovider("exec run");
+}  
+
+void *sigclib_virtual_methodpointer(void *pthis, long idx)
+{
+  if(pthis != NULL)
+  {
+    unsigned char *pmeth = (unsigned char*)*(void**)pthis;
+    return *(void**)(pmeth + ((idx+10) * 4));
+  }
+  return NULL;
+}
+
+static unsigned long name_unique_inc = 0;
+char *sigclib_name_unique(char *pd, const char *name)
+{
+  if(name == NULL)
+  {
+    name = "Dummy";
+  }
+
+  unsigned long actinc = sigclib_atomic_incU32(&name_unique_inc);
+  sigclib_sprintf(pd, "%s%u", name, actinc);
+  
+  return pd;
+}
+
+char *sigclib_name_enlarge(char *pd, const char *name, void *ptr)
+{
+  if(name == NULL)
+  {
+    name = "Dummy";
+  }
+  
+  sigclib_sprintf(pd, "%s%p", name, ptr);
+  return pd;
 }
