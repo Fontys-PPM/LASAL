@@ -809,6 +809,7 @@
 			RealTime   = "1 ms">
 			<Channels>
 				<Server Name="sPower"/>
+				<Server Name="State"/>
 				<Server Name="Status"/>
 				<Client Name="lmcX"/>
 				<Client Name="lmcY"/>

@@ -20,6 +20,7 @@
 	Objectsize         = "(284,120)">
 	<Channels>
 		<Server Name="sPower" GUID="{35C57A0D-055C-4F87-9F38-0A086F78AAB4}" Visualized="false" Initialize="false" WriteProtected="false" Retentive="false"/>
+		<Server Name="State" GUID="{14E0D100-AEE2-43A6-B848-1943C82AA51A}" Visualized="false" Initialize="false" WriteProtected="false" Retentive="false"/>
 		<Server Name="Status" GUID="{BCEBFDDD-48AC-43AD-99EE-DDEFE12E9880}" Visualized="false" Initialize="false" WriteProtected="false" Retentive="false"/>
 		<Client Name="lmcX" Required="true" Internal="false"/>
 		<Client Name="lmcY" Required="true" Internal="false"/>
@@ -38,6 +39,17 @@ MoveController : CLASS
 	    Acc : DINT;
 	  END_STRUCT;
 #pragma pack(pop)
+	  _State :  //! <Type Public="true" Name="_State"/>
+	  (
+	    _Safe,
+	    _Homing,
+	    _Idle,
+	    _MovingAbsolute,
+	    _MovingRelative,
+	    _Pick,
+	    _Place,
+	    _Error
+	  )$UDINT;
 	  _Status :  //! <Type Public="true" Name="_Status"/>
 	  (
 	    _Idle,
@@ -52,11 +64,13 @@ MoveController : CLASS
   //Servers:
 	Status 	: SvrChCmd__Status_PTofCls_MoveController;
 	sPower 	: SvrCh_DINT;
+	State 	: SvrCh__State_PTofCls_MoveController;
   //Clients:
 	lmcX 	: CltChCmd__LMCAxis;
 	lmcY 	: CltChCmd__LMCAxis;
   //Variables:
 		NewMove 	: _Move;
+		IsMoving 	: BOOL;
   //Functions:
 	
 	FUNCTION VIRTUAL GLOBAL Init;
@@ -101,12 +115,13 @@ FUNCTION GLOBAL TAB MoveController::@CT_
 0$UINT,
 2#0100000000000010$UINT, //TY_MOVECONTROLLER
 0$UINT, 0$UINT, (SIZEOF(::MoveController))$UINT, 
-2$UINT, 2$UINT, 0$UINT, 
+3$UINT, 2$UINT, 0$UINT, 
 TO_UDINT(1841029985), "MoveController", //Class
 TO_UDINT(0), 0, 0$UINT, 0$UINT, //Baseclass
 //Servers:
 (::MoveController.Status.pMeth)$UINT, _CH_CMD$UINT, 2#0000000000000000$UINT, TO_UDINT(2348327578), "Status", 
 (::MoveController.sPower.pMeth)$UINT, _CH_SVR$UINT, 2#0000000000000000$UINT, TO_UDINT(2703552503), "sPower", 
+(::MoveController.State.pMeth)$UINT, _CH_SVR$UINT, 2#0000000000000000$UINT, TO_UDINT(1422331979), "State", 
 //Clients:
 (::MoveController.lmcX.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(908124938), "lmcX", TO_UDINT(1422175863), "_LMCAxis", 1$UINT, 85$UINT, 
 (::MoveController.lmcY.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(1093129116), "lmcY", TO_UDINT(1422175863), "_LMCAxis", 1$UINT, 85$UINT, 
@@ -150,12 +165,20 @@ FUNCTION MoveController::@STD
 		ret_code	:= C_OUTOF_NEAR;
 		RETURN;
 	END_IF;
+	State.pMeth			:= StoreMethod( #M_RD_DIRECT(), #M_WR_DIRECT() );
+	IF State.pMeth THEN
+		ret_code	:= C_OK;
+	ELSE
+		ret_code	:= C_OUTOF_NEAR;
+		RETURN;
+	END_IF;
 
 END_FUNCTION
 
 //{{LSL_IMPLEMENTATION
 
 FUNCTION VIRTUAL GLOBAL MoveController::Init
+  IsMoving := FALSE;
 END_FUNCTION
 
 
@@ -169,68 +192,59 @@ FUNCTION VIRTUAL GLOBAL MoveController::RtWork
   
   StateMachine();
 	state := READY;
-
 END_FUNCTION
 
 
 FUNCTION MoveController::StateMachine
 
-case Status of
-_Status::_Idle:
-  if lmcX.AxisStatus.ReadyToPowerOn & lmcY.AxisStatus.ReadyToPowerOn then
-    if sPower then 
-      Status:=_Status::_PowerOn;
-    end_if;
-  end_if;
-  
-_Status::_PowerOn:
-  lmcX.PowerOn(Mode:=::_LMCAXIS_MOVEDIRECTION::LMCAXIS_MOVE_ANY_WAY);
-  lmcY.PowerOn(Mode:=::_LMCAXIS_MOVEDIRECTION::LMCAXIS_MOVE_ANY_WAY);
-  Status:=_Status::_refRun;
+case State of
 
-_Status::_refRun:
-  if lmcX.AxisStatus.PowerOn then
+_State::_Safe:
+  IF sPower THEN
+    IF lmcX.AxisStatus.ReadyToPowerOn & lmcY.AxisStatus.ReadyToPowerOn THEN
+      lmcX.PowerOn(Mode:=::_LMCAXIS_MOVEDIRECTION::LMCAXIS_MOVE_ANY_WAY);
+      lmcY.PowerOn(Mode:=::_LMCAXIS_MOVEDIRECTION::LMCAXIS_MOVE_ANY_WAY);
+      State := _State::_Homing;
+    END_IF;
+  END_IF;
+  
+_State::_Homing:
+  IF lmcX.AxisStatus.PowerOn THEN
     lmcX.MoveReference(Mode:=_LMCAXIS_REFMODE.NoZImpulse , Position:=0, VRef1:=200000, VRef2:=50000, Accel:=5000000, PositionWindow:=50000, RefJerk:=0);
     lmcY.MoveReference(Mode:=_LMCAXIS_REFMODE.NoZImpulse | _LMCAXIS_REFMODE.RefDirection, Position:=0, VRef1:=2000000, VRef2:=500000, Accel:=20000000, PositionWindow:=50000, RefJerk:=0);
     //lmcY.MoveReference(Mode:=_LMCAXIS_REFMODE.NoZImpulse |_LMCAXIS_REFMODE.RefDirection , Position:=, VRef1:=, VRef2:=, Accel:=, PositionWindow:=, RefJerk:=);
-    Status:=_Status::_RefrunOk;
-  end_if;
-
-_Status::_RefrunOk:
-  if lmcX.AxisStatus.IsReferenced & lmcY.AxisStatus.IsReferenced then
-    Status:=_Status::_PowerIsOn;
-  end_if;
+  ELSIF lmcX.AxisStatus.IsReferenced & lmcY.AxisStatus.IsReferenced THEN
+    State:=_State::_Idle;
+  END_IF;
   
-_Status::_PowerIsOn:
-  if lmcX.AxisStatus.PowerOn then
-    If NewMove.Start then
-      Status:=_Status::_MoveAbosolute;
-    end_if;
-    
-  end_if;
-  
+_State::_Idle:
+  IF lmcX.AxisStatus.PowerOn THEN
+    IF NewMove.Start THEN
+      State:=_State::_MovingAbsolute;
+    END_IF;
+  END_IF;
   IF sPower = FALSE THEN
     lmcX.PowerOff(Mode:=::_LMCAXIS_POWER_OFF_MODE::LMCAXIS_SMOOTH_STOPP);
     lmcY.PowerOff(Mode:=::_LMCAXIS_POWER_OFF_MODE::LMCAXIS_SMOOTH_STOPP);
-    Status:=_Status::_Idle;
+    State:=_State::_Safe;
+  END_IF;
+  
+_State::_MovingAbsolute:
+  IF IsMoving THEN
+    IF lmcX.InPosition(Mode:=::_LMCAXIS_QUERY_POSITION_MODE::LMCAXIS_ACTPOS_IN_WINDOW_APP_UNITS, PositionWindow:=1000) &
+     lmcY.InPosition(Mode:=::_LMCAXIS_QUERY_POSITION_MODE::LMCAXIS_ACTPOS_IN_WINDOW_APP_UNITS, PositionWindow:=1000) THEN
+      NewMove.Start := FALSE;
+      IsMoving := FALSE;
+      State:=_State::_Idle;
+    END_IF;
+  ELSE
+    lmcx.MoveAbsolute(Position:=NewMove.X, Speed:=NewMove.Speed, Accel:=NewMove.Acc, Decel:=NewMove.Acc, Jerk:=0);
+    lmcY.MoveAbsolute(Position:=NewMove.Y, Speed:=NewMove.Speed, Accel:=NewMove.Acc, Decel:=NewMove.Acc, Jerk:=0);
+    IsMoving := TRUE;
   END_IF;
 
+END_CASE;
 
-_Status::_MoveAbosolute:
-
-  lmcx.MoveAbsolute(Position:=NewMove.X, Speed:=NewMove.Speed, Accel:=NewMove.Acc, Decel:=NewMove.Acc, Jerk:=0);
-  lmcY.MoveAbsolute(Position:=NewMove.Y, Speed:=NewMove.Speed, Accel:=NewMove.Acc, Decel:=NewMove.Acc, Jerk:=0);
-  Status:=_Status::_InPosition;
-  
-_Status::_InPosition:
-  if lmcX.InPosition(Mode:=::_LMCAXIS_QUERY_POSITION_MODE::LMCAXIS_ACTPOS_IN_WINDOW_APP_UNITS, PositionWindow:=1000) &
-     lmcY.InPosition(Mode:=::_LMCAXIS_QUERY_POSITION_MODE::LMCAXIS_ACTPOS_IN_WINDOW_APP_UNITS, PositionWindow:=1000) then
-    NewMove.Start:=FALSE;
-    Status:=_Status::_PowerIsOn;
-    
-  end_if;
-
-end_case;
 
 END_FUNCTION
 FUNCTION GLOBAL MoveController::MoveAxis

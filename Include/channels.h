@@ -541,6 +541,11 @@ TYPE
     dData : _SDDUSERCMD;
     pDsc : ^SVRDSC;
   END_STRUCT;
+  SvrCh__State_PTofCls_MoveController : STRUCT
+    pMeth : ^CHMETH;
+    dData : MoveController::_State;
+    pDsc : ^SVRDSC;
+  END_STRUCT;
   SvrCh_bd_EnabledFreqLimit_PTofCls_ST151Base : STRUCT
     pMeth : ^CHMETH;
     dData : ST151Base::bd_EnabledFreqLimit;

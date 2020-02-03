@@ -756,6 +756,13 @@ typedef struct SvrCh__SDDUSERCMD
     SVRDSC *pDsc;
   } SvrCh__SDDUSERCMD;
 
+typedef struct SvrCh__State_PTofCls_MoveController 
+  {
+    CHMETH *pMeth;
+    _State dData;
+    SVRDSC *pDsc;
+  } SvrCh__State_PTofCls_MoveController;
+
 typedef struct SvrCh_bd_EnabledFreqLimit_PTofCls_ST151Base 
   {
     CHMETH *pMeth;
