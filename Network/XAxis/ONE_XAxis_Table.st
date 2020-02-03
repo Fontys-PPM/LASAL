@@ -439,11 +439,12 @@ TO_UDINT(3), (100)$UDINT, 4194303$DINT, 	//_LMCAXIS2
 
 //External connections
 0$UDINT,
-9$UDINT,
+10$UDINT,
 TO_UDINT(2), "ActPosition", C_TRY, TO_UDINT(794195804), "_DriveAxis2","ActPos",
 TO_UDINT(3), "ActPosition", C_TRY, TO_UDINT(201264582), "ST1511","ActPosition",
 TO_UDINT(3), "RefSwitch", C_TRY, TO_UDINT(2056942671), "DM1611","Input1",
 TO_UDINT(30), "cDriveAxis", C_TRY, TO_UDINT(794195804), "_DriveAxis2","CmdState",
+TO_UDINT(31), "CommandServer", C_DIR, TO_UDINT(1706127036), "commandServer","sControl",
 TO_UDINT(32), "iHWErrors", C_TRY, TO_UDINT(201264582), "ST1511","AxError",
 TO_UDINT(32), "oActive", C_TRY, TO_UDINT(201264582), "ST1511","Enable",
 TO_UDINT(32), "oOutputSignal", C_TRY, TO_UDINT(201264582), "ST1511","SetFreqOut",

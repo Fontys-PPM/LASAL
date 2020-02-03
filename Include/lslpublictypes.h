@@ -340,6 +340,18 @@ END_CLASS;
 #pragma define (restore)
 MoveController : CLASS_PUBLIC
 	TYPE
+	  _State :
+	  (
+	    _Safe,
+	    _Homing,
+	    _Idle,
+	    _MovingAbsolute,
+	    _moveready,
+	    _MovingRelative,
+	    _Pick,
+	    _Place,
+	    _Error
+	  )$UDINT;
 	  _Status :
 	  (
 	    _Idle,
@@ -349,17 +361,6 @@ MoveController : CLASS_PUBLIC
 	    _RefrunOk,
 	    _MoveAbosolute,
 	    _InPosition
-	  )$UDINT;
-	  _State :
-	  (
-	    _Safe,
-	    _Homing,
-	    _Idle,
-	    _MovingAbsolute,
-	    _MovingRelative,
-	    _Pick,
-	    _Place,
-	    _Error
 	  )$UDINT;
 	END_TYPE
 END_CLASS;

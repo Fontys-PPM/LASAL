@@ -3,7 +3,7 @@
 	PrjRev   = "0.0"
 	Project  = "LASAL"
 	IP       = "10.101.10.150"
-	Filename = "C:\Users\Joshua\projects\LASAL\LASAL.lcp">
+	Filename = "D:\ppm\LASAL\LASAL.lcp">
 	<RemoteServers>
 		<RemoteServer Name="_DriveAxis1.CmdState" GUID_Svr="{C0257BBF-174C-49D2-8201-0B4BED56BBE1}" Class="_DriveAxisBase" DataType="iprStates" GUID_Obj="{390633D1-4EEF-460F-A937-479CB1A880DA}" Type="Object Channel" HasNewInst="true" WriteProtected="true" Comment="Displays the actual state of the Class&#13;&#10;(QUIT = disabled by client AxisNo)"/>
 		<RemoteServer Name="_DriveAxis1.Online" GUID_Svr="{CAF477F1-A28E-4611-B487-DA521DD0D7C0}" DataType="DINT" GUID_Obj="{390633D1-4EEF-460F-A937-479CB1A880DA}" WriteProtected="true" Comment="displays if the class is ready to work with the application"/>

@@ -182,11 +182,11 @@ FUNCTION VIRTUAL GLOBAL CommandServer::Response
   
   
   
-  sendBuffer[0] := 'A';
-  sendBuffer[1] := 'C';
-  sendBuffer[2] := 'K';
-  
-  SendData(pData:=#sendBuffer[0], udSize:=3, dSock:=dSock, bDirect:=0);
+//  sendBuffer[0] := 'A';
+//  sendBuffer[1] := 'C';
+//  sendBuffer[2] := 'K';
+//  
+//  SendData(pData:=#sendBuffer[0], udSize:=3, dSock:=dSock, bDirect:=0);
 
 END_FUNCTION
 

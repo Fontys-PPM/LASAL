@@ -22,6 +22,7 @@
 		<Server Name="sPower" GUID="{35C57A0D-055C-4F87-9F38-0A086F78AAB4}" Visualized="false" Initialize="false" WriteProtected="false" Retentive="false"/>
 		<Server Name="State" GUID="{14E0D100-AEE2-43A6-B848-1943C82AA51A}" Visualized="false" Initialize="false" WriteProtected="false" Retentive="false"/>
 		<Server Name="Status" GUID="{BCEBFDDD-48AC-43AD-99EE-DDEFE12E9880}" Visualized="false" Initialize="false" WriteProtected="false" Retentive="false"/>
+		<Client Name="CommandServer" Required="true" Internal="false"/>
 		<Client Name="lmcX" Required="true" Internal="false"/>
 		<Client Name="lmcY" Required="true" Internal="false"/>
 	</Channels>
@@ -45,6 +46,7 @@ MoveController : CLASS
 	    _Homing,
 	    _Idle,
 	    _MovingAbsolute,
+	    _moveready,
 	    _MovingRelative,
 	    _Pick,
 	    _Place,
@@ -68,6 +70,7 @@ MoveController : CLASS
   //Clients:
 	lmcX 	: CltChCmd__LMCAxis;
 	lmcY 	: CltChCmd__LMCAxis;
+	CommandServer 	: CltChCmd_CommandServer;
   //Variables:
 		NewMove 	: _Move;
 		IsMoving 	: BOOL;
@@ -106,6 +109,7 @@ MoveController : CLASS
 END_CLASS;
 
 #pragma usingLtd _LMCAxis
+#pragma usingLtd CommandServer
 
 
 //}}LSL_DECLARATION
@@ -115,7 +119,7 @@ FUNCTION GLOBAL TAB MoveController::@CT_
 0$UINT,
 2#0100000000000010$UINT, //TY_MOVECONTROLLER
 0$UINT, 0$UINT, (SIZEOF(::MoveController))$UINT, 
-3$UINT, 2$UINT, 0$UINT, 
+3$UINT, 3$UINT, 0$UINT, 
 TO_UDINT(1841029985), "MoveController", //Class
 TO_UDINT(0), 0, 0$UINT, 0$UINT, //Baseclass
 //Servers:
@@ -125,6 +129,7 @@ TO_UDINT(0), 0, 0$UINT, 0$UINT, //Baseclass
 //Clients:
 (::MoveController.lmcX.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(908124938), "lmcX", TO_UDINT(1422175863), "_LMCAxis", 1$UINT, 85$UINT, 
 (::MoveController.lmcY.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(1093129116), "lmcY", TO_UDINT(1422175863), "_LMCAxis", 1$UINT, 85$UINT, 
+(::MoveController.CommandServer.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(1706127036), "CommandServer", TO_UDINT(1706127036), "CommandServer", 0$UINT, 0$UINT, 
 END_FUNCTION
 
 
@@ -230,18 +235,17 @@ _State::_Idle:
   END_IF;
   
 _State::_MovingAbsolute:
-  IF IsMoving THEN
+    lmcx.MoveAbsolute(Position:=NewMove.X, Speed:=NewMove.Speed, Accel:=NewMove.Acc, Decel:=NewMove.Acc, Jerk:=0);
+    lmcY.MoveAbsolute(Position:=NewMove.Y, Speed:=NewMove.Speed, Accel:=NewMove.Acc, Decel:=NewMove.Acc, Jerk:=0);
+    State:=_State::_moveready;
+
+_State::_moveready:
     IF lmcX.InPosition(Mode:=::_LMCAXIS_QUERY_POSITION_MODE::LMCAXIS_ACTPOS_IN_WINDOW_APP_UNITS, PositionWindow:=1000) &
      lmcY.InPosition(Mode:=::_LMCAXIS_QUERY_POSITION_MODE::LMCAXIS_ACTPOS_IN_WINDOW_APP_UNITS, PositionWindow:=1000) THEN
       NewMove.Start := FALSE;
-      IsMoving := FALSE;
+      CommandServer.SendStatus(Status:=1);
       State:=_State::_Idle;
     END_IF;
-  ELSE
-    lmcx.MoveAbsolute(Position:=NewMove.X, Speed:=NewMove.Speed, Accel:=NewMove.Acc, Decel:=NewMove.Acc, Jerk:=0);
-    lmcY.MoveAbsolute(Position:=NewMove.Y, Speed:=NewMove.Speed, Accel:=NewMove.Acc, Decel:=NewMove.Acc, Jerk:=0);
-    IsMoving := TRUE;
-  END_IF;
 
 END_CASE;
 

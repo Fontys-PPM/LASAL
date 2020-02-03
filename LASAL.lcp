@@ -7,7 +7,7 @@
 	WriteSrvListOnSave = "true"
 	CLASSType          = "true">
 	<OnlineConnectionInfo>
-		<TCPIP ConfigName="ppm" BUS="3" Password="" IP="10.101.10.150" PORT="1954" SomeFlags="0" PLCID="" Repeater="0" SSLTLS="0" Favorite="0"/>
+		<TCPIP ConfigName="ppm" BUS="3" Password="" IP="10.101.10.150" PORT="1954" SomeFlags="0" PLCID="" Repeater="0" SSLTLS="0" Favorite="1"/>
 	</OnlineConnectionInfo>
 	<HeaderFiles>
 		<File Path=".\Include\unit.h"/>

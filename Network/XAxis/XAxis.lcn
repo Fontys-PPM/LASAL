@@ -804,13 +804,14 @@
 			Name       = "moveController"
 			GUID       = "{9F7A84C7-AA7E-412D-B322-4F016996E74F}"
 			Class      = "MoveController"
-			Position   = "(3180,750)"
+			Position   = "(3270,750)"
 			Visualized = "false"
 			RealTime   = "1 ms">
 			<Channels>
 				<Server Name="sPower"/>
 				<Server Name="State"/>
 				<Server Name="Status"/>
+				<Client Name="CommandServer"/>
 				<Client Name="lmcX"/>
 				<Client Name="lmcY"/>
 			</Channels>
@@ -882,7 +883,7 @@
 	<Connections>
 		<Connection Source="DrivePosControl1.cDriveAxis" Destination="_DriveAxis2.CmdState"/>
 		<Connection Source="_LMCAxis1.LMCController" Destination="DrivePosControl1.Signal_Input" Vertices="(2040,900),(1594,900),"/>
-		<Connection Source="moveController.lmcX" Destination="_LMCAxis1.Control" Vertices="(3180,840),(2706,840),"/>
+		<Connection Source="moveController.lmcX" Destination="_LMCAxis1.Control" Vertices="(3270,840),(2706,840),"/>
 		<Connection Source="_LMCAxis1.ActPosition" Destination="_DriveAxis2.ActPos"/>
 		<Connection Source="_LMCAxis1.RefSwitch" Destination="RefSwitchCurrent1.Switch" Vertices="(2040,1380),(1710,1380),"/>
 		<Connection Source="RefSwitchCurrent1.Current" Destination="_DriveAxis2.ActCurrent"/>
@@ -894,7 +895,8 @@
 		<Connection Source="NCController1.iHWErrors" Destination="ST1511.AxError"/>
 		<Connection Source="NCController1.HWErrorQuit" Destination="ST1511.ErrorQuit"/>
 		<Connection Source="_LMCAxis2.RefSwitch" Destination="DM1611.Input1"/>
-		<Connection Source="moveController.lmcY" Destination="_LMCAxis2.Control" Vertices="(3180,900),(2940,900),(2940,2430),(2706,2430),"/>
+		<Connection Source="moveController.lmcY" Destination="_LMCAxis2.Control" Vertices="(3270,900),(2940,900),(2940,2430),(2706,2430),"/>
+		<Connection Source="moveController.CommandServer" Destination="commandServer.sControl"/>
 	</Connections>
 	<!-- Headerfiles -->
 	<Options>

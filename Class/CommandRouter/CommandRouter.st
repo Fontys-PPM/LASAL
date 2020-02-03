@@ -23,7 +23,6 @@
 		<Server Name="Debug" GUID="{01CF4B89-FFCD-415C-A4E0-06F6413C5D6E}" Visualized="false" Initialize="false" WriteProtected="true" Retentive="false"/>
 		<Server Name="Speed" GUID="{71A7300E-A03D-45EF-99D4-2D25C86CD142}" Visualized="false" Initialize="true" WriteProtected="false" Retentive="SRam"/>
 		<Client Name="clib" Required="false" Internal="false"/>
-		<Client Name="CommandServer" Required="true" Internal="false"/>
 		<Client Name="Controller" Required="true" Internal="false"/>
 	</Channels>
 </Class>
@@ -37,19 +36,18 @@ CommandRouter : CLASS
   //Clients:
 	Controller 	: CltChCmd_MoveController;
 	clib 	: CltChCmd_SigCLib;
-	CommandServer 	: CltChCmd_CommandServer;
   //Variables:
 		DataBuffer : ARRAY [0..1024] OF CHAR;
 
 		Command : ARRAY [0..4] OF CHAR;
 
-		X : ARRAY [0..7] OF CHAR;
+		X : ARRAY [0..8] OF CHAR;
 
-		Y : ARRAY [0..7] OF CHAR;
+		Y : ARRAY [0..8] OF CHAR;
 
-		Z : ARRAY [0..7] OF CHAR;
+		Z : ARRAY [0..8] OF CHAR;
 
-		Phi : ARRAY [0..7] OF CHAR;
+		Phi : ARRAY [0..8] OF CHAR;
 
   //Functions:
 	
@@ -66,7 +64,6 @@ CommandRouter : CLASS
 	FUNCTION GLOBAL TAB @CT_;
 END_CLASS;
 
-#pragma usingLtd CommandServer
 #pragma usingLtd MoveController
 #pragma usingLtd SigCLib
 
@@ -78,7 +75,7 @@ FUNCTION GLOBAL TAB CommandRouter::@CT_
 0$UINT,
 2#0100000000000010$UINT, //TY_COMMANDROUTER
 0$UINT, 0$UINT, (SIZEOF(::CommandRouter))$UINT, 
-4$UINT, 3$UINT, 0$UINT, 
+4$UINT, 2$UINT, 0$UINT, 
 TO_UDINT(2047756655), "CommandRouter", //Class
 TO_UDINT(0), 0, 0$UINT, 0$UINT, //Baseclass
 //Servers:
@@ -89,7 +86,6 @@ TO_UDINT(0), 0, 0$UINT, 0$UINT, //Baseclass
 //Clients:
 (::CommandRouter.Controller.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(1198357413), "Controller", TO_UDINT(1841029985), "MoveController", 0$UINT, 0$UINT, 
 (::CommandRouter.clib.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000000$UINT, TO_UDINT(1745651867), "clib", TO_UDINT(77440046), "SigCLib", 0$UINT, 30$UINT, 
-(::CommandRouter.CommandServer.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(1706127036), "CommandServer", TO_UDINT(1706127036), "CommandServer", 0$UINT, 0$UINT, 
 END_FUNCTION
 
 

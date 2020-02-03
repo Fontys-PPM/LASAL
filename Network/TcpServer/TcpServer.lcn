@@ -14,8 +14,7 @@
 				<Server Name="Debug"/>
 				<Server Name="Speed" Value="2000000"/>
 				<Client Name="clib" Value="0"/>
-				<Client Name="CommandServer"/>
-				<Client Name="Controller" Value="MoveController::_Idle"/>
+				<Client Name="Controller"/>
 			</Channels>
 		</Object>
 		<Object
@@ -217,7 +216,6 @@
 	<Connections>
 		<Connection Source="commandServer.CmdRouter" Destination="commandRouter.CmdRouter" Vertices="(1980,870),(1576,870),"/>
 		<Connection Source="commandRouter.Controller" Destination="moveController.Status"/>
-		<Connection Source="commandRouter.CommandServer" Destination="commandServer.sControl" Vertices="(1080,990),(960,990),(960,1440),(3180,1440),(3180,870),(2746,870),"/>
 	</Connections>
 	<!-- Headerfiles -->
 	<Options>

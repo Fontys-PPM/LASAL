@@ -120,8 +120,7 @@ TO_UDINT(6), "MerkerEx0", TO_UDINT(3),
 TO_UDINT(7), "MerkerEx0", TO_UDINT(4),
 TO_UDINT(8), "MerkerEx0", TO_UDINT(5),
 0$UDINT,
-5$UDINT,
-TO_UDINT(1), "CommandServer", TO_UDINT(2), "sControl",
+4$UDINT,
 TO_UDINT(2), "CmdRouter", TO_UDINT(1), "CmdRouter",
 TO_UDINT(6), "DataBuffer", TO_UDINT(3), "m_udLength",
 TO_UDINT(7), "DataBuffer", TO_UDINT(4), "m_udLength",
@@ -129,10 +128,9 @@ TO_UDINT(8), "DataBuffer", TO_UDINT(5), "m_udLength",
 
 //Initialization values
 0$UDINT,
-12$UDINT,
+11$UDINT,
 TO_UDINT(1), "Speed", TO_UDINT(2000000),//|TcpServer.commandRouter.Speed;
 TO_UDINT(1), "Acc", TO_UDINT(10000000),//|TcpServer.commandRouter.Acc;
-TO_UDINT(1), "Controller", TO_UDINT(MoveController::_Idle),//|TcpServer.commandRouter.Controller;
 TO_UDINT(1), "clib", TO_UDINT(0),//|TcpServer.commandRouter.clib;
 TO_UDINT(2), "cPort", TO_UDINT(1985),//|TcpServer.commandServer.cPort;
 TO_UDINT(2), "cMaxConnections", TO_UDINT(0),//|TcpServer.commandServer.cMaxConnections;
