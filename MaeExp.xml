@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<File CRC="89B89474" Version="1.1">
+<File CRC="1240EBA0" Version="1.1">
 	<Types>
 		<Type Name="_DRIVETYPE" Datatype="UDINT" TypeId="ENUM">
 			<Elements>
@@ -1408,12 +1408,16 @@
 		<Object Name="_DriveMng_DC0622" Datatype="_DriveMng_DC062" Guid="E73A0BB8-3325-409F-A747-E3942A89D5A3"/>
 		<Object Name="_DriveMng_DC0623" Datatype="_DriveMng_DC062" Guid="B6DC08D3-A2CC-4E28-8D0F-9572A6B3CD02"/>
 		<Object Name="_DriveMng_DC0624" Datatype="_DriveMng_DC062" Guid="E2A2EDD4-774D-489B-B2FB-0C7F7C71BA88"/>
-		<Object Name="_LMCAxis1" Datatype="_LMCAxis" Guid="8F8631E1-5181-49CA-879A-751FE2620598"/>
-		<Object Name="_LMCAxis2" Datatype="_LMCAxis" Guid="E0D91A1E-5E97-4C73-9704-E2539F40CEAE"/>
+		<Object Name="_LMCAxis_lineair_X" Datatype="_LMCAxis" Guid="8F8631E1-5181-49CA-879A-751FE2620598"/>
+		<Object Name="_LMCAxis_lineair_Y" Datatype="_LMCAxis" Guid="523C20F8-51C2-46D1-8F7D-C8E3E3265364"/>
+		<Object Name="_LMCAxis_stepper_Y" Datatype="_LMCAxis" Guid="E0D91A1E-5E97-4C73-9704-E2539F40CEAE"/>
+		<Object Name="_ZAxis" Datatype="_LMCAxis" Guid="D94B21B3-23B7-4DEE-9D9D-D4900C70C91F"/>
 		<Object Name="commandServer" Datatype="CommandServer" Guid="8D8FA0AD-93AE-4ECE-A8E7-EDB2725D2D00"/>
 		<Object Name="CP112_IOs1" Datatype="CP112_IOs" Guid="653ACEE2-D8F4-41A2-B8F4-758EBB6036C5"/>
 		<Object Name="DM1611" Datatype="DM161" Guid="185491D3-2AE4-4F0B-A27B-B645D1786828"/>
 		<Object Name="DrivePosControl1" Datatype="DrivePosControl" Guid="C2C3A512-516F-41DE-8AC7-5D90CC762E02"/>
+		<Object Name="DrivePosControl2" Datatype="DrivePosControl" Guid="D7071E4E-2C58-4D8E-9E07-E2BCFECC0C15"/>
+		<Object Name="DrivePosControl3" Datatype="DrivePosControl" Guid="319AE7AA-AF60-4CEB-BB81-BBB57E483EEB"/>
 		<Object Name="HwControl1" Datatype="HwControl" Guid="B3ECC954-8CDF-4F7F-B0D1-C1D54470658F"/>
 		<Object Name="NCController1" Datatype="NCController" Guid="FBDC950B-E1FD-45B4-8E7C-D0F4EB08B196"/>
 		<Object Name="SdiasPLC1" Datatype="SdiasPLC" Guid="6B39E176-CE41-4F71-A573-CE76D89CF63E"/>

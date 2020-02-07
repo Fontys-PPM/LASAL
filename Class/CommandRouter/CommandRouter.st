@@ -22,6 +22,8 @@
 		<Server Name="CmdRouter" GUID="{CF3EF3C9-C556-423D-B567-DE197EC8F4DD}" Visualized="false" Initialize="false" WriteProtected="true" Retentive="false"/>
 		<Server Name="Debug" GUID="{01CF4B89-FFCD-415C-A4E0-06F6413C5D6E}" Visualized="false" Initialize="false" WriteProtected="true" Retentive="false"/>
 		<Server Name="Speed" GUID="{71A7300E-A03D-45EF-99D4-2D25C86CD142}" Visualized="false" Initialize="true" WriteProtected="false" Retentive="SRam"/>
+		<Server Name="YAcc" GUID="{3DC44FC9-D466-4887-B34A-6E24F4BB0BE4}" Visualized="false" Initialize="true" WriteProtected="false" Retentive="SRam"/>
+		<Server Name="YSpeed" GUID="{FEDC9785-C89D-4B00-B7BF-72AF9674D8D3}" Visualized="false" Initialize="true" WriteProtected="false" Retentive="SRam"/>
 		<Client Name="clib" Required="false" Internal="false"/>
 		<Client Name="Controller" Required="true" Internal="false"/>
 	</Channels>
@@ -33,19 +35,19 @@ CommandRouter : CLASS
 	Debug 	: SvrCh_DINT;
 	Speed 	: SvrCh_DINT;
 	Acc 	: SvrCh_DINT;
+	YSpeed 	: SvrCh_DINT;
+	YAcc 	: SvrCh_DINT;
   //Clients:
 	Controller 	: CltChCmd_MoveController;
 	clib 	: CltChCmd_SigCLib;
   //Variables:
 		DataBuffer : ARRAY [0..1024] OF CHAR;
 
-		Command : ARRAY [0..4] OF CHAR;
+		Command : ARRAY [0..8] OF CHAR;
 
 		X : ARRAY [0..8] OF CHAR;
 
 		Y : ARRAY [0..8] OF CHAR;
-
-		Z : ARRAY [0..8] OF CHAR;
 
 		Phi : ARRAY [0..8] OF CHAR;
 
@@ -75,7 +77,7 @@ FUNCTION GLOBAL TAB CommandRouter::@CT_
 0$UINT,
 2#0100000000000010$UINT, //TY_COMMANDROUTER
 0$UINT, 0$UINT, (SIZEOF(::CommandRouter))$UINT, 
-4$UINT, 2$UINT, 0$UINT, 
+6$UINT, 2$UINT, 0$UINT, 
 TO_UDINT(2047756655), "CommandRouter", //Class
 TO_UDINT(0), 0, 0$UINT, 0$UINT, //Baseclass
 //Servers:
@@ -83,6 +85,8 @@ TO_UDINT(0), 0, 0$UINT, 0$UINT, //Baseclass
 (::CommandRouter.Debug.pMeth)$UINT, _CH_SVR$UINT, 2#0000000000000000$UINT, TO_UDINT(2616296727), "Debug", 
 (::CommandRouter.Speed.pMeth)$UINT, _CH_SVR$UINT, 2#0000000000001000$UINT, TO_UDINT(4168236102), "Speed", 
 (::CommandRouter.Acc.pMeth)$UINT, _CH_SVR$UINT, 2#0000000000001000$UINT, TO_UDINT(3130536457), "Acc", 
+(::CommandRouter.YSpeed.pMeth)$UINT, _CH_SVR$UINT, 2#0000000000001000$UINT, TO_UDINT(2752721863), "YSpeed", 
+(::CommandRouter.YAcc.pMeth)$UINT, _CH_SVR$UINT, 2#0000000000001000$UINT, TO_UDINT(3533206575), "YAcc", 
 //Clients:
 (::CommandRouter.Controller.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(1198357413), "Controller", TO_UDINT(1841029985), "MoveController", 0$UINT, 0$UINT, 
 (::CommandRouter.clib.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000000$UINT, TO_UDINT(1745651867), "clib", TO_UDINT(77440046), "SigCLib", 0$UINT, 30$UINT, 
@@ -130,6 +134,20 @@ FUNCTION CommandRouter::@STD
 		ret_code	:= C_OUTOF_NEAR;
 		RETURN;
 	END_IF;
+	YSpeed.pMeth			:= StoreMethod( #M_RD_DIRECT(), #M_WR_DIRECT() );
+	IF YSpeed.pMeth THEN
+		ret_code	:= C_OK;
+	ELSE
+		ret_code	:= C_OUTOF_NEAR;
+		RETURN;
+	END_IF;
+	YAcc.pMeth			:= StoreMethod( #M_RD_DIRECT(), #M_WR_DIRECT() );
+	IF YAcc.pMeth THEN
+		ret_code	:= C_OK;
+	ELSE
+		ret_code	:= C_OUTOF_NEAR;
+		RETURN;
+	END_IF;
 
 END_FUNCTION
 
@@ -159,6 +177,7 @@ FUNCTION GLOBAL CommandRouter::SetData
     PhiVal : DINT;
   END_VAR
 
+  // size of the parameter plus one semicolon
   parameterSize := 8 + 1;
 
   Debug += 1;
@@ -166,46 +185,26 @@ FUNCTION GLOBAL CommandRouter::SetData
   _memcpy(ptr1:=#DataBuffer[0], ptr2:=pData, cntr:=size);
   DataBuffer[size] := 0;
   pString := #DataBuffer[0];
-  
 
   // get first 5 values (this represents the command)
-  FOR counter := 0 TO 4 BY 1 DO
-    Command[counter] := (pString+counter)^;
-  END_FOR;
+  _memcpy(ptr1:=#Command, ptr2:=pString, cntr:=8);
   
   // get the other values depending
   // on the command (these represent the command parameters)
-  if clib.StrCmp(ps1:=#Command[0], ps2:="CMOVE") = 0 then
-    FOR counter := 0 TO 7 BY 1 DO
-      X[counter] := (pString+counter+parameterSize-3)^; // 6
-    END_FOR;
-    
-    FOR counter := 0 TO 7 BY 1 DO
-      Y[counter] := (pString+counter+parameterSize*2-3)^;
-    END_FOR;
-    
-    FOR counter := 0 TO 7 BY 1 DO
-      Z[counter] := (pString+counter+parameterSize*3-3)^;
-    END_FOR;
-
-    FOR counter := 0 TO 7 BY 1 DO
-      Phi[counter] := (pString+counter+parameterSize*4-3)^;
-    END_FOR;
-    //_memcpy(ptr1:=#Phi, ptr2:=pString+counter+parameterSize*4-1, cntr:=5);
-    
+  if clib.StrCmp(ps1:=#Command[0], ps2:="CMOVEABS") = 0 then
+    _memcpy(ptr1:=#X, ptr2:=pString+parameterSize, cntr:=8);
+    _memcpy(ptr1:=#Y, ptr2:=pString+parameterSize*2, cntr:=8);
+    _memcpy(ptr1:=#Phi, ptr2:=pString+parameterSize*3, cntr:=8);
     
     XVal := clib.AToI(ps1:=#X[0]);
     YVal := clib.AToI(ps1:=#Y[0]);
-    ZVal := clib.AToI(ps1:=#Z[0]);
     PhiVal := cLib.AToI(ps1:=#Phi[0]);
 
-    Controller.MoveAxis(XPos:=XVal, YPos:=YVal, Speed:=Speed, Accel:=Acc);
+    Controller.MoveAxis(XPos:=XVal, YPos:=YVal, Speed:=Speed, Accel:=Acc, YSpeed:=YSpeed, YAcc:=YAcc);
     
-    //CommandServer.SendStatus(Status:=1);
-    
-  ELSIF clib.StrCmp(ps1:=#Command[0], ps2:="CPWON") = 0 then
+  ELSIF clib.StrCmp(ps1:=#Command[0], ps2:="CPOWERON") = 0 then
     Controller.TogglePower(Power:=1);
-    ELSIF clib.StrCmp(ps1:=#Command[0], ps2:="CPOFF") = 0 then
+    ELSIF clib.StrCmp(ps1:=#Command[0], ps2:="CPOWEROF") = 0 then
     Controller.TogglePower(Power:=0);
   end_if;
 

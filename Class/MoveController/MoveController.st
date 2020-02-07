@@ -17,19 +17,43 @@
 	Automatic          = "false"
 	UpdateMode         = "Prescan"
 	SharedCommandTable = "true"
-	Objectsize         = "(284,120)">
+	Objectsize         = "(600,480)">
 	<Channels>
+		<Server Name="P_currentloop" GUID="{011C06E3-4E45-485C-BB54-17D7C556F923}" Visualized="false" Initialize="false" WriteProtected="false" Retentive="File"/>
 		<Server Name="sPower" GUID="{35C57A0D-055C-4F87-9F38-0A086F78AAB4}" Visualized="false" Initialize="false" WriteProtected="false" Retentive="false"/>
 		<Server Name="State" GUID="{14E0D100-AEE2-43A6-B848-1943C82AA51A}" Visualized="false" Initialize="false" WriteProtected="false" Retentive="false"/>
 		<Server Name="Status" GUID="{BCEBFDDD-48AC-43AD-99EE-DDEFE12E9880}" Visualized="false" Initialize="false" WriteProtected="false" Retentive="false"/>
+		<Server Name="Z_currentTarget" GUID="{6E128B51-AEF5-4E9E-A6EB-3F7E8DF7F845}" Visualized="false" Initialize="false" WriteProtected="false" Retentive="File"/>
+		<Server Name="Z_DownPos" GUID="{58266AD0-B9B1-4761-95CB-6D72FA0CBA8A}" Visualized="false" Initialize="false" WriteProtected="false" Retentive="File"/>
+		<Server Name="Z_positiontarget" GUID="{6CC865F5-F1E4-4F04-8E04-7D9BD5E3FE9B}" Visualized="false" Initialize="false" WriteProtected="false" Retentive="false"/>
 		<Client Name="CommandServer" Required="true" Internal="false"/>
 		<Client Name="lmcX" Required="true" Internal="false"/>
 		<Client Name="lmcY" Required="true" Internal="false"/>
+		<Client Name="lmcYShort" Required="true" Internal="false"/>
+		<Client Name="lmcZ" Required="true" Internal="false"/>
+		<Client Name="ResetDummy" Required="true" Internal="false"/>
+		<Client Name="Z_current" Required="true" Internal="false"/>
 	</Channels>
 </Class>
 *)
 MoveController : CLASS
 	TYPE
+	  _MotionState :  //! <Type Public="true" Name="_MotionState"/>
+	  (
+	    _Safe,
+	    _Homing,
+	    _InHomepos,
+	    _EnableShort,
+	    _HomeShort,
+	    _InPosHomeShort,
+	    _Waiting,
+	    _MovingAbsolute,
+	    _moveready,
+	    _MovingRelative,
+	    _Pick,
+	    _Place,
+	    _Error
+	  )$UDINT;
 #pragma pack(push, 1)
 	  _Move : STRUCT
 	    Start : DINT;
@@ -38,20 +62,10 @@ MoveController : CLASS
 	    Y : DINT;
 	    Speed : DINT;
 	    Acc : DINT;
+	    YSpeed : DINT;
+	    YAcc : DINT;
 	  END_STRUCT;
 #pragma pack(pop)
-	  _State :  //! <Type Public="true" Name="_State"/>
-	  (
-	    _Safe,
-	    _Homing,
-	    _Idle,
-	    _MovingAbsolute,
-	    _moveready,
-	    _MovingRelative,
-	    _Pick,
-	    _Place,
-	    _Error
-	  )$UDINT;
 	  _Status :  //! <Type Public="true" Name="_Status"/>
 	  (
 	    _Idle,
@@ -62,18 +76,35 @@ MoveController : CLASS
 	    _MoveAbosolute,
 	    _InPosition
 	  )$UDINT;
+	  _Z_stepper :
+	  (
+	    __Idle,
+	    __MoveDown,
+	    __Currentloop,
+	    __MoveUp
+	  )$UDINT;
 	END_TYPE
   //Servers:
 	Status 	: SvrChCmd__Status_PTofCls_MoveController;
 	sPower 	: SvrCh_DINT;
-	State 	: SvrCh__State_PTofCls_MoveController;
+	State 	: SvrCh__MotionState_PTofCls_MoveController;
+	Z_positiontarget 	: SvrCh_DINT;
+	Z_currentTarget 	: SvrCh_DINT;
+	Z_DownPos 	: SvrCh_DINT;
+	P_currentloop 	: SvrCh_REAL;
   //Clients:
 	lmcX 	: CltChCmd__LMCAxis;
 	lmcY 	: CltChCmd__LMCAxis;
+	ResetDummy 	: CltCh_DINT;
 	CommandServer 	: CltChCmd_CommandServer;
+	lmcYShort 	: CltChCmd__LMCAxis;
+	lmcZ 	: CltChCmd__LMCAxis;
+	Z_current 	: CltCh_DINT;
   //Variables:
 		NewMove 	: _Move;
 		IsMoving 	: BOOL;
+		Z_stepper 	: _Z_stepper;
+		DeltaCurrent 	: REAL;
   //Functions:
 	
 	FUNCTION VIRTUAL GLOBAL Init;
@@ -92,6 +123,8 @@ MoveController : CLASS
 			YPos 	: DINT;
 			Speed 	: DINT;
 			Accel 	: DINT;
+			YSpeed 	: DINT;
+			YAcc 	: DINT;
 		END_VAR;
 	
 	FUNCTION GLOBAL TogglePower
@@ -100,6 +133,8 @@ MoveController : CLASS
 		END_VAR;
 	
 	FUNCTION StateMachine;
+	
+	FUNCTION Z_control_loop;
   //Tables:
 	FUNCTION @STD
 		VAR_OUTPUT
@@ -119,17 +154,25 @@ FUNCTION GLOBAL TAB MoveController::@CT_
 0$UINT,
 2#0100000000000010$UINT, //TY_MOVECONTROLLER
 0$UINT, 0$UINT, (SIZEOF(::MoveController))$UINT, 
-3$UINT, 3$UINT, 0$UINT, 
+7$UINT, 7$UINT, 0$UINT, 
 TO_UDINT(1841029985), "MoveController", //Class
 TO_UDINT(0), 0, 0$UINT, 0$UINT, //Baseclass
 //Servers:
 (::MoveController.Status.pMeth)$UINT, _CH_CMD$UINT, 2#0000000000000000$UINT, TO_UDINT(2348327578), "Status", 
 (::MoveController.sPower.pMeth)$UINT, _CH_SVR$UINT, 2#0000000000000000$UINT, TO_UDINT(2703552503), "sPower", 
 (::MoveController.State.pMeth)$UINT, _CH_SVR$UINT, 2#0000000000000000$UINT, TO_UDINT(1422331979), "State", 
+(::MoveController.Z_positiontarget.pMeth)$UINT, _CH_SVR$UINT, 2#0000000000000000$UINT, TO_UDINT(1883519733), "Z_positiontarget", 
+(::MoveController.Z_currentTarget.pMeth)$UINT, _CH_SVR$UINT, 2#0000000000011000$UINT, TO_UDINT(246093227), "Z_currentTarget", 
+(::MoveController.Z_DownPos.pMeth)$UINT, _CH_SVR$UINT, 2#0000000000011000$UINT, TO_UDINT(3690894878), "Z_DownPos", 
+(::MoveController.P_currentloop.pMeth)$UINT, _CH_SVR$UINT, 2#0000000000011000$UINT, TO_UDINT(1264413864), "P_currentloop", 
 //Clients:
 (::MoveController.lmcX.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(908124938), "lmcX", TO_UDINT(1422175863), "_LMCAxis", 1$UINT, 85$UINT, 
 (::MoveController.lmcY.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(1093129116), "lmcY", TO_UDINT(1422175863), "_LMCAxis", 1$UINT, 85$UINT, 
+(::MoveController.ResetDummy.pCh)$UINT, _CH_CLT_DATA$UINT, 2#0000000000000010$UINT, TO_UDINT(3999882179), "ResetDummy", 
 (::MoveController.CommandServer.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(1706127036), "CommandServer", TO_UDINT(1706127036), "CommandServer", 0$UINT, 0$UINT, 
+(::MoveController.lmcYShort.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(2349572181), "lmcYShort", TO_UDINT(1422175863), "_LMCAxis", 1$UINT, 85$UINT, 
+(::MoveController.lmcZ.pCh)$UINT, _CH_CLT_OBJ$UINT, 2#0000000000000010$UINT, TO_UDINT(3626926630), "lmcZ", TO_UDINT(1422175863), "_LMCAxis", 1$UINT, 85$UINT, 
+(::MoveController.Z_current.pCh)$UINT, _CH_CLT_DATA$UINT, 2#0000000000000010$UINT, TO_UDINT(4087950147), "Z_current", 
 END_FUNCTION
 
 
@@ -177,13 +220,40 @@ FUNCTION MoveController::@STD
 		ret_code	:= C_OUTOF_NEAR;
 		RETURN;
 	END_IF;
+	Z_positiontarget.pMeth			:= StoreMethod( #M_RD_DIRECT(), #M_WR_DIRECT() );
+	IF Z_positiontarget.pMeth THEN
+		ret_code	:= C_OK;
+	ELSE
+		ret_code	:= C_OUTOF_NEAR;
+		RETURN;
+	END_IF;
+	Z_currentTarget.pMeth			:= StoreMethod( #M_RD_DIRECT(), #M_WR_DIRECT() );
+	IF Z_currentTarget.pMeth THEN
+		ret_code	:= C_OK;
+	ELSE
+		ret_code	:= C_OUTOF_NEAR;
+		RETURN;
+	END_IF;
+	Z_DownPos.pMeth			:= StoreMethod( #M_RD_DIRECT(), #M_WR_DIRECT() );
+	IF Z_DownPos.pMeth THEN
+		ret_code	:= C_OK;
+	ELSE
+		ret_code	:= C_OUTOF_NEAR;
+		RETURN;
+	END_IF;
+	P_currentloop.pMeth			:= StoreMethod( #M_RD_DIRECT(), #M_WR_DIRECT() );
+	IF P_currentloop.pMeth THEN
+		ret_code	:= C_OK;
+	ELSE
+		ret_code	:= C_OUTOF_NEAR;
+		RETURN;
+	END_IF;
 
 END_FUNCTION
 
 //{{LSL_IMPLEMENTATION
 
 FUNCTION VIRTUAL GLOBAL MoveController::Init
-  IsMoving := FALSE;
 END_FUNCTION
 
 
@@ -196,6 +266,7 @@ FUNCTION VIRTUAL GLOBAL MoveController::RtWork
 	END_VAR
   
   StateMachine();
+  Z_control_loop();
 	state := READY;
 END_FUNCTION
 
@@ -204,65 +275,137 @@ FUNCTION MoveController::StateMachine
 
 case State of
 
-_State::_Safe:
+_MotionState::_Safe:
   IF sPower THEN
     IF lmcX.AxisStatus.ReadyToPowerOn & lmcY.AxisStatus.ReadyToPowerOn THEN
       lmcX.PowerOn(Mode:=::_LMCAXIS_MOVEDIRECTION::LMCAXIS_MOVE_ANY_WAY);
       lmcY.PowerOn(Mode:=::_LMCAXIS_MOVEDIRECTION::LMCAXIS_MOVE_ANY_WAY);
-      State := _State::_Homing;
+      //lmcz.PowerOn(Mode:=::_LMCAXIS_MOVEDIRECTION::LMCAXIS_MOVE_ANY_WAY);
+      State := _MotionState::_Homing;
     END_IF;
   END_IF;
   
-_State::_Homing:
+_MotionState::_Homing:
   IF lmcX.AxisStatus.PowerOn THEN
-    lmcX.MoveReference(Mode:=_LMCAXIS_REFMODE.NoZImpulse , Position:=0, VRef1:=200000, VRef2:=50000, Accel:=5000000, PositionWindow:=50000, RefJerk:=0);
-    lmcY.MoveReference(Mode:=_LMCAXIS_REFMODE.NoZImpulse | _LMCAXIS_REFMODE.RefDirection, Position:=0, VRef1:=2000000, VRef2:=500000, Accel:=20000000, PositionWindow:=50000, RefJerk:=0);
-    //lmcY.MoveReference(Mode:=_LMCAXIS_REFMODE.NoZImpulse |_LMCAXIS_REFMODE.RefDirection , Position:=, VRef1:=, VRef2:=, Accel:=, PositionWindow:=, RefJerk:=);
-  ELSIF lmcX.AxisStatus.IsReferenced & lmcY.AxisStatus.IsReferenced THEN
-    State:=_State::_Idle;
+    lmcX.MoveReference(Mode:=_LMCAXIS_REFMODE.NoZImpulse , Position:=0, VRef1:=200000, VRef2:=50000, Accel:=5000000, PositionWindow:=5000, RefJerk:=0);
+    lmcY.MoveReference(Mode:=_LMCAXIS_REFMODE.NoZImpulse , Position:=0, VRef1:=2000000, VRef2:=500000, Accel:=20000000, PositionWindow:=5000, RefJerk:=0);
+    //lmcz.MoveReference(Mode:=_LMCAXIS_REFMODE.NoZImpulse or _LMCAXIS_REFMODE.RefDirection, Position:=0, VRef1:=2000000, VRef2:=500000, Accel:=20000000, PositionWindow:=5000, RefJerk:=0);
+    State:=_MotionState::_InHomepos;
+  end_if;
+  //lmcY.MoveReference(Mode:=_LMCAXIS_REFMODE.NoZImpulse |_LMCAXIS_REFMODE.RefDirection , Position:=, VRef1:=, VRef2:=, Accel:=, PositionWindow:=, RefJerk:=);
+
+_MotionState::_InHomepos:
+  IF lmcX.AxisStatus.IsReferenced & lmcY.AxisStatus.IsReferenced THEN
+    CommandServer.SendStatus(Status:=1); //delete if short stroke is implemented again
+    //lmcZ.CoupleUserPos(MaxVel:=lmcZ.VMax, MaxAcc:=lmcz.AMax, pMasterPos:=#Z_positiontarget, DeltaPos:=0, GearMul:=100, GearDiv:=100, Mode:=::_LMCAXIS_COUPLE_GEAR_MODE::LMCAXIS_COUPLE_PROFILE_NO_GEAR, MaxJerk:=0);
+    ResetDummy.Write(input:=0);
+    State:=_MotionState::_Waiting;
   END_IF;
-  
-_State::_Idle:
+
+_MotionState::_EnableShort:
+  lmcYShort.PowerOn(Mode:=::_LMCAXIS_MOVEDIRECTION::LMCAXIS_MOVE_ANY_WAY);
+  State:=_MotionState::_HomeShort;
+
+_MotionState::_HomeShort:
+  IF lmcYShort.AxisStatus.PowerOn THEN
+    lmcYShort.MoveReference(Mode:=_LMCAXIS_REFMODE.NoZImpulse , Position:=0, VRef1:=2000, VRef2:=1500, Accel:=1000, PositionWindow:=10000, RefJerk:=0);
+  State := _MotionState::_InPosHomeShort;
+  END_IF;
+
+_MotionState::_InPosHomeShort:
+  IF lmcYShort.AxisStatus.IsReferenced THEN
+    CommandServer.SendStatus(Status:=1);
+    State := _MotionState::_Waiting;
+  END_IF;
+
+_MotionState::_Waiting:
   IF lmcX.AxisStatus.PowerOn THEN
     IF NewMove.Start THEN
-      State:=_State::_MovingAbsolute;
+      State:=_MotionState::_MovingAbsolute;
     END_IF;
   END_IF;
   IF sPower = FALSE THEN
     lmcX.PowerOff(Mode:=::_LMCAXIS_POWER_OFF_MODE::LMCAXIS_SMOOTH_STOPP);
     lmcY.PowerOff(Mode:=::_LMCAXIS_POWER_OFF_MODE::LMCAXIS_SMOOTH_STOPP);
-    State:=_State::_Safe;
+    State:=_MotionState::_Safe;
   END_IF;
   
-_State::_MovingAbsolute:
+_MotionState::_MovingAbsolute:
+//  if NewMove.X> lmcX.SWMaxPos then
+//  end_if;
     lmcx.MoveAbsolute(Position:=NewMove.X, Speed:=NewMove.Speed, Accel:=NewMove.Acc, Decel:=NewMove.Acc, Jerk:=0);
-    lmcY.MoveAbsolute(Position:=NewMove.Y, Speed:=NewMove.Speed, Accel:=NewMove.Acc, Decel:=NewMove.Acc, Jerk:=0);
-    State:=_State::_moveready;
+    lmcY.MoveAbsolute(Position:=NewMove.Y, Speed:=NewMove.YSpeed, Accel:=NewMove.YAcc, Decel:=NewMove.YAcc, Jerk:=0);
+    State:=_MotionState::_moveready;
 
-_State::_moveready:
+_MotionState::_moveready:
     IF lmcX.InPosition(Mode:=::_LMCAXIS_QUERY_POSITION_MODE::LMCAXIS_ACTPOS_IN_WINDOW_APP_UNITS, PositionWindow:=1000) &
      lmcY.InPosition(Mode:=::_LMCAXIS_QUERY_POSITION_MODE::LMCAXIS_ACTPOS_IN_WINDOW_APP_UNITS, PositionWindow:=1000) THEN
       NewMove.Start := FALSE;
       CommandServer.SendStatus(Status:=1);
-      State:=_State::_Idle;
+      State:=_MotionState::_Waiting;
     END_IF;
 
 END_CASE;
 
+END_FUNCTION
+
+
+
+FUNCTION MoveController::Z_control_loop
+Z_current:=Z_current.Read();
+
+if !! lmcZ.AxisStatus.IsReferenced | !! lmcZ.AxisStatus.PowerOn then
+  Z_stepper:=_Z_stepper::__Idle;
+end_if;
+
+
+case Z_stepper of
+
+_Z_stepper::__Idle:
+  if lmcZ.AxisStatus.IsReferenced & lmcZ.AxisStatus.PowerOn then
+    Z_stepper:=_Z_stepper::__MoveDown;
+  end_if;
+
+_Z_stepper::__MoveDown:
+  if NewMove.Z then
+    Z_positiontarget:=Z_DownPos;
+    Z_stepper:=_Z_stepper::__Currentloop;
+  end_if;
+
+_Z_stepper::__Currentloop:
+  
+  //Cotrol loop, if current is higher then setpoint move a bit up.
+  DeltaCurrent:=to_real(Z_currentTarget) - to_real(Z_current);
+  Z_positiontarget+=to_dint(DeltaCurrent * P_currentloop);
+  
+  if NewMove.Z=false then
+    Z_stepper:=_Z_stepper::__MoveUp;
+  end_if;
+
+_Z_stepper::__MoveUp:
+  Z_positiontarget:=0;
+  Z_stepper:=_Z_stepper::__MoveDown;
+
+end_case;
 
 END_FUNCTION
+
 FUNCTION GLOBAL MoveController::MoveAxis
 	VAR_INPUT
 		XPos 	: DINT;
 		YPos 	: DINT;
 		Speed 	: DINT;
 		Accel 	: DINT;
+		YSpeed 	: DINT;
+		YAcc 	: DINT;
 	END_VAR
   
   NewMove.X := XPos;
   NewMove.Y := YPos;
   NewMove.Speed := Speed;
   NewMove.Acc := Accel;
+  NewMove.YSpeed := YSpeed;
+  NewMove.YAcc := YAcc;
   
   NewMove.Start:=TRUE;
   
@@ -276,3 +419,4 @@ FUNCTION GLOBAL MoveController::TogglePower
   sPower:=Power;
 
 END_FUNCTION
+

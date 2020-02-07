@@ -9,12 +9,14 @@
 			Position   = "(1080,780)"
 			Visualized = "false">
 			<Channels>
-				<Server Name="Acc" Value="10000000"/>
+				<Server Name="Acc" Value="40000000"/>
 				<Server Name="CmdRouter"/>
 				<Server Name="Debug"/>
-				<Server Name="Speed" Value="2000000"/>
+				<Server Name="Speed" Value="10000000"/>
+				<Server Name="YAcc" Value="600000000"/>
+				<Server Name="YSpeed" Value="50000000"/>
 				<Client Name="clib" Value="0"/>
-				<Client Name="Controller"/>
+				<Client Name="Controller" Value="MoveController::_Idle"/>
 			</Channels>
 		</Object>
 		<Object

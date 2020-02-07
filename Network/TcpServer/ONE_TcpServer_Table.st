@@ -128,9 +128,12 @@ TO_UDINT(8), "DataBuffer", TO_UDINT(5), "m_udLength",
 
 //Initialization values
 0$UDINT,
-11$UDINT,
-TO_UDINT(1), "Speed", TO_UDINT(2000000),//|TcpServer.commandRouter.Speed;
-TO_UDINT(1), "Acc", TO_UDINT(10000000),//|TcpServer.commandRouter.Acc;
+14$UDINT,
+TO_UDINT(1), "Speed", TO_UDINT(10000000),//|TcpServer.commandRouter.Speed;
+TO_UDINT(1), "Acc", TO_UDINT(40000000),//|TcpServer.commandRouter.Acc;
+TO_UDINT(1), "YSpeed", TO_UDINT(50000000),//|TcpServer.commandRouter.YSpeed;
+TO_UDINT(1), "YAcc", TO_UDINT(600000000),//|TcpServer.commandRouter.YAcc;
+TO_UDINT(1), "Controller", TO_UDINT(MoveController::_Idle),//|TcpServer.commandRouter.Controller;
 TO_UDINT(1), "clib", TO_UDINT(0),//|TcpServer.commandRouter.clib;
 TO_UDINT(2), "cPort", TO_UDINT(1985),//|TcpServer.commandServer.cPort;
 TO_UDINT(2), "cMaxConnections", TO_UDINT(0),//|TcpServer.commandServer.cMaxConnections;

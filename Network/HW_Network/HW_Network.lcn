@@ -34,7 +34,7 @@
 				<Client Name="AxisNo" Value="1"/>
 				<Client Name="DriveMng"/>
 				<Client Name="FileHandle"/>
-				<Client Name="OverwriteMotorPara" Value="0"/>
+				<Client Name="OverwriteMotorPara" Value="1"/>
 				<Client Name="ParaSaveType" Value="1"/>
 				<Client Name="ParaTab"/>
 				<Client Name="Place" Value="0"/>
@@ -113,7 +113,7 @@
 								<Client Name="coMerkerEx"/>
 								<Client Name="coRamEx"/>
 								<Client Name="FileHandle"/>
-								<Client Name="OverwriteMotorPara" Value="0"/>
+								<Client Name="OverwriteMotorPara" Value="1"/>
 								<Client Name="ParaSaveType" Value="1"/>
 								<Client Name="ParaTab"/>
 								<Client Name="TableIndex"/>
@@ -164,7 +164,7 @@
 				<Client Name="AxisNo" Value="1"/>
 				<Client Name="DriveMng"/>
 				<Client Name="FileHandle"/>
-				<Client Name="OverwriteMotorPara" Value="0"/>
+				<Client Name="OverwriteMotorPara" Value="1"/>
 				<Client Name="ParaSaveType" Value="1"/>
 				<Client Name="ParaTab"/>
 				<Client Name="Place" Value="0"/>
@@ -243,7 +243,7 @@
 								<Client Name="coMerkerEx"/>
 								<Client Name="coRamEx"/>
 								<Client Name="FileHandle"/>
-								<Client Name="OverwriteMotorPara" Value="0"/>
+								<Client Name="OverwriteMotorPara" Value="1"/>
 								<Client Name="ParaSaveType" Value="1"/>
 								<Client Name="ParaTab"/>
 								<Client Name="TableIndex"/>
@@ -294,7 +294,7 @@
 				<Client Name="AxisNo" Value="1"/>
 				<Client Name="DriveMng"/>
 				<Client Name="FileHandle"/>
-				<Client Name="OverwriteMotorPara" Value="0"/>
+				<Client Name="OverwriteMotorPara" Value="1"/>
 				<Client Name="ParaSaveType" Value="1"/>
 				<Client Name="ParaTab"/>
 				<Client Name="Place" Value="0"/>
@@ -373,7 +373,7 @@
 								<Client Name="coMerkerEx"/>
 								<Client Name="coRamEx"/>
 								<Client Name="FileHandle"/>
-								<Client Name="OverwriteMotorPara" Value="0"/>
+								<Client Name="OverwriteMotorPara" Value="1"/>
 								<Client Name="ParaSaveType" Value="1"/>
 								<Client Name="ParaTab"/>
 								<Client Name="TableIndex"/>
@@ -424,7 +424,7 @@
 				<Client Name="AxisNo" Value="1"/>
 				<Client Name="DriveMng"/>
 				<Client Name="FileHandle"/>
-				<Client Name="OverwriteMotorPara" Value="0"/>
+				<Client Name="OverwriteMotorPara" Value="1"/>
 				<Client Name="ParaSaveType" Value="1"/>
 				<Client Name="ParaTab"/>
 				<Client Name="Place" Value="0"/>
@@ -503,7 +503,7 @@
 								<Client Name="coMerkerEx"/>
 								<Client Name="coRamEx"/>
 								<Client Name="FileHandle"/>
-								<Client Name="OverwriteMotorPara" Value="0"/>
+								<Client Name="OverwriteMotorPara" Value="1"/>
 								<Client Name="ParaSaveType" Value="1"/>
 								<Client Name="ParaTab"/>
 								<Client Name="TableIndex"/>
@@ -1855,7 +1855,7 @@
 				<Server Name="SdiasOut_1"/>
 				<Client Name="CoreSelect"/>
 				<Client Name="CycleTime" Value="1000"/>
-				<Client Name="IsoStartPoint" Value="50"/>
+				<Client Name="IsoStartPoint" Value="60"/>
 				<Client Name="ToHwControl"/>
 				<Parameter KeyName="CableLength" Value="1"/>
 			</Channels>
@@ -1870,7 +1870,7 @@
 								<Server Name="InterfaceState"/>
 								<Client Name="CoreSelect"/>
 								<Client Name="CycleTime" Value="1000"/>
-								<Client Name="IsoStartPoint" Value="50"/>
+								<Client Name="IsoStartPoint" Value="60"/>
 								<Client Name="ToHwControl"/>
 								<Client Name="ToOSKernel"/>
 								<Client Name="ToStdLib"/>
@@ -2090,21 +2090,21 @@
 				<Server Name="ZPuls"/>
 				<Server Name="ZPulsLatched"/>
 				<Client Name="Deathtime" Value="60"/>
-				<Client Name="EncoderSampling"/>
+				<Client Name="EncoderSampling" Value="3"/>
 				<Client Name="Input1Latch" Value="0"/>
 				<Client Name="Input2Latch" Value="0"/>
 				<Client Name="Input3Latch" Value="0"/>
-				<Client Name="InvertEnable" Value="0"/>
-				<Client Name="InvertEncoder"/>
+				<Client Name="InvertEnable" Value="1"/>
+				<Client Name="InvertEncoder" Value="1"/>
 				<Client Name="LatchClockCounter"/>
 				<Client Name="LatchEncoder"/>
 				<Client Name="MinPulseWidth"/>
-				<Client Name="ModeClockCounter"/>
+				<Client Name="ModeClockCounter" Value="0"/>
 				<Client Name="Place" Value="8"/>
-				<Client Name="PulseMode"/>
+				<Client Name="PulseMode" Value="0"/>
 				<Client Name="Required" Value="1"/>
 				<Client Name="SdiasIn"/>
-				<Client Name="UsePulseCntCorrection" Value="0"/>
+				<Client Name="UsePulseCntCorrection" Value="1"/>
 				<Client Name="ZPulseLatch" Value="0"/>
 			</Channels>
 			<!-- List of Networks in this component -->

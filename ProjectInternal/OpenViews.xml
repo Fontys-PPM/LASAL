@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <OpenViews>
-	<Setting Variable="OutputDebugger" Value=""/>
+	<View Key="CommandRouter" Type="2" LineNr="47"/>
+	<View Key="MoveController" Type="2" LineNr="18"/>
+	<View Key="CommandRouter" Type="2" LineNr="47"/>
+	<Setting Variable="OutputDebugger" Value="0"/>
 </OpenViews>

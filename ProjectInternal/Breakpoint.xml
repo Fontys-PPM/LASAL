@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <Breakpoints>
-	<BP ClassName="CommandRouter" SrcName=".\Class\CommandRouter\CommandRouter.st" Line="61" LineOffset="136" OffsetAddr="-1" State="65536" ObjectCondition="" Condition="" ConditionCount="0"/>
+	<BP ClassName="CommandRouter" SrcName=".\Class\CommandRouter\CommandRouter.st" Line="45" LineOffset="154" OffsetAddr="-1" State="65536" ObjectCondition="" Condition="" ConditionCount="0"/>
+	<BP ClassName="CommandRouter" SrcName=".\Class\CommandRouter\CommandRouter.st" Line="49" LineOffset="154" OffsetAddr="-1" State="65536" ObjectCondition="" Condition="" ConditionCount="0"/>
 </Breakpoints>

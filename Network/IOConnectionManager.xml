@@ -5,17 +5,26 @@
 		<!-- List of Connections -->
 		<IOConnections>
 			<IOConnection ObjSrv="_DriveAxis2" Server="CmdState" ObjClt="DrivePosControl1" Client="cDriveAxis" IOI="IOState" SortIndex="0" KeyName="000000"/>
-			<IOConnection ObjSrv="_DriveAxis2" Server="ActPos" ObjClt="_LMCAxis1" Client="ActPosition" IOI="Input" Type="Analog" SortIndex="1" KeyName="000001"/>
+			<IOConnection ObjSrv="_DriveAxis2" Server="ActPos" ObjClt="_LMCAxis_lineair_X" Client="ActPosition" IOI="Input" Type="Analog" SortIndex="1" KeyName="000001"/>
 			<IOConnection ObjSrv="_DriveAxis2" Server="ActCurrent" ObjClt="RefSwitchCurrent1" Client="Current" IOI="Input" Type="Analog" SortIndex="2" KeyName="000002"/>
-			<IOConnection ObjSrv="DM1611" Server="Input1" ObjClt="_LMCAxis2" Client="RefSwitch" IOI="Input" Type="Digital" SortIndex="3" KeyName="000003"/>
+			<IOConnection ObjSrv="DM1611" Server="Input1" ObjClt="_LMCAxis_stepper_Y" Client="RefSwitch" IOI="Input" Type="Digital" SortIndex="3" KeyName="000003"/>
 			<IOConnection ObjSrv="ST1511" Server="SetFreqOut" ObjClt="NCController1" Client="oOutputSignal" IOI="Output" Type="Analog" SortIndex="4" KeyName="000004"/>
-			<IOConnection ObjSrv="ST1511" Server="ActPosition" ObjClt="_LMCAxis2" Client="ActPosition" IOI="Input" Type="Analog" SortIndex="5" KeyName="000005"/>
-			<IOConnection ObjSrv="ST1511" Server="SetFreqOut" IOI="Output" Type="Analog" SortIndex="6" KeyName="000006"/>
+			<IOConnection ObjSrv="ST1511" Server="ActPosition" ObjClt="_LMCAxis_stepper_Y" Client="ActPosition" IOI="Input" Type="Analog" SortIndex="5" KeyName="000005"/>
 			<IOConnection ObjSrv="ST1511" Server="Enable" ObjClt="NCController1" Client="oActive" IOI="Output" Type="Digital" SortIndex="7" KeyName="000007"/>
-			<IOConnection ObjSrv="ST1511" Server="Enable" IOI="Output" Type="Digital" SortIndex="8" KeyName="000008"/>
 			<IOConnection ObjSrv="ST1511" Server="ErrorQuit" ObjClt="NCController1" Client="HWErrorQuit" IOI="Output" Type="Digital" SortIndex="9" KeyName="000009"/>
 			<IOConnection ObjSrv="ST1511" Server="AxError" ObjClt="NCController1" Client="iHWErrors" IOI="IOState" Type="Digital" SortIndex="10" KeyName="000010"/>
 			<IOConnection ObjSrv="ST1511" Server="MaxCurrent" ObjClt="SetCurrent1" Client="Current" IOI="Output" Type="Analog" SortIndex="11" KeyName="000011"/>
+			<IOConnection ObjSrv="ST0111" Server="Encoder" ObjClt="Encoders1" Client="pos_in_fixed" IOI="Input" Type="Analog" SortIndex="12" KeyName="000012"/>
+			<IOConnection ObjSrv="ST0111" Server="FreqOut" ObjClt="Encoders1" Client="Speed_out" IOI="Output" Type="Analog" SortIndex="13" KeyName="000013"/>
+			<IOConnection ObjSrv="ST0111" Server="ClockCounter" ObjClt="Encoders1" Client="Pos_out" IOI="Input" Type="Digital" SortIndex="14" KeyName="000014"/>
+			<IOConnection ObjSrv="ST1511" Server="ActPosition" ObjClt="Encoders1" Client="pos_in_steppermotor" IOI="Input" Type="Analog" SortIndex="15" KeyName="000015"/>
+			<IOConnection ObjSrv="_DriveAxis4" Server="CmdState" ObjClt="DrivePosControl2" Client="cDriveAxis" IOI="IOState" SortIndex="16" KeyName="000016"/>
+			<IOConnection ObjSrv="_DriveAxis4" Server="ActPos" ObjClt="_LMCAxis_lineair_Y" Client="ActPosition" IOI="Input" Type="Analog" SortIndex="17" KeyName="000017"/>
+			<IOConnection ObjSrv="_DriveAxis4" Server="ActCurrent" ObjClt="RefSwitchCurrent2" Client="Current" IOI="Input" Type="Analog" SortIndex="18" KeyName="000018"/>
+			<IOConnection ObjSrv="_DriveAxis1" Server="ActCurrent" ObjClt="RefSwitchCurrent3" Client="Current" IOI="Input" Type="Analog" SortIndex="21" KeyName="000019"/>
+			<IOConnection ObjSrv="_DriveAxis1" Server="CmdState" ObjClt="DrivePosControl3" Client="cDriveAxis" IOI="IOState" SortIndex="19" KeyName="000020"/>
+			<IOConnection ObjSrv="_DriveAxis1" Server="ActPos" ObjClt="_ZAxis" Client="ActPosition" IOI="Input" Type="Analog" SortIndex="20" KeyName="000021"/>
+			<IOConnection ObjSrv="_DriveAxis1" Server="ActCurrent" ObjClt="moveController" Client="Z_current" IOI="Input" Type="Analog" SortIndex="22" KeyName="000022"/>
 		</IOConnections>
 	</Entry>
 	<!-- List of Folders -->

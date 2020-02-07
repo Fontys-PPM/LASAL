@@ -742,6 +742,13 @@ typedef struct SvrCh__LMCCONTROLLERTYPE
     SVRDSC *pDsc;
   } SvrCh__LMCCONTROLLERTYPE;
 
+typedef struct SvrCh__MotionState_PTofCls_MoveController 
+  {
+    CHMETH *pMeth;
+    _MotionState dData;
+    SVRDSC *pDsc;
+  } SvrCh__MotionState_PTofCls_MoveController;
+
 typedef struct SvrCh__SDDAXISSTATE 
   {
     CHMETH *pMeth;
@@ -755,13 +762,6 @@ typedef struct SvrCh__SDDUSERCMD
     _SDDUSERCMD dData;
     SVRDSC *pDsc;
   } SvrCh__SDDUSERCMD;
-
-typedef struct SvrCh__State_PTofCls_MoveController 
-  {
-    CHMETH *pMeth;
-    _State dData;
-    SVRDSC *pDsc;
-  } SvrCh__State_PTofCls_MoveController;
 
 typedef struct SvrCh_bd_EnabledFreqLimit_PTofCls_ST151Base 
   {
@@ -804,6 +804,13 @@ typedef struct SvrCh_HDINT
     HDINT dData;
     SVRDSC *pDsc;
   } SvrCh_HDINT;
+
+typedef struct SvrCh_REAL 
+  {
+    CHMETH *pMeth;
+    REAL dData;
+    SVRDSC *pDsc;
+  } SvrCh_REAL;
 
 typedef struct SvrCh_SafetyConfigStateType 
   {

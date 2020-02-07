@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Network Name="EncoderSimulation" Revision="0.0">
+	<!-- List of Components in this network -->
+	<Components>
+		<Object
+			Name       = "Encoders1"
+			GUID       = "{BB3BE2FF-1AD3-4F6D-8E5D-4203121FC955}"
+			Class      = "Encoders"
+			Position   = "(630,240)"
+			Visualized = "false"
+			RealTime   = "1 ms"
+			RealIndex  = "1073742336">
+			<Channels>
+				<Server Name="DIV" Value="1000"/>
+				<Server Name="InvertOutput" Value="1"/>
+				<Server Name="KV" Value="100"/>
+				<Server Name="MUL" Value="11700"/>
+				<Server Name="Target"/>
+				<Client Name="pos_in_fixed" Value="-1"/>
+				<Client Name="pos_in_steppermotor" Value="0"/>
+				<Client Name="Pos_out" Value="-1"/>
+				<Client Name="Speed_out" Value="0"/>
+			</Channels>
+		</Object>
+	</Components>
+	<Comments>
+	</Comments>
+	<!-- List of Connections in this network -->
+	<Connections>
+		<Connection Source="Encoders1.pos_in_fixed" Destination="ST0111.Encoder"/>
+		<Connection Source="Encoders1.Speed_out" Destination="ST0111.FreqOut"/>
+		<Connection Source="Encoders1.Pos_out" Destination="ST0111.ClockCounter"/>
+		<Connection Source="Encoders1.pos_in_steppermotor" Destination="ST1511.ActPosition"/>
+	</Connections>
+	<!-- Headerfiles -->
+	<Options>
+	</Options>
+</Network>

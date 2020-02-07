@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<DataAnalyser
+	Samplerate    = "1000"
+	DA_Type       = "0"
+	MaxMemTime    = "0"
+	MaxMem        = "20"
+	TimeRangeStr  = "10000 ms"
+	TimeOffsetStr = "0 ms"
+	TimeRange     = "10000"
+	TimeOffset    = "0"
+	ScreenView    = "TREND">
+	<DA_TriggerStart Active="false" Type="Start" Condition="Greater or Equal">
+	</DA_TriggerStart>
+	<DA_TriggerStop Active="false" Type="Stop" Condition="Greater or Equal">
+	</DA_TriggerStop>
+	<DA_Channels>
+		<DA_Channel
+			Name          = "_LMCAxis_lineair_X.ActVelocity"
+			Type          = "DINT"
+			ChannelInfo   = "_LMCAxis_lineair_X.ActVelocity"
+			ChannelSize   = "4"
+			BitIndex      = "0"
+			Color         = "886118"
+			Active        = "true"
+			LimitHi       = "12100"
+			LimitLo       = "-12100"
+			IsServer      = "true"
+			ChannelMemOff = "108">
+		</DA_Channel>
+		<DA_Channel
+			Name          = "ST1511.ActPosition"
+			Type          = "DINT"
+			ChannelInfo   = "ST1511.ActPosition"
+			ChannelSize   = "4"
+			BitIndex      = "0"
+			Color         = "1331655"
+			Active        = "true"
+			LimitHi       = "870"
+			LimitLo       = "868"
+			IsServer      = "true"
+			ChannelMemOff = "508">
+		</DA_Channel>
+	</DA_Channels>
+	<DA_AuxLines>
+	</DA_AuxLines>
+</DataAnalyser>

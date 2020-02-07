@@ -531,6 +531,11 @@ TYPE
     dData : _LMCCONTROLLERTYPE;
     pDsc : ^SVRDSC;
   END_STRUCT;
+  SvrCh__MotionState_PTofCls_MoveController : STRUCT
+    pMeth : ^CHMETH;
+    dData : MoveController::_MotionState;
+    pDsc : ^SVRDSC;
+  END_STRUCT;
   SvrCh__SDDAXISSTATE : STRUCT
     pMeth : ^CHMETH;
     dData : _SDDAXISSTATE;
@@ -539,11 +544,6 @@ TYPE
   SvrCh__SDDUSERCMD : STRUCT
     pMeth : ^CHMETH;
     dData : _SDDUSERCMD;
-    pDsc : ^SVRDSC;
-  END_STRUCT;
-  SvrCh__State_PTofCls_MoveController : STRUCT
-    pMeth : ^CHMETH;
-    dData : MoveController::_State;
     pDsc : ^SVRDSC;
   END_STRUCT;
   SvrCh_bd_EnabledFreqLimit_PTofCls_ST151Base : STRUCT
@@ -574,6 +574,11 @@ TYPE
   SvrCh_HDINT : STRUCT
     pMeth : ^CHMETH;
     dData : HDINT;
+    pDsc : ^SVRDSC;
+  END_STRUCT;
+  SvrCh_REAL : STRUCT
+    pMeth : ^CHMETH;
+    dData : REAL;
     pDsc : ^SVRDSC;
   END_STRUCT;
   SvrCh_SafetyConfigStateType : STRUCT

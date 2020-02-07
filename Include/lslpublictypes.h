@@ -340,11 +340,15 @@ END_CLASS;
 #pragma define (restore)
 MoveController : CLASS_PUBLIC
 	TYPE
-	  _State :
+	  _MotionState :
 	  (
 	    _Safe,
 	    _Homing,
-	    _Idle,
+	    _InHomepos,
+	    _EnableShort,
+	    _HomeShort,
+	    _InPosHomeShort,
+	    _Waiting,
 	    _MovingAbsolute,
 	    _moveready,
 	    _MovingRelative,

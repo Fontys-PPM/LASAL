@@ -709,7 +709,7 @@ TO_UDINT(81), "To_HwControl", TO_UDINT(26), "Control",
 
 //Initialization values
 0$UDINT,
-228$UDINT,
+232$UDINT,
 TO_UDINT(0), "LEDControl", TO_UDINT(0),//|HW_Network._DriveMng_DC0621\BusInterfaceSdiasDriveMng.LEDControl;
 TO_UDINT(0), "Place", TO_UDINT(0),//|HW_Network._DriveMng_DC0621\BusInterfaceSdiasDriveMng.Place;
 TO_UDINT(0), "Required", TO_UDINT(1),//|HW_Network._DriveMng_DC0621\BusInterfaceSdiasDriveMng.Required;
@@ -736,30 +736,30 @@ TO_UDINT(6), "Place", TO_UDINT(0),//|HW_Network._DriveAxis1.Place;
 TO_UDINT(6), "AxisNo", TO_UDINT(1),//|HW_Network._DriveAxis1.AxisNo;
 TO_UDINT(6), "AxisExtend", TO_UDINT(1),//|HW_Network._DriveAxis1.AxisExtend;
 TO_UDINT(6), "ParaSaveType", TO_UDINT(1),//|HW_Network._DriveAxis1.ParaSaveType;
-TO_UDINT(6), "OverwriteMotorPara", TO_UDINT(0),//|HW_Network._DriveAxis1.OverwriteMotorPara;
+TO_UDINT(6), "OverwriteMotorPara", TO_UDINT(1),//|HW_Network._DriveAxis1.OverwriteMotorPara;
 TO_UDINT(7), "Place", TO_UDINT(0),//|HW_Network._DriveAxis2.Place;
 TO_UDINT(7), "AxisNo", TO_UDINT(1),//|HW_Network._DriveAxis2.AxisNo;
 TO_UDINT(7), "AxisExtend", TO_UDINT(1),//|HW_Network._DriveAxis2.AxisExtend;
 TO_UDINT(7), "ParaSaveType", TO_UDINT(1),//|HW_Network._DriveAxis2.ParaSaveType;
-TO_UDINT(7), "OverwriteMotorPara", TO_UDINT(0),//|HW_Network._DriveAxis2.OverwriteMotorPara;
+TO_UDINT(7), "OverwriteMotorPara", TO_UDINT(1),//|HW_Network._DriveAxis2.OverwriteMotorPara;
 TO_UDINT(8), "Place", TO_UDINT(0),//|HW_Network._DriveAxis3.Place;
 TO_UDINT(8), "AxisNo", TO_UDINT(1),//|HW_Network._DriveAxis3.AxisNo;
 TO_UDINT(8), "AxisExtend", TO_UDINT(1),//|HW_Network._DriveAxis3.AxisExtend;
 TO_UDINT(8), "ParaSaveType", TO_UDINT(1),//|HW_Network._DriveAxis3.ParaSaveType;
-TO_UDINT(8), "OverwriteMotorPara", TO_UDINT(0),//|HW_Network._DriveAxis3.OverwriteMotorPara;
+TO_UDINT(8), "OverwriteMotorPara", TO_UDINT(1),//|HW_Network._DriveAxis3.OverwriteMotorPara;
 TO_UDINT(9), "Place", TO_UDINT(0),//|HW_Network._DriveAxis4.Place;
 TO_UDINT(9), "AxisNo", TO_UDINT(1),//|HW_Network._DriveAxis4.AxisNo;
 TO_UDINT(9), "AxisExtend", TO_UDINT(1),//|HW_Network._DriveAxis4.AxisExtend;
 TO_UDINT(9), "ParaSaveType", TO_UDINT(1),//|HW_Network._DriveAxis4.ParaSaveType;
-TO_UDINT(9), "OverwriteMotorPara", TO_UDINT(0),//|HW_Network._DriveAxis4.OverwriteMotorPara;
+TO_UDINT(9), "OverwriteMotorPara", TO_UDINT(1),//|HW_Network._DriveAxis4.OverwriteMotorPara;
 TO_UDINT(10), "ParaSaveType", TO_UDINT(1),//|HW_Network._DriveAxis1\SDDAxSet1.ParaSaveType;
-TO_UDINT(10), "OverwriteMotorPara", TO_UDINT(0),//|HW_Network._DriveAxis1\SDDAxSet1.OverwriteMotorPara;
+TO_UDINT(10), "OverwriteMotorPara", TO_UDINT(1),//|HW_Network._DriveAxis1\SDDAxSet1.OverwriteMotorPara;
 TO_UDINT(11), "ParaSaveType", TO_UDINT(1),//|HW_Network._DriveAxis2\SDDAxSet1.ParaSaveType;
-TO_UDINT(11), "OverwriteMotorPara", TO_UDINT(0),//|HW_Network._DriveAxis2\SDDAxSet1.OverwriteMotorPara;
+TO_UDINT(11), "OverwriteMotorPara", TO_UDINT(1),//|HW_Network._DriveAxis2\SDDAxSet1.OverwriteMotorPara;
 TO_UDINT(12), "ParaSaveType", TO_UDINT(1),//|HW_Network._DriveAxis3\SDDAxSet1.ParaSaveType;
-TO_UDINT(12), "OverwriteMotorPara", TO_UDINT(0),//|HW_Network._DriveAxis3\SDDAxSet1.OverwriteMotorPara;
+TO_UDINT(12), "OverwriteMotorPara", TO_UDINT(1),//|HW_Network._DriveAxis3\SDDAxSet1.OverwriteMotorPara;
 TO_UDINT(13), "ParaSaveType", TO_UDINT(1),//|HW_Network._DriveAxis4\SDDAxSet1.ParaSaveType;
-TO_UDINT(13), "OverwriteMotorPara", TO_UDINT(0),//|HW_Network._DriveAxis4\SDDAxSet1.OverwriteMotorPara;
+TO_UDINT(13), "OverwriteMotorPara", TO_UDINT(1),//|HW_Network._DriveAxis4\SDDAxSet1.OverwriteMotorPara;
 TO_UDINT(14), "Place", TO_UDINT(0),//|HW_Network._DriveMng_DC0621.Place;
 TO_UDINT(14), "Required", TO_UDINT(1),//|HW_Network._DriveMng_DC0621.Required;
 TO_UDINT(14), "TimeMultiplier", TO_UDINT(1),//|HW_Network._DriveMng_DC0621.TimeMultiplier;
@@ -810,7 +810,7 @@ TO_UDINT(53), "InterfaceNo", TO_UDINT(1),//|HW_Network.HwControl1\SafetyManager.
 TO_UDINT(54), "SplitterPlace", TO_UDINT(0),//|HW_Network.SdiasPLC1\SdiasHubBase1.SplitterPlace;
 TO_UDINT(55), "DeviceID", TO_UDINT(0),//|HW_Network.SdiasPLC1\SdiasManager1.DeviceID;
 TO_UDINT(56), "CycleTime", TO_UDINT(1000),//|HW_Network.SdiasPLC1.CycleTime;
-TO_UDINT(56), "IsoStartPoint", TO_UDINT(50),//|HW_Network.SdiasPLC1.IsoStartPoint;
+TO_UDINT(56), "IsoStartPoint", TO_UDINT(60),//|HW_Network.SdiasPLC1.IsoStartPoint;
 TO_UDINT(58), "LEDControl", TO_UDINT(0),//|HW_Network.SR0221.LEDControl;
 TO_UDINT(58), "MinPulse", TO_UDINT(7),//|HW_Network.SR0221.MinPulse;
 TO_UDINT(58), "Place", TO_UDINT(6),//|HW_Network.SR0221.Place;
@@ -826,8 +826,12 @@ TO_UDINT(58), "ExtendedData", TO_UDINT(0),//|HW_Network.SR0221.ExtendedData;
 TO_UDINT(59), "LEDControl", TO_UDINT(0),//|HW_Network.ST0111.LEDControl;
 TO_UDINT(59), "Place", TO_UDINT(8),//|HW_Network.ST0111.Place;
 TO_UDINT(59), "Required", TO_UDINT(1),//|HW_Network.ST0111.Required;
-TO_UDINT(59), "UsePulseCntCorrection", TO_UDINT(0),//|HW_Network.ST0111.UsePulseCntCorrection;
-TO_UDINT(59), "InvertEnable", TO_UDINT(0),//|HW_Network.ST0111.InvertEnable;
+TO_UDINT(59), "UsePulseCntCorrection", TO_UDINT(1),//|HW_Network.ST0111.UsePulseCntCorrection;
+TO_UDINT(59), "PulseMode", TO_UDINT(0),//|HW_Network.ST0111.PulseMode;
+TO_UDINT(59), "ModeClockCounter", TO_UDINT(0),//|HW_Network.ST0111.ModeClockCounter;
+TO_UDINT(59), "InvertEncoder", TO_UDINT(1),//|HW_Network.ST0111.InvertEncoder;
+TO_UDINT(59), "InvertEnable", TO_UDINT(1),//|HW_Network.ST0111.InvertEnable;
+TO_UDINT(59), "EncoderSampling", TO_UDINT(3),//|HW_Network.ST0111.EncoderSampling;
 TO_UDINT(59), "Deathtime", TO_UDINT(60),//|HW_Network.ST0111.Deathtime;
 TO_UDINT(59), "Input1Latch", TO_UDINT(0),//|HW_Network.ST0111.Input1Latch;
 TO_UDINT(59), "Input2Latch", TO_UDINT(0),//|HW_Network.ST0111.Input2Latch;

@@ -7,7 +7,7 @@
 	WriteSrvListOnSave = "true"
 	CLASSType          = "true">
 	<OnlineConnectionInfo>
-		<TCPIP ConfigName="ppm" BUS="3" Password="" IP="10.101.10.150" PORT="1954" SomeFlags="0" PLCID="" Repeater="0" SSLTLS="0" Favorite="1"/>
+		<TCPIP ConfigName="ppm" BUS="3" Password="" IP="10.101.10.150" PORT="1954" SomeFlags="0" PLCID="" Repeater="0" SSLTLS="0" Favorite="0"/>
 	</OnlineConnectionInfo>
 	<HeaderFiles>
 		<File Path=".\Include\unit.h"/>
@@ -202,17 +202,25 @@
 		<File Path=".\Class\SendNow\SendNow.st"/>
 		<File Path=".\Class\SigCLib\CStrLibEx.cpp"/>
 		<File Path=".\Class\SigCLib\CDeEncode.cpp"/>
+		<File Path=".\Class\_documentation\_documentation.st"/>
+		<File Path=".\Class\Encoders\Encoders.st"/>
 	</ClassFiles>
 	<NetworkFiles>
 		<File Path=".\Network\TcpServer\TcpServer.lcn"/>
 		<File Path=".\Network\HW_Network\HW_Network.lcn"/>
 		<File Path=".\Network\XAxis\XAxis.lcn"/>
+		<File Path=".\Network\EncoderSimulation\EncoderSimulation.lcn"/>
+		<File Path=".\Network\PickPlace\PickPlace.lcn"/>
 	</NetworkFiles>
 	<ObjectFiles>
 		<File Path=".\Loader\Source\Loader.lob" Downloadable="false"/>
 	</ObjectFiles>
 	<DriveFiles>
 		<File Path=".\Drive\uf6_dc062_48Vdc.lda" ObjectName="_DriveAxis2" Idx="0"/>
+		<File Path=".\Drive\lineair_y_axis_4.lda" ObjectName="_DriveAxis4" Idx="0"/>
+		<File Path=".\Drive\um3s_dc062_48Vdc - Copy.lda" ObjectName="_DriveAxis3" Idx="0"/>
+		<File Path=".\Drive\uc3_dc062_48Vdc.lda" Idx="0"/>
+		<File Path=".\Drive\uc3_dc062_48Vdc_0.lda" ObjectName="_DriveAxis1" Idx="0"/>
 	</DriveFiles>
 	<DocuFiles>
 		<File Path=".\Class\ST151\ST151_VOV.vov"/>

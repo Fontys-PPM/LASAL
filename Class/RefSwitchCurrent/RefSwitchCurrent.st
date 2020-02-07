@@ -19,7 +19,7 @@
 	SharedCommandTable = "true"
 	Objectsize         = "(284,120)">
 	<Channels>
-		<Server Name="setpoint" GUID="{CB6EAA3D-945C-47C1-8706-57E651FB3D3E}" Visualized="false" Initialize="false" WriteProtected="false" Retentive="File"/>
+		<Server Name="setpoint" GUID="{CB6EAA3D-945C-47C1-8706-57E651FB3D3E}" Visualized="false" Initialize="true" WriteProtected="false" Retentive="File"/>
 		<Server Name="Switch" GUID="{45144A9F-5063-44E3-A09E-EDB6F04748BD}" Visualized="false" Initialize="false" WriteProtected="true" Retentive="false"/>
 		<Client Name="Current" Required="true" Internal="false"/>
 	</Channels>

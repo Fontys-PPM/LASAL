@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<WatchVariable>
+	<Variable Name="_DriveAxis4.ActPos"/>
+	<Variable Name="_DriveAxis3.ActPos"/>
+</WatchVariable>
